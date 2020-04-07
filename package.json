@@ -8,13 +8,21 @@
     "prebuild": "ts-node src/schemas/compile.ts",
     "build": "tsc",
     "prestart": "npm run build",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "test": "mocha"
+  },
+  "mocha": {
+    "extension": [
+      "ts"
+    ],
+    "require": "ts-node/register"
   },
   "repository": "https://github.com/OADA/formats",
   "author": "Alex Layton <alex@layton.in>",
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "@apidevtools/json-schema-ref-parser": "^8.0.0",
     "@types/mkdirp": "^1.0.0",
     "ajv": "^6.12.0",
     "bluebird": "^3.7.2",
@@ -25,7 +33,11 @@
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.30",
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "chai": "^4.2.0",
     "json-schema-to-typescript": "^8.2.0",
+    "mocha": "^7.1.1",
     "prettier-standard": "^16.2.1",
     "ts-node": "^8.8.2"
   }
