@@ -1,0 +1,32 @@
+{
+  "name": "@oada/formats",
+  "version": "1.0.0",
+  "description": "Reworked OADA formats",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "prebuild": "ts-node src/schemas/compile.ts",
+    "build": "tsc",
+    "prestart": "npm run build",
+    "prepare": "npm run build"
+  },
+  "repository": "https://github.com/OADA/formats",
+  "author": "Alex Layton <alex@layton.in>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@types/mkdirp": "^1.0.0",
+    "ajv": "^6.12.0",
+    "bluebird": "^3.7.2",
+    "glob": "^7.1.6",
+    "jsonschema8": "^1.0.1",
+    "mkdirp": "^1.0.4",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.30",
+    "json-schema-to-typescript": "^8.2.0",
+    "prettier-standard": "^16.2.1",
+    "ts-node": "^8.8.2"
+  }
+}
