@@ -7,7 +7,7 @@ import { compileFromFile } from 'json-schema-to-typescript'
 import schemas, { glob } from './'
 
 const schemasDir = resolve('lib', 'schemas')
-const typesDir = resolve('src', 'types')
+const typesDir = resolve('types')
 
 const compileStr = '`$ yarn build`'
 
@@ -63,6 +63,8 @@ async function doCompile () {
             throw ajv.errors
           }
         }
+
+        export default ${typeName}
       `
 
     console.debug(`Compiling ${key} to TypeScript types`)

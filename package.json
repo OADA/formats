@@ -4,6 +4,9 @@
   "description": "Reworked OADA formats",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
     "prebuild": "ts-node src/schemas/compile.ts",
     "build": "tsc",
