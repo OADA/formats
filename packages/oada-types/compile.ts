@@ -32,7 +32,7 @@ async function doCompile () {
         /**
          * File was automatically generated using json-schema-to-typescript.
          * DO NOT MODIFY IT BY HAND.
-         * Instead, modify the source file ${key}
+         * Instead, modify the source file ${key} of @oada/formats
          * and run ${compileStr} to regenerate this file.
          */
 
