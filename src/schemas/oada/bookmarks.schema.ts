@@ -14,7 +14,7 @@ export default {
   },
   allOf: [
     {
-      $ref: '../oada.schema.json#/definitions/resource'
+      $ref: 'resource.schema.json#'
     },
     {
       anyOf: [

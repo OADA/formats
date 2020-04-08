@@ -3,25 +3,6 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 export default {
   $id: 'https://formats.openag.io/oada.schema.json',
   definitions: {
-    resource: {
-      $anchor: 'resource',
-      type: 'object',
-      required: ['_id', '_rev', '_meta', '_type'],
-      properties: {
-        _id: {
-          $ref: '#/definitions/_id'
-        },
-        _rev: {
-          $ref: '#/definitions/_rev'
-        },
-        _meta: {
-          $ref: '#/definitions/link/definitions/versioned'
-        },
-        _type: {
-          $ref: '#/definitions/_type'
-        }
-      }
-    },
     link: {
       $anchor: 'link',
       definitions: {
