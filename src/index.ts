@@ -1,6 +1,6 @@
 //import { JSONSchema8 as Schema } from 'jsonschema8'
 
-//import schemas from './schemas'
+import schemas from './schemas'
 
 import { ajv } from './ajv'
 
@@ -8,3 +8,5 @@ import { ajv } from './ajv'
 export default ajv
 
 export { OADAFormats } from './ajv'
+
+export { schemas }

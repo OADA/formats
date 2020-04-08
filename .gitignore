@@ -1,6 +1,5 @@
 # "Compiled" stuff
 lib
-src/types
 
 # Dependency directory
 # Commenting this out is preferred by some people, see

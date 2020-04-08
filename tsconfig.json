@@ -13,5 +13,5 @@
     "declaration": true,
     "declarationMap": true
   },
-  "exclude": ["lib", "test", "types"]
+  "exclude": ["lib", "test"]
 }
