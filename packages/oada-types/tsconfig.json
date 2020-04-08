@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "strict": true,
+    "moduleResolution": "node",
+    "module": "CommonJS",
+    "lib": ["ES2019"],
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "rootDir": "src",
+    "outDir": "lib",
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true
+  },
+  "exclude": ["lib", "test", "types"]
+}

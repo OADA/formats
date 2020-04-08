@@ -1,0 +1,22 @@
+{
+  "name": "@oada/types",
+  "version": "1.0.0",
+  "description": "TypeScript type definitions for OADA formats",
+  "main": "index.ts",
+  "scripts": {
+    "build": "ts-node compile.ts",
+    "prestart": "npm run build",
+    "prepare": "npm run build"
+  },
+  "repository": "https://github.com/OADA/types",
+  "author": "Alex Layton <alex@layton.in>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@types/mkdirp": "^1.0.0",
+    "@types/node": "^13.11.0",
+    "json-schema-to-typescript": "^8.2.0",
+    "mkdirp": "^1.0.4",
+    "typescript": "^3.8.3"
+  }
+}
