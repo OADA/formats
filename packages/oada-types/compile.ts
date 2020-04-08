@@ -4,7 +4,7 @@ import { resolve, join, basename, dirname } from 'path'
 import mkdirp = require('mkdirp')
 import { compileFromFile } from 'json-schema-to-typescript'
 
-import { schemas } from '@oada/formats'
+import formats, { schemas } from '@oada/formats'
 
 // Where to put compiled types
 const typesDir = resolve('./')
@@ -70,9 +70,23 @@ async function doCompile () {
 
     console.debug(`Compiling ${key} to TypeScript types`)
     try {
+      const r = /^https:\/\/formats\.openag\.io/
       const ts = await compileFromFile(path, {
         bannerComment,
         unreachableDefinitions: true,
+        $refOptions: {
+          // Use local versions of openag schemas
+          resolve: {
+            http: {
+              order: 0,
+              canRead: r,
+              async read ({ url }) {
+                const path = url.replace(r, '')
+                return JSON.stringify(formats.getSchema(path)?.schema)
+              }
+            }
+          }
+        },
         cwd
       })
       await mkdirp(dirname(outfile))
