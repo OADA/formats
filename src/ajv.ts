@@ -18,7 +18,9 @@ for (const { key, schema } of schemas()) {
 /**
  * Resolves a content-type to possible schema IDs
  */
-export function * contentTypeToKey (contentType: string): Generator<string> {
+export function * contentTypeToKey (
+  contentType: string
+): Generator<string, void, void> {
   const regex = /^application\/vnd\.([^.]+)\.(.*)\+json$/
 
   const matches = regex.exec(contentType.toLowerCase())
@@ -28,11 +30,17 @@ export function * contentTypeToKey (contentType: string): Generator<string> {
 
   const [, domain, type] = matches
   const types = type.split('.')
+  // Handle versioned types
+  const key = `/${domain}/${types.join('/')}.schema.json`
+  const ver = types.pop() ?? NaN
+  if (!+ver) {
+    yield key
+  }
 
-  yield `/${domain}/${types.join('/')}.schema.json`
-
+  // TODO: Enforce that version is a number??
+  // Get separate version schema
+  yield `/${domain}/${types.join('/')}/v${ver}.schema.json`
   // Allow versions definined within schemas??
-  const ver = types.pop()
   // Current verison of JSON Schema definitions
   yield `/${domain}/${types.join('/')}.schema.json#/$defs/v${ver}`
   // Deprecated version of JSON Schema definitions
