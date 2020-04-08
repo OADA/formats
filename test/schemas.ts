@@ -1,4 +1,4 @@
-import { relative, join } from 'path'
+import { relative, isAbsolute, dirname, join } from 'path'
 
 import { expect } from 'chai'
 
@@ -24,10 +24,15 @@ describe('Type Schemas', () => {
           file: {
             order: 0,
             canRead: true,
+            // TODO: Support external $ref
             async read ({ url }) {
-              const dir = join('../src/schemas', key)
-              const path = relative(__dirname, url)
-              const file = join(dir, path).replace(/\.json$/, '')
+              const r = /^https:\/\/formats\.openag\.io/
+              const dir = '../src/schemas'
+              const path = r.test(url) ? url.replace(r, '') : relative('', url)
+              const file = (isAbsolute(path)
+                ? join(dir, path)
+                : join(dir, dirname(key), path)
+              ).replace(/\.json$/, '')
               const { default: schema } = await import(file)
               return schema
             }
