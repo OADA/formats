@@ -4,10 +4,10 @@ import { resolve, join, basename, dirname, relative } from 'path'
 import mkdirp = require('mkdirp')
 import { compileFromFile } from 'json-schema-to-typescript'
 
-import schemas, { glob } from './'
+import schemas from './'
 
 const schemasDir = resolve('lib', 'schemas')
-const typesDir = resolve('types')
+const typesDir = resolve('src', 'types')
 
 const compileStr = '`$ yarn build`'
 
@@ -23,7 +23,10 @@ async function doCompile () {
   }
 
   // Compile schemas to TS types
-  for (const key of glob) {
+  for (const {
+    key,
+    schema: { $id }
+  } of schemas()) {
     const file = key.replace(/^\//, './')
     const infile = join(schemasDir, file)
     const outfile = join(typesDir, file.replace(/\.schema\.json$/, '.ts'))
@@ -61,6 +64,19 @@ async function doCompile () {
         export function assert (val: any): asserts val is ${typeName} {
           if (!ajv.validate('${key}', val) as boolean) {
             throw ajv.errors
+          }
+        }
+
+        // Augment module interface?
+        declare module '${relative(
+          resolve(dirname(outfile)),
+          resolve(__dirname, '../ajv')
+        )}' {
+          /**
+           * @todo Figure out how do type overrides for getSchema
+           */
+          interface OADAFormats {
+            validate(ref: '${$id}' | '${key}', data: any): data is ${typeName}
           }
         }
 

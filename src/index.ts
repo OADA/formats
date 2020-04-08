@@ -6,3 +6,5 @@ import { ajv } from './ajv'
 
 // TODO: What the heck should I export??
 export default ajv
+
+export { OADAFormats } from './ajv'

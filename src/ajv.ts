@@ -1,8 +1,14 @@
+import { JSONSchema8 as Schema } from 'jsonschema8'
+
 import * as Ajv from 'ajv'
 
 import schemas from './schemas'
 
-export const ajv = new Ajv()
+export const ajv: OADAFormats = new Ajv() as OADAFormats
+
+export interface OADAFormats extends Ajv.Ajv {
+  validate(ref: string | Schema, data: any): boolean
+}
 
 // Load all the schemas into ajv (ajv does not fetch $ref's itself)
 for (const { key, schema } of schemas()) {
@@ -35,7 +41,7 @@ export function * contentTypeToKey (contentType: string): Generator<string> {
 
 // Support getting schema by content type?
 const _getSchema = ajv.getSchema.bind(ajv)
-ajv.getSchema = ref => {
+ajv.getSchema = (ref: string) => {
   const schema = _getSchema(ref)
   if (schema) {
     return schema
