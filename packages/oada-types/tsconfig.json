@@ -7,8 +7,6 @@
     "lib": ["ES2019"],
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "rootDir": "src",
-    "outDir": "lib",
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true
