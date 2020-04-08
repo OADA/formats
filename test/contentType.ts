@@ -16,7 +16,7 @@ describe('Content-Type Resolution', () => {
   describe('Versioned Types', () => {
     const rootSchema = { enum: ['foo2'] }
     before('Load version root schema', () => {
-      types.addSchema(rootSchema, '/test/foo/1.schema.json')
+      types.addSchema(rootSchema, '/test/foo/v1.schema.json')
     })
     it('should resolve to version root schemas', () => {
       const validate = types.getSchema('application/vnd.test.foo.1+json')
