@@ -11,7 +11,7 @@
     "prebuild": "ts-node src/schemas/compile.ts",
     "build": "tsc",
     "pedeploy": "npm run build",
-    "deploy": "gh-pages -d lib/schemas",
+    "deploy": "gh-pages -d lib/schemas -s **/*.schema.json",
     "prepare": "npm run build",
     "test": "mocha"
   },
@@ -32,10 +32,10 @@
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^8.0.0",
-    "@types/mkdirp": "^1.0.0",
-    "@types/bluebird": "^3.5.30",
     "@types/chai": "^4.2.11",
+    "@types/mkdirp": "^1.0.0",
     "@types/mocha": "^7.0.2",
+    "@types/node": "^13.11.1",
     "chai": "^4.2.0",
     "gh-pages": "^2.2.0",
     "jsonschema8": "^1.0.1",
