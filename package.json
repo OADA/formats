@@ -10,6 +10,8 @@
   "scripts": {
     "prebuild": "ts-node src/schemas/compile.ts",
     "build": "tsc",
+    "pedeploy": "npm run build",
+    "deploy": "gh-pages -d lib/schemas",
     "prestart": "npm run build",
     "prepare": "npm run build",
     "test": "mocha"
@@ -39,6 +41,7 @@
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
     "chai": "^4.2.0",
+    "gh-pages": "^2.2.0",
     "mocha": "^7.1.1",
     "prettier-standard": "^16.2.1",
     "ts-node": "^8.8.2"
