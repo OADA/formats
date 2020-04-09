@@ -61,6 +61,15 @@ export default {
     _rev: {
       description: '_rev is the revision for a resource in the OADA API.',
       type: 'integer'
+    },
+    method: {
+      description: 'The request methods (a la HTTP) supported by OADA',
+      enum: ['head', 'get', 'put', 'post', 'delete']
+    },
+    path: {
+      description: 'The represenation of a path within an OADA server',
+      type: 'string',
+      format: 'uri-reference'
     }
   }
 } as Schema
