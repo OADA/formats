@@ -55,7 +55,9 @@ describe('Type Schemas', () => {
         )
       })
 
-      it("should have valid $ref's", async () => {
+      xit("should have valid self $ref's")
+
+      it("should have valid external $ref's", async () => {
         await checkRefs(key, schema)
       })
     })
