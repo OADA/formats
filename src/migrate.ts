@@ -103,7 +103,8 @@ export async function migrate (
         output = `
           import { JSONSchema8 as Schema } from 'jsonschema8'
 
-          export default ${json} as Schema
+          const schema: Schema = ${json}
+          export default schema
         `
         path = path.replace(/\.json$/, '.ts')
         break

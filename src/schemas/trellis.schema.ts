@@ -1,6 +1,6 @@
 import { JSONSchema8 as Schema } from 'jsonschema8'
 
-export default {
+const schema: Schema = {
   $id: 'https://formats.openag.io/trellis.schema.json',
   definitions: {
     location: {
@@ -51,4 +51,6 @@ export default {
       type: 'string'
     }
   }
-} as Schema
+}
+
+export default schema

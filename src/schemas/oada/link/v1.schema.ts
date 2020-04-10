@@ -1,6 +1,6 @@
 import { JSONSchema8 as Schema } from 'jsonschema8'
 
-export default {
+const schema: Schema = {
   $id: 'https://formats.openag.io/oada/link/v1.schema.json',
   description: 'OADA Link object',
   definitions: {
@@ -39,23 +39,23 @@ export default {
       }
     },
     list: {
-      versioned: {
-        type: 'object',
-        additionalProperties: {
-          $ref: '#/definitions/versioned'
+      definitions: {
+        versioned: {
+          type: 'object',
+          additionalProperties: {
+            $ref: '#/definitions/versioned'
+          }
+        },
+        nonversioned: {
+          type: 'object',
+          additionalProperties: {
+            $ref: '#/definitions/nonversioned'
+          }
         }
       },
-      nonversioned: {
-        type: 'object',
-        additionalProperties: {
-          $ref: '#/definitions/nonversioned'
-        }
-      },
-      list: {
-        type: 'object',
-        additionalProperties: {
-          $ref: '#/definitions/link'
-        }
+      type: 'object',
+      additionalProperties: {
+        $ref: '#/definitions/link'
       }
     }
   },
@@ -65,4 +65,6 @@ export default {
       _rev: '1-jxusuf3sc'
     }
   ]
-} as Schema
+}
+
+export default schema

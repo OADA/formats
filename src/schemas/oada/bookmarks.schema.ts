@@ -1,10 +1,11 @@
 import { JSONSchema8 as Schema } from 'jsonschema8'
 
-export default {
+const schema: Schema = {
   $id: 'https://formats.openag.io/oada/bookmarks.schema.json',
   description: 'bookmarks is the top-level document returned by the OADA API',
   definitions: {
     v1: {
+      type: 'object',
       properties: {
         _type: {
           enum: ['application/vnd.oada.bookmarks.1+.json']
@@ -22,6 +23,7 @@ export default {
           $ref: '#/definitions/v1'
         },
         {
+          type: 'object',
           properties: {
             _type: {
               type: 'string',
@@ -32,4 +34,6 @@ export default {
       ]
     }
   ]
-} as Schema
+}
+
+export default schema

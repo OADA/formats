@@ -1,6 +1,6 @@
 import { JSONSchema8 as Schema } from 'jsonschema8'
 
-export default {
+const schema: Schema = {
   $id: 'https://formats.openag.io/oada/change.schema.json',
   definitions: {
     type: {
@@ -17,4 +17,6 @@ export default {
       description: 'The contents of what was changed.'
     }
   }
-} as Schema
+}
+
+export default schema

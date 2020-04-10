@@ -1,6 +1,6 @@
 import { JSONSchema8 as Schema } from 'jsonschema8'
 
-export default {
+const schema: Schema = {
   $id:
     'https://formats.openag.io/oada/oauth-dyn-reg/register-response/v1.schema.json',
   description: 'application/vnd.oada.oauth-dny-reg.register-response.1+json',
@@ -91,4 +91,6 @@ export default {
       registration_provider: 'registration.example.com'
     }
   ]
-} as Schema
+}
+
+export default schema

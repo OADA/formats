@@ -1,6 +1,6 @@
 import { JSONSchema8 as Schema } from 'jsonschema8'
 
-export default {
+const schema: Schema = {
   $id: 'https://formats.openag.io/oada/clients/v1.schema.json',
   description: 'application/vnd.oada.clients.1+json',
   additionalProperties: true,
@@ -30,4 +30,6 @@ export default {
       }
     }
   ]
-} as Schema
+}
+
+export default schema

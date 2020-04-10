@@ -1,6 +1,6 @@
 import { JSONSchema8 as Schema } from 'jsonschema8'
 
-export default {
+const schema: Schema = {
   $id: 'https://formats.openag.io/oada/websockets/change.schema.json',
   description:
     'This is the format of an OADA websocket change notification (server to client)',
@@ -41,4 +41,6 @@ export default {
       $ref: '../change.schema.json#'
     }
   }
-} as Schema
+}
+
+export default schema
