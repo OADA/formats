@@ -7,11 +7,18 @@ import * as Ajv from 'ajv'
 import * as $RefParser from '@apidevtools/json-schema-ref-parser'
 
 import schemas from '../src/schemas'
+import { loadSchema } from '../src/ajv'
 
 describe('Type Schemas', () => {
   let ajv: Ajv.Ajv
-  before('Initialize JSON Schema validator', () => {
-    ajv = new Ajv()
+  before('Initialize JSON Schema validator', async () => {
+    ajv = new Ajv({ loadSchema })
+    const metaSchema = await $RefParser.dereference(
+      'https://json-schema.org/draft/2019-09/schema'
+    )
+
+    // TODO: Why does compileAsync not work for meta schema?
+    ajv.addMetaSchema(metaSchema)
   })
 
   // TODO: Figure out less hacky way to make it find the files correctly
@@ -59,6 +66,13 @@ describe('Type Schemas', () => {
 
       it("should have valid external $ref's", async () => {
         await checkRefs(key, schema)
+      })
+
+      // TODO: Maybe validateSchema is already checking this??
+      it('should have valid examples', () => {
+        for (const example of schema.examples ?? []) {
+          expect(ajv.validate(schema, example)).to.be.true
+        }
       })
     })
   }
