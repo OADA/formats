@@ -1,6 +1,8 @@
 import { relative, isAbsolute, dirname, join } from 'path'
 
-import { expect } from 'chai'
+import * as chai from 'chai'
+// @ts-ignore
+import * as chaiJsonSchema from 'chai-json-schema-ajv'
 
 import { JSONSchema8 as Schema } from 'jsonschema8'
 import * as Ajv from 'ajv'
@@ -9,16 +11,19 @@ import * as $RefParser from '@apidevtools/json-schema-ref-parser'
 import schemas from '../src/schemas'
 import { loadSchema } from '../src/ajv'
 
+const { expect } = chai
+
 describe('Type Schemas', () => {
-  let ajv: Ajv.Ajv
   before('Initialize JSON Schema validator', async () => {
-    ajv = new Ajv({ loadSchema })
+    const ajv = new Ajv({ loadSchema })
     const metaSchema = await $RefParser.dereference(
       'https://json-schema.org/draft/2019-09/schema'
     )
 
     // TODO: Why does compileAsync not work for meta schema?
     ajv.addMetaSchema(metaSchema)
+
+    chai.use(chaiJsonSchema.create({ ajv }))
   })
 
   // TODO: Figure out less hacky way to make it find the files correctly
@@ -51,7 +56,8 @@ describe('Type Schemas', () => {
   for (const { schema, key } of schemas()) {
     describe(key, () => {
       it('should be valid JSON Schema', () => {
-        expect(ajv.validateSchema(schema))
+        // @ts-ignore
+        expect(schema).to.be.validJsonSchema
       })
 
       // $id needs to be consistent with file structure
@@ -68,10 +74,17 @@ describe('Type Schemas', () => {
         await checkRefs(key, schema)
       })
 
-      // TODO: Maybe validateSchema is already checking this??
+      it('should have valid default', () => {
+        if (schema.default) {
+          // @ts-ignore
+          expect(schema.default).to.be.jsonSchema(schema)
+        }
+      })
+
       it('should have valid examples', () => {
         for (const example of schema.examples ?? []) {
-          expect(ajv.validate(schema, example)).to.be.true
+          // @ts-ignore
+          expect(example).to.be.jsonSchema(schema)
         }
       })
     })

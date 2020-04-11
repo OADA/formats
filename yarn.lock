@@ -434,6 +434,11 @@ camelcase@5.3.1, camelcase@^5.0.0:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.3.1.tgz#e3c9b31569e106811df242f715725a1f4c494320"
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
+chai-json-schema-ajv@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/chai-json-schema-ajv/-/chai-json-schema-ajv-5.0.0.tgz#9932ba1add6b29038d60a5e9eb282ee83933d84f"
+  integrity sha512-jp4UoomK+vaQOv5Wzz7EJ2Ivk74qYvU3fP+5kY/FyM58VcwxirnDPUXvb1HqonpL0AkC4z4+Lplu/oEVzSCzDg==
+
 chai@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/chai/-/chai-4.2.0.tgz#760aa72cf20e3795e84b12877ce0e83737aa29e5"

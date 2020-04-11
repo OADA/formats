@@ -39,6 +39,7 @@
     "@types/mocha": "^7.0.2",
     "@types/node": "^13.11.1",
     "chai": "^4.2.0",
+    "chai-json-schema-ajv": "^5.0.0",
     "gh-pages": "^2.2.0",
     "jsonschema8": "^1.0.2",
     "mocha": "^7.1.1",
