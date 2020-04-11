@@ -1,10 +1,13 @@
+import { join } from 'path'
+
 import { JSONSchema8 as Schema } from 'jsonschema8'
 
 import * as Ajv from 'ajv'
+import axios from 'axios'
 
 import schemas from './schemas'
 
-export const ajv: OADAFormats = new Ajv() as OADAFormats
+export const ajv: OADAFormats = new Ajv({ loadSchema }) as OADAFormats
 
 export interface OADAFormats extends Ajv.Ajv {
   validate(ref: string | Schema, data: any): boolean
@@ -60,5 +63,23 @@ ajv.getSchema = (ref: string) => {
     if (schema) {
       return schema
     }
+  }
+}
+
+export async function loadSchema (uri: string) {
+  const r = /^https:\/\/formats\.openag\.io/i
+
+  if (uri.match(r)) {
+    // Use local verison of openag schemas
+    const file = uri
+      .replace(r, join(__dirname, 'schemas'))
+      .replace(/\.json$/, '')
+    const { default: schema } = await import(file)
+    return schema
+  } else {
+    // Try to fetch schema online
+    const { data: schema } = await axios.get<Schema>(uri)
+    console.dir(schema)
+    return schema
   }
 }
