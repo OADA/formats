@@ -43,13 +43,20 @@ export async function migrate (
   }: MigrateOptions = {}
 ) {
   const r = /^oada-formats:\/\/(.+)$/
-  function fixid (id: string): { $id: Schema['$id']; key: string } {
-    // Parse id into content type
-    const matches = r.exec(id)
-    if (!matches) {
-      throw new Error(`Unknown schema id format: ${id}`)
+  function fixid (
+    id: string | undefined,
+    type: string | null
+  ): { $id: Schema['$id']; key: string } {
+    if (id) {
+      // Parse id into content type
+      const matches = r.exec(id)
+      if (!matches) {
+        throw new Error(`Unknown schema id format: ${id}`)
+      }
+      ;[, type] = matches
+    } else if (!type) {
+      throw new Error('Schema has neither id nor type')
     }
-    const [, type] = matches
 
     const { value: key } = contentTypeToKey(type).next() as { value: string }
     const $id = root + key
@@ -58,12 +65,19 @@ export async function migrate (
   }
 
   for (const type in formats.mediatypes) {
-    const model = await formats.model(type)
+    console.info(type)
+    let model
+    try {
+      model = await formats.model(type)
+    } catch (err) {
+      //console.error(`Failed to load type ${type}: %O`, err)
+      continue
+    }
     // Peel off weird id
     const { id, ...oldSchema }: Old.Schema = await model.schema()
 
     // Generate proper id
-    const { $id, key } = fixid(id)
+    const { $id, key } = fixid(id, type)
     const schema = { $id, ...oldSchema }
 
     // TODO: Fix $refs more intelligently
@@ -78,7 +92,7 @@ export async function migrate (
     }
     function fixRef ($ref: string): string {
       const [id, path] = $ref.split('#')
-      const { $id } = id ? fixid(id) : { $id: '' }
+      const { $id } = id ? fixid(id, null) : { $id: '' }
       return `${$id}#${path}`
     }
     fixRefs(schema)
