@@ -1690,10 +1690,10 @@ jsonify@~0.0.0:
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
   integrity sha1-LHS27kHZPKUbe1qu6PUDYx0lKnM=
 
-jsonschema8@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/jsonschema8/-/jsonschema8-1.0.2.tgz#241c32cfc54f53ce6351ab55e7d290a387256a3a"
-  integrity sha512-uH/16cp3XnvPGjHYiiAYDWs7Uhm+7wkE29150zW8sURTuiHIiJP85+Jck4B4EirHaXZP4dNb+BozHKLNo6LptQ==
+jsonschema8@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/jsonschema8/-/jsonschema8-1.1.0.tgz#62c2c0df13860604adae07b4861fc0f7d9604801"
+  integrity sha512-PSkyU2AsaBPapquVqlHJQKq2ZvSXztwObDRio+aDCZOLJipC4LsxhKp3fsJWiB0OCYym2sHLg2XfVwKliq1jkw==
   dependencies:
     typescript "^3.7.5"
 

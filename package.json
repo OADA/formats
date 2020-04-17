@@ -41,7 +41,7 @@
     "chai": "^4.2.0",
     "chai-json-schema-ajv": "^5.0.0",
     "gh-pages": "^2.2.0",
-    "jsonschema8": "^1.0.2",
+    "jsonschema8": "^1.1.0",
     "mocha": "^7.1.1",
     "prettier-standard": "^16.2.1",
     "ts-node": "^8.8.2",
