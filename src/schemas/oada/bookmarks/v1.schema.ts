@@ -2,44 +2,62 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/bookmarks/v1.schema.json',
-  description: 'application/vnd.oada.bookmarks.1+json',
-  additionalProperties: true,
-  properties: {
-    planting: {
-      $ref:
-        'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
-    },
-    harvest: {
-      $ref:
-        'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
-    },
-    machines: {
-      $ref:
-        'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
-    },
-    irrigation: {
-      $ref:
-        'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
-    },
-    sensors: {
-      $ref:
-        'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
-    },
-    fields: {
-      $ref:
-        'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
-    },
-    sales: {
-      $ref:
-        'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
-    },
-    clients: {
-      $ref:
-        'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
+  description: 'bookmarks is the top-level document returned by the OADA API',
+  allOf: [
+    { $ref: 'https://formats.openag.io/oada/resource.schema.json' },
+    {
+      type: 'object',
+      properties: {
+        _type: {
+          enum: ['application/vnd.oada.bookmarks.1+json']
+        },
+        trellisfw: {
+          $ref:
+            'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
+        },
+        planting: {
+          $ref:
+            'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
+        },
+        harvest: {
+          $ref:
+            'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
+        },
+        machines: {
+          $ref:
+            'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
+        },
+        irrigation: {
+          $ref:
+            'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
+        },
+        sensors: {
+          $ref:
+            'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
+        },
+        fields: {
+          $ref:
+            'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
+        },
+        clients: {
+          $ref:
+            'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
+        },
+        'sensor-hubs': {
+          $ref:
+            'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
+        },
+        isoblue: {
+          $ref: 'https://formats.openag.io/oada/link/v1.schema.json#'
+        },
+      },
+      required: ['_type']
     }
-  },
+  ],
   examples: [
     {
+      _type: 'application/vnd.oada.bookmarks.1_json',
+      context: {},
       planting: {
         _id: '09ijfofj',
         _rev: '2-djfh92843hj'
@@ -71,9 +89,12 @@ const schema: Schema = {
       clients: {
         _id: '9sdkf2lk',
         _rev: '4-lfdu029kjds'
+      },
+      'sensor-hubs': {
+        _id: 'xks84x8s',
+        _rev: '1-Rjsuf73fs8d'
       }
     }
   ]
 }
-
 export default schema

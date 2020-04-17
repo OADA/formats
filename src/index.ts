@@ -9,4 +9,3 @@ export { schemas, formats }
 export default formats
 
 export { OADAFormats } from './ajv'
-

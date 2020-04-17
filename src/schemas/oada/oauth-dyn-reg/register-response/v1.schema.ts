@@ -92,5 +92,4 @@ const schema: Schema = {
     }
   ]
 }
-
 export default schema
