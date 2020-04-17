@@ -21,6 +21,7 @@ export namespace Old {
   }
   export interface Formats extends Ajv.Ajv {
     mediatypes: { [key: string]: string }
+    _addMediatypes(types: { [key: string]: string }): void
     model: (type: string) => Promise<Model>
   }
 }
@@ -50,11 +51,11 @@ export async function migrate (
     if (id) {
       // Parse id into content type
       const matches = r.exec(id)
-      if (!matches) {
-        throw new Error(`Unknown schema id format: ${id}`)
+      if (matches) {
+        ;[, type] = matches
       }
-      ;[, type] = matches
-    } else if (!type) {
+    }
+    if (!type) {
       throw new Error('Schema has neither id nor type')
     }
 
@@ -70,15 +71,23 @@ export async function migrate (
     try {
       model = await formats.model(type)
     } catch (err) {
-      //console.error(`Failed to load type ${type}: %O`, err)
+      console.error(`Failed to load type ${type}: %O`, err)
       continue
     }
-    // Peel off weird id
-    const { id, ...oldSchema }: Old.Schema = await model.schema()
+    let schema
+    let $id
+    let key
+    try {
+      // Peel off weird id
+      const { id, ...oldSchema }: Old.Schema = await model.schema()
 
-    // Generate proper id
-    const { $id, key } = fixid(id, type)
-    const schema = { $id, ...oldSchema }
+        // Generate proper id
+      ;({ $id, key } = fixid(id, type))
+      schema = { $id, ...oldSchema }
+    } catch (err) {
+      console.error(`Failed to load schema for ${type}: %O`, err)
+      continue
+    }
 
     // TODO: Fix $refs more intelligently
     function fixRefs (obj: { [key: string]: any }): void {
