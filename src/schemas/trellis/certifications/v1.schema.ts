@@ -1,44 +1,29 @@
 import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
-  $id: 'https://formats.openag.io/oada/harvest/v1.schema.json',
+  $id: 'https://formats.openag.io/trellis/certifications/v1.schema.json',
   description:
-    'A harvest document holds links to information related to harvest activites or data.',
+    'This is document with a list of links to certifications.  The keys are random strings.  It is also possible to have a dynamic index that represents a set of smaller groups of certifications.  In that case, an id-index key or other grouping would be found here.',
+  patternProperties: {
+    '^(?!(indexing|.*-index|_.*)).*$': {
+      description:
+        'A versioned link in OADA has _id an _rev in the link in order allow changes to bubble up from child to parents.',
+      properties: {
+        _id: {
+          description: '_id identifies a resource in the OADA API.',
+          type: 'string'
+        },
+        _rev: {
+          description:
+            '_rev is the revision string for a resource in the OADA API.',
+          type: 'integer'
+        }
+      },
+      required: ['_id', '_rev'],
+      type: 'object'
+    }
+  },
   properties: {
-    'as-harvested': {
-      description:
-        'A versioned link in OADA has _id an _rev in the link in order allow changes to bubble up from child to parents.',
-      properties: {
-        _id: {
-          description: '_id identifies a resource in the OADA API.',
-          type: 'string'
-        },
-        _rev: {
-          description:
-            '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
-      },
-      required: ['_id', '_rev'],
-      type: 'object'
-    },
-    'tiled-maps': {
-      description:
-        'A versioned link in OADA has _id an _rev in the link in order allow changes to bubble up from child to parents.',
-      properties: {
-        _id: {
-          description: '_id identifies a resource in the OADA API.',
-          type: 'string'
-        },
-        _rev: {
-          description:
-            '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
-      },
-      required: ['_id', '_rev'],
-      type: 'object'
-    },
     _id: {
       description: '_id identifies a resource in the OADA API.',
       type: 'string'
@@ -65,7 +50,7 @@ const schema: Schema = {
       type: 'object'
     },
     _type: {
-      enum: ['application/vnd.oada.harvest.1+json']
+      enum: ['application/vnd.trellis.certifications.1+json']
     }
   },
   additionalProperties: true,
@@ -73,19 +58,16 @@ const schema: Schema = {
   type: 'object',
   examples: [
     {
-      _id: '290fijklf3',
-      _rev: '7-9ijkljf0j2ifkl3f',
-      _type: 'application/vnd.oada.harvest.1+json',
-      context: {},
-      'as-harvested': {
-        _id: 'kfj20ikejldss',
-        _rev: '9-kfjo2i3jfelkfas',
-        _type: 'application/vnd.oada.as-harvested.1+json'
+      _id: 'resources/902j3kfljwf0932',
+      _rev: '1-kdfj029ifj2kl3',
+      _meta: {
+        _id: 'resources/f2h0829i322/_meta',
+        _rev: '1-kdfj9028ijf3'
       },
-      'tiled-maps': {
-        _id: '92jfkjfe0fdi',
-        _rev: '8-92fjkflkj492',
-        _type: 'application/vnd.oada.tiled-maps.1+json'
+      _type: 'application/vnd.trellis.certifications.1+json',
+      idjofkwjfsdD: {
+        _id: '8f2ofj2308f2i',
+        _rev: '1-dmfj290fj2klf'
       }
     }
   ]

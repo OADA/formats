@@ -1,11 +1,11 @@
 import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
-  $id: 'https://formats.openag.io/oada/isoblue/v1.schema.json',
+  $id: 'https://formats.openag.io/oada/tiled-maps/v1.schema.json',
   description:
-    'The ISOBlue document holds links to data related to (often collected by) the ISOBlue device',
+    'tiled-maps is used for visualization and statistical calculations, and just generally for making arbitrary geospatial queries. A tiled map is generated from the as-harvested source data which is  turned into a set of data tiles at various zoom levels.  A mobile device or other map-based viewer can request documents with data combined to whatever zoom level it needs.  In addition, each tile in the map contains statistical computations for all the underlying data represented at that zoom level.  This means that if you want to take an average of an area that completely contains a particular tile, you only need to  get the stats for that tile, rather than iterating over the underlying data. In reality, the value for a given "pixel" in a tile is just the stats object of the much smaller geohash that sits on that pixel.',
   properties: {
-    can: {
+    'dry-yield-map': {
       description:
         'A link in OADA has at least an _id key and links one resource to another.',
       properties: {
@@ -17,19 +17,7 @@ const schema: Schema = {
       required: ['_id'],
       type: 'object'
     },
-    heartbeat: {
-      description:
-        'A link in OADA has at least an _id key and links one resource to another.',
-      properties: {
-        _id: {
-          description: '_id identifies a resource in the OADA API.',
-          type: 'string'
-        }
-      },
-      required: ['_id'],
-      type: 'object'
-    },
-    location: {
+    'moisture-map': {
       description:
         'A link in OADA has at least an _id key and links one resource to another.',
       properties: {
@@ -67,7 +55,7 @@ const schema: Schema = {
       type: 'object'
     },
     _type: {
-      enum: ['application/vnd.oada.isoblue.1+json']
+      enum: ['application/vnd.oada.as-harvested.tiled-maps.1+json']
     }
   },
   additionalProperties: true,
@@ -75,15 +63,14 @@ const schema: Schema = {
   type: 'object',
   examples: [
     {
-      _type: 'application/vnd.oada.isoblue.1+json',
-      can: {
-        _id: 'kfj20ikejldss'
+      _id: 'resources/029jfilwkjfo2i3ledkf',
+      _rev: 5,
+      _type: 'application/vnd.oada.tiled-maps.1+json',
+      'dry-yield-map': {
+        _id: 'resources/k2fjo23lf3'
       },
-      heartbeat: {
-        _id: '92jfkjfe0fdi'
-      },
-      location: {
-        _id: '92jfkjfe0fdi'
+      'moisture-map': {
+        _id: 'resources/k2fjo23lf3'
       }
     }
   ]

@@ -133,7 +133,6 @@ export async function migrate (
         // @ts-ignore
         delete schema.indexing
 
-
         // Change "known" to examples
         // @ts-ignore
         if (schema.known) {

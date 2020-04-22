@@ -14,7 +14,8 @@ const schema: Schema = {
           type: 'string'
         }
       },
-      required: ['_id']
+      required: ['_id'],
+      type: 'object'
     },
     _id: {
       description: '_id identifies a resource in the OADA API.',
@@ -38,7 +39,8 @@ const schema: Schema = {
           type: 'integer'
         }
       },
-      required: ['_id', '_rev']
+      required: ['_id', '_rev'],
+      type: 'object'
     },
     _type: {
       enum: ['application/vnd.oada.as-harvested.1+json']
@@ -46,6 +48,7 @@ const schema: Schema = {
   },
   additionalProperties: true,
   required: ['_type'],
+  type: 'object',
   examples: [
     {
       _id: 'resources/kfj20ikejldss',

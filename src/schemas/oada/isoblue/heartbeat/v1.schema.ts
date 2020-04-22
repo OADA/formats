@@ -23,40 +23,44 @@ const schema: Schema = {
                 'time is a data type which holds a reading of...time...',
               properties: {
                 units: {
-                  examples: ['unix-timestamp', 'sec'],
-                  type: 'string'
+                  type: 'string',
+                  examples: ['unix-timestamp', 'sec']
                 }
-              }
+              },
+              type: 'object'
             },
             cell_ns: {
               description:
                 'Strength of cellular signal, ranging from ~-100 to ~-10',
               properties: {
                 units: {
-                  examples: ['dBm'],
-                  type: 'string'
+                  type: 'string',
+                  examples: ['dBm']
                 }
-              }
+              },
+              type: 'object'
             },
             wifi_ns: {
               description:
                 'Strength of wifi signal, ranging form ~-100 to ~-10',
               properties: {
                 units: {
-                  examples: ['dBm'],
-                  type: 'string'
+                  type: 'string',
+                  examples: ['dBm']
                 }
-              }
+              },
+              type: 'object'
             },
             backlog: {
               description:
                 'Length of backlog in computer systems. Used in ISOBlue to count the number of unsent messages',
               properties: {
                 units: {
-                  examples: ['count'],
-                  type: 'string'
+                  type: 'string',
+                  examples: ['count']
                 }
-              }
+              },
+              type: 'object'
             },
             netled: {
               description: 'Network health status LED'
@@ -64,7 +68,8 @@ const schema: Schema = {
             statled: {
               description: 'General health status LED'
             }
-          }
+          },
+          type: 'object'
         }
       }
     },
@@ -86,40 +91,44 @@ const schema: Schema = {
                 'time is a data type which holds a reading of...time...',
               properties: {
                 units: {
-                  examples: ['unix-timestamp', 'sec'],
-                  type: 'string'
+                  type: 'string',
+                  examples: ['unix-timestamp', 'sec']
                 }
-              }
+              },
+              type: 'object'
             },
             cell_ns: {
               description:
                 'Strength of cellular signal, ranging from ~-100 to ~-10',
               properties: {
                 units: {
-                  examples: ['dBm'],
-                  type: 'string'
+                  type: 'string',
+                  examples: ['dBm']
                 }
-              }
+              },
+              type: 'object'
             },
             wifi_ns: {
               description:
                 'Strength of wifi signal, ranging form ~-100 to ~-10',
               properties: {
                 units: {
-                  examples: ['dBm'],
-                  type: 'string'
+                  type: 'string',
+                  examples: ['dBm']
                 }
-              }
+              },
+              type: 'object'
             },
             backlog: {
               description:
                 'Length of backlog in computer systems. Used in ISOBlue to count the number of unsent messages',
               properties: {
                 units: {
-                  examples: ['count'],
-                  type: 'string'
+                  type: 'string',
+                  examples: ['count']
                 }
-              }
+              },
+              type: 'object'
             },
             netled: {
               description: 'Network health status LED'
@@ -128,7 +137,8 @@ const schema: Schema = {
               description: 'General health status LED'
             }
           },
-          required: ['id', 'time']
+          required: ['id', 'time'],
+          type: 'object'
         }
       }
     },
@@ -154,7 +164,8 @@ const schema: Schema = {
           type: 'integer'
         }
       },
-      required: ['_id', '_rev']
+      required: ['_id', '_rev'],
+      type: 'object'
     },
     _type: {
       enum: ['application/vnd.oada.isoblue.heartbeat.1+json']
@@ -164,7 +175,6 @@ const schema: Schema = {
       items: {
         anyOf: [
           {
-            type: 'object',
             properties: {
               index: {
                 enum: ['year-index']
@@ -176,10 +186,10 @@ const schema: Schema = {
                 type: 'string',
                 pattern: '^[0-9]{4}$'
               }
-            }
+            },
+            type: 'object'
           },
           {
-            type: 'object',
             properties: {
               index: {
                 enum: ['day-index']
@@ -191,10 +201,10 @@ const schema: Schema = {
                 type: 'string',
                 pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'
               }
-            }
+            },
+            type: 'object'
           },
           {
-            type: 'object',
             properties: {
               index: {
                 enum: ['hour-index']
@@ -206,7 +216,8 @@ const schema: Schema = {
                 type: 'string',
                 pattern: '^[0-9]{2}:[0-9]{2}$'
               }
-            }
+            },
+            type: 'object'
           }
         ]
       }
@@ -223,7 +234,8 @@ const schema: Schema = {
               type: 'string'
             }
           },
-          required: ['_id']
+          required: ['_id'],
+          type: 'object'
         }
       }
     },
@@ -240,7 +252,8 @@ const schema: Schema = {
               type: 'string'
             }
           },
-          required: ['_id']
+          required: ['_id'],
+          type: 'object'
         }
       }
     },
@@ -257,11 +270,15 @@ const schema: Schema = {
               type: 'string'
             }
           },
-          required: ['_id']
+          required: ['_id'],
+          type: 'object'
         }
       }
     }
   },
-  required: ['_type']
+  additionalProperties: true,
+  required: ['_type'],
+  type: 'object',
+  examples: []
 }
 export default schema

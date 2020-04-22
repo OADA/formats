@@ -15,7 +15,12 @@ export interface OADAFormats extends Ajv.Ajv {
 
 // Load all the schemas into ajv (ajv does not fetch $ref's itself)
 for (const { key, schema } of schemas()) {
-  ajv.addSchema(schema, key)
+  try {
+    ajv.addSchema(schema, key)
+  } catch (err) {
+    console.error(err)
+    throw new Error(`Error loading schema ${key}`)
+  }
 }
 
 /**

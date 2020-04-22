@@ -37,6 +37,7 @@ const schema: Schema = {
       }
     }
   },
+  type: 'object',
   examples: [
     {
       well_known_version: '1.0.0',

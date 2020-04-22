@@ -67,6 +67,7 @@ const schema: Schema = {
       type: 'string'
     }
   },
+  type: 'object',
   examples: [
     {
       client_id: '3klaxu838akahf38acucaix73',
