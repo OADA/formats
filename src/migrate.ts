@@ -11,6 +11,8 @@ import { contentTypeToKey } from './ajv'
 import { JSONSchema8 as RealSchema } from 'jsonschema8'
 import * as Ajv from 'ajv'
 
+import traverse from './traverse'
+
 export namespace Old {
   // The IDs on the generated schemas are weird
   export type Schema = RealSchema & { id: string }
@@ -89,22 +91,34 @@ export async function migrate (
       continue
     }
 
-    // TODO: Fix $refs more intelligently
-    function fixRefs (obj: { [key: string]: any }): void {
-      Object.keys(obj).forEach(key => {
-        if (key === '$ref') {
-          obj[key] = fixRef(obj[key])
-        } else if (typeof obj[key] === 'object') {
-          fixRefs(obj[key])
-        }
-      })
-    }
     function fixRef ($ref: string): string {
       const [id, path] = $ref.split('#')
       const { $id } = id ? fixid(id, null) : { $id: '' }
       return `${$id}#${path}`
     }
-    fixRefs(schema)
+
+    // Traverse schema to fix/normalize keywords?
+    traverse<Schema>(schema, {
+      cb (schema: Schema) {
+        // Fix any refs
+        if (schema.$ref) {
+          schema.$ref = fixRef(schema.$ref)
+        }
+
+        // Delete extra keywords
+        // @ts-ignore
+        delete schema.vocab
+
+        // Change "known" to examples
+        // @ts-ignore
+        if (schema.known) {
+          // @ts-ignore
+          schema.examples = schema.known
+          // @ts-ignore
+          delete schema.known
+        }
+      }
+    })
 
     // Fetch the examples
     const oldExamples = await model.examples()
