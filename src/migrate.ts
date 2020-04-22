@@ -1,10 +1,16 @@
+/// <reference types='./types'/>
+
 import { cwd } from 'process'
 import { promises as fs } from 'fs'
 import { dirname, join } from 'path'
 
 import mkdirp = require('mkdirp')
 
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import {
+  JSONSchema8 as Schema,
+  JSONSchema8ObjectSchema,
+  JSONSchema8TypeSchema
+} from 'jsonschema8'
 
 import { contentTypeToKey } from './ajv'
 
@@ -105,9 +111,28 @@ export async function migrate (
           schema.$ref = fixRef(schema.$ref)
         }
 
+        // Clean up types?
+        if (!('type' in schema)) {
+          if ('properties' in schema) {
+            ;(schema as JSONSchema8ObjectSchema).type = 'object'
+          }
+        } else {
+          if ('enum' in schema || 'const' in schema) {
+            // Typing an enum is redundant
+            delete (schema as JSONSchema8TypeSchema).type
+          }
+        }
+
         // Delete extra keywords
         // @ts-ignore
         delete schema.vocab
+        // @ts-ignore
+        delete schema._type
+        // @ts-ignore
+        delete schema.indexingSchema
+        // @ts-ignore
+        delete schema.indexing
+
 
         // Change "known" to examples
         // @ts-ignore
