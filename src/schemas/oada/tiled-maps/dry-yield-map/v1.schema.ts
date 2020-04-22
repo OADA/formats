@@ -432,7 +432,7 @@ const schema: Schema = {
   examples: [
     {
       _id: 'resources/k2fjo23lf3',
-      _rev: '9',
+      _rev: 9,
       _type: 'application/vnd.oada.tiled-maps.dry-yield-map.1+json',
       indexing: [
         {

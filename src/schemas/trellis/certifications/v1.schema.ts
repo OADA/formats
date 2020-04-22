@@ -59,15 +59,15 @@ const schema: Schema = {
   examples: [
     {
       _id: 'resources/902j3kfljwf0932',
-      _rev: '1-kdfj029ifj2kl3',
+      _rev: 1,
       _meta: {
         _id: 'resources/f2h0829i322/_meta',
-        _rev: '1-kdfj9028ijf3'
+        _rev: 1
       },
       _type: 'application/vnd.trellis.certifications.1+json',
       idjofkwjfsdD: {
         _id: '8f2ofj2308f2i',
-        _rev: '1-dmfj290fj2klf'
+        _rev: 1
       }
     }
   ]

@@ -73,19 +73,17 @@ const schema: Schema = {
   type: 'object',
   examples: [
     {
-      _id: '290fijklf3',
-      _rev: '7-9ijkljf0j2ifkl3f',
+      _id: 'resources/90fijklf3',
+      _rev: 7,
       _type: 'application/vnd.oada.harvest.1+json',
       context: {},
       'as-harvested': {
-        _id: 'kfj20ikejldss',
-        _rev: '9-kfjo2i3jfelkfas',
-        _type: 'application/vnd.oada.as-harvested.1+json'
+        _id: 'resources/resources/kfj20ikejldss',
+        _rev: 9
       },
       'tiled-maps': {
-        _id: '92jfkjfe0fdi',
-        _rev: '8-92fjkflkj492',
-        _type: 'application/vnd.oada.tiled-maps.1+json'
+        _id: 'resources/92jfkjfe0fdi',
+        _rev: 8
       }
     }
   ]
