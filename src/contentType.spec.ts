@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 
-import types from '../src'
+import types from './'
 
 describe('Content-Type Resolution', () => {
   const testSchema = { enum: ['foo1'] }

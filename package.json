@@ -18,6 +18,7 @@
   },
   "mocha": {
     "timeout": 4000,
+    "spec": "src/**/*.spec.ts",
     "extension": [
       "ts"
     ],

@@ -1,16 +1,16 @@
+///<reference types='./types'/>
+
 import { relative, isAbsolute, dirname, join } from 'path'
 
 import * as chai from 'chai'
-// @ts-ignore
 import * as chaiJsonSchema from 'chai-json-schema-ajv'
 
 import { JSONSchema8 as Schema } from 'jsonschema8'
 import * as Ajv from 'ajv'
-// @ts-ignore
 import * as $RefParser from '@apidevtools/json-schema-ref-parser'
 
-import schemas from '../src/schemas'
-import { loadSchema } from '../src/ajv'
+import schemas from './schemas'
+import { loadSchema } from './ajv'
 
 const { expect } = chai
 
@@ -57,7 +57,6 @@ describe('Type Schemas', () => {
   for (const { schema, key } of schemas()) {
     describe(key, () => {
       it('should be valid JSON Schema', () => {
-        // @ts-ignore
         expect(schema).to.be.validJsonSchema
       })
 
@@ -77,14 +76,12 @@ describe('Type Schemas', () => {
 
       it('should have valid default', () => {
         if (schema.default) {
-          // @ts-ignore
           expect(schema.default).to.be.jsonSchema(schema)
         }
       })
 
       it('should have valid examples', () => {
         for (const example of schema.examples ?? []) {
-          // @ts-ignore
           expect(example).to.be.jsonSchema(schema)
         }
       })
