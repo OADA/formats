@@ -1,0 +1,11 @@
+{
+  "reporter": ["lcovonly","text"],
+  "include": ["src/**/*.ts"],
+  "exclude": [
+    "**/*.d.ts",
+    "**/*.schema.ts",
+    "src/migrate.ts",
+    "src/traverse.ts"
+  ],
+  "all": true
+}

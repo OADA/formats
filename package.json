@@ -13,7 +13,8 @@
     "pedeploy": "npm run build",
     "deploy": "gh-pages -d lib/schemas -s **/*.schema.json",
     "prepare": "npm run build",
-    "test": "mocha"
+    "test": "c8 mocha",
+    "coverage": "c8 report --reporter text-lcov | coveralls"
   },
   "mocha": {
     "timeout": 4000,
@@ -38,8 +39,10 @@
     "@types/mkdirp": "^1.0.0",
     "@types/mocha": "^7.0.2",
     "@types/node": "^13.11.1",
+    "c8": "^7.1.0",
     "chai": "^4.2.0",
     "chai-json-schema-ajv": "^5.0.0",
+    "coveralls": "^3.0.13",
     "gh-pages": "^2.2.0",
     "json-schema-traverse": "^0.4.1",
     "jsonschema8": "^1.1.0",

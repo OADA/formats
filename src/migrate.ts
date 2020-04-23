@@ -141,7 +141,7 @@ export async function migrate (
         // TODO: Should probably just delete these keys...
         // * is not a regex... (.* is)
         if ((schema as JSONSchema8StringSchema).pattern === '*') {
-          (schema as JSONSchema8StringSchema).pattern = '.*'
+          ;(schema as JSONSchema8StringSchema).pattern = '.*'
         }
         const prop = (schema as JSONSchema8ObjectSchema).patternProperties?.[
           '*'
