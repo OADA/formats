@@ -9,7 +9,8 @@ import mkdirp = require('mkdirp')
 import {
   JSONSchema8 as Schema,
   JSONSchema8ObjectSchema,
-  JSONSchema8TypeSchema
+  JSONSchema8TypeSchema,
+  JSONSchema8StringSchema
 } from 'jsonschema8'
 
 import { contentTypeToKey } from './ajv'
@@ -132,6 +133,25 @@ export async function migrate (
         delete schema.indexingSchema
         // @ts-ignore
         delete schema.indexing
+        // @ts-ignore
+        delete schema.propertySchema
+        // @ts-ignore
+        delete schema.propertySchemaDefault
+
+        // TODO: Should probably just delete these keys...
+        // * is not a regex... (.* is)
+        if ((schema as JSONSchema8StringSchema).pattern === '*') {
+          (schema as JSONSchema8StringSchema).pattern = '.*'
+        }
+        const prop = (schema as JSONSchema8ObjectSchema).patternProperties?.[
+          '*'
+        ]
+        if (prop) {
+          // @ts-ignore
+          delete schema.patternProperties['*']
+          // @ts-ignore
+          schema.patternProperties['.*'] = prop
+        }
 
         // Change "known" to examples
         // @ts-ignore
