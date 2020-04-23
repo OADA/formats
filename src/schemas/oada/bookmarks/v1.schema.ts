@@ -203,7 +203,7 @@ const schema: Schema = {
   type: 'object',
   examples: [
     {
-      _type: 'application/vnd.oada.bookmarks.1_json',
+      _type: 'application/vnd.oada.bookmarks.1+json',
       context: {},
       planting: {
         _id: 'resources/09ijfofj',
