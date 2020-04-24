@@ -84,7 +84,6 @@ export async function loadSchema (uri: string) {
   } else {
     // Try to fetch schema online
     const { data: schema } = await axios.get<Schema>(uri)
-    console.dir(schema)
     return schema
   }
 }

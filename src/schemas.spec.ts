@@ -15,14 +15,14 @@ import { loadSchema } from './ajv'
 const { expect } = chai
 
 describe('Type Schemas', () => {
+  const ajv = new Ajv({ loadSchema, allErrors: true })
   before('Initialize JSON Schema validator', async () => {
-    const ajv = new Ajv({ loadSchema, allErrors: true })
-    const metaSchema = await $RefParser.dereference(
+    const meta = await $RefParser.dereference(
       'https://json-schema.org/draft/2019-09/schema'
     )
 
     // TODO: Why does compileAsync not work for meta schema?
-    ajv.addMetaSchema(metaSchema)
+    ajv.addMetaSchema(meta)
 
     chai.use(chaiJsonSchema.create({ ajv }))
   })
@@ -55,7 +55,16 @@ describe('Type Schemas', () => {
   })
 
   for (const { schema, key } of schemas()) {
+    const { $id } = schema
     describe(key, () => {
+      before('Compile schema', async () => {
+        try {
+          await ajv.compileAsync(schema)
+        } catch (err) {
+          // Already compiled
+        }
+      })
+
       it('should be valid JSON Schema', () => {
         expect(schema).to.be.validJsonSchema
       })
@@ -63,9 +72,7 @@ describe('Type Schemas', () => {
       // $id needs to be consistent with file structure
       // or most tools get upset
       it('should have conistent $id', () => {
-        expect(schema.$id).to.equal(
-          `https://${join('formats.openag.io/', key)}`
-        )
+        expect($id).to.equal(`https://${join('formats.openag.io/', key)}`)
       })
 
       xit("should have valid self $ref's")
@@ -76,13 +83,17 @@ describe('Type Schemas', () => {
 
       it('should have valid default', () => {
         if (schema.default) {
-          expect(schema.default).to.be.jsonSchema(schema)
+          expect(schema.default).to.be.jsonSchema($id)
         }
       })
 
-      it('should have valid examples', () => {
-        for (const example of schema.examples ?? []) {
-          expect(example).to.be.jsonSchema(schema)
+      describe('Examples', () => {
+        for (const i in schema.examples ?? []) {
+          const example = schema.examples?.[i]
+
+          it(`should validate example ${i}`, () => {
+            expect(example).to.be.jsonSchema($id)
+          })
         }
       })
     })
