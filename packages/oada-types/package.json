@@ -11,7 +11,7 @@
     "test": "mocha"
   },
   "mocha": {
-    "spec": "**/*.spec.ts",
+    "spec": "*.spec.ts",
     "extension": [
       "ts"
     ],
@@ -22,7 +22,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@oada/formats": "oada/formats",
+    "@oada/formats": "https://github.com/OADA/formats.git",
     "typescript": "^3.8.3"
   },
   "devDependencies": {
