@@ -37,6 +37,7 @@
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^8.0.0",
     "@types/chai": "^4.2.11",
+    "@types/json-schema": "^7.0.4",
     "@types/mkdirp": "^1.0.0",
     "@types/mocha": "^7.0.2",
     "@types/node": "^13.11.1",
