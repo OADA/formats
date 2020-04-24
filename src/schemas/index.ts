@@ -12,7 +12,7 @@ export const glob = _glob('/**/*.schema.{ts,js}', {
 
 // Find all the schemas
 export default function * (): Generator<
-  { schema: Schema; key: string; path: string },
+  { schema: Schema; key: string; path: string; glob: string },
   void,
   void
 > {
@@ -21,6 +21,6 @@ export default function * (): Generator<
     const { default: schema } = require(infile)
     const path = join(__dirname, key)
 
-    yield { schema, key, path }
+    yield { schema, key: schema.$id, path, glob: key }
   }
 }

@@ -55,18 +55,21 @@ yarn add @oada/formats
 
 ### Library Usage
 
-The TypeScript/JavaScript library exports an [Ajv][] instance
-which is preloaded with all the the schemas from this project.
+The TypeScript/JavaScript library exports an async function
+that resolves to an [Ajv][] instance
+which is loaded with all the the schemas from this project.
 
 ```ts
-import formats from '@oada/formats'
+import loadAllFormats from '@oada/formats'
 
 const obj = {
   /* Properties and stuff here */
 }
 
+let formats = await loadAllFormats()
+
 // Check that obj matches the format for and OADA bookmarks document
-formats.validate('oada/bookmarks.schema', obj)
+formats.validate('https://formats.openag.io/oada/bookmarks.schema', obj)
 ```
 
 In addition to being loaded with all the OADA formats,
@@ -74,8 +77,6 @@ the returned [Ajv][] instance is also augmented to be able
 to resolve content types to the relevant schema.
 
 ```ts
-import formats from '@oada/formats'
-
 // Returns the schema for an OADA Bookmarks document
 const {schema} = formats.getSchema('applications/vnd.oada.bookmarks.1+json')
 ```

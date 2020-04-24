@@ -54,7 +54,7 @@ describe('Type Schemas', () => {
       })
   })
 
-  for (const { schema, key } of schemas()) {
+  for (const { schema, key, glob } of schemas()) {
     const { $id } = schema
     describe(key, () => {
       before('Compile schema', async () => {
@@ -72,13 +72,13 @@ describe('Type Schemas', () => {
       // $id needs to be consistent with file structure
       // or most tools get upset
       it('should have conistent $id', () => {
-        expect($id).to.equal(`https://${join('formats.openag.io/', key)}`)
+        expect($id).to.equal(`https://${join('formats.openag.io/', glob)}`)
       })
 
       xit("should have valid self $ref's")
 
       it("should have valid external $ref's", async () => {
-        await checkRefs(key, schema)
+        await checkRefs(glob, schema)
       })
 
       it('should have valid default', () => {
