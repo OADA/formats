@@ -6,6 +6,7 @@ lib
 !**.spec.ts
 !/index.ts
 !/compile.ts
+!/types.d.ts
 
 # Dependency directory
 # Commenting this out is preferred by some people, see

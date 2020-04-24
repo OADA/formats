@@ -3,6 +3,11 @@ import { resolve, join, basename, dirname } from 'path'
 
 import mkdirp = require('mkdirp')
 import { compileFromFile } from 'json-schema-to-typescript'
+import { dereference } from '@apidevtools/json-schema-ref-parser'
+import * as Ajv from 'ajv'
+import * as pack from 'ajv-pack'
+
+import { loadSchema } from '@oada/formats/lib/ajv'
 
 import formats, { schemas } from '@oada/formats'
 
@@ -11,19 +16,34 @@ const typesDir = resolve('./')
 
 const compileStr = '`$ yarn build`'
 
+// Create ajv for packing validation functions
+// @ts-ignore
+const ajv = new Ajv({ loadSchema, sourceCode: true })
+
 // Compile the schema files to TypeScript types
 async function doCompile () {
+  const metaSchema = await dereference(
+    'https://json-schema.org/draft/2019-09/schema'
+  )
+  ajv.addMetaSchema(metaSchema)
+
   // Compile schemas to TS types
-  for (const {
-    key,
-    path,
-    schema: { $id }
-  } of schemas()) {
+  for (const { key, path, schema } of schemas()) {
+    const { $id } = schema
     const file = key.replace(/^\//, './')
     const outfile = join(typesDir, file.replace(/\.schema\.json$/, '.ts'))
     const name = basename(path, '.schema.json')
     const cwd = dirname(path)
     const typeName = `${name[0].toUpperCase()}${name.substr(1)}`
+
+    // Pack up validation function
+    const validate = await ajv.compileAsync(schema)
+    const packed = pack(ajv, validate)
+    const packedfile = join(
+      typesDir,
+      file.replace(/\.schema\.json$/, '-validate.js')
+    )
+    await fs.writeFile(packedfile, packed)
 
     // Make the banner comment a bit more informative
     // TODO: Figure out some TS magic to use instead of this code generation??
@@ -36,8 +56,8 @@ async function doCompile () {
          * and run ${compileStr} to regenerate this file.
          */
 
-        // ajv with all the OADA type schemas loaded
-        import formats from '@oada/formats'
+        // Import packed validation function
+        import * as validate from './${name}-validate.js'
 
         /**
          * $id of the source schema
@@ -49,15 +69,15 @@ async function doCompile () {
          * Returns true if val is a @type ${typeName}, false otherwise
          */
         export function is (val: any): val is ${typeName} {
-          return formats.validate($id, val) as boolean
+          return validate(val) as boolean
         }
 
         /**
          * Asserts that val is a @type ${typeName}
          */
         export function assert (val: any): asserts val is ${typeName} {
-          if (!formats.validate($id, val) as boolean) {
-            throw formats.errors
+          if (!validate(val) as boolean) {
+            throw validate.errors
           }
         }
 
@@ -83,10 +103,11 @@ async function doCompile () {
         $refOptions: {
           // Use local versions of openag schemas
           resolve: {
-            http: {
+            // @ts-ignore
+            oada: {
               order: 0,
               canRead: r,
-              async read ({ url }) {
+              async read ({ url }: { url: string }) {
                 const path = url.replace(r, '')
                 return JSON.stringify(formats.getSchema(path)?.schema)
               }
