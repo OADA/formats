@@ -1,3 +1,5 @@
+///<reference types='./types'/>
+
 import { expect } from 'chai'
 
 import { schemas } from '@oada/formats'
