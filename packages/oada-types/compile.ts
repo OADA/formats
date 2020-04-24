@@ -40,17 +40,23 @@ async function doCompile () {
         import formats from '@oada/formats'
 
         /**
+         * $id of the source schema
+         * @see {@link ${$id}}
+         */
+        export const $id = '${$id}'
+
+        /**
          * Returns true if val is a @type ${typeName}, false otherwise
          */
         export function is (val: any): val is ${typeName} {
-          return formats.validate('${key}', val) as boolean
+          return formats.validate($id, val) as boolean
         }
 
         /**
          * Asserts that val is a @type ${typeName}
          */
         export function assert (val: any): asserts val is ${typeName} {
-          if (!formats.validate('${key}', val) as boolean) {
+          if (!formats.validate($id, val) as boolean) {
             throw formats.errors
           }
         }
