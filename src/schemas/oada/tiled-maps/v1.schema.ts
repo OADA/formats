@@ -55,7 +55,7 @@ const schema: Schema = {
       type: 'object'
     },
     _type: {
-      enum: ['application/vnd.oada.as-harvested.tiled-maps.1+json']
+      enum: ['application/vnd.oada.tiled-maps.1+json']
     }
   },
   additionalProperties: true,

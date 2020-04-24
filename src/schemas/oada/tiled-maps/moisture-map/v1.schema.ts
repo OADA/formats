@@ -191,7 +191,7 @@ const schema: Schema = {
       type: 'object'
     },
     _type: {
-      enum: ['application/vnd.oada-tiled-maps.moisture-map.1+jspn']
+      enum: ['application/vnd.oada.tiled-maps.moisture-map.1+json']
     },
     indexing: {
       type: 'array',
@@ -400,7 +400,7 @@ const schema: Schema = {
     {
       _id: 'resources/k2fjo23lf3',
       _rev: 9,
-      _type: 'application/vnd.oada.tiled-maps.dry-yield-map.1+json',
+      _type: 'application/vnd.oada.tiled-maps.moisture-map.1+json',
       indexing: [
         {
           index: 'year-index',

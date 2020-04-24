@@ -16,7 +16,7 @@ const { expect } = chai
 
 describe('Type Schemas', () => {
   before('Initialize JSON Schema validator', async () => {
-    const ajv = new Ajv({ loadSchema })
+    const ajv = new Ajv({ loadSchema, allErrors: true })
     const metaSchema = await $RefParser.dereference(
       'https://json-schema.org/draft/2019-09/schema'
     )
