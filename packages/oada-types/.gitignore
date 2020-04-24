@@ -3,6 +3,7 @@ lib
 **.ts
 **.js
 **.map
+!**.spec.ts
 !/index.ts
 !/compile.ts
 
