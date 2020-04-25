@@ -22,6 +22,7 @@
     "extension": [
       "ts"
     ],
+    "ignore": "src/schemas/**",
     "require": "ts-node/register"
   },
   "repository": "https://github.com/OADA/formats",

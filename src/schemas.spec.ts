@@ -81,6 +81,17 @@ describe('Type Schemas', () => {
         await checkRefs(glob, schema)
       })
 
+      try {
+        // Include spec file for schema
+        const specFile = join(__dirname, 'schemas', glob).replace(
+          /\.json$/,
+          '.spec'
+        )
+        require(specFile)
+      } catch (err) {
+        // If it fails to load just ignore it?
+      }
+
       it('should have valid default', () => {
         if (schema.default) {
           expect(schema.default).to.be.jsonSchema($id)
