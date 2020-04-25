@@ -3,6 +3,7 @@
   "description": "bookmarks is the top-level document returned by the OADA API",
   "definitions": {
     "v1": {
+      "type": "object",
       "properties": {
         "_type": {
           "enum": [
@@ -22,6 +23,7 @@
           "$ref": "#/definitions/v1"
         },
         {
+          "type": "object",
           "properties": {
             "_type": {
               "type": "string",

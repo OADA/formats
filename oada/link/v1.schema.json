@@ -42,23 +42,23 @@
       }
     },
     "list": {
-      "versioned": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/definitions/versioned"
+      "definitions": {
+        "versioned": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/versioned"
+          }
+        },
+        "nonversioned": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/nonversioned"
+          }
         }
       },
-      "nonversioned": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/definitions/nonversioned"
-        }
-      },
-      "list": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/definitions/link"
-        }
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/link"
       }
     }
   },
