@@ -4,6 +4,11 @@ import { relative, isAbsolute, dirname, join } from 'path'
 
 import * as chai from 'chai'
 import * as chaiJsonSchema from 'chai-json-schema-ajv'
+import { js_beautify as beautify } from 'js-beautify'
+import { createInstrumenter } from 'istanbul-lib-instrument'
+import { createCoverageMap } from 'istanbul-lib-coverage'
+import { createContext } from 'istanbul-lib-report'
+import { create as createReport } from 'istanbul-reports'
 
 import { JSONSchema8 as Schema } from 'jsonschema8'
 import * as Ajv from 'ajv'
@@ -15,7 +20,17 @@ import { loadSchema } from './ajv'
 const { expect } = chai
 
 describe('Type Schemas', () => {
-  const ajv = new Ajv({ loadSchema, allErrors: true })
+  const instrumenter = createInstrumenter()
+  function processCode (code: string, { $id }: Schema = {}): string {
+    // Instrument schema validation code for coverage
+    return instrumenter.instrumentSync(beautify(code), $id as string)
+  }
+  const ajv = new Ajv({
+    loadSchema,
+    processCode,
+    inlineRefs: false,
+    allErrors: true
+  })
   before('Initialize JSON Schema validator', async () => {
     const meta = await $RefParser.dereference(
       'https://json-schema.org/draft/2019-09/schema'
@@ -25,6 +40,17 @@ describe('Type Schemas', () => {
     ajv.addMetaSchema(meta)
 
     chai.use(chaiJsonSchema.create({ ajv }))
+  })
+  after('Report ajv instrumenter coverage', () => {
+    // @ts-ignore
+    const coverage = createCoverageMap(global.__coverage__)
+    const context = createContext({
+      dir: '.coverage',
+      coverageMap: coverage
+    })
+    const report = createReport('json', { file: 'coverage-schemas.json' })
+    // @ts-ignore
+    report.execute(context)
   })
 
   // TODO: Figure out less hacky way to make it find the files correctly

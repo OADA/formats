@@ -1,7 +1,8 @@
 # "Compiled" stuff
 lib
 
-# c8 output
+# istanbul/c8 output
+.coverage
 coverage
 
 # Dependency directory
