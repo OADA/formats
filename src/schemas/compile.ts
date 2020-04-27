@@ -11,13 +11,8 @@ const schemasDir = resolve('lib', 'schemas')
 // Compile the schema files to JSON and to TypeScript types
 async function doCompile () {
   // "Compile" schemas to JSON
-  for (const { key, schema } of schemas()) {
-    const outfile = join(
-      schemasDir,
-      key
-        .replace(/^https:\/\/formats\.openag\.io/, '')
-        .replace(/\.ts$/, '.json')
-    )
+  for (const { glob: key, schema } of schemas()) {
+    const outfile = join(schemasDir, key.replace(/\.ts$/, '.json'))
 
     console.debug(`Writing ${key} schema as JSON`)
     await mkdirp(dirname(outfile))
