@@ -43,7 +43,6 @@ async function doCompile () {
       typesDir,
       file.replace(/\.schema\.json$/, '-validate.js')
     )
-    await fs.writeFile(packedfile, packed)
 
     // Make the banner comment a bit more informative
     // TODO: Figure out some TS magic to use instead of this code generation??
@@ -117,6 +116,7 @@ async function doCompile () {
         cwd
       })
       await mkdirp(dirname(outfile))
+      await fs.writeFile(packedfile, packed)
       await fs.writeFile(outfile, ts)
     } catch (err) {
       console.error(`Error compiling ${key}: %O`, err)
