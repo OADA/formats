@@ -22,7 +22,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@oada/formats": "https://github.com/OADA/formats.git",
+    "@oada/formats": "https://github.com/OADA/formats.git#f433329",
     "ajv": "^6.12.2",
     "typescript": "^3.8.3"
   },
