@@ -5,7 +5,7 @@
   "main": "dist/index.ts",
   "source": "index.ts",
   "scripts": {
-    "build": "ts-node --files compile.ts && tsc",
+    "build": "ts-node --files compile.ts",
     "prestart": "npm run build",
     "prepare": "npm run build",
     "pretest": "npm run build",
