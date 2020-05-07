@@ -3,11 +3,7 @@
   "version": "1.0.0",
   "description": "TypeScript type definitions for OADA formats",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "source": "index.ts",
-  "files": [
-    "dist/**/*"
-  ],
   "scripts": {
     "build": "ts-node --files compile.ts && tsc",
     "prestart": "npm run build",
