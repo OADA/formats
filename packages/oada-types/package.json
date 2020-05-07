@@ -22,7 +22,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@oada/formats": "https://github.com/OADA/formats.git",
+    "@oada/formats": "^1.0.1",
     "ajv": "^6.12.2",
     "typescript": "^3.8.3"
   },
@@ -31,13 +31,13 @@
     "@types/chai": "^4.2.11",
     "@types/mkdirp": "^1.0.0",
     "@types/mocha": "^7.0.2",
-    "@types/node": "^13.11.0",
+    "@types/node": "^13.13.5",
     "ajv-pack": "^0.3.1",
     "chai": "^4.2.0",
-    "json-schema-to-typescript": "^8.2.0",
+    "json-schema-to-typescript": "^9.0.1",
     "mkdirp": "^1.0.4",
-    "mocha": "^7.1.1",
+    "mocha": "^7.1.2",
     "prettier-standard": "^16.3.0",
-    "ts-node": "^8.9.0"
+    "ts-node": "^8.10.1"
   }
 }
