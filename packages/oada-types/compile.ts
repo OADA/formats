@@ -30,7 +30,9 @@ async function doCompile () {
   // Compile schemas to TS types
   for (const { key, path, schema } of schemas()) {
     const { $id } = schema
-    const file = key.replace(/^\//, './')
+    const file = key
+      .replace(/^https:\/\/formats\.openag\.io/, '')
+      .replace(/^\//, './')
     const outfile = join(typesDir, file.replace(/\.schema\.json$/, '.ts'))
     const name = basename(path, '.schema.json')
     const cwd = dirname(path)
@@ -43,7 +45,6 @@ async function doCompile () {
       typesDir,
       file.replace(/\.schema\.json$/, '-validate.js')
     )
-    await fs.writeFile(packedfile, packed)
 
     // Make the banner comment a bit more informative
     // TODO: Figure out some TS magic to use instead of this code generation??
@@ -109,6 +110,7 @@ async function doCompile () {
               canRead: r,
               async read ({ url }: { url: string }) {
                 const path = url.replace(r, '')
+                // @ts-ignore
                 return JSON.stringify(formats.getSchema(path)?.schema)
               }
             }
@@ -117,6 +119,7 @@ async function doCompile () {
         cwd
       })
       await mkdirp(dirname(outfile))
+      await fs.writeFile(packedfile, packed)
       await fs.writeFile(outfile, ts)
     } catch (err) {
       console.error(`Error compiling ${key}: %O`, err)
