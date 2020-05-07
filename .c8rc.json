@@ -1,5 +1,5 @@
 {
-  "reporter": ["lcovonly","text"],
+  "reporter": ["lcovonly", "text"],
   "include": ["src/**/*.ts"],
   "exclude": [
     "**/*.d.ts",

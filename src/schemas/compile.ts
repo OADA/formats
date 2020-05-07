@@ -12,7 +12,12 @@ const schemasDir = resolve('lib', 'schemas')
 async function doCompile () {
   // "Compile" schemas to JSON
   for (const { key, schema } of schemas()) {
-    const outfile = join(schemasDir, key.replace(/\.ts$/, '.json'))
+    const outfile = join(
+      schemasDir,
+      key
+        .replace(/^https:\/\/formats\.openag\.io/, '')
+        .replace(/\.ts$/, '.json')
+    )
 
     console.debug(`Writing ${key} schema as JSON`)
     await mkdirp(dirname(outfile))
