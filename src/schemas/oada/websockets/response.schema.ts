@@ -27,8 +27,7 @@ const schema: Schema = {
       ]
     },
     status: {
-      $comment: 'Not sure why sometimes this is a string...',
-      anyOf: [{ enum: ['success'] }, { type: 'integer' }]
+      type: 'integer'
     },
     statusText: { type: 'string' },
     headers: {
