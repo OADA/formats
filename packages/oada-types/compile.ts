@@ -84,14 +84,14 @@ async function doCompile () {
         }
 
         // Augment module interface?
-        declare module '@oada/formats' {
-          /**
-           * @todo Figure out how do type overrides for getSchema
-           */
-          interface OADAFormats {
-            validate(ref: '${$id}' | '${key}', data: any): data is ${typeName}
-          }
-        }
+        //declare module '@oada/formats' {
+        //  /**
+        //   * @todo Figure out how do type overrides for getSchema
+        //   */
+        //  interface OADAFormats {
+        //    validate(ref: '${$id}' | '${key}', data: any): data is ${typeName}
+        //  }
+        //}
 
         export default ${typeName}
       `
