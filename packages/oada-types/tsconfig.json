@@ -4,6 +4,7 @@
     "strict": true,
     "moduleResolution": "node",
     "module": "CommonJS",
+    "outDir": "./dist",
     "lib": ["ES2019"],
     "noUnusedLocals": true,
     "noUnusedParameters": true,
