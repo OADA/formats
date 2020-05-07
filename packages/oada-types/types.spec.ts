@@ -4,7 +4,7 @@ import { expect } from 'chai'
 
 import { schemas } from '@oada/formats'
 
-import {TypeAssert, TypeCheck} from './'
+import { TypeAssert, TypeCheck } from './'
 
 type TypeModule<T = unknown> = {
   is: TypeCheck<T>
@@ -12,7 +12,10 @@ type TypeModule<T = unknown> = {
 }
 describe('OADA Types', () => {
   for (const { key, schema } of schemas()) {
-    const type = key.replace(/^\//, './').replace(/\.schema\.json$/, '')
+    const type = key
+      .replace(/^https:\/\/formats\.openag\.io/, '')
+      .replace(/^\//, './')
+      .replace(/\.schema\.json$/, '')
 
     describe(key, () => {
       let typeModule: TypeModule
@@ -21,7 +24,7 @@ describe('OADA Types', () => {
       })
 
       describe('Examples', () => {
-        for(const i in schema.examples ?? []) {
+        for (const i in schema.examples ?? []) {
           const example = schema.examples?.[i]
 
           it(`should check true for example ${i}`, () => {
