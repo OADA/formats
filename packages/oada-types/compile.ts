@@ -4,8 +4,8 @@ import { relative, resolve, join, basename, dirname } from 'path'
 import mkdirp = require('mkdirp')
 import { compileFromFile } from 'json-schema-to-typescript'
 import { dereference } from '@apidevtools/json-schema-ref-parser'
-import * as Ajv from 'ajv'
-import * as pack from 'ajv-pack'
+import Ajv from 'ajv'
+import pack from 'ajv-pack'
 
 import { loadSchema } from '@oada/formats/lib/ajv'
 
@@ -62,7 +62,7 @@ async function doCompile () {
          */
 
         // Import packed validation function
-        import * as validate from './${name}-validate.js'
+        import validate from './${name}-validate.js'
 
         /**
          * $id of the source schema
