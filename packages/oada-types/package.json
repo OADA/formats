@@ -2,7 +2,8 @@
   "name": "@oada/types",
   "version": "1.0.0",
   "description": "TypeScript type definitions for OADA formats",
-  "main": "index.ts",
+  "main": "dist/index.ts",
+  "source": "index.ts",
   "scripts": {
     "build": "ts-node --files compile.ts",
     "prestart": "npm run build",

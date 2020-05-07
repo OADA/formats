@@ -43,20 +43,6 @@ async function doCompile () {
       typesDir,
       file.replace(/\.schema\.json$/, '-validate.js')
     )
-    const packedfileDeclaration = join(
-      typesDir,
-      file.replace(/\.schema\.json$/, '-validate.d.ts')
-    )
-    const packedDeclaration = `
-      interface ${typeName}Validate {
-        (data: any): boolean;
-        errors?: Array<unknown>;
-      }
-
-      declare const validate: ${typeName}Validate;
-
-      export = validate;
-    `
 
     // Make the banner comment a bit more informative
     // TODO: Figure out some TS magic to use instead of this code generation??
@@ -131,7 +117,6 @@ async function doCompile () {
       })
       await mkdirp(dirname(outfile))
       await fs.writeFile(packedfile, packed)
-      await fs.writeFile(packedfileDeclaration, packedDeclaration)
       await fs.writeFile(outfile, ts)
     } catch (err) {
       console.error(`Error compiling ${key}: %O`, err)
