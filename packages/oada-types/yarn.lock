@@ -102,10 +102,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@oada/formats@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@oada/formats/-/formats-1.0.1.tgz#c50f89b3ca31a50d5a1e8420e97b85bfebf0a7fa"
-  integrity sha512-k/Bp0AWiQEQx09J0R1RKEZ0GXydVfb6JM+JoSvSbscuRrOf0dNAg4HbhJRBOP3sDPKXEaK3E2HXGJCN1HXueJg==
+"@oada/formats@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@oada/formats/-/formats-1.0.2.tgz#cbadf0c2ec66636042cfab9d0f41eb5e09202769"
+  integrity sha512-G01xzvjKXxUKJnKwJIV/D+fgyDofgxDv9UFFMmPxFQSafIp6Vh44ru7/sZ49eFjJbc8W2E4KJ4tpoOBUJkpd7g==
   dependencies:
     "@apidevtools/json-schema-ref-parser" "^9.0.1"
     ajv "^6.12.0"
