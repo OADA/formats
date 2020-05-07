@@ -1,5 +1,5 @@
 import { promises as fs } from 'fs'
-import { resolve, join, basename, dirname } from 'path'
+import { relative, resolve, join, basename, dirname } from 'path'
 
 import mkdirp = require('mkdirp')
 import { compileFromFile } from 'json-schema-to-typescript'
@@ -49,6 +49,7 @@ async function doCompile () {
     // Make the banner comment a bit more informative
     // TODO: Figure out some TS magic to use instead of this code generation??
     const bannerComment = `
+        /// <reference path="${relative(dirname(file), typesDir)}/types.d.ts" />
         /* tslint:disable */
         /**
          * File was automatically generated using json-schema-to-typescript.
