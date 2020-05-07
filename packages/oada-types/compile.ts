@@ -49,7 +49,10 @@ async function doCompile () {
     // Make the banner comment a bit more informative
     // TODO: Figure out some TS magic to use instead of this code generation??
     const bannerComment = `
-        /// <reference path="${relative(dirname(file), typesDir)}/types.d.ts" />
+        /// <reference path="./${relative(
+          dirname(file),
+          typesDir
+        )}/types.d.ts" />
         /* tslint:disable */
         /**
          * File was automatically generated using json-schema-to-typescript.
