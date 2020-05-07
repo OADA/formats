@@ -4,7 +4,6 @@
     "strict": true,
     "moduleResolution": "node",
     "module": "CommonJS",
-    "outDir": "./dist",
     "lib": ["ES2019"],
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -12,13 +11,5 @@
     "declaration": true,
     "declarationMap": true
   },
-  "exclude": [
-    "lib",
-    "test",
-    "types",
-    "dist",
-    "oada/as-harvested/yield-moisture-dataset/*",
-    "oada/tiled-maps/dry-yield-map/*",
-    "oada/tiled-maps/moisture-map/*"
-  ]
+  "exclude": ["lib", "test", "types"]
 }

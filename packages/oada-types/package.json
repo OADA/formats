@@ -2,10 +2,9 @@
   "name": "@oada/types",
   "version": "1.0.0",
   "description": "TypeScript type definitions for OADA formats",
-  "main": "dist/index.js",
-  "source": "index.ts",
+  "main": "index.ts",
   "scripts": {
-    "build": "ts-node --files compile.ts && tsc",
+    "build": "ts-node --files compile.ts",
     "prestart": "npm run build",
     "prepare": "npm run build",
     "pretest": "npm run build",
@@ -25,8 +24,8 @@
   "dependencies": {
     "@oada/formats": "https://github.com/OADA/formats.git#f433329",
     "ajv": "^6.12.2",
-    "ts-node": "^8.9.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "ts-node": "^8.9.0"
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.1",
@@ -37,7 +36,6 @@
     "ajv-pack": "^0.3.1",
     "chai": "^4.2.0",
     "json-schema-to-typescript": "^8.2.0",
-    "jsonschema8": "^1.1.0",
     "mkdirp": "^1.0.4",
     "mocha": "^7.1.1",
     "prettier-standard": "^16.3.0"
