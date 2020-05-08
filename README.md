@@ -45,6 +45,11 @@ are pure [JSON Schema][].
 
 All that is needed to add a format is to create a new `.schema.ts` file
 within [src/schemas](src/schemas) which exports valid JSON Schema.
+You can easily add the file for your new format with `hygen`:
+
+```
+$ hygen format new your/format/name
+```
 
 #### Testing formats
 
