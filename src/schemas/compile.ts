@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs'
 import { resolve, join, dirname } from 'path'
 
+import * as yargs from 'yargs'
 import mkdirp = require('mkdirp')
 
 import schemas from './'
@@ -9,10 +10,10 @@ import schemas from './'
 const schemasDir = resolve('lib', 'schemas')
 
 // Compile the schema files to JSON and to TypeScript types
-async function doCompile () {
+async function doCompile (outdir: string) {
   // "Compile" schemas to JSON
   for (const { glob: key, schema } of schemas()) {
-    const outfile = join(schemasDir, key.replace(/\.ts$/, '.json'))
+    const outfile = join(outdir, key.replace(/\.ts$/, '.json'))
 
     console.debug(`Writing ${key} schema as JSON`)
     await mkdirp(dirname(outfile))
@@ -20,4 +21,13 @@ async function doCompile () {
   }
 }
 
-doCompile()
+const { argv } = yargs.options({
+  outdir: {
+    alias: 'o',
+    describe: 'directory to which to output schemas',
+    type: 'string',
+    default: schemasDir
+  }
+})
+
+doCompile(argv.outdir)

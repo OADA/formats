@@ -1,3 +1,5 @@
+[![Deploys by Netlify](https://www.netlify.com/img/global/badges/netlify-color-accent.svg)](https://www.netlify.com)
+
 # @OADA/formats
 
 The purpose of this repo is to act as an inventory of

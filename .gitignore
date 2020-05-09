@@ -9,3 +9,10 @@ coverage
 # Commenting this out is preferred by some people, see
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
 node_modules
+
+# Jekyll stuff
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
