@@ -1,0 +1,9 @@
+[[headers]]
+  for = "/*.schema.json"
+  [headers.values]
+    Content-Type = "application/schema+json"
+
+[[redirects]]
+  from = "/*.schema"
+  to = "/:splat.schema.json"
+  status = 301
