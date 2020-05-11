@@ -82,7 +82,10 @@ async function doCompile () {
          */
         export function assert (val: any): asserts val is ${typeName} {
           if (!validate(val) as boolean) {
-            throw validate.errors
+            throw {
+              errors: validate.errors,
+              input: val
+            }
           }
         }
 
