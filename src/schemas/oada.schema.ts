@@ -8,20 +8,20 @@ const schema: Schema = {
       definitions: {
         versioned: {
           $anchor: 'versioned',
-          allOf: [
-            {
-              $ref: '#/definitions/link/definitions/unversioned'
+          type: 'object',
+          required: ['_rev'],
+          properties: {
+            _rev: {
+              $ref: '#/definitions/_rev'
             },
-            {
-              type: 'object',
-              required: ['_rev'],
-              properties: {
-                _rev: {
-                  $ref: '#/definitions/_rev'
-                }
-              }
+            _id: {
+              $ref: '#/definitions/_id'
+            },
+            _type: {
+              $ref: '#/definitions/_type'
             }
-          ]
+          },
+          additionalProperties: false
         },
         unversioned: {
           $anchor: 'unversioned',
@@ -30,8 +30,12 @@ const schema: Schema = {
           properties: {
             _id: {
               $ref: '#/definitions/_id'
+            },
+            _type: {
+              $ref: '#/definitions/_type'
             }
-          }
+          },
+          additionalProperties: false
         }
       },
       anyOf: [

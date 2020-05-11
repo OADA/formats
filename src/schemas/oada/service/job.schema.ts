@@ -1,7 +1,7 @@
 import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
-  $id: 'https://formats.openag.io/oada/service/jobs/job.schema.json',
+  $id: 'https://formats.openag.io/oada/service/job.schema.json',
   description: 'The format for an @oada/jobs job queue job.',
   type: 'object',
   properties: {
@@ -29,28 +29,9 @@ const schema: Schema = {
       description:
         'A list of updates as job progresses. Keys shall be sorted in time order.',
       type: 'object',
-      patternProperties: {
-        '.*': {
-          type: 'object',
-          properties: {
-            status: {
-              description: 'Status of job at the time of update',
-              type: 'string'
-            },
-            time: {
-              description: 'ISO8601 UTC date-time of update time',
-              type: 'string',
-              format: 'date-time'
-            },
-            information: {
-              description: 'Additional information about the status update',
-              type: 'string'
-            }
-          },
-          required: ['status', 'time']
-        }
-      },
-      additionalProperties: false
+      additionalProperties: {
+        $ref: './job/update.schema.json'
+      }
     }
   },
   required: ['service', 'type'],
@@ -72,13 +53,12 @@ const schema: Schema = {
       updates: {
         '1bF4ELuQwqU3CjDOsn2NF0d7Deu': {
           status: 'started',
-          time: '2018-11-14T20:20:39+00:00',
-          information: 'started'
+          time: '2018-11-14T20:20:39+00:00'
         },
         '1bF4GjXWJvj6FJEXCiAj8DatQTD': {
           status: 'pending',
           time: '2018-11-13T20:20:39+00:00',
-          information: 'I am waiting on someone to approve this manually'
+          information: 'Share requires manual approval'
         }
       }
     },
@@ -103,17 +83,18 @@ const schema: Schema = {
         '1bWH1wv07R4XEhwyK2T3wJ2kLMo': {
           status: 'success',
           time: '2018-11-15T20:20:39+00:00',
-          information: 'Completed the share'
+          information: {
+            approved: 'john'
+          }
         },
         '1bF4ELuQwqU3CjDOsn2NF0d7Deu': {
           status: 'started',
-          time: '2018-11-14T20:20:39+00:00',
-          information: 'started'
+          time: '2018-11-14T20:20:39+00:00'
         },
         '1bF4GjXWJvj6FJEXCiAj8DatQTD': {
           status: 'pending',
           time: '2018-11-13T20:20:39+00:00',
-          information: 'I am waiting on someone to approve this manually'
+          information: 'Share requires manual approval'
         }
       }
     }

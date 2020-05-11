@@ -1,0 +1,137 @@
+import { JSONSchema8 as Schema } from 'jsonschema8'
+
+const schema: Schema = {
+  $id:
+    'https://formats.openag.io/trellis/service/abalonemail/config/email.schema.json',
+  description: 'Abalonemail email config format for @oada/job job',
+  type: 'object',
+  definitions: {
+    email: {
+      $comment: "TODO: Allow emails like: 'John Doe <john@example.org>'",
+      description: "Object for email and associated person's name",
+      oneOf: [
+        {
+          type: 'string',
+          format: 'email'
+        },
+        {
+          type: 'object',
+          properties: {
+            email: {
+              type: 'string',
+              format: 'email'
+            },
+            name: {
+              type: 'string'
+            }
+          },
+          required: ['email']
+        }
+      ]
+    }
+  },
+  properties: {
+    multiple: {
+      description:
+        'If separate emails to each `to` (true) or if one email to all of `to` (false)',
+      type: 'boolean'
+    },
+    from: {
+      $ref: '#/definitions/email'
+    },
+    to: {
+      oneOf: [
+        {
+          $ref: '#/definitions/email'
+        },
+        {
+          type: 'array',
+          items: {
+            $ref: '#/definitions/email'
+          }
+        }
+      ]
+    },
+    replyTo: {
+      $ref: '#/definitions/email'
+    },
+    subject: {
+      type: 'string',
+      minLength: 1
+    },
+    text: {
+      type: 'string',
+      minLength: 1
+    },
+    html: {
+      type: 'string',
+      minLength: 1
+    },
+    attachments: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          content: {
+            oneOf: [
+              {
+                description: 'Base 64 encoded attachment content',
+                type: 'string',
+                minLength: 1
+              },
+              {
+                description: 'Link to OADA resource to use as content',
+                $ref: '../../../../oada.schema.json#/definitions/link'
+              }
+            ]
+          },
+          filename: {
+            type: 'string',
+            minLength: 1
+          },
+          type: {
+            type: 'string',
+            minLength: 1
+          },
+          disposition: {
+            enum: ['inline', 'attachment']
+          },
+          contentId: {
+            type: 'string'
+          }
+        },
+        required: ['content', 'filename']
+      }
+    }
+  },
+  required: ['from', 'to'],
+  examples: [
+    {
+      multiple: false,
+      from: 'john@example.com',
+      to: {
+        name: 'Mary Lou',
+        email: 'donuts@example.org'
+      },
+      subject: 'Test mail',
+      text: 'Test!',
+      html: '<h1>Test!</h1>',
+      attachments: [
+        {
+          content: 'RXhhbXBsZSBkYXRh',
+          filename: 'test.dat',
+          type: 'plain/text'
+        },
+        {
+          content: {
+            _id: 'resources/abc123'
+          },
+          filename: 'file.pdf',
+          type: 'application/pdf'
+        }
+      ]
+    }
+  ]
+}
+
+export default schema

@@ -31,7 +31,8 @@ const schema: Schema = {
     },
     statusText: { type: 'string' },
     headers: {
-      type: 'object'
+      type: 'object',
+      additionalProperties: { type: 'string' }
     },
     resourceId: {
       $ref: '../../oada.schema.json#/definitions/_id'

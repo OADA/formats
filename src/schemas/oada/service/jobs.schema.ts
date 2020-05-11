@@ -1,15 +1,18 @@
 import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
-  $id: 'https://formats.openag.io/oada/service/jobs/jobs.schema.json',
+  $id: 'https://formats.openag.io/oada/service/jobs.schema.json',
   description: 'The format for @oada/jobs jobs list',
   type: 'object',
-  patternProperties: {
-    '^.*$': {
-      $ref: '../../../oada.schema.json#/definitions/link/definitions/versioned'
-    }
+  additionalProperties: {
+    type: 'object',
+    properties: {
+      _id: {
+        $ref: '../../oada.schema.json#/definitions/_id'
+      }
+    },
+    required: ['_id']
   },
-  additionalItems: false,
   examples: [
     {
       asdxjkacsdj: {

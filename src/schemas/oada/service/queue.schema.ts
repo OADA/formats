@@ -1,8 +1,8 @@
 import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
-  $id: 'https://formats.openag.io/oada/service/jobs/config.schema.json',
-  description: 'The format for @oada/jobs config to watch a job queue',
+  $id: 'https://formats.openag.io/oada/service/queue.schema.json',
+  description: 'The format for @oada/jobs queue a job queue request',
   type: 'object',
   properties: {
     domain: {

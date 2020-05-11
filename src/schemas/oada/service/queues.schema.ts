@@ -1,12 +1,12 @@
 import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
-  $id: 'https://formats.openag.io/oada/service/jobs/configs.schema.json',
-  description: 'The format for @oada/jobs config list',
+  $id: 'https://formats.openag.io/oada/service/queues.schema.json',
+  description: 'The format for @oada/jobs queues list',
   type: 'object',
   patternProperties: {
     '^.*$': {
-      $ref: './config.schema.json'
+      $ref: './queue.schema.json'
     }
   },
   additionalProperties: false,
@@ -14,7 +14,8 @@ const schema: Schema = {
     {
       asdxjkacsdj: {
         domain: 'https://dev.trellis.one',
-        token: 'abc1234321cba'
+        token: 'abc1234321cba',
+        path: '/bookmarks/services/MyCoolService'
       }
     }
   ]
