@@ -19,7 +19,7 @@ const schema: Schema = {
       description: 'Additional meta data about the status update'
     }
   },
-  required: ['status', 'time'],
+  required: ['status'],
   examples: [
     {
       status: 'started',
