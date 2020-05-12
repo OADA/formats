@@ -1,0 +1,10 @@
+# istanbul/c8 output
+.coverage
+coverage
+
+# Jekyll stuff
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
