@@ -67,6 +67,10 @@ const schema: Schema = {
       type: 'string',
       minLength: 1
     },
+    templateData: {
+      type: 'object',
+      description: 'Data to use when filling out email template'
+    },
     attachments: {
       type: 'array',
       items: {
@@ -94,13 +98,27 @@ const schema: Schema = {
             minLength: 1
           },
           disposition: {
-            enum: ['inline', 'attachment']
+            enum: ['inline', 'attachment'],
+            default: 'attachment'
           },
-          contentId: {
+          content_id: {
             type: 'string'
           }
         },
-        required: ['content', 'filename']
+        required: ['content', 'filename'],
+        if: {
+          type: 'object',
+          properties: {
+            disposition: {
+              const: 'inline'
+            }
+          },
+          required: ['disposition']
+        },
+        then: {
+          type: 'object',
+          required: ['content_id']
+        }
       }
     }
   },
