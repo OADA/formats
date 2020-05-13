@@ -1,6 +1,6 @@
 {
   "name": "@oada/types",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "TypeScript type definitions for OADA formats",
   "main": "index.ts",
   "scripts": {
