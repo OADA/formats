@@ -11,6 +11,13 @@
     "pretest": "npm run build",
     "test": "mocha"
   },
+  "files": [
+    "**/*.ts",
+    "**/*.ts.map",
+    "**/*.js",
+    "**/*.js.map",
+    "tsconfig.json"
+  ],
   "mocha": {
     "spec": "*.spec.ts",
     "extension": [
