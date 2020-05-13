@@ -103,9 +103,9 @@
     fastq "^1.6.0"
 
 "@oada/formats@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@oada/formats/-/formats-1.0.4.tgz#52fc4fd193c5bc05f43da905c383b5f32a4e522f"
-  integrity sha512-prnyB1b5i+C/SbMeatrYxycy9np9hSp2C9bsSVzWbDf0F2cHQNgEVEwZOKzPus5AJQhCZa7+78GuMeGu/jMtRw==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@oada/formats/-/formats-1.1.1.tgz#a04738075af93b1b0b2df65bc8a5807e0411f5bd"
+  integrity sha512-GeYg2m3HlHwE0MXp0aqNwlT3Dr/mvFnPojiqLuEG9Cv1UVsBmZ6XZedKwURMTrroJQD7j1+BIDeLbmvpapEZeA==
   dependencies:
     "@apidevtools/json-schema-ref-parser" "^9.0.1"
     ajv "^6.12.0"
