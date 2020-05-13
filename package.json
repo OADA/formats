@@ -7,6 +7,12 @@
   "directories": {
     "lib": "lib"
   },
+  "files": [
+    "src",
+    "lib",
+    "tsconfig.json",
+    ".nycrc.json"
+  ],
   "scripts": {
     "buildschemas": "ts-node src/schemas/compile.ts",
     "prebuild": "npm run buildschemas",
