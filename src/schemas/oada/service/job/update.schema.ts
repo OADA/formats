@@ -12,8 +12,7 @@ const schema: Schema = {
     },
     time: {
       description: 'ISO8601 UTC date-time of update time',
-      type: 'string',
-      format: 'date-time'
+      type: 'string'
     },
     meta: {
       description: 'Additional meta data about the status update'
