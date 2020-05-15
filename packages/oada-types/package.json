@@ -30,20 +30,20 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@oada/formats": "^1.0.4",
+    "@oada/formats": "^1.1.2",
     "ajv": "^6.12.2",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.2"
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.1",
     "@types/chai": "^4.2.11",
     "@types/mkdirp": "^1.0.0",
     "@types/mocha": "^7.0.2",
-    "@types/node": "^13.13.5",
+    "@types/node": "^14.0.1",
     "@types/prettier": "^2.0.0",
     "ajv-pack": "^0.3.1",
     "chai": "^4.2.0",
-    "json-schema-to-typescript": "^9.0.1",
+    "json-schema-to-typescript": "^9.1.0",
     "jsonschema8": "^1.1.0",
     "mkdirp": "^1.0.4",
     "mocha": "^7.1.2",
