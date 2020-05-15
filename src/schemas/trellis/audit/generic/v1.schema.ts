@@ -2,6 +2,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/trellis/audit/generic/v1.schema.json',
+  $schema: 'https://json-schema.org/draft/2019-09/schema',
   description:
     'A generic audit document represents the results of an actual auditor from a certifying_body performing an inspection of a facility or crew.',
   properties: {

@@ -2,6 +2,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/isoblue/v1.schema.json',
+  $schema: 'https://json-schema.org/draft/2019-09/schema',
   description:
     'The ISOBlue document holds links to data related to (often collected by) the ISOBlue device',
   properties: {

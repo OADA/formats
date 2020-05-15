@@ -3,6 +3,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 const schema: Schema = {
   $id:
     'https://formats.openag.io/trellis/service/abalonemail/email.schema.json',
+  $schema: 'https://json-schema.org/draft/2019-09/schema',
   description: 'Extension @oada/jobs job queue format for Abalonemail',
   type: 'object',
   allOf: [{ $ref: '../../../oada/service/job.schema.json' }],
