@@ -1,0 +1,78 @@
+{
+  "name": "@oada/formats",
+  "version": "1.1.2",
+  "description": "Reworked OADA formats",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "src",
+    "lib",
+    "tsconfig.json",
+    ".nycrc.json"
+  ],
+  "scripts": {
+    "buildschemas": "ts-node src/schemas/compile.ts",
+    "prebuild": "npm run buildschemas",
+    "build": "tsc",
+    "pedeploy": "npm run build",
+    "deploy": "gh-pages -d lib/schemas -s **/*.schema.json",
+    "prepare": "npm run build",
+    "test": "c8 --reporter json mocha",
+    "coverage": "nyc report",
+    "coveralls": "nyc report --reporter text-lcov | coveralls"
+  },
+  "mocha": {
+    "timeout": 10000,
+    "spec": "src/**/*.spec.ts",
+    "extension": [
+      "ts"
+    ],
+    "ignore": "src/schemas/**",
+    "require": "ts-node/register"
+  },
+  "repository": "https://github.com/OADA/formats",
+  "author": "Alex Layton <alex@layton.in>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@apidevtools/json-schema-ref-parser": "^9.0.1",
+    "ajv": "^6.12.0",
+    "axios": "^0.19.2",
+    "glob": "^7.1.6",
+    "mkdirp": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/istanbul-lib-coverage": "^2.0.1",
+    "@types/istanbul-lib-instrument": "^1.7.3",
+    "@types/istanbul-lib-report": "^3.0.0",
+    "@types/istanbul-reports": "^1.1.1",
+    "@types/js-beautify": "^1.8.2",
+    "@types/json-schema": "^7.0.4",
+    "@types/mkdirp": "^1.0.0",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.11.1",
+    "@types/yargs": "^15.0.4",
+    "c8": "^7.1.0",
+    "chai": "^4.2.0",
+    "chai-json-schema-ajv": "^5.0.0",
+    "coveralls": "^3.0.13",
+    "gh-pages": "^2.2.0",
+    "istanbul-lib-coverage": "^3.0.0",
+    "istanbul-lib-instrument": "^4.0.1",
+    "istanbul-lib-report": "^3.0.0",
+    "istanbul-reports": "^3.0.2",
+    "js-beautify": "^1.11.0",
+    "json-schema-traverse": "^0.4.1",
+    "jsonschema8": "^1.1.0",
+    "mocha": "^7.1.1",
+    "nyc": "^15.0.1",
+    "prettier-standard": "^16.2.1",
+    "ts-node": "^8.8.2",
+    "typescript": "^3.8.3",
+    "yargs": "^15.3.1"
+  }
+}
