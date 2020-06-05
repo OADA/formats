@@ -2,7 +2,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/trellis/certificate/generic/v1.schema.json',
-  $schema: 'https://json-schema.org/draft/2019-09/schema',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   description:
     'A PrimusGFS audit is like a generic audit, but more restrictive.  Certain keys are marked as "required" here that should always exist if you have a PrimusGFS audit.',
   properties: {

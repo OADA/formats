@@ -3,7 +3,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 const schema: Schema = {
   $id:
     'https://formats.openag.io/trellis/gs1/produce/transformation_event/v1.schema.json',
-  $schema: 'https://json-schema.org/draft/2019-09/schema',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   description:
     'GS1 receiving event has certain required fields and and array element',
   properties: {
