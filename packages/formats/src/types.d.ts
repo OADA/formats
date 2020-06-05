@@ -1,21 +1,3 @@
-declare module 'chai-json-schema-ajv' {
-  import { Ajv } from 'ajv'
-
-  interface Options {
-    ajv?: Ajv
-  }
-  export function create (options: any): Chai.ChaiPlugin
-}
-
-// TODO: How to express that this is only added when using the plugin?
-declare namespace Chai {
-  interface Assertion {
-    validJsonSchema: Assertion
-    // TODO: Specify schema param needs to be a schema
-    jsonSchema(schema: any): Assertion
-  }
-}
-
 declare module 'json-schema-traverse' {
   type Callback<Schema> = (
     schema: Schema,

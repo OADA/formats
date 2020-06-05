@@ -1,7 +1,7 @@
+import test from 'ava'
+
 import loadAllFormats from './'
 
-describe('Module', () => {
-  it('should load all formats', () => {
-    return loadAllFormats()
-  })
+test('should load all formats', async t => {
+  await t.notThrowsAsync(loadAllFormats())
 })
