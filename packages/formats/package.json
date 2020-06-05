@@ -60,7 +60,6 @@
     "chai": "^4.2.0",
     "chai-json-schema-ajv": "^5.0.0",
     "coveralls": "^3.0.13",
-    "gh-pages": "^2.2.0",
     "istanbul-lib-coverage": "^3.0.0",
     "istanbul-lib-instrument": "^4.0.1",
     "istanbul-lib-report": "^3.0.0",
