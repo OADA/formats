@@ -1,0 +1,17 @@
+{
+  "rules": {
+    "valid-examples": {
+      "description": "Examples must be valid against schema",
+      "type": "validation",
+      "given": "$.examples^",
+      "severity": "error",
+      "then": {
+        "function": "schemaPath",
+        "functionOptions": {
+          "field": "$.examples[*]",
+          "schemaPath": "$"
+        }
+      }
+    }
+  }
+}

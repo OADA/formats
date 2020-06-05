@@ -1,0 +1,126 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "OADA API Spec",
+    "version": "2.0.0",
+    "contact": {
+      "name": "OADA",
+      "url": "https://openag.io",
+      "email": "info@openag.io"
+    }
+  },
+  "security": [
+    {
+      "token": []
+    }
+  ],
+  "paths": {
+    "/.well-known/oada-configuration": {
+      "summary": "The configuration info for this specifc API instance",
+      "get": {
+        "operationId": "getOadaConfiguration",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "https://formats.openag.io/oada/oada-configuration/v1.schema.json#"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bookmarks": {
+      "get": {
+        "operationId": "listBookmarks",
+        "summary": "List the current user's bookmarks",
+        "security": [
+          {
+            "user_auth": []
+          }
+        ]
+      }
+    },
+    "/resources/{resource_id}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/resource_id"
+        }
+      ],
+      "get": {
+        "operationId": "getResource",
+        "summary": "Get a specific resource by its id"
+      },
+      "put": {
+        "operationId": "putResource",
+        "summary": "Modify a specific resource by its id"
+      }
+    },
+    "/resources/{id}/{graph_pointer}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/resource_id"
+        },
+        {
+          "$ref": "#/components/parameters/graph_pointer"
+        }
+      ],
+      "get": {
+        "operationId": "getResource",
+        "summary": "Get a specific resource by its id"
+      },
+      "put": {
+        "operationId": "putResource",
+        "summary": "Modify a specific resource by its id"
+      },
+      "post": {
+        "operationId": "postResource"
+      }
+    },
+    "/resources": {
+      "post": {
+        "operationId": "postResource",
+        "summary": "Create a new resource"
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "resource_id": {
+        "name": "resouce_id",
+        "description": "The id of a specific resource",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "graph_pointer": {
+        "name": "graph_pointer",
+        "description": "",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "json-pointer"
+        }
+      }
+    },
+    "headers": {
+      "x-oada-rev": {
+        "schema": {
+          "type": "integer"
+        }
+      }
+    },
+    "securitySchemes": {
+      "user_auth": {
+        "type": "oauth2"
+      }
+    }
+  }
+}
