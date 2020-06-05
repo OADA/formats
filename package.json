@@ -5,7 +5,8 @@
   ],
   "scripts": {
     "prepare": "lerna run build",
-    "build": "bundle exec jekyll build"
+    "build": "bundle exec jekyll build",
+    "test": "lerna run test"
   },
   "devDependencies": {
     "lerna": "^3.22.0"
