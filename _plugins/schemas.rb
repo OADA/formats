@@ -3,7 +3,7 @@ module Jekyll
     #safe true
 
     def generate(site)
-      dir = 'lib/schemas'
+      dir = 'packages/formats/lib/schemas'
       schemas = Dir['**/*.schema.json', base: dir]
       schemas.each_entry do |schema|
         puts schema

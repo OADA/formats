@@ -5,6 +5,9 @@
       "packages/*"
     ]
   },
+  "scripts": {
+    "build": "bundle exec jekyll build"
+  },
   "devDependencies": {
     "lerna": "^3.22.0"
   },

@@ -39,9 +39,6 @@ theme: jekyll-theme-time-machine
 # their entries' file path in the `include:` list.
 #
 exclude:
-  - src/
-  - lib/
-  - coverage/
   - .sass-cache/
   - .jekyll-cache/
   - gemfiles/
