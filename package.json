@@ -6,9 +6,24 @@
   "scripts": {
     "prepare": "lerna run build",
     "build": "bundle exec jekyll build",
-    "test": "lerna run test"
+    "lint": "spectral lint **/*.schema.json",
+    "test": "ava"
+  },
+  "ava": {
+    "files": [
+      "**/*.spec.ts",
+      "!**/lib"
+    ],
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
   },
   "devDependencies": {
+    "@stoplight/spectral": "^5.4.0",
+    "ava": "^3.8.2",
     "lerna": "^3.22.0"
   },
   "name": "oada-formats-v2"
