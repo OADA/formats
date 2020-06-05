@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "lerna run build",
     "build": "bundle exec jekyll build",
-    "lint": "spectral lint **/*.schema.json",
+    "lint": "spectral lint packages/formats/lib/\\*\\*/*.schema.json",
     "test": "ava"
   },
   "ava": {
