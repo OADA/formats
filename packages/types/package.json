@@ -30,7 +30,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@oada/formats": "^1.1.2",
+    "@oada/formats": "1.1.2",
     "ajv": "^6.12.2",
     "typescript": "^3.9.2"
   },
