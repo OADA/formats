@@ -2,6 +2,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/as-harvested/v1.schema.json',
+  $schema: 'https://json-schema.org/draft/2019-09/schema',
   description:
     'The "as-harvested" key holds the original data logged during harvest.  This can be collections of time-series harvest data or data that is already geospatially referenced.  A typical "yield map" exported from an FMIS system would go here.  Think of this like the "raw" data that is used to generate tiled maps.',
   properties: {

@@ -2,6 +2,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/trellis/certifications/v1.schema.json',
+  $schema: 'https://json-schema.org/draft/2019-09/schema',
   description:
     'This is document with a list of links to certifications.  The keys are random strings.  It is also possible to have a dynamic index that represents a set of smaller groups of certifications.  In that case, an id-index key or other grouping would be found here.',
   patternProperties: {

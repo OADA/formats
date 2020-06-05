@@ -2,6 +2,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/irrigation/machines/v1.schema.json',
+  $schema: 'https://json-schema.org/draft/2019-09/schema',
   description: 'application/vnd.oada.irrigation.machines.1+json',
   required: ['name', 'list'],
   additionalProperties: true,

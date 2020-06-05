@@ -3,6 +3,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 const schema: Schema = {
   $id:
     'https://formats.openag.io/oada/as-harvested/yield-moisture-dataset/v1.schema.json',
+  $schema: 'https://json-schema.org/draft/2019-09/schema',
   description:
     'The "yield-moisture" document contains as-harvested yield-moisture data. This is where a typical "yield map" from an existing FMIS software would go.  We encourage geospatial indexing here (rather than field-based).',
   properties: {

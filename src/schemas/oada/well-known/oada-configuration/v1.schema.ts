@@ -3,6 +3,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 const schema: Schema = {
   $id:
     'https://formats.openag.io/oada/well-known/oada-configuration/v1.schema.json',
+  $schema: 'https://json-schema.org/draft/2019-09/schema',
   description: 'application/vnd.oada.well-known.oada-configuration.1+json',
   required: [
     'oada_base_uri',

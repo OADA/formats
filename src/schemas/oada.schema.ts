@@ -2,6 +2,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada.schema.json',
+  $schema: 'https://json-schema.org/draft/2019-09/schema',
   definitions: {
     link: {
       $anchor: 'link',
