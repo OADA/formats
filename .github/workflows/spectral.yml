@@ -10,6 +10,10 @@ jobs:
       # Check out the repository
       - uses: actions/checkout@v2
 
+      # "Build" the schemas
+      - uses: actions/setup-node@v1
+      - run: yarn
+
       # Run Spectral
       - uses: stoplightio/spectral-action@v0.6.1
         with:
