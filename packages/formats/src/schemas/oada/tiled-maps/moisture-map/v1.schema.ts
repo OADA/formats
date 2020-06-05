@@ -2,7 +2,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/tiled-maps/moisture-map/v1.schema.json',
-  $schema: 'https://json-schema.org/draft/2019-09/schema',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   description:
     'The "moisture-map" document contains harvested moisture readingstrade moisture, aggregated at various zoom levels for mapping and fast statistical calculation',
   properties: {

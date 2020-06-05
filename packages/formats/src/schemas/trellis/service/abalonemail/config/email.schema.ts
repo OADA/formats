@@ -3,7 +3,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 const schema: Schema = {
   $id:
     'https://formats.openag.io/trellis/service/abalonemail/config/email.schema.json',
-  $schema: 'https://json-schema.org/draft/2019-09/schema',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'Abalonemail email config format for @oada/job job',
   type: 'object',
   definitions: {

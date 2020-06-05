@@ -2,7 +2,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/resource.schema.json',
-  $schema: 'https://json-schema.org/draft/2019-09/schema',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   type: 'object',
   required: ['_id', '_rev', '_meta', '_type'],
   properties: {

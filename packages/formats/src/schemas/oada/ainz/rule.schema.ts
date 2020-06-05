@@ -2,7 +2,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/ainz/rule.schema.json',
-  $schema: 'https://json-schema.org/draft/2019-09/schema',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'The format for ainz orchestation rules',
   type: 'object',
   properties: {
@@ -15,7 +15,7 @@ const schema: Schema = {
     },
     schema: {
       description: 'A JSON Schema to which to compare new items in list',
-      $ref: 'https://json-schema.org/draft/2019-09/schema#'
+      $ref: 'https://json-schema.org/draft/2019-09/schema'
     }
   },
   oneOf: [

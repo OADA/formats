@@ -2,7 +2,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8'
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/isoblue/location/v1.schema.json',
-  $schema: 'https://json-schema.org/draft/2019-09/schema',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'Location data of the machine. Contains time and location',
   properties: {
     templates: {
