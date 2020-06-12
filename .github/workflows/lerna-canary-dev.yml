@@ -1,7 +1,7 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
 
-name: Node.js Package
+name: Publish alpha
 
 on:
   push:
@@ -9,16 +9,6 @@ on:
       - dev
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-      - run: npm ci
-      - run: npm test
-
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
@@ -28,7 +18,8 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: yarn publish --canary --preid alpha --dist-tag alpha
+      - run: npx lerna bootstrap
+      - run: npx lerna publish --canary --yes --preid alpha --dist-tag alpha
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
@@ -41,6 +32,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
-      - run: yarn publish --canary --preid alpha --dist-tag alpha
+      - run: npx lerna bootstrap
+      - run: npx lerna publish --canary --yes --preid alpha --dist-tag alpha
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
