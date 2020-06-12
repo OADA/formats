@@ -17,7 +17,7 @@
         }
       }
     },
-    "valid-example-0": {
+    "valid-examples": {
       "description": "Examples must be valid against their schema",
       "message": "{{error}}",
       "recommended": true,
@@ -28,23 +28,7 @@
         "function": "schemaPath",
         "functionOptions": {
           "allErrors": true,
-          "field": "examples.0",
-          "schemaPath": "$"
-        }
-      }
-    },
-    "valid-example-1": {
-      "description": "Examples must be valid against their schema",
-      "message": "{{error}}",
-      "recommended": true,
-      "type": "validation",
-      "severity": "error",
-      "given": "$..examples.1^^",
-      "then": {
-        "function": "schemaPath",
-        "functionOptions": {
-          "allErrors": true,
-          "field": "examples.1",
+          "field": "$.examples.*",
           "schemaPath": "$"
         }
       }
