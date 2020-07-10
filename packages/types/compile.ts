@@ -11,6 +11,8 @@ import { loadSchema } from '@oada/formats/lib/ajv'
 
 import formats, { schemas } from '@oada/formats'
 
+import { rules } from './normalize'
+
 // Where to put compiled types
 const typesDir = resolve('./')
 
@@ -29,6 +31,8 @@ async function doCompile () {
 
   // Compile schemas to TS types
   for (const { key, path, schema } of schemas()) {
+    //normalize(schema)
+
     const { $id } = schema
     const file = key
       .replace(/^https:\/\/formats\.openag\.io/, '')
@@ -108,6 +112,7 @@ async function doCompile () {
       const ts = await compileFromFile(path, {
         bannerComment,
         unreachableDefinitions: true,
+        normalizerRules: rules,
         $refOptions: {
           // Use local versions of openag schemas
           resolve: {

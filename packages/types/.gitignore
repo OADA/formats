@@ -5,6 +5,7 @@ lib
 **.map
 !**.spec.ts
 !/index.ts
+!/normalize.ts
 !/compile.ts
 !/types.d.ts
 

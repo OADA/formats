@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "prebuild": "ts-node --files compile.ts",
+    "clean": "git clean -dfX",
     "build": "tsc",
     "prestart": "npm run build",
     "prepare": "npm run build",
@@ -31,7 +32,11 @@
   "private": false,
   "dependencies": {
     "@oada/formats": "^1.1.1",
+    "@types/json-schema-merge-allof": "^0.6.0",
+    "@types/lodash.omit": "^4.5.6",
     "ajv": "^6.12.2",
+    "json-schema-merge-allof": "^0.7.0",
+    "lodash.omit": "^4.5.0",
     "typescript": "^3.9.2"
   },
   "devDependencies": {
@@ -40,7 +45,7 @@
     "@types/node": "^14.0.1",
     "@types/prettier": "^2.0.0",
     "ajv-pack": "^0.3.1",
-    "json-schema-to-typescript": "^9.1.0",
+    "json-schema-to-typescript": "git+ssh://git@github.com:awlayton/json-schema-to-typescript.git#custom-rules",
     "jsonschema8": "^1.1.0",
     "mkdirp": "^1.0.4",
     "prettier-standard": "^16.3.0",

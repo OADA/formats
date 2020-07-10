@@ -18,7 +18,7 @@ const schema: Schema = {
     },
     config: {
       description: 'Job spceific configuration object',
-      $ref: './config/email.schema.json'
+      $ref: 'config/email.schema.json'
     },
     result: {
       description: 'Final result of job'
