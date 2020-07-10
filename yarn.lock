@@ -5041,9 +5041,9 @@ json-schema-ref-parser@^9.0.1:
   dependencies:
     "@apidevtools/json-schema-ref-parser" "9.0.1"
 
-"json-schema-to-typescript@git+ssh://git@github.com:awlayton/json-schema-to-typescript.git#custom-rules":
+"json-schema-to-typescript@https://github.com/awlayton/json-schema-to-typescript.git#custom-rules":
   version "9.1.1"
-  resolved "git+ssh://git@github.com:awlayton/json-schema-to-typescript.git#9b79fadf33df6e5d4b2947305d8c939ae2c6180a"
+  resolved "https://github.com/awlayton/json-schema-to-typescript.git#9b79fadf33df6e5d4b2947305d8c939ae2c6180a"
   dependencies:
     "@types/json-schema" "^7.0.4"
     cli-color "^2.0.0"
