@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import {JSONSchema8 as Schema} from 'jsonschema8'
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/trellis/certificate/generic/v1.schema.json',
@@ -212,7 +212,7 @@ const schema: Schema = {
                             'email address for an organization or contact',
                           type: 'string'
                         },
-                        location: {
+                        location: { // $ref: "#/definitions/location"},
                           description:
                             'location describes the postal address used to identify where something is.',
                           properties: {
@@ -2163,6 +2163,76 @@ const schema: Schema = {
       },
       type: 'object'
     },
+    holder: {
+      description: 'Introduced for smithfield-foodlogiq integration',
+      type: 'object',
+      properties: {
+        name: {
+          description: 'Certificate holder name',
+          type: 'string',
+        },
+        location: {
+          description:
+            'location describes the postal address used to identify where something is.',
+          properties: {
+            postal_code: {
+              description:
+                'postal_code is the postal code used in a postal address',
+              type: 'string'
+            },
+            street_address: {
+              description:
+                'The street name and mailbox number of a postal address.',
+              type: 'string'
+            },
+            city: {
+              description:
+                'The name of the city, usually in a postal address.',
+              type: 'string'
+            },
+            state: {
+              description:
+                'The name of the state or major region, usually in a postal address.',
+              type: 'string'
+            },
+            country: {
+              description:
+                'The name of the country, usually in a postal address.',
+              type: 'string'
+            },
+          },
+          type: 'object'
+        },
+      },
+    },
+    policies: {
+      description: 'Introduced for smithfield-foodlogiq integration',
+      type: 'object',
+      additionalProperties: {
+        description: 'The information describing a COI policy',
+        type: 'object',
+        properties: {
+          number: {
+            description: 'policy number associated with the listed certificate',
+            type: 'string'
+          },
+          effective_date: {
+            description: 'The date the policy becomes active',
+            type: 'string',
+            examples: [
+              '2020-04-30T00:00:00',
+            ],
+          },
+          expire_date: {
+            description: 'The date the policy expires',
+            type: 'string',
+            examples: [
+              '2020-04-30T00:00:00',
+            ],
+          },
+        },
+      },
+    },
     _id: {
       description: '_id identifies a resource in the OADA API.',
       type: 'string'
@@ -2189,7 +2259,10 @@ const schema: Schema = {
       type: 'object'
     },
     _type: {
-      enum: ['application/vnd.trellis.audit.primusgfs.1+json']
+      enum: [
+        'application/vnd.trellis.audit.primusgfs.1+json',
+        'application/vnd.trellisfw.coi.accord+json'
+      ]
     }
   },
   additionalProperties: true,
