@@ -9,7 +9,6 @@ import mkdirp = require('mkdirp')
 import {
   JSONSchema8 as Schema,
   JSONSchema8ObjectSchema,
-  JSONSchema8TypeSchema,
   JSONSchema8StringSchema
 } from 'jsonschema8'
 
@@ -120,7 +119,8 @@ export async function migrate (
         } else {
           if ('enum' in schema || 'const' in schema) {
             // Typing an enum is redundant
-            delete (schema as JSONSchema8TypeSchema).type
+            // @ts-ignore
+            delete schema.type
           }
         }
 

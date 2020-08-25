@@ -18,6 +18,7 @@ import * as $RefParser from '@apidevtools/json-schema-ref-parser'
 
 import schemas from './schemas'
 import { loadSchema } from './ajv'
+import { JSONSchema6 } from 'json-schema'
 
 /*
 const instrumenter = createInstrumenter()
@@ -59,7 +60,7 @@ let checkRefs: (key: string, schema: Schema) => Promise<any>
 test.before('Initiallize $ref checker', () => {
   const $refparser = new $RefParser()
   checkRefs = (key: string, schema: Schema) =>
-    $refparser.dereference(schema, {
+    $refparser.dereference(schema as JSONSchema6, {
       resolve: {
         file: {
           order: 0,
