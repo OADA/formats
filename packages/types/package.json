@@ -1,6 +1,6 @@
 {
   "name": "@oada/types",
-  "version": "1.0.8",
+  "version": "1.2.0-beta",
   "description": "TypeScript type definitions for OADA formats",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@oada/formats": "^1.1.1",
+    "@oada/formats": "^1.2.0-beta",
     "@types/json-schema-merge-allof": "^0.6.0",
     "@types/lodash.omit": "^4.5.6",
     "ajv": "^6.12.2",
