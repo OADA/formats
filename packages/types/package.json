@@ -2,11 +2,12 @@
   "name": "@oada/types",
   "version": "1.0.8",
   "description": "TypeScript type definitions for OADA formats",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
     "prebuild": "npm run clean && cd src && ts-node --files compile.ts",
     "clean": "git clean -dfx",
     "build": "tsc",
+    "postbuild": "cpy '**/*.js' ../ --cwd=src --parents",
     "prestart": "npm run build",
     "prepare": "npm run build",
     "pretest": "npm run build"
@@ -45,6 +46,7 @@
     "@types/node": "^14.6.0",
     "@types/prettier": "^2.0.0",
     "ajv-pack": "^0.3.1",
+    "cpy-cli": "^3.1.1",
     "json-schema-to-typescript": "https://github.com/awlayton/json-schema-to-typescript.git#custom-rules",
     "jsonschema8": "^1.1.0",
     "mkdirp": "^1.0.4",

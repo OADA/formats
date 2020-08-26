@@ -6,6 +6,10 @@ const schema: Schema = {
   description: 'Represents a "compiled" bit of work to implement rules',
   allOf: [{ $ref: '../resource.schema.json' }],
   properties: {
+    rule: {
+      description: 'Reference to the rule this is implementing',
+      $ref: '../link/v1.schema.json#/definitions/versioned'
+    },
     action: {
       description: 'Name of the action invloved',
       type: 'string',
@@ -39,7 +43,7 @@ const schema: Schema = {
       $comment: 'Not yet implemented'
     }
   },
-  required: ['action', 'service', 'type', 'path', 'schema']
+  required: ['rule', 'action', 'service', 'type', 'path', 'schema']
 }
 
 export default schema

@@ -15,11 +15,8 @@
     "esModuleInterop": true
   },
   "exclude": [
-    "lib",
-    "test",
-    "types",
-    "oada/as-harvested/yield-moisture-dataset/*",
-    "oada/tiled-maps/dry-yield-map/*",
-    "oada/tiled-maps/moisture-map/*"
+    "src/oada/as-harvested/yield-moisture-dataset/*",
+    "src/oada/tiled-maps/dry-yield-map/*",
+    "src/oada/tiled-maps/moisture-map/*"
   ]
 }
