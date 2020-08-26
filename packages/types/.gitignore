@@ -1,13 +1,13 @@
 # "Compiled" stuff
 lib
-**.ts
-**.js
-**.map
-!**.spec.ts
-!/index.ts
-!/normalize.ts
-!/compile.ts
-!/types.d.ts
+*.ts
+*.js
+*.map
+!*.spec.ts
+!/src/index.ts
+!/src/normalize.ts
+!/src/compile.ts
+!/src/types.d.ts
 
 # Dependency directory
 # Commenting this out is preferred by some people, see

@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs'
 import { resolve, join, basename, dirname } from 'path'
 
+import Bluebird from 'bluebird'
 import mkdirp = require('mkdirp')
 import { compileFromFile } from 'json-schema-to-typescript'
 import { dereference } from '@apidevtools/json-schema-ref-parser'
@@ -39,7 +40,7 @@ async function doCompile () {
       .replace(/^\//, './')
     const outfile = join(typesDir, file.replace(/\.schema\.json$/, '.ts'))
     const name = basename(path, '.schema.json')
-    const cwd = dirname(path)
+    const cwd = join(typesDir, dirname(path))
     const typeName = `${name[0].toUpperCase()}${name.substr(1)}`
 
     // Pack up validation function
@@ -103,6 +104,7 @@ async function doCompile () {
       `
 
     console.debug(`Compiling ${key} to TypeScript types`)
+    console.debug(`Outputting ${outfile}`)
     try {
       const r = /^https:\/\/formats\.openag\.io/
       const ts = await compileFromFile(path, {
@@ -127,6 +129,8 @@ async function doCompile () {
         cwd
       })
       await mkdirp(dirname(outfile))
+      // TODO: Figure out wtf is up with mkdirp that I need this...
+      await Bluebird.delay(50)
       await fs.writeFile(packedfile, packed)
       await fs.writeFile(outfile, ts)
     } catch (err) {

@@ -4,15 +4,15 @@
   "description": "TypeScript type definitions for OADA formats",
   "main": "index.ts",
   "scripts": {
-    "prebuild": "ts-node --files compile.ts",
-    "clean": "git clean -dfX",
+    "prebuild": "npm run clean && cd src && ts-node --files compile.ts",
+    "clean": "git clean -dfx",
     "build": "tsc",
     "prestart": "npm run build",
     "prepare": "npm run build",
     "pretest": "npm run build"
   },
   "files": [
-    "**/*.ts",
+    "**/*.d.ts",
     "**/*.ts.map",
     "**/*.js",
     "**/*.js.map",
@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.1",
+    "@types/bluebird": "^3.5.32",
     "@types/mkdirp": "^1.0.0",
     "@types/node": "^14.6.0",
     "@types/prettier": "^2.0.0",

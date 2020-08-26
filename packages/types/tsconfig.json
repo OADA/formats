@@ -5,6 +5,8 @@
     "moduleResolution": "node",
     "module": "CommonJS",
     "lib": ["ES2019"],
+    "rootDir": "src",
+    "outDir": "./",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "sourceMap": true,
