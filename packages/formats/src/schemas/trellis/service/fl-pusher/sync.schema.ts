@@ -45,7 +45,7 @@ const schema: Schema = {
   examples: [
     {
       service: 'fl-pusher',
-      type: 'share',
+      type: 'sync',
       config: {
         resourceId: 'resources/oivnoseklnvaoeij329814ng',
         businessId: '123456789012345678901234',
