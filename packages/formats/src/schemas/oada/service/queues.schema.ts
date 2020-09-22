@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/service/queues.schema.json',
@@ -7,8 +7,8 @@ const schema: Schema = {
   type: 'object',
   patternProperties: {
     '^.*$': {
-      $ref: './queue.schema.json'
-    }
+      $ref: './queue.schema.json',
+    },
   },
   additionalProperties: false,
   examples: [
@@ -16,10 +16,10 @@ const schema: Schema = {
       asdxjkacsdj: {
         domain: 'https://dev.trellis.one',
         token: 'abc1234321cba',
-        path: '/bookmarks/services/MyCoolService'
-      }
-    }
-  ]
-}
+        path: '/bookmarks/services/MyCoolService',
+      },
+    },
+  ],
+};
 
-export default schema
+export default schema;

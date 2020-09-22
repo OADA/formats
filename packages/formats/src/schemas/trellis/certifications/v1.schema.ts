@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/trellis/certifications/v1.schema.json',
@@ -12,47 +12,47 @@ const schema: Schema = {
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
-    }
+      type: 'object',
+    },
   },
   properties: {
     _id: {
       description: '_id identifies a resource in the OADA API.',
-      type: 'string'
+      type: 'string',
     },
     _rev: {
       description:
         '_rev is the revision string for a resource in the OADA API.',
-      type: 'integer'
+      type: 'integer',
     },
     _meta: {
       description: '_meta is a link to the meta document for a resources.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
     _type: {
-      enum: ['application/vnd.trellis.certifications.1+json']
-    }
+      enum: ['application/vnd.trellis.certifications.1+json'],
+    },
   },
   additionalProperties: true,
   required: ['_type'],
@@ -63,14 +63,14 @@ const schema: Schema = {
       _rev: 1,
       _meta: {
         _id: 'resources/f2h0829i322/_meta',
-        _rev: 1
+        _rev: 1,
       },
       _type: 'application/vnd.trellis.certifications.1+json',
       idjofkwjfsdD: {
         _id: '8f2ofj2308f2i',
-        _rev: 1
-      }
-    }
-  ]
-}
-export default schema
+        _rev: 1,
+      },
+    },
+  ],
+};
+export default schema;

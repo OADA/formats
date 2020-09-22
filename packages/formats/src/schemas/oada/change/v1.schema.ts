@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/change/v1.schema.json',
@@ -6,8 +6,8 @@ const schema: Schema = {
   definitions: {
     type: {
       description: 'Indicates the type of change that occured.',
-      enum: ['merge', 'delete']
-    }
+      enum: ['merge', 'delete'],
+    },
   },
   type: 'object',
   description: 'Tree-based change representation (OADA v1)',
@@ -16,19 +16,19 @@ const schema: Schema = {
     type: { $ref: '#/definitions/type' },
     body: {
       $comment: 'Should probably narrow this schema down',
-      description: 'The contents of what was changed.'
-    }
+      description: 'The contents of what was changed.',
+    },
   },
   examples: [
     // OADA v1
     {
       body: {
         test: 'abc',
-        _rev: 1
+        _rev: 1,
       },
-      type: 'merge'
-    }
-  ]
-}
+      type: 'merge',
+    },
+  ],
+};
 
-export default schema
+export default schema;

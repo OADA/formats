@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/rules/condition.schema.json',
@@ -9,16 +9,16 @@ const schema: Schema = {
     name: {
       description: 'Name of the condition',
       type: 'string',
-      examples: ['signature_valid']
+      examples: ['signature_valid'],
     },
     service: {
       description: 'Name of the service implementing/performing the condition',
       type: 'string',
-      $comment: 'service conditions not yet implemented'
+      $comment: 'service conditions not yet implemented',
     },
     schema: {
       description: 'A JSON Schema to which implements this condition',
-      $ref: 'https://json-schema.org/draft/2019-09/schema'
+      $ref: 'https://json-schema.org/draft/2019-09/schema',
     },
     type: {
       description: 'Content-type(s) with which this condition works',
@@ -26,22 +26,22 @@ const schema: Schema = {
         { type: 'string' },
         {
           type: 'array',
-          items: { type: 'string' }
-        }
-      ]
+          items: { type: 'string' },
+        },
+      ],
     },
     description: {
       description: 'Human description of the condition for UI etc.',
       type: 'string',
-      examples: ['has a valid signature']
+      examples: ['has a valid signature'],
     },
     params: {
       description: 'Parameters for the condtion',
       type: 'object',
-      $comment: 'Not yet implemented'
-    }
+      $comment: 'Not yet implemented',
+    },
   },
-  required: ['name', 'type', 'description']
-}
+  required: ['name', 'type', 'description'],
+};
 
-export default schema
+export default schema;

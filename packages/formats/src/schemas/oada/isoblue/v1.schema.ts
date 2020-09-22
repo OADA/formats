@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/isoblue/v1.schema.json',
@@ -12,11 +12,11 @@ const schema: Schema = {
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
-        }
+          type: 'string',
+        },
       },
       required: ['_id'],
-      type: 'object'
+      type: 'object',
     },
     heartbeat: {
       description:
@@ -24,11 +24,11 @@ const schema: Schema = {
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
-        }
+          type: 'string',
+        },
       },
       required: ['_id'],
-      type: 'object'
+      type: 'object',
     },
     location: {
       description:
@@ -36,40 +36,40 @@ const schema: Schema = {
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
-        }
+          type: 'string',
+        },
       },
       required: ['_id'],
-      type: 'object'
+      type: 'object',
     },
     _id: {
       description: '_id identifies a resource in the OADA API.',
-      type: 'string'
+      type: 'string',
     },
     _rev: {
       description:
         '_rev is the revision string for a resource in the OADA API.',
-      type: 'integer'
+      type: 'integer',
     },
     _meta: {
       description: '_meta is a link to the meta document for a resources.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
     _type: {
-      enum: ['application/vnd.oada.isoblue.1+json']
-    }
+      enum: ['application/vnd.oada.isoblue.1+json'],
+    },
   },
   additionalProperties: true,
   required: ['_type'],
@@ -78,15 +78,15 @@ const schema: Schema = {
     {
       _type: 'application/vnd.oada.isoblue.1+json',
       can: {
-        _id: 'kfj20ikejldss'
+        _id: 'kfj20ikejldss',
       },
       heartbeat: {
-        _id: '92jfkjfe0fdi'
+        _id: '92jfkjfe0fdi',
       },
       location: {
-        _id: '92jfkjfe0fdi'
-      }
-    }
-  ]
-}
-export default schema
+        _id: '92jfkjfe0fdi',
+      },
+    },
+  ],
+};
+export default schema;

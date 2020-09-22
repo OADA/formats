@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/service.schema.json',
@@ -7,22 +7,22 @@ const schema: Schema = {
   type: 'object',
   properties: {
     jobs: {
-      $ref: '../oada.schema.json#/definitions/link/definitions/unversioned'
+      $ref: '../oada.schema.json#/definitions/link/definitions/unversioned',
     },
     watches: {
-      $ref: '../oada.schema.json#/definitions/link/definitions/unversioned'
-    }
+      $ref: '../oada.schema.json#/definitions/link/definitions/unversioned',
+    },
   },
   examples: [
     {
       jobs: {
-        _id: 'resources/KXxjds93'
+        _id: 'resources/KXxjds93',
       },
       watches: {
-        _id: 'resources/glakceo3r'
-      }
-    }
-  ]
-}
+        _id: 'resources/glakceo3r',
+      },
+    },
+  ],
+};
 
-export default schema
+export default schema;

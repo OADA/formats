@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/websockets/response.schema.json',
@@ -7,8 +7,8 @@ const schema: Schema = {
     'This is the format of an OADA websocket response (server to client)',
   definitions: {
     id: {
-      $ref: 'request.schema.json#/properties/requestId'
-    }
+      $ref: 'request.schema.json#/properties/requestId',
+    },
   },
   type: 'object',
   required: ['requestId', 'status'],
@@ -21,30 +21,30 @@ const schema: Schema = {
           type: 'array',
           minItems: 1,
           items: {
-            $ref: '#/definitions/id'
-          }
+            $ref: '#/definitions/id',
+          },
         },
-        { $ref: '#/definitions/id' }
-      ]
+        { $ref: '#/definitions/id' },
+      ],
     },
     status: {
-      type: 'integer'
+      type: 'integer',
     },
     statusText: { type: 'string' },
     headers: {
       type: 'object',
-      additionalProperties: { type: 'string' }
+      additionalProperties: { type: 'string' },
     },
     resourceId: {
-      $ref: '../../oada.schema.json#/definitions/_id'
+      $ref: '../../oada.schema.json#/definitions/_id',
     },
     resource: {
-      $comment: 'Not sure if this is always actually a resource...'
+      $comment: 'Not sure if this is always actually a resource...',
     },
     data: {
-      description: 'The optional data payload of the request'
-    }
-  }
-}
+      description: 'The optional data payload of the request',
+    },
+  },
+};
 
-export default schema
+export default schema;

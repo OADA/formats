@@ -1,7 +1,7 @@
-import test from 'ava'
+import test from 'ava';
 
-import loadAllFormats from './'
+import loadAllFormats from './';
 
-test('should load all formats', async t => {
-  await t.notThrowsAsync(loadAllFormats())
-})
+test('should load all formats', async (t) => {
+  await t.notThrowsAsync(loadAllFormats());
+});

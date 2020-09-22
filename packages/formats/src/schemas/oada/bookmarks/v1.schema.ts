@@ -1,145 +1,145 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/bookmarks/v1.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'bookmarks is the top-level document returned by the OADA API',
   properties: {
-    trellisfw: {
+    'trellisfw': {
       description:
         'A versioned link in OADA has _id an _rev in the link in order allow changes to bubble up from child to parents.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
-    planting: {
+    'planting': {
       description:
         'A versioned link in OADA has _id an _rev in the link in order allow changes to bubble up from child to parents.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
-    harvest: {
+    'harvest': {
       description:
         'A versioned link in OADA has _id an _rev in the link in order allow changes to bubble up from child to parents.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
-    machines: {
+    'machines': {
       description:
         'A versioned link in OADA has _id an _rev in the link in order allow changes to bubble up from child to parents.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
-    irrigation: {
+    'irrigation': {
       description:
         'A versioned link in OADA has _id an _rev in the link in order allow changes to bubble up from child to parents.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
-    sensors: {
+    'sensors': {
       description:
         'A versioned link in OADA has _id an _rev in the link in order allow changes to bubble up from child to parents.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
-    fields: {
+    'fields': {
       description:
         'A versioned link in OADA has _id an _rev in the link in order allow changes to bubble up from child to parents.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
-    clients: {
+    'clients': {
       description:
         'A versioned link in OADA has _id an _rev in the link in order allow changes to bubble up from child to parents.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
     'sensor-hubs': {
       description:
@@ -147,102 +147,102 @@ const schema: Schema = {
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
-    isoblue: {
+    'isoblue': {
       description:
         'A link in OADA has at least an _id key and links one resource to another.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
-        }
+          type: 'string',
+        },
       },
       required: ['_id'],
-      type: 'object'
+      type: 'object',
     },
-    _id: {
+    '_id': {
       description: '_id identifies a resource in the OADA API.',
-      type: 'string'
+      type: 'string',
     },
-    _rev: {
+    '_rev': {
       description:
         '_rev is the revision string for a resource in the OADA API.',
-      type: 'integer'
+      type: 'integer',
     },
-    _meta: {
+    '_meta': {
       description: '_meta is a link to the meta document for a resources.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
-    _type: {
-      enum: ['application/vnd.oada.bookmarks.1+json']
-    }
+    '_type': {
+      enum: ['application/vnd.oada.bookmarks.1+json'],
+    },
   },
   additionalProperties: true,
   required: ['_type'],
   type: 'object',
   examples: [
     {
-      _type: 'application/vnd.oada.bookmarks.1+json',
-      context: {},
-      planting: {
+      '_type': 'application/vnd.oada.bookmarks.1+json',
+      'context': {},
+      'planting': {
         _id: 'resources/09ijfofj',
-        _rev: 2
+        _rev: 2,
       },
-      harvest: {
+      'harvest': {
         _id: 'resources/908uf2jh',
-        _rev: 33
+        _rev: 33,
       },
-      machines: {
+      'machines': {
         _id: 'respurces/0kdfj20j',
-        _rev: 8
+        _rev: 8,
       },
-      irrigation: {
+      'irrigation': {
         _id: 'resources/0jk2iopw',
-        _rev: 4
+        _rev: 4,
       },
-      sales: {
+      'sales': {
         _id: 'resources/0kdfj20j',
-        _rev: 99
+        _rev: 99,
       },
-      sensors: {
+      'sensors': {
         _id: 'resources/kd02ufjk',
-        _rev: 3
+        _rev: 3,
       },
-      fields: {
+      'fields': {
         _id: 'resources/0kdfj2jl',
-        _rev: 7
+        _rev: 7,
       },
-      clients: {
+      'clients': {
         _id: 'resources/9sdkf2lk',
-        _rev: 4
+        _rev: 4,
       },
       'sensor-hubs': {
         _id: 'resources/xks84x8s',
-        _rev: 1
-      }
-    }
-  ]
-}
-export default schema
+        _rev: 1,
+      },
+    },
+  ],
+};
+export default schema;

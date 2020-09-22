@@ -1,184 +1,184 @@
 /// <reference types='./types'/>
 
-import { cwd } from 'process'
-import { promises as fs } from 'fs'
-import { dirname, join } from 'path'
+import { cwd } from 'process';
+import { promises as fs } from 'fs';
+import { dirname, join } from 'path';
 
-import mkdirp = require('mkdirp')
+import mkdirp = require('mkdirp');
 
 import {
   JSONSchema8 as Schema,
   JSONSchema8ObjectSchema,
-  JSONSchema8StringSchema
-} from 'jsonschema8'
+  JSONSchema8StringSchema,
+} from 'jsonschema8';
 
-import { contentTypeToKey } from './ajv'
+import { contentTypeToKey } from './ajv';
 
-import { JSONSchema8 as RealSchema } from 'jsonschema8'
-import * as Ajv from 'ajv'
+import { JSONSchema8 as RealSchema } from 'jsonschema8';
+import * as Ajv from 'ajv';
 
-import traverse from './traverse'
+import traverse from './traverse';
 
 export namespace Old {
   // The IDs on the generated schemas are weird
-  export type Schema = RealSchema & { id: string }
+  export type Schema = RealSchema & { id: string };
   export interface Model {
-    validate: Ajv.ValidateFunction
-    schema: () => Promise<Schema>
-    examples: () => Promise<{ [key: string]: any }>
+    validate: Ajv.ValidateFunction;
+    schema: () => Promise<Schema>;
+    examples: () => Promise<{ [key: string]: any }>;
   }
   export interface Formats extends Ajv.Ajv {
-    mediatypes: { [key: string]: string }
-    _addMediatypes(types: { [key: string]: string }): void
-    model: (type: string) => Promise<Model>
+    mediatypes: { [key: string]: string };
+    _addMediatypes(types: { [key: string]: string }): void;
+    model: (type: string) => Promise<Model>;
   }
 }
 
 type MigrateOptions = {
-  format?: 'json' | 'ts'
-  outdir?: string
-  root?: string
-}
-const defaultRoot = 'https://formats.openag.io'
+  format?: 'json' | 'ts';
+  outdir?: string;
+  root?: string;
+};
+const defaultRoot = 'https://formats.openag.io';
 /**
  * Function to dump all the schemas out of an old oada-formats
  */
-export async function migrate (
+export async function migrate(
   formats: Old.Formats,
   {
     format = 'json',
     outdir = `${cwd()}/schemas`,
-    root = defaultRoot
+    root = defaultRoot,
   }: MigrateOptions = {}
 ) {
-  const r = /^oada-formats:\/\/(.+)$/
-  function fixid (
+  const r = /^oada-formats:\/\/(.+)$/;
+  function fixid(
     id: string | undefined,
     type: string | null
   ): { $id: Schema['$id']; key: string } {
     if (id) {
       // Parse id into content type
-      const matches = r.exec(id)
+      const matches = r.exec(id);
       if (matches) {
-        ;[, type] = matches
+        [, type] = matches;
       }
     }
     if (!type) {
-      throw new Error('Schema has neither id nor type')
+      throw new Error('Schema has neither id nor type');
     }
 
-    const { value: key } = contentTypeToKey(type).next() as { value: string }
-    const $id = root + key
+    const { value: key } = contentTypeToKey(type).next() as { value: string };
+    const $id = root + key;
 
-    return { $id, key }
+    return { $id, key };
   }
 
   for (const type in formats.mediatypes) {
-    console.info(type)
-    let model
+    console.info(type);
+    let model;
     try {
-      model = await formats.model(type)
+      model = await formats.model(type);
     } catch (err) {
-      console.error(`Failed to load type ${type}: %O`, err)
-      continue
+      console.error(`Failed to load type ${type}: %O`, err);
+      continue;
     }
-    let schema
-    let $id
-    let key
+    let schema;
+    let $id;
+    let key;
     try {
       // Peel off weird id
-      const { id, ...oldSchema }: Old.Schema = await model.schema()
+      const { id, ...oldSchema }: Old.Schema = await model.schema();
 
-        // Generate proper id
-      ;({ $id, key } = fixid(id, type))
-      schema = { $id, ...oldSchema }
+      // Generate proper id
+      ({ $id, key } = fixid(id, type));
+      schema = { $id, ...oldSchema };
     } catch (err) {
-      console.error(`Failed to load schema for ${type}: %O`, err)
-      continue
+      console.error(`Failed to load schema for ${type}: %O`, err);
+      continue;
     }
 
-    function fixRef ($ref: string): string {
-      const [id, path] = $ref.split('#')
-      const { $id } = id ? fixid(id, null) : { $id: '' }
-      return `${$id}#${path}`
+    function fixRef($ref: string): string {
+      const [id, path] = $ref.split('#');
+      const { $id } = id ? fixid(id, null) : { $id: '' };
+      return `${$id}#${path}`;
     }
 
     // Traverse schema to fix/normalize keywords?
     traverse<Schema>(schema, {
-      cb (schema: Schema) {
+      cb(schema: Schema) {
         // Fix any refs
         if (schema.$ref) {
-          schema.$ref = fixRef(schema.$ref)
+          schema.$ref = fixRef(schema.$ref);
         }
 
         // Clean up types?
         if (!('type' in schema)) {
           if ('properties' in schema) {
-            ;(schema as JSONSchema8ObjectSchema).type = 'object'
+            (schema as JSONSchema8ObjectSchema).type = 'object';
           }
         } else {
           if ('enum' in schema || 'const' in schema) {
             // Typing an enum is redundant
             // @ts-ignore
-            delete schema.type
+            delete schema.type;
           }
         }
 
         // Delete extra keywords
         // @ts-ignore
-        delete schema.vocab
+        delete schema.vocab;
         // @ts-ignore
-        delete schema._type
+        delete schema._type;
         // @ts-ignore
-        delete schema.indexingSchema
+        delete schema.indexingSchema;
         // @ts-ignore
-        delete schema.indexing
+        delete schema.indexing;
         // @ts-ignore
-        delete schema.propertySchema
+        delete schema.propertySchema;
         // @ts-ignore
-        delete schema.propertySchemaDefault
+        delete schema.propertySchemaDefault;
 
         // TODO: Should probably just delete these keys...
         // * is not a regex... (.* is)
         if ((schema as JSONSchema8StringSchema).pattern === '*') {
-          ;(schema as JSONSchema8StringSchema).pattern = '.*'
+          (schema as JSONSchema8StringSchema).pattern = '.*';
         }
         const prop = (schema as JSONSchema8ObjectSchema).patternProperties?.[
           '*'
-        ]
+        ];
         if (prop) {
           // @ts-ignore
-          delete schema.patternProperties['*']
+          delete schema.patternProperties['*'];
           // @ts-ignore
-          schema.patternProperties['.*'] = prop
+          schema.patternProperties['.*'] = prop;
         }
 
         // Change "known" to examples
         // @ts-ignore
         if (schema.known) {
           // @ts-ignore
-          schema.examples = schema.known
+          schema.examples = schema.known;
           // @ts-ignore
-          delete schema.known
+          delete schema.known;
         }
-      }
-    })
+      },
+    });
 
     // Fetch the examples
-    const oldExamples = await model.examples()
-    const examples: any[] = []
+    const oldExamples = await model.examples();
+    const examples: any[] = [];
     for (const example in oldExamples) {
-      examples.push(oldExamples[example])
+      examples.push(oldExamples[example]);
     }
 
-    let output
-    let path = join(outdir, key)
-    const json = JSON.stringify({ ...schema, examples }, null, 2)
+    let output;
+    let path = join(outdir, key);
+    const json = JSON.stringify({ ...schema, examples }, null, 2);
     switch (format) {
       case 'json':
         // Create plain JSON schema
-        output = json
-        break
+        output = json;
+        break;
       case 'ts':
         // Create "TypeScript" schema
         output = `
@@ -186,13 +186,13 @@ export async function migrate (
 
           const schema: Schema = ${json}
           export default schema
-        `
-        path = path.replace(/\.json$/, '.ts')
-        break
+        `;
+        path = path.replace(/\.json$/, '.ts');
+        break;
     }
 
     // Write file out
-    await mkdirp(dirname(path))
-    await fs.writeFile(path, output)
+    await mkdirp(dirname(path));
+    await fs.writeFile(path, output);
   }
 }

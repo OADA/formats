@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/harvest/v1.schema.json',
@@ -12,16 +12,16 @@ const schema: Schema = {
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
     'tiled-maps': {
       description:
@@ -29,64 +29,64 @@ const schema: Schema = {
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
-    _id: {
+    '_id': {
       description: '_id identifies a resource in the OADA API.',
-      type: 'string'
+      type: 'string',
     },
-    _rev: {
+    '_rev': {
       description:
         '_rev is the revision string for a resource in the OADA API.',
-      type: 'integer'
+      type: 'integer',
     },
-    _meta: {
+    '_meta': {
       description: '_meta is a link to the meta document for a resources.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
-    _type: {
-      enum: ['application/vnd.oada.harvest.1+json']
-    }
+    '_type': {
+      enum: ['application/vnd.oada.harvest.1+json'],
+    },
   },
   additionalProperties: true,
   required: ['_type'],
   type: 'object',
   examples: [
     {
-      _id: 'resources/90fijklf3',
-      _rev: 7,
-      _type: 'application/vnd.oada.harvest.1+json',
-      context: {},
+      '_id': 'resources/90fijklf3',
+      '_rev': 7,
+      '_type': 'application/vnd.oada.harvest.1+json',
+      'context': {},
       'as-harvested': {
         _id: 'resources/resources/kfj20ikejldss',
-        _rev: 9
+        _rev: 9,
       },
       'tiled-maps': {
         _id: 'resources/92jfkjfe0fdi',
-        _rev: 8
-      }
-    }
-  ]
-}
-export default schema
+        _rev: 8,
+      },
+    },
+  ],
+};
+export default schema;

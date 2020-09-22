@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/tiled-maps/v1.schema.json',
@@ -12,11 +12,11 @@ const schema: Schema = {
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
-        }
+          type: 'string',
+        },
       },
       required: ['_id'],
-      type: 'object'
+      type: 'object',
     },
     'moisture-map': {
       description:
@@ -24,56 +24,56 @@ const schema: Schema = {
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
-        }
+          type: 'string',
+        },
       },
       required: ['_id'],
-      type: 'object'
+      type: 'object',
     },
-    _id: {
+    '_id': {
       description: '_id identifies a resource in the OADA API.',
-      type: 'string'
+      type: 'string',
     },
-    _rev: {
+    '_rev': {
       description:
         '_rev is the revision string for a resource in the OADA API.',
-      type: 'integer'
+      type: 'integer',
     },
-    _meta: {
+    '_meta': {
       description: '_meta is a link to the meta document for a resources.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
-    _type: {
-      enum: ['application/vnd.oada.tiled-maps.1+json']
-    }
+    '_type': {
+      enum: ['application/vnd.oada.tiled-maps.1+json'],
+    },
   },
   additionalProperties: true,
   required: ['_type'],
   type: 'object',
   examples: [
     {
-      _id: 'resources/029jfilwkjfo2i3ledkf',
-      _rev: 5,
-      _type: 'application/vnd.oada.tiled-maps.1+json',
+      '_id': 'resources/029jfilwkjfo2i3ledkf',
+      '_rev': 5,
+      '_type': 'application/vnd.oada.tiled-maps.1+json',
       'dry-yield-map': {
-        _id: 'resources/k2fjo23lf3'
+        _id: 'resources/k2fjo23lf3',
       },
       'moisture-map': {
-        _id: 'resources/k2fjo23lf3'
-      }
-    }
-  ]
-}
-export default schema
+        _id: 'resources/k2fjo23lf3',
+      },
+    },
+  ],
+};
+export default schema;

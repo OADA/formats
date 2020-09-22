@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/link/v1.schema.json',
@@ -8,12 +8,12 @@ const schema: Schema = {
     link: {
       anyOf: [
         {
-          $ref: '#/definitions/nonversioned'
+          $ref: '#/definitions/nonversioned',
         },
         {
-          $ref: '#/definitions/versioned'
-        }
-      ]
+          $ref: '#/definitions/versioned',
+        },
+      ],
     },
     nonversioned: {
       type: 'object',
@@ -21,9 +21,9 @@ const schema: Schema = {
       additionalProperties: true,
       properties: {
         _id: {
-          type: 'string'
-        }
-      }
+          type: 'string',
+        },
+      },
     },
     versioned: {
       type: 'object',
@@ -31,41 +31,41 @@ const schema: Schema = {
       additionalProperties: true,
       properties: {
         _id: {
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           type: 'string',
-          pattern: '^[0-9]+-.+'
-        }
-      }
+          pattern: '^[0-9]+-.+',
+        },
+      },
     },
     list: {
       definitions: {
         versioned: {
           type: 'object',
           additionalProperties: {
-            $ref: '#/definitions/versioned'
-          }
+            $ref: '#/definitions/versioned',
+          },
         },
         nonversioned: {
           type: 'object',
           additionalProperties: {
-            $ref: '#/definitions/nonversioned'
-          }
-        }
+            $ref: '#/definitions/nonversioned',
+          },
+        },
       },
       type: 'object',
       additionalProperties: {
-        $ref: '#/definitions/link'
-      }
-    }
+        $ref: '#/definitions/link',
+      },
+    },
   },
   examples: [
     {
       _id: 'akjf92jxcJds',
-      _rev: '1-jxusuf3sc'
-    }
-  ]
-}
+      _rev: '1-jxusuf3sc',
+    },
+  ],
+};
 
-export default schema
+export default schema;

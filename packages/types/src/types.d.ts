@@ -1,18 +1,18 @@
 declare module 'ajv-pack' {
-  import { Ajv, ValidateFunction } from 'ajv'
+  import { Ajv, ValidateFunction } from 'ajv';
 
-  const pack: (ajv: Ajv, validate: ValidateFunction) => string
+  const pack: (ajv: Ajv, validate: ValidateFunction) => string;
 
-  export = pack
+  export = pack;
 }
 
 // Declare packed validation functions modules
 declare module '*-validate.js' {
-  import { ValidateFunction } from 'ajv'
+  import { ValidateFunction } from 'ajv';
 
-  const validate: ValidateFunction
+  const validate: ValidateFunction;
 
-  export = validate
+  export = validate;
 }
 
 declare module 'json-schema-traverse' {
@@ -24,28 +24,28 @@ declare module 'json-schema-traverse' {
     parentKeyword: string,
     parentSchema: Schema,
     keyIndex: number
-  ) => void
+  ) => void;
   type Options<Schema> = {
-    cb: Callback<Schema> | { pre: Callback<Schema>; post: Callback<Schema> }
+    cb: Callback<Schema> | { pre: Callback<Schema>; post: Callback<Schema> };
     /**
      * @default false
      */
-    allKeys?: boolean
-  }
+    allKeys?: boolean;
+  };
 
   type Keywords = {
-    [key: string]: boolean
-  }
+    [key: string]: boolean;
+  };
 
   interface Traverse {
-    <Schema>(schema: Schema, opts: Options<Schema>): void
-    keywords: Keywords
-    arrayKeywords: Keywords
-    propsKeywords: Keywords
-    skipKeywords: Keywords
+    <Schema>(schema: Schema, opts: Options<Schema>): void;
+    keywords: Keywords;
+    arrayKeywords: Keywords;
+    propsKeywords: Keywords;
+    skipKeywords: Keywords;
   }
 
-  const traverse: Traverse
+  const traverse: Traverse;
 
-  export = traverse
+  export = traverse;
 }

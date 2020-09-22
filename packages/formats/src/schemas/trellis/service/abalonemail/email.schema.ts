@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id:
@@ -10,19 +10,19 @@ const schema: Schema = {
   properties: {
     service: {
       description: 'Service name',
-      const: 'abalonemail'
+      const: 'abalonemail',
     },
     type: {
       description: 'Email job type',
-      const: 'email'
+      const: 'email',
     },
     config: {
       description: 'Job spceific configuration object',
-      $ref: 'config/email.schema.json'
+      $ref: 'config/email.schema.json',
     },
     result: {
-      description: 'Final result of job'
-    }
+      description: 'Final result of job',
+    },
   },
   required: ['config'],
   examples: [
@@ -34,7 +34,7 @@ const schema: Schema = {
         from: 'john@example.com',
         to: {
           name: 'Mary Lou',
-          email: 'donuts@example.org'
+          email: 'donuts@example.org',
         },
         subject: 'Test mail',
         text: 'Test!',
@@ -43,32 +43,32 @@ const schema: Schema = {
           {
             content: 'RXhhbXBsZSBkYXRh',
             filename: 'test.dat',
-            type: 'plain/text'
+            type: 'plain/text',
           },
           {
             content: {
-              _id: 'resources/abc123'
+              _id: 'resources/abc123',
             },
             filename: 'file.pdf',
-            type: 'application/pdf'
-          }
-        ]
+            type: 'application/pdf',
+          },
+        ],
       },
       status: 'pending',
       updates: {
         '1bF4ELuQwqU3CjDOsn2NF0d7Deu': {
           status: 'started',
           time: '2018-11-14T20:20:39+00:00',
-          information: 'started'
+          information: 'started',
         },
         '1bF4GjXWJvj6FJEXCiAj8DatQTD': {
           status: 'sending',
           time: '2018-11-13T20:20:39+00:00',
-          information: 'sending email'
-        }
-      }
-    }
-  ]
-}
+          information: 'sending email',
+        },
+      },
+    },
+  ],
+};
 
-export default schema
+export default schema;

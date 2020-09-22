@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/isoblue/can/v1.schema.json',
@@ -6,7 +6,7 @@ const schema: Schema = {
   description:
     'CAN frame collected from machine attached to ISOBlue (or similar) device',
   properties: {
-    templates: {
+    'templates': {
       description:
         'templates is a general key for holding a collection of data points indexed by random strings.  Templates serve as prototypes for data points under "data" keys. If you have a piece of information that exists is all or almost all of the data points in a particular group of points, you can put the repeated things in templates and then just put the name of the template into the data point.  The full data point is therefore a merge of the template object and the data point itself, with the data point overruling when there are any keys that exist in both objects.  Schema is therefore identical to "data".',
       patternProperties: {
@@ -17,7 +17,7 @@ const schema: Schema = {
             id: {
               description:
                 'id (note this is NOT "_id") can be used to identify a particular data point, perhaps across documents which simply re-index the same data.',
-              type: 'string'
+              type: 'string',
             },
             time: {
               description:
@@ -25,35 +25,35 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['unix-timestamp', 'sec']
-                }
+                  examples: ['unix-timestamp', 'sec'],
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             is_error_frame: {
-              description: 'Error frame flag for can frame'
+              description: 'Error frame flag for can frame',
             },
             is_extended_frame: {
-              description: 'Extended frame flag for can frame'
+              description: 'Extended frame flag for can frame',
             },
             arbitration_id: {
-              description: 'CAN ID portion of extended can frame'
+              description: 'CAN ID portion of extended can frame',
             },
             dlc: {
-              description: 'Data Length Code portion of extended can frame'
+              description: 'Data Length Code portion of extended can frame',
             },
             payload: {
-              description: 'String representation can frame payload in base64'
+              description: 'String representation can frame payload in base64',
             },
             is_remote_frame: {
-              description: 'Remote frame flag from can frame'
-            }
+              description: 'Remote frame flag from can frame',
+            },
           },
-          type: 'object'
-        }
-      }
+          type: 'object',
+        },
+      },
     },
-    data: {
+    'data': {
       description:
         'data is a general key for holding a collection of data points indexed by random strings.',
       patternProperties: {
@@ -64,7 +64,7 @@ const schema: Schema = {
             id: {
               description:
                 'id (note this is NOT "_id") can be used to identify a particular data point, perhaps across documents which simply re-index the same data.',
-              type: 'string'
+              type: 'string',
             },
             time: {
               description:
@@ -72,114 +72,114 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['unix-timestamp', 'sec']
-                }
+                  examples: ['unix-timestamp', 'sec'],
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             is_error_frame: {
-              description: 'Error frame flag for can frame'
+              description: 'Error frame flag for can frame',
             },
             is_extended_frame: {
-              description: 'Extended frame flag for can frame'
+              description: 'Extended frame flag for can frame',
             },
             arbitration_id: {
-              description: 'CAN ID portion of extended can frame'
+              description: 'CAN ID portion of extended can frame',
             },
             dlc: {
-              description: 'Data Length Code portion of extended can frame'
+              description: 'Data Length Code portion of extended can frame',
             },
             payload: {
-              description: 'String representation can frame payload in base64'
+              description: 'String representation can frame payload in base64',
             },
             is_remote_frame: {
-              description: 'Remote frame flag from can frame'
-            }
+              description: 'Remote frame flag from can frame',
+            },
           },
           required: ['id', 'time'],
-          type: 'object'
-        }
-      }
+          type: 'object',
+        },
+      },
     },
-    _id: {
+    '_id': {
       description: '_id identifies a resource in the OADA API.',
-      type: 'string'
+      type: 'string',
     },
-    _rev: {
+    '_rev': {
       description:
         '_rev is the revision string for a resource in the OADA API.',
-      type: 'integer'
+      type: 'integer',
     },
-    _meta: {
+    '_meta': {
       description: '_meta is a link to the meta document for a resources.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
-    _type: {
-      enum: ['application/vnd.oada.isoblue.can.1+json']
+    '_type': {
+      enum: ['application/vnd.oada.isoblue.can.1+json'],
     },
-    indexing: {
+    'indexing': {
       type: 'array',
       items: {
         anyOf: [
           {
             properties: {
               index: {
-                enum: ['year-index']
+                enum: ['year-index'],
               },
               source: {
-                enum: ['oada.vocab.year-index']
+                enum: ['oada.vocab.year-index'],
               },
               value: {
                 type: 'string',
-                pattern: '^[0-9]{4}$'
-              }
+                pattern: '^[0-9]{4}$',
+              },
             },
-            type: 'object'
+            type: 'object',
           },
           {
             properties: {
               index: {
-                enum: ['day-index']
+                enum: ['day-index'],
               },
               source: {
-                enum: ['oada.vocab.day-index']
+                enum: ['oada.vocab.day-index'],
               },
               value: {
                 type: 'string',
-                pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'
-              }
+                pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}$',
+              },
             },
-            type: 'object'
+            type: 'object',
           },
           {
             properties: {
               index: {
-                enum: ['hour-index']
+                enum: ['hour-index'],
               },
               source: {
-                enum: ['oada.vocab.hour-index']
+                enum: ['oada.vocab.hour-index'],
               },
               value: {
                 type: 'string',
-                pattern: '^[0-9]{2}:[0-9]{2}$'
-              }
+                pattern: '^[0-9]{2}:[0-9]{2}$',
+              },
             },
-            type: 'object'
-          }
-        ]
-      }
+            type: 'object',
+          },
+        ],
+      },
     },
     'year-index': {
       description: 'year-index splits things up by a 4-digit year',
@@ -190,13 +190,13 @@ const schema: Schema = {
           properties: {
             _id: {
               description: '_id identifies a resource in the OADA API.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           required: ['_id'],
-          type: 'object'
-        }
-      }
+          type: 'object',
+        },
+      },
     },
     'day-index': {
       description:
@@ -208,13 +208,13 @@ const schema: Schema = {
           properties: {
             _id: {
               description: '_id identifies a resource in the OADA API.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           required: ['_id'],
-          type: 'object'
-        }
-      }
+          type: 'object',
+        },
+      },
     },
     'hour-index': {
       description:
@@ -226,18 +226,18 @@ const schema: Schema = {
           properties: {
             _id: {
               description: '_id identifies a resource in the OADA API.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           required: ['_id'],
-          type: 'object'
-        }
-      }
-    }
+          type: 'object',
+        },
+      },
+    },
   },
   additionalProperties: true,
   required: ['_type'],
   type: 'object',
-  examples: []
-}
-export default schema
+  examples: [],
+};
+export default schema;

@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id:
@@ -7,7 +7,7 @@ const schema: Schema = {
   description:
     'The "yield-moisture" document contains as-harvested yield-moisture data. This is where a typical "yield map" from an existing FMIS software would go.  We encourage geospatial indexing here (rather than field-based).',
   properties: {
-    templates: {
+    'templates': {
       description:
         'templates is a general key for holding a collection of data points indexed by random strings.  Templates serve as prototypes for data points under "data" keys. If you have a piece of information that exists is all or almost all of the data points in a particular group of points, you can put the repeated things in templates and then just put the name of the template into the data point.  The full data point is therefore a merge of the template object and the data point itself, with the data point overruling when there are any keys that exist in both objects.  Schema is therefore identical to "data".',
       patternProperties: {
@@ -18,12 +18,12 @@ const schema: Schema = {
             id: {
               description:
                 'id (note this is NOT "_id") can be used to identify a particular data point, perhaps across documents which simply re-index the same data.',
-              type: 'string'
+              type: 'string',
             },
             template: {
               description:
                 'template sits inside a data point and gives the name of a template (key in the templates object) which serves as prototype for a given data point.  The full data point is the merge of that template object with the data point, with the data point taking precedence in key collisions. This is a string because its value is the key in templates, not the template itself.',
-              type: 'string'
+              type: 'string',
             },
             time: {
               description:
@@ -31,10 +31,10 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['unix-timestamp', 'sec']
-                }
+                  examples: ['unix-timestamp', 'sec'],
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             area: {
               description:
@@ -42,10 +42,10 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['ac', 'acres', 'ha', 'hectares', 'sqft']
-                }
+                  examples: ['ac', 'acres', 'ha', 'hectares', 'sqft'],
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             weight: {
               description:
@@ -53,10 +53,10 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['bu', 'bushels', 'lbs', 'kg']
-                }
+                  examples: ['bu', 'bushels', 'lbs', 'kg'],
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             moisture: {
               description:
@@ -64,10 +64,10 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['%H2O']
-                }
+                  examples: ['%H2O'],
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             location: {
               description:
@@ -79,67 +79,67 @@ const schema: Schema = {
                   anyOf: [
                     {
                       type: 'string',
-                      examples: ['WGS84']
+                      examples: ['WGS84'],
                     },
                     {
                       required: ['type', 'properties'],
                       properties: {
                         type: {
-                          enum: ['EPSG']
+                          enum: ['EPSG'],
                         },
                         properties: {
                           required: ['code'],
                           properties: {
                             code: {
-                              type: 'number'
-                            }
+                              type: 'number',
+                            },
                           },
-                          type: 'object'
-                        }
+                          type: 'object',
+                        },
                       },
-                      type: 'object'
-                    }
-                  ]
+                      type: 'object',
+                    },
+                  ],
                 },
                 latitude: {
                   description: 'latitude is a string in the format of a number',
                   type: 'string',
-                  pattern: '^-?([0-9]*[.])[0-9]+'
+                  pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 longitude: {
                   description:
                     'longitude is a string in the format of a number',
                   type: 'string',
-                  pattern: '^-?([0-9]*[.])[0-9]+'
+                  pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 altitude: {
                   description: 'altitude is a string in the format of a number',
                   type: 'number',
-                  pattern: '^-?([0-9]*[.])[0-9]+'
+                  pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 lat: {
                   description: 'lat is shorthand for latitude',
                   type: 'string',
-                  pattern: '^-?([0-9]*[.])[0-9]+'
+                  pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 lon: {
                   description: 'lon is shorthand for longitude',
                   type: 'string',
-                  pattern: '^-?([0-9]*[.])[0-9]+'
+                  pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 alt: {
                   description: 'alt is shorthand for altitude',
                   type: 'number',
-                  pattern: '^-?([0-9]*[.])[0-9]+'
+                  pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 geohash: {
                   description:
                     'A geohash is a base 32 encoded string which represents the combination of latitude and longitude into a single number which, in general, has a property such that points close in number are close on the globe.',
                   type: 'string',
-                  pattern: '^[0-9bcdefghjkmnpqrstuvwxyz]+$'
-                }
+                  pattern: '^[0-9bcdefghjkmnpqrstuvwxyz]+$',
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             width: {
               description:
@@ -147,17 +147,17 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['ft', 'feet', 'm', 'meters']
-                }
+                  examples: ['ft', 'feet', 'm', 'meters'],
+                },
               },
-              type: 'object'
-            }
+              type: 'object',
+            },
           },
-          type: 'object'
-        }
-      }
+          type: 'object',
+        },
+      },
     },
-    data: {
+    'data': {
       description:
         'data is a general key for holding a collection of data points indexed by random strings.',
       patternProperties: {
@@ -168,12 +168,12 @@ const schema: Schema = {
             id: {
               description:
                 'id (note this is NOT "_id") can be used to identify a particular data point, perhaps across documents which simply re-index the same data.',
-              type: 'string'
+              type: 'string',
             },
             template: {
               description:
                 'template sits inside a data point and gives the name of a template (key in the templates object) which serves as prototype for a given data point.  The full data point is the merge of that template object with the data point, with the data point taking precedence in key collisions. This is a string because its value is the key in templates, not the template itself.',
-              type: 'string'
+              type: 'string',
             },
             time: {
               description:
@@ -181,10 +181,10 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['unix-timestamp', 'sec']
-                }
+                  examples: ['unix-timestamp', 'sec'],
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             area: {
               description:
@@ -192,10 +192,10 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['ac', 'acres', 'ha', 'hectares', 'sqft']
-                }
+                  examples: ['ac', 'acres', 'ha', 'hectares', 'sqft'],
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             weight: {
               description:
@@ -203,10 +203,10 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['bu', 'bushels', 'lbs', 'kg']
-                }
+                  examples: ['bu', 'bushels', 'lbs', 'kg'],
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             moisture: {
               description:
@@ -214,10 +214,10 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['%H2O']
-                }
+                  examples: ['%H2O'],
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             location: {
               description:
@@ -229,67 +229,67 @@ const schema: Schema = {
                   anyOf: [
                     {
                       type: 'string',
-                      examples: ['WGS84']
+                      examples: ['WGS84'],
                     },
                     {
                       required: ['type', 'properties'],
                       properties: {
                         type: {
-                          enum: ['EPSG']
+                          enum: ['EPSG'],
                         },
                         properties: {
                           required: ['code'],
                           properties: {
                             code: {
-                              type: 'number'
-                            }
+                              type: 'number',
+                            },
                           },
-                          type: 'object'
-                        }
+                          type: 'object',
+                        },
                       },
-                      type: 'object'
-                    }
-                  ]
+                      type: 'object',
+                    },
+                  ],
                 },
                 latitude: {
                   description: 'latitude is a string in the format of a number',
                   type: 'string',
-                  pattern: '^-?([0-9]*[.])[0-9]+'
+                  pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 longitude: {
                   description:
                     'longitude is a string in the format of a number',
                   type: 'string',
-                  pattern: '^-?([0-9]*[.])[0-9]+'
+                  pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 altitude: {
                   description: 'altitude is a string in the format of a number',
                   type: 'number',
-                  pattern: '^-?([0-9]*[.])[0-9]+'
+                  pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 lat: {
                   description: 'lat is shorthand for latitude',
                   type: 'string',
-                  pattern: '^-?([0-9]*[.])[0-9]+'
+                  pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 lon: {
                   description: 'lon is shorthand for longitude',
                   type: 'string',
-                  pattern: '^-?([0-9]*[.])[0-9]+'
+                  pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 alt: {
                   description: 'alt is shorthand for altitude',
                   type: 'number',
-                  pattern: '^-?([0-9]*[.])[0-9]+'
+                  pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 geohash: {
                   description:
                     'A geohash is a base 32 encoded string which represents the combination of latitude and longitude into a single number which, in general, has a property such that points close in number are close on the globe.',
                   type: 'string',
-                  pattern: '^[0-9bcdefghjkmnpqrstuvwxyz]+$'
-                }
+                  pattern: '^[0-9bcdefghjkmnpqrstuvwxyz]+$',
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             width: {
               description:
@@ -297,116 +297,116 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['ft', 'feet', 'm', 'meters']
-                }
+                  examples: ['ft', 'feet', 'm', 'meters'],
+                },
               },
-              type: 'object'
-            }
+              type: 'object',
+            },
           },
           required: ['area', 'weight', 'moisture', 'location'],
-          type: 'object'
-        }
-      }
+          type: 'object',
+        },
+      },
     },
-    _id: {
+    '_id': {
       description: '_id identifies a resource in the OADA API.',
-      type: 'string'
+      type: 'string',
     },
-    _rev: {
+    '_rev': {
       description:
         '_rev is the revision string for a resource in the OADA API.',
-      type: 'integer'
+      type: 'integer',
     },
-    _meta: {
+    '_meta': {
       description: '_meta is a link to the meta document for a resources.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
-    _type: {
-      enum: ['application/vnd.oada.as-harvested.yield-moisture-dataset.1+json']
+    '_type': {
+      enum: ['application/vnd.oada.as-harvested.yield-moisture-dataset.1+json'],
     },
-    indexing: {
+    'indexing': {
       type: 'array',
       items: {
         anyOf: [
           {
             properties: {
               index: {
-                enum: ['year-index']
+                enum: ['year-index'],
               },
               source: {
-                enum: ['oada.vocab.year-index']
+                enum: ['oada.vocab.year-index'],
               },
               value: {
                 type: 'string',
-                pattern: '^[0-9]{4}$'
-              }
+                pattern: '^[0-9]{4}$',
+              },
             },
-            type: 'object'
+            type: 'object',
           },
           {
             properties: {
               index: {
-                enum: ['crop-index']
+                enum: ['crop-index'],
               },
               value: {
                 type: 'string',
-                examples: ['corn', 'soybeans', 'wheat']
+                examples: ['corn', 'soybeans', 'wheat'],
               },
               source: {
                 type: 'string',
-                examples: ['oada.vocab.crop-type']
-              }
+                examples: ['oada.vocab.crop-type'],
+              },
             },
-            type: 'object'
+            type: 'object',
           },
           {
             properties: {
               index: {
-                enum: ['geohash-length-index']
+                enum: ['geohash-length-index'],
               },
               value: {
                 type: 'string',
-                pattern: '^geohash-[1-9][0-9]*$'
+                pattern: '^geohash-[1-9][0-9]*$',
               },
               source: {
                 type: 'string',
-                examples: ['oada.vocab.geohash-length-index']
-              }
+                examples: ['oada.vocab.geohash-length-index'],
+              },
             },
-            type: 'object'
+            type: 'object',
           },
           {
             properties: {
               index: {
-                enum: ['geohash-index']
+                enum: ['geohash-index'],
               },
               value: {
                 description:
                   'A geohash is a base 32 encoded string which represents the combination of latitude and longitude into a single number which, in general, has a property such that points close in number are close on the globe.',
                 type: 'string',
-                pattern: '^[0-9bcdefghjkmnpqrstuvwxyz]+$'
+                pattern: '^[0-9bcdefghjkmnpqrstuvwxyz]+$',
               },
               source: {
                 type: 'string',
-                examples: ['oada.vocab.geohash']
-              }
+                examples: ['oada.vocab.geohash'],
+              },
             },
-            type: 'object'
-          }
-        ]
-      }
+            type: 'object',
+          },
+        ],
+      },
     },
     'year-index': {
       description: 'year-index splits things up by a 4-digit year',
@@ -417,13 +417,13 @@ const schema: Schema = {
           properties: {
             _id: {
               description: '_id identifies a resource in the OADA API.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           required: ['_id'],
-          type: 'object'
-        }
-      }
+          type: 'object',
+        },
+      },
     },
     'crop-index': {
       description:
@@ -435,11 +435,11 @@ const schema: Schema = {
           properties: {
             _id: {
               description: '_id identifies a resource in the OADA API.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           required: ['_id'],
-          type: 'object'
+          type: 'object',
         },
         soybeans: {
           description:
@@ -447,11 +447,11 @@ const schema: Schema = {
           properties: {
             _id: {
               description: '_id identifies a resource in the OADA API.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           required: ['_id'],
-          type: 'object'
+          type: 'object',
         },
         wheat: {
           description:
@@ -459,14 +459,14 @@ const schema: Schema = {
           properties: {
             _id: {
               description: '_id identifies a resource in the OADA API.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           required: ['_id'],
-          type: 'object'
-        }
+          type: 'object',
+        },
       },
-      type: 'object'
+      type: 'object',
     },
     'geohash-length-index': {
       description:
@@ -478,28 +478,28 @@ const schema: Schema = {
           anyOf: [
             {
               type: 'string',
-              examples: ['WGS84']
+              examples: ['WGS84'],
             },
             {
               required: ['type', 'properties'],
               properties: {
                 type: {
-                  enum: ['EPSG']
+                  enum: ['EPSG'],
                 },
                 properties: {
                   required: ['code'],
                   properties: {
                     code: {
-                      type: 'number'
-                    }
+                      type: 'number',
+                    },
                   },
-                  type: 'object'
-                }
+                  type: 'object',
+                },
               },
-              type: 'object'
-            }
-          ]
-        }
+              type: 'object',
+            },
+          ],
+        },
       },
       patternProperties: {
         '^geohash-[1-9][0-9]*$': {
@@ -508,14 +508,14 @@ const schema: Schema = {
           properties: {
             _id: {
               description: '_id identifies a resource in the OADA API.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           required: ['_id'],
-          type: 'object'
-        }
+          type: 'object',
+        },
       },
-      type: 'object'
+      type: 'object',
     },
     'geohash-index': {
       description:
@@ -527,14 +527,14 @@ const schema: Schema = {
           properties: {
             _id: {
               description: '_id identifies a resource in the OADA API.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           required: ['_id'],
-          type: 'object'
-        }
-      }
-    }
+          type: 'object',
+        },
+      },
+    },
   },
   additionalProperties: true,
   required: ['_type'],
@@ -548,88 +548,88 @@ const schema: Schema = {
         {
           index: 'year-index',
           value: '2018',
-          source: 'oada.vocab.year'
+          source: 'oada.vocab.year',
         },
         {
           index: 'crop-index',
           value: 'corn',
-          source: 'oada.vocab.crop-type'
+          source: 'oada.vocab.crop-type',
         },
         {
           index: 'geohash-length-index',
           source: 'oada.vocab.geohash-length-index',
-          value: '7'
+          value: '7',
         },
         {
           index: 'geohash-index',
           value: '9j9j12f',
-          source: 'oada.vocab.geohash-index'
-        }
+          source: 'oada.vocab.geohash-index',
+        },
       ],
       templates: {
         k20ifkj: {
           time: {
-            units: 'unix-timestamp'
+            units: 'unix-timestamp',
           },
           area: {
-            units: 'acres'
+            units: 'acres',
           },
           weight: {
-            units: 'bushels'
+            units: 'bushels',
           },
           moisture: {
-            units: '%H2O'
+            units: '%H2O',
           },
           location: {
-            datum: 'WGS84'
-          }
-        }
+            datum: 'WGS84',
+          },
+        },
       },
       data: {
-        kdjf02ijk3f: {
+        'kdjf02ijk3f': {
           id: '902jfl3jo2kf2l3f',
           template: 'k20ifkj',
           time: {
-            value: 192847322.14521
+            value: 192847322.14521,
           },
           area: {
-            value: 1.1
+            value: 1.1,
           },
           weight: {
-            value: 2.5
+            value: 2.5,
           },
           moisture: {
-            value: 28.79
+            value: 28.79,
           },
           location: {
             latitude: -41.9384932,
             longitude: 80.9284923,
-            altitude: 200.49583
-          }
+            altitude: 200.49583,
+          },
         },
         '0f2jflk2j3l': {
           id: 'llll23jf02i2o3ffdsf',
           template: 'k20ifkj',
           time: {
-            value: 192847323.78321
+            value: 192847323.78321,
           },
           area: {
-            value: '0.9'
+            value: '0.9',
           },
           weight: {
-            value: '2.3'
+            value: '2.3',
           },
           moisture: {
-            value: 23.81
+            value: 23.81,
           },
           location: {
             latitude: -41.9384931,
             longitude: 80.9284921,
-            altitude: 200.49581
-          }
-        }
-      }
-    }
-  ]
-}
-export default schema
+            altitude: 200.49581,
+          },
+        },
+      },
+    },
+  ],
+};
+export default schema;

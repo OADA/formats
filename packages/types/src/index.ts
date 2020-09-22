@@ -1,6 +1,13 @@
-export { formats, Schema } from '@oada/formats'
+export { formats, Schema } from '@oada/formats';
 
-export default formats
+import { formats } from '@oada/formats';
+export default formats;
 
-export type TypeCheck<T> = (val: any) => val is T
-export type TypeAssert<T> = (val: any) => asserts val is T
+/**
+ * Type for the `is` functions of @oada/types types
+ */
+export type TypeCheck<T> = (val: any) => val is T;
+/**
+ * Type for the `assert` functions of @oada/types types
+ */
+export type TypeAssert<T> = (val: any) => asserts val is T;

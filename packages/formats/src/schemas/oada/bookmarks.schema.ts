@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/bookmarks.schema.json',
@@ -9,32 +9,32 @@ const schema: Schema = {
       type: 'object',
       properties: {
         _type: {
-          enum: ['application/vnd.oada.bookmarks.1+.json']
-        }
-      }
-    }
+          enum: ['application/vnd.oada.bookmarks.1+.json'],
+        },
+      },
+    },
   },
   allOf: [
     {
-      $ref: 'resource.schema.json#'
+      $ref: 'resource.schema.json#',
     },
     {
       anyOf: [
         {
-          $ref: '#/definitions/v1'
+          $ref: '#/definitions/v1',
         },
         {
           type: 'object',
           properties: {
             _type: {
               type: 'string',
-              pattern: 'application/vnd\\.oada\\.bookmarks\\.[0-9]+\\+\\.json'
-            }
-          }
-        }
-      ]
-    }
-  ]
-}
+              pattern: 'application/vnd\\.oada\\.bookmarks\\.[0-9]+\\+\\.json',
+            },
+          },
+        },
+      ],
+    },
+  ],
+};
 
-export default schema
+export default schema;

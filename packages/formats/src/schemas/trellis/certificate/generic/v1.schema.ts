@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/trellis/certificate/generic/v1.schema.json',
@@ -15,26 +15,26 @@ const schema: Schema = {
             'name is a string, typically the name of the object the key appears in.',
           pattern: '^(?!(indexing|.*-index|_.*)).*$',
           enum: ['PrimusGFS'],
-          examples: ['PrimusGFS', 'GlobalGAP', 'CanadaGAP', 'SQFI']
+          examples: ['PrimusGFS', 'GlobalGAP', 'CanadaGAP', 'SQFI'],
         },
         version: {
           description:
             'version is a string which describes the version of the schema used for the current audit.',
-          type: 'string'
+          type: 'string',
         },
         option: {
           description:
             'option is used as an indicator of type of audit for a given audit version.  Introduced for GlobalGAP audit, also present in CanadaGAP audit.',
-          type: 'string'
+          type: 'string',
         },
         options: {
           description:
             'If an audit covers multiple scheme options, you can make an array of them.',
-          type: 'string'
-        }
+          type: 'string',
+        },
       },
       required: ['name', 'version'],
-      type: 'object'
+      type: 'object',
     },
     certifying_body: {
       description:
@@ -45,7 +45,7 @@ const schema: Schema = {
             'name is a string, typically the name of the object the key appears in.',
           type: 'string',
           pattern: '^(?!(indexing|.*-index|_.*)).*$',
-          examples: ['Primus Auditing Operations']
+          examples: ['Primus Auditing Operations'],
         },
         auditor: {
           description:
@@ -54,22 +54,22 @@ const schema: Schema = {
             conflict_of_interest: {
               description:
                 'conflict_of_interest indicates if a particular person (auditor) has a known conflict of interest for creating a certification for an organization',
-              type: 'boolean'
+              type: 'boolean',
             },
             number_prior_audits_this_organization: {
               description:
                 "Introduced for CanadaGAP, this is the auditor's attestation of how many times they have audited this operation before.",
               type: 'string',
-              pattern: '^[0-9]+$'
+              pattern: '^[0-9]+$',
             },
             number_prior_consecutive_audits_this_organization: {
               description:
                 "Introduced for CanadaGAP, this is the auditor's attestation of how many consecutive times they have audited this operation, excluding the current audit.",
               type: 'string',
-              pattern: '^[0-9]+$'
-            }
+              pattern: '^[0-9]+$',
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         reviewer: {
           description:
@@ -79,11 +79,11 @@ const schema: Schema = {
               description:
                 'name is a string, typically the name of the object the key appears in.',
               type: 'string',
-              pattern: '^(?!(indexing|.*-index|_.*)).*$'
+              pattern: '^(?!(indexing|.*-index|_.*)).*$',
             },
             email: {
               description: 'email address for an organization or contact',
-              type: 'string'
+              type: 'string',
             },
             location: {
               description:
@@ -92,57 +92,57 @@ const schema: Schema = {
                 postal_code: {
                   description:
                     'postal_code is the postal code used in a postal address',
-                  type: 'string'
+                  type: 'string',
                 },
                 street_address: {
                   description:
                     'The street name and mailbox number of a postal address.',
-                  type: 'string'
+                  type: 'string',
                 },
                 city: {
                   description:
                     'The name of the city, usually in a postal address.',
-                  type: 'string'
+                  type: 'string',
                 },
                 state: {
                   description:
                     'The name of the state or major region, usually in a postal address.',
-                  type: 'string'
+                  type: 'string',
                 },
                 country: {
                   description:
                     'The name of the country, usually in a postal address.',
-                  type: 'string'
+                  type: 'string',
                 },
                 name: {
                   description:
                     'name is a string, typically the name of the object the key appears in.',
                   type: 'string',
-                  pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                }
+                  pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             phone: {
               description:
                 'phone describes the phone number with country code and area code.',
-              type: 'string'
+              type: 'string',
             },
             fax: {
               description: 'fax number for a person or organization',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         review_date: {
           description:
             'Introduced for CanadaGAP.  Indicates when the review of the audit was performed.',
-          type: 'string'
-        }
+          type: 'string',
+        },
       },
       required: ['name', 'auditor'],
-      type: 'object'
+      type: 'object',
     },
     organization: {
       description:
@@ -156,7 +156,7 @@ const schema: Schema = {
               description:
                 'An id is a string which should be reasonably unique to represent the  object it belongs to.',
               type: 'string',
-              pattern: '^(?!(indexing|.*-index|_.*)).*$'
+              pattern: '^(?!(indexing|.*-index|_.*)).*$',
             },
             id_source: {
               description:
@@ -171,7 +171,7 @@ const schema: Schema = {
                         'name is a string, typically the name of the object the key appears in.',
                       type: 'string',
                       pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                      examples: ['Primus Auditing Operations']
+                      examples: ['Primus Auditing Operations'],
                     },
                     auditor: {
                       description:
@@ -180,22 +180,22 @@ const schema: Schema = {
                         conflict_of_interest: {
                           description:
                             'conflict_of_interest indicates if a particular person (auditor) has a known conflict of interest for creating a certification for an organization',
-                          type: 'boolean'
+                          type: 'boolean',
                         },
                         number_prior_audits_this_organization: {
                           description:
                             "Introduced for CanadaGAP, this is the auditor's attestation of how many times they have audited this operation before.",
                           type: 'string',
-                          pattern: '^[0-9]+$'
+                          pattern: '^[0-9]+$',
                         },
                         number_prior_consecutive_audits_this_organization: {
                           description:
                             "Introduced for CanadaGAP, this is the auditor's attestation of how many consecutive times they have audited this operation, excluding the current audit.",
                           type: 'string',
-                          pattern: '^[0-9]+$'
-                        }
+                          pattern: '^[0-9]+$',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     reviewer: {
                       description:
@@ -205,12 +205,12 @@ const schema: Schema = {
                           description:
                             'name is a string, typically the name of the object the key appears in.',
                           type: 'string',
-                          pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                          pattern: '^(?!(indexing|.*-index|_.*)).*$',
                         },
                         email: {
                           description:
                             'email address for an organization or contact',
-                          type: 'string'
+                          type: 'string',
                         },
                         location: {
                           // $ref: "#/definitions/location"},
@@ -220,57 +220,57 @@ const schema: Schema = {
                             postal_code: {
                               description:
                                 'postal_code is the postal code used in a postal address',
-                              type: 'string'
+                              type: 'string',
                             },
                             street_address: {
                               description:
                                 'The street name and mailbox number of a postal address.',
-                              type: 'string'
+                              type: 'string',
                             },
                             city: {
                               description:
                                 'The name of the city, usually in a postal address.',
-                              type: 'string'
+                              type: 'string',
                             },
                             state: {
                               description:
                                 'The name of the state or major region, usually in a postal address.',
-                              type: 'string'
+                              type: 'string',
                             },
                             country: {
                               description:
                                 'The name of the country, usually in a postal address.',
-                              type: 'string'
+                              type: 'string',
                             },
                             name: {
                               description:
                                 'name is a string, typically the name of the object the key appears in.',
                               type: 'string',
-                              pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                            }
+                              pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                            },
                           },
-                          type: 'object'
+                          type: 'object',
                         },
                         phone: {
                           description:
                             'phone describes the phone number with country code and area code.',
-                          type: 'string'
+                          type: 'string',
                         },
                         fax: {
                           description:
                             'fax number for a person or organization',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     review_date: {
                       description:
                         'Introduced for CanadaGAP.  Indicates when the review of the audit was performed.',
-                      type: 'string'
-                    }
+                      type: 'string',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 scheme: {
                   description:
@@ -281,43 +281,43 @@ const schema: Schema = {
                         'name is a string, typically the name of the object the key appears in.',
                       type: 'string',
                       pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                      examples: ['PrimusGFS', 'GlobalGAP', 'CanadaGAP', 'SQFI']
+                      examples: ['PrimusGFS', 'GlobalGAP', 'CanadaGAP', 'SQFI'],
                     },
                     version: {
                       description:
                         'version is a string which describes the version of the schema used for the current audit.',
-                      type: 'string'
+                      type: 'string',
                     },
                     option: {
                       description:
                         'option is used as an indicator of type of audit for a given audit version.  Introduced for GlobalGAP audit, also present in CanadaGAP audit.',
-                      type: 'string'
+                      type: 'string',
                     },
                     options: {
                       description:
                         'If an audit covers multiple scheme options, you can make an array of them.',
-                      type: 'string'
-                    }
+                      type: 'string',
+                    },
                   },
-                  type: 'object'
-                }
+                  type: 'object',
+                },
               },
-              type: 'object'
-            }
+              type: 'object',
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         GLN: {
           description:
             'A Global Location Number, assigned by GS1.  Usually exists in "organization".',
           type: 'string',
-          pattern: '^[0-9]{13}$'
+          pattern: '^[0-9]{13}$',
         },
         name: {
           description:
             'name is a string, typically the name of the object the key appears in.',
           type: 'string',
-          pattern: '^(?!(indexing|.*-index|_.*)).*$'
+          pattern: '^(?!(indexing|.*-index|_.*)).*$',
         },
         contacts: {
           description:
@@ -331,11 +331,11 @@ const schema: Schema = {
                 description:
                   'name is a string, typically the name of the object the key appears in.',
                 type: 'string',
-                pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                pattern: '^(?!(indexing|.*-index|_.*)).*$',
               },
               email: {
                 description: 'email address for an organization or contact',
-                type: 'string'
+                type: 'string',
               },
               location: {
                 description:
@@ -344,45 +344,45 @@ const schema: Schema = {
                   postal_code: {
                     description:
                       'postal_code is the postal code used in a postal address',
-                    type: 'string'
+                    type: 'string',
                   },
                   street_address: {
                     description:
                       'The street name and mailbox number of a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   city: {
                     description:
                       'The name of the city, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   state: {
                     description:
                       'The name of the state or major region, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   country: {
                     description:
                       'The name of the country, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   name: {
                     description:
                       'name is a string, typically the name of the object the key appears in.',
                     type: 'string',
-                    pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                  }
+                    pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                  },
                 },
-                type: 'object'
+                type: 'object',
               },
               phone: {
                 description:
                   'phone describes the phone number with country code and area code.',
-                type: 'string'
+                type: 'string',
               },
               fax: {
                 description: 'fax number for a person or organization',
-                type: 'string'
+                type: 'string',
               },
               contact_type: {
                 description:
@@ -391,8 +391,8 @@ const schema: Schema = {
                 examples: [
                   'Food Safety Program Coordinator',
                   'Recall Coordinator',
-                  'Responsible For Operation'
-                ]
+                  'Responsible For Operation',
+                ],
               },
               contact_types: {
                 description:
@@ -405,13 +405,13 @@ const schema: Schema = {
                   examples: [
                     'Food Safety Program Coordinator',
                     'Recall Coordinator',
-                    'Responsible For Operation'
-                  ]
-                }
-              }
+                    'Responsible For Operation',
+                  ],
+                },
+              },
             },
-            type: 'object'
-          }
+            type: 'object',
+          },
         },
         location: {
           description:
@@ -420,44 +420,44 @@ const schema: Schema = {
             postal_code: {
               description:
                 'postal_code is the postal code used in a postal address',
-              type: 'string'
+              type: 'string',
             },
             street_address: {
               description:
                 'The street name and mailbox number of a postal address.',
-              type: 'string'
+              type: 'string',
             },
             city: {
               description: 'The name of the city, usually in a postal address.',
-              type: 'string'
+              type: 'string',
             },
             state: {
               description:
                 'The name of the state or major region, usually in a postal address.',
-              type: 'string'
+              type: 'string',
             },
             country: {
               description:
                 'The name of the country, usually in a postal address.',
-              type: 'string'
+              type: 'string',
             },
             name: {
               description:
                 'name is a string, typically the name of the object the key appears in.',
               type: 'string',
-              pattern: '^(?!(indexing|.*-index|_.*)).*$'
-            }
+              pattern: '^(?!(indexing|.*-index|_.*)).*$',
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         phone: {
           description:
             'phone describes the phone number with country code and area code.',
-          type: 'string'
+          type: 'string',
         },
         fax: {
           description: 'fax number for a person or organization',
-          type: 'string'
+          type: 'string',
         },
         orgchart: {
           description:
@@ -470,12 +470,12 @@ const schema: Schema = {
                 job_title: {
                   description:
                     'The title of this person within their organization.',
-                  type: 'string'
+                  type: 'string',
                 },
                 job_description: {
                   description:
                     'A description of what this person does or is responsible for within an organization.',
-                  type: 'string'
+                  type: 'string',
                 },
                 reports_to: {
                   description:
@@ -485,17 +485,17 @@ const schema: Schema = {
                     description:
                       'An id is a string which should be reasonably unique to represent the  object it belongs to.',
                     type: 'string',
-                    pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                  }
-                }
+                    pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                  },
+                },
               },
-              type: 'object'
-            }
-          }
-        }
+              type: 'object',
+            },
+          },
+        },
       },
       required: ['organizationid', 'name'],
-      type: 'object'
+      type: 'object',
     },
     scope: {
       description:
@@ -504,13 +504,13 @@ const schema: Schema = {
         description: {
           description:
             'a string description of an object, usually longer than "name"',
-          type: 'string'
+          type: 'string',
         },
         notification: {
           description:
             'notification describes whether the target of the audit was notified in advance that this audit would take place.  "announced" or "unannounced".',
           type: 'string',
-          examples: ['announced', 'unannounced']
+          examples: ['announced', 'unannounced'],
         },
         operation: {
           description:
@@ -530,8 +530,8 @@ const schema: Schema = {
                 'packing - production site',
                 'repacking',
                 'brokerage',
-                'wholesale'
-              ]
+                'wholesale',
+              ],
             },
             operator: {
               description:
@@ -549,12 +549,12 @@ const schema: Schema = {
                         description:
                           'name is a string, typically the name of the object the key appears in.',
                         type: 'string',
-                        pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                        pattern: '^(?!(indexing|.*-index|_.*)).*$',
                       },
                       email: {
                         description:
                           'email address for an organization or contact',
-                        type: 'string'
+                        type: 'string',
                       },
                       location: {
                         description:
@@ -563,45 +563,45 @@ const schema: Schema = {
                           postal_code: {
                             description:
                               'postal_code is the postal code used in a postal address',
-                            type: 'string'
+                            type: 'string',
                           },
                           street_address: {
                             description:
                               'The street name and mailbox number of a postal address.',
-                            type: 'string'
+                            type: 'string',
                           },
                           city: {
                             description:
                               'The name of the city, usually in a postal address.',
-                            type: 'string'
+                            type: 'string',
                           },
                           state: {
                             description:
                               'The name of the state or major region, usually in a postal address.',
-                            type: 'string'
+                            type: 'string',
                           },
                           country: {
                             description:
                               'The name of the country, usually in a postal address.',
-                            type: 'string'
+                            type: 'string',
                           },
                           name: {
                             description:
                               'name is a string, typically the name of the object the key appears in.',
                             type: 'string',
-                            pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                          }
+                            pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                          },
                         },
-                        type: 'object'
+                        type: 'object',
                       },
                       phone: {
                         description:
                           'phone describes the phone number with country code and area code.',
-                        type: 'string'
+                        type: 'string',
                       },
                       fax: {
                         description: 'fax number for a person or organization',
-                        type: 'string'
+                        type: 'string',
                       },
                       contact_type: {
                         description:
@@ -610,8 +610,8 @@ const schema: Schema = {
                         examples: [
                           'Food Safety Program Coordinator',
                           'Recall Coordinator',
-                          'Responsible For Operation'
-                        ]
+                          'Responsible For Operation',
+                        ],
                       },
                       contact_types: {
                         description:
@@ -624,19 +624,19 @@ const schema: Schema = {
                           examples: [
                             'Food Safety Program Coordinator',
                             'Recall Coordinator',
-                            'Responsible For Operation'
-                          ]
-                        }
-                      }
+                            'Responsible For Operation',
+                          ],
+                        },
+                      },
                     },
-                    type: 'object'
-                  }
+                    type: 'object',
+                  },
                 },
                 name: {
                   description:
                     'name is a string, typically the name of the object the key appears in.',
                   type: 'string',
-                  pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                  pattern: '^(?!(indexing|.*-index|_.*)).*$',
                 },
                 location: {
                   description:
@@ -645,39 +645,39 @@ const schema: Schema = {
                     postal_code: {
                       description:
                         'postal_code is the postal code used in a postal address',
-                      type: 'string'
+                      type: 'string',
                     },
                     street_address: {
                       description:
                         'The street name and mailbox number of a postal address.',
-                      type: 'string'
+                      type: 'string',
                     },
                     city: {
                       description:
                         'The name of the city, usually in a postal address.',
-                      type: 'string'
+                      type: 'string',
                     },
                     state: {
                       description:
                         'The name of the state or major region, usually in a postal address.',
-                      type: 'string'
+                      type: 'string',
                     },
                     country: {
                       description:
                         'The name of the country, usually in a postal address.',
-                      type: 'string'
+                      type: 'string',
                     },
                     name: {
                       description:
                         'name is a string, typically the name of the object the key appears in.',
                       type: 'string',
-                      pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                    }
+                      pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                    },
                   },
-                  type: 'object'
-                }
+                  type: 'object',
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             shipper: {
               description:
@@ -687,10 +687,10 @@ const schema: Schema = {
                   description:
                     'name is a string, typically the name of the object the key appears in.',
                   type: 'string',
-                  pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                }
+                  pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             location: {
               description:
@@ -699,45 +699,45 @@ const schema: Schema = {
                 postal_code: {
                   description:
                     'postal_code is the postal code used in a postal address',
-                  type: 'string'
+                  type: 'string',
                 },
                 street_address: {
                   description:
                     'The street name and mailbox number of a postal address.',
-                  type: 'string'
+                  type: 'string',
                 },
                 city: {
                   description:
                     'The name of the city, usually in a postal address.',
-                  type: 'string'
+                  type: 'string',
                 },
                 state: {
                   description:
                     'The name of the state or major region, usually in a postal address.',
-                  type: 'string'
+                  type: 'string',
                 },
                 country: {
                   description:
                     'The name of the country, usually in a postal address.',
-                  type: 'string'
+                  type: 'string',
                 },
                 name: {
                   description:
                     'name is a string, typically the name of the object the key appears in.',
                   type: 'string',
-                  pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                }
+                  pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             name: {
               description:
                 'name is a string, typically the name of the object the key appears in.',
               type: 'string',
-              pattern: '^(?!(indexing|.*-index|_.*)).*$'
-            }
+              pattern: '^(?!(indexing|.*-index|_.*)).*$',
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         products_observed: {
           description: 'The set of products evaluated in the audit.',
@@ -751,12 +751,12 @@ const schema: Schema = {
                   'name is a string, typically the name of the object the key appears in.',
                 type: 'string',
                 pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                examples: ['tomatoes', 'peppers', 'zucchini']
+                examples: ['tomatoes', 'peppers', 'zucchini'],
               },
               organic: {
                 description:
                   'organic is a true/false value indicating if a particular product is considered organic or not.',
-                type: 'boolean'
+                type: 'boolean',
               },
               area: {
                 description:
@@ -766,15 +766,15 @@ const schema: Schema = {
                     description:
                       'the units used to interpret the associated value.',
                     type: 'string',
-                    examples: ['acres', 'ac', 'hectares', 'ha']
+                    examples: ['acres', 'ac', 'hectares', 'ha'],
                   },
                   value: {
                     description:
                       'a numeric or qualitative value, represented as a string',
-                    type: 'string'
-                  }
+                    type: 'string',
+                  },
                 },
-                type: 'object'
+                type: 'object',
               },
               location: {
                 description:
@@ -783,40 +783,40 @@ const schema: Schema = {
                   postal_code: {
                     description:
                       'postal_code is the postal code used in a postal address',
-                    type: 'string'
+                    type: 'string',
                   },
                   street_address: {
                     description:
                       'The street name and mailbox number of a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   city: {
                     description:
                       'The name of the city, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   state: {
                     description:
                       'The name of the state or major region, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   country: {
                     description:
                       'The name of the country, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   name: {
                     description:
                       'name is a string, typically the name of the object the key appears in.',
                     type: 'string',
-                    pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                  }
+                    pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                  },
                 },
-                type: 'object'
-              }
+                type: 'object',
+              },
             },
-            type: 'object'
-          }
+            type: 'object',
+          },
         },
         similar_products_not_observed: {
           description:
@@ -831,12 +831,12 @@ const schema: Schema = {
                   'name is a string, typically the name of the object the key appears in.',
                 type: 'string',
                 pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                examples: ['tomatoes', 'peppers', 'zucchini']
+                examples: ['tomatoes', 'peppers', 'zucchini'],
               },
               organic: {
                 description:
                   'organic is a true/false value indicating if a particular product is considered organic or not.',
-                type: 'boolean'
+                type: 'boolean',
               },
               area: {
                 description:
@@ -846,15 +846,15 @@ const schema: Schema = {
                     description:
                       'the units used to interpret the associated value.',
                     type: 'string',
-                    examples: ['acres', 'ac', 'hectares', 'ha']
+                    examples: ['acres', 'ac', 'hectares', 'ha'],
                   },
                   value: {
                     description:
                       'a numeric or qualitative value, represented as a string',
-                    type: 'string'
-                  }
+                    type: 'string',
+                  },
                 },
-                type: 'object'
+                type: 'object',
               },
               location: {
                 description:
@@ -863,40 +863,40 @@ const schema: Schema = {
                   postal_code: {
                     description:
                       'postal_code is the postal code used in a postal address',
-                    type: 'string'
+                    type: 'string',
                   },
                   street_address: {
                     description:
                       'The street name and mailbox number of a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   city: {
                     description:
                       'The name of the city, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   state: {
                     description:
                       'The name of the state or major region, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   country: {
                     description:
                       'The name of the country, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   name: {
                     description:
                       'name is a string, typically the name of the object the key appears in.',
                     type: 'string',
-                    pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                  }
+                    pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                  },
                 },
-                type: 'object'
-              }
+                type: 'object',
+              },
             },
-            type: 'object'
-          }
+            type: 'object',
+          },
         },
         products_applied_for_but_not_observed: {
           description:
@@ -911,12 +911,12 @@ const schema: Schema = {
                   'name is a string, typically the name of the object the key appears in.',
                 type: 'string',
                 pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                examples: ['tomatoes', 'peppers', 'zucchini']
+                examples: ['tomatoes', 'peppers', 'zucchini'],
               },
               organic: {
                 description:
                   'organic is a true/false value indicating if a particular product is considered organic or not.',
-                type: 'boolean'
+                type: 'boolean',
               },
               area: {
                 description:
@@ -926,15 +926,15 @@ const schema: Schema = {
                     description:
                       'the units used to interpret the associated value.',
                     type: 'string',
-                    examples: ['acres', 'ac', 'hectares', 'ha']
+                    examples: ['acres', 'ac', 'hectares', 'ha'],
                   },
                   value: {
                     description:
                       'a numeric or qualitative value, represented as a string',
-                    type: 'string'
-                  }
+                    type: 'string',
+                  },
                 },
-                type: 'object'
+                type: 'object',
               },
               location: {
                 description:
@@ -943,40 +943,40 @@ const schema: Schema = {
                   postal_code: {
                     description:
                       'postal_code is the postal code used in a postal address',
-                    type: 'string'
+                    type: 'string',
                   },
                   street_address: {
                     description:
                       'The street name and mailbox number of a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   city: {
                     description:
                       'The name of the city, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   state: {
                     description:
                       'The name of the state or major region, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   country: {
                     description:
                       'The name of the country, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   name: {
                     description:
                       'name is a string, typically the name of the object the key appears in.',
                     type: 'string',
-                    pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                  }
+                    pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                  },
                 },
-                type: 'object'
-              }
+                type: 'object',
+              },
             },
-            type: 'object'
-          }
+            type: 'object',
+          },
         },
         production_sites: {
           description:
@@ -989,13 +989,13 @@ const schema: Schema = {
                 description:
                   'name is a string, typically the name of the object the key appears in.',
                 type: 'string',
-                pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                pattern: '^(?!(indexing|.*-index|_.*)).*$',
               },
               id: {
                 description:
                   'An id is a string which should be reasonably unique to represent the  object it belongs to.',
                 type: 'string',
-                pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                pattern: '^(?!(indexing|.*-index|_.*)).*$',
               },
               products_observed: {
                 description: 'The set of products evaluated in the audit.',
@@ -1009,12 +1009,12 @@ const schema: Schema = {
                         'name is a string, typically the name of the object the key appears in.',
                       type: 'string',
                       pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                      examples: ['tomatoes', 'peppers', 'zucchini']
+                      examples: ['tomatoes', 'peppers', 'zucchini'],
                     },
                     organic: {
                       description:
                         'organic is a true/false value indicating if a particular product is considered organic or not.',
-                      type: 'boolean'
+                      type: 'boolean',
                     },
                     area: {
                       description:
@@ -1024,15 +1024,15 @@ const schema: Schema = {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['acres', 'ac', 'hectares', 'ha']
+                          examples: ['acres', 'ac', 'hectares', 'ha'],
                         },
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     location: {
                       description:
@@ -1041,63 +1041,63 @@ const schema: Schema = {
                         postal_code: {
                           description:
                             'postal_code is the postal code used in a postal address',
-                          type: 'string'
+                          type: 'string',
                         },
                         street_address: {
                           description:
                             'The street name and mailbox number of a postal address.',
-                          type: 'string'
+                          type: 'string',
                         },
                         city: {
                           description:
                             'The name of the city, usually in a postal address.',
-                          type: 'string'
+                          type: 'string',
                         },
                         state: {
                           description:
                             'The name of the state or major region, usually in a postal address.',
-                          type: 'string'
+                          type: 'string',
                         },
                         country: {
                           description:
                             'The name of the country, usually in a postal address.',
-                          type: 'string'
+                          type: 'string',
                         },
                         name: {
                           description:
                             'name is a string, typically the name of the object the key appears in.',
                           type: 'string',
-                          pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                        }
+                          pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                        },
                       },
-                      type: 'object'
-                    }
+                      type: 'object',
+                    },
                   },
-                  type: 'object'
-                }
-              }
+                  type: 'object',
+                },
+              },
             },
-            type: 'object'
-          }
+            type: 'object',
+          },
         },
         parallel_production: {
           description:
             'parallel_production is defined for GlobalGAP as to whether the site is growing other things in addition to those under audit.',
-          type: 'boolean'
+          type: 'boolean',
         },
         parallel_ownership: {
           description:
             'parallel_ownership is defined for GlobalGAP as to whether the site is growing things owned by someone other than the party under audit',
-          type: 'boolean'
+          type: 'boolean',
         },
         applicable_sites_description: {
           description:
             'Introduced for CanadaGAP, this holds a free-form string describing which  types of sites this audit applies to.',
-          type: 'string'
-        }
+          type: 'string',
+        },
       },
       required: ['description', 'operation', 'products_observed'],
-      type: 'object'
+      type: 'object',
     },
     conditions_during_audit: {
       description:
@@ -1110,12 +1110,12 @@ const schema: Schema = {
             start: {
               description:
                 'start describes the date and time when the audit started',
-              type: 'string'
+              type: 'string',
             },
             end: {
               description:
                 'end describes the date and time when the audit was completed.',
-              type: 'string'
+              type: 'string',
             },
             duration: {
               description:
@@ -1125,19 +1125,19 @@ const schema: Schema = {
                   description:
                     'the units used to interpret the associated value.',
                   type: 'string',
-                  examples: ['hours']
+                  examples: ['hours'],
                 },
                 value: {
                   description:
                     'a numeric or qualitative value, represented as a string',
-                  type: 'string'
-                }
+                  type: 'string',
+                },
               },
-              type: 'object'
-            }
+              type: 'object',
+            },
           },
           required: ['start', 'end'],
-          type: 'object'
+          type: 'object',
         },
         operation_observed_date: {
           description:
@@ -1146,12 +1146,12 @@ const schema: Schema = {
             start: {
               description:
                 'start describes the date and time when the audit started',
-              type: 'string'
+              type: 'string',
             },
             end: {
               description:
                 'end describes the date and time when the audit was completed.',
-              type: 'string'
+              type: 'string',
             },
             duration: {
               description:
@@ -1161,30 +1161,30 @@ const schema: Schema = {
                   description:
                     'the units used to interpret the associated value.',
                   type: 'string',
-                  examples: ['hours']
+                  examples: ['hours'],
                 },
                 value: {
                   description:
                     'a numeric or qualitative value, represented as a string',
-                  type: 'string'
-                }
+                  type: 'string',
+                },
               },
-              type: 'object'
-            }
+              type: 'object',
+            },
           },
           required: ['start', 'end'],
-          type: 'object'
-        }
+          type: 'object',
+        },
       },
       required: ['FSMS_observed_date', 'operation_observed_date'],
-      type: 'object'
+      type: 'object',
     },
     certificate_validity_period: {
       description:
         'certificate_validity_period denotes the period of time (beginning date to end date) through which the audit is valid.',
       type: 'string',
       pattern: '.*',
-      required: ['start', 'end']
+      required: ['start', 'end'],
     },
     certificationid: {
       description:
@@ -1194,7 +1194,7 @@ const schema: Schema = {
           description:
             'An id is a string which should be reasonably unique to represent the  object it belongs to.',
           type: 'string',
-          pattern: '^(?!(indexing|.*-index|_.*)).*$'
+          pattern: '^(?!(indexing|.*-index|_.*)).*$',
         },
         id_source: {
           description:
@@ -1209,7 +1209,7 @@ const schema: Schema = {
                     'name is a string, typically the name of the object the key appears in.',
                   type: 'string',
                   pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                  examples: ['Primus Auditing Operations']
+                  examples: ['Primus Auditing Operations'],
                 },
                 auditor: {
                   description:
@@ -1218,22 +1218,22 @@ const schema: Schema = {
                     conflict_of_interest: {
                       description:
                         'conflict_of_interest indicates if a particular person (auditor) has a known conflict of interest for creating a certification for an organization',
-                      type: 'boolean'
+                      type: 'boolean',
                     },
                     number_prior_audits_this_organization: {
                       description:
                         "Introduced for CanadaGAP, this is the auditor's attestation of how many times they have audited this operation before.",
                       type: 'string',
-                      pattern: '^[0-9]+$'
+                      pattern: '^[0-9]+$',
                     },
                     number_prior_consecutive_audits_this_organization: {
                       description:
                         "Introduced for CanadaGAP, this is the auditor's attestation of how many consecutive times they have audited this operation, excluding the current audit.",
                       type: 'string',
-                      pattern: '^[0-9]+$'
-                    }
+                      pattern: '^[0-9]+$',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 reviewer: {
                   description:
@@ -1243,12 +1243,12 @@ const schema: Schema = {
                       description:
                         'name is a string, typically the name of the object the key appears in.',
                       type: 'string',
-                      pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                      pattern: '^(?!(indexing|.*-index|_.*)).*$',
                     },
                     email: {
                       description:
                         'email address for an organization or contact',
-                      type: 'string'
+                      type: 'string',
                     },
                     location: {
                       description:
@@ -1257,56 +1257,56 @@ const schema: Schema = {
                         postal_code: {
                           description:
                             'postal_code is the postal code used in a postal address',
-                          type: 'string'
+                          type: 'string',
                         },
                         street_address: {
                           description:
                             'The street name and mailbox number of a postal address.',
-                          type: 'string'
+                          type: 'string',
                         },
                         city: {
                           description:
                             'The name of the city, usually in a postal address.',
-                          type: 'string'
+                          type: 'string',
                         },
                         state: {
                           description:
                             'The name of the state or major region, usually in a postal address.',
-                          type: 'string'
+                          type: 'string',
                         },
                         country: {
                           description:
                             'The name of the country, usually in a postal address.',
-                          type: 'string'
+                          type: 'string',
                         },
                         name: {
                           description:
                             'name is a string, typically the name of the object the key appears in.',
                           type: 'string',
-                          pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                        }
+                          pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     phone: {
                       description:
                         'phone describes the phone number with country code and area code.',
-                      type: 'string'
+                      type: 'string',
                     },
                     fax: {
                       description: 'fax number for a person or organization',
-                      type: 'string'
-                    }
+                      type: 'string',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 review_date: {
                   description:
                     'Introduced for CanadaGAP.  Indicates when the review of the audit was performed.',
-                  type: 'string'
-                }
+                  type: 'string',
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             scheme: {
               description:
@@ -1317,31 +1317,31 @@ const schema: Schema = {
                     'name is a string, typically the name of the object the key appears in.',
                   type: 'string',
                   pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                  examples: ['PrimusGFS', 'GlobalGAP', 'CanadaGAP', 'SQFI']
+                  examples: ['PrimusGFS', 'GlobalGAP', 'CanadaGAP', 'SQFI'],
                 },
                 version: {
                   description:
                     'version is a string which describes the version of the schema used for the current audit.',
-                  type: 'string'
+                  type: 'string',
                 },
                 option: {
                   description:
                     'option is used as an indicator of type of audit for a given audit version.  Introduced for GlobalGAP audit, also present in CanadaGAP audit.',
-                  type: 'string'
+                  type: 'string',
                 },
                 options: {
                   description:
                     'If an audit covers multiple scheme options, you can make an array of them.',
-                  type: 'string'
-                }
+                  type: 'string',
+                },
               },
-              type: 'object'
-            }
+              type: 'object',
+            },
           },
-          type: 'object'
-        }
+          type: 'object',
+        },
       },
-      type: 'object'
+      type: 'object',
     },
     score: {
       description:
@@ -1349,7 +1349,7 @@ const schema: Schema = {
       properties: {
         units: {
           description: 'the units used to interpret the associated value.',
-          type: 'string'
+          type: 'string',
         },
         preliminary: {
           description: 'A prelimiary score for an audit',
@@ -1357,18 +1357,18 @@ const schema: Schema = {
             value: {
               description:
                 'a numeric or qualitative value, represented as a string',
-              type: 'string'
+              type: 'string',
             },
             units: {
               description: 'the units used to interpret the associated value.',
-              type: 'string'
+              type: 'string',
             },
             possible: {
               description: 'Number of points possible for this control point',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         final: {
           description: 'The final score for an audit',
@@ -1376,32 +1376,32 @@ const schema: Schema = {
             value: {
               description:
                 'a numeric or qualitative value, represented as a string',
-              type: 'string'
+              type: 'string',
             },
             units: {
               description: 'the units used to interpret the associated value.',
-              type: 'string'
+              type: 'string',
             },
             possible: {
               description: 'Number of points possible for this control point',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         value: {
           description:
             'a numeric or qualitative value, represented as a string',
-          type: 'string'
+          type: 'string',
         },
         possible: {
           description: 'Number of points possible for this control point',
-          type: 'string'
+          type: 'string',
         },
         compliance: {
           description:
             'written description indicating the level of satisfaction of the control point. E.g., "Total Compliance", "Minor Deficiency", or simply "Pass"/"Fail".',
-          type: 'string'
+          type: 'string',
         },
         globalgap_levels: {
           description:
@@ -1420,21 +1420,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     no: {
                       description:
@@ -1443,21 +1443,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     n_a: {
                       description:
@@ -1466,29 +1466,29 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     is_compliant: {
                       description:
                         'GlobalGAP has an overall true/false compliance for an audit score',
-                      type: 'boolean'
-                    }
+                      type: 'boolean',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 {
                   properties: {
@@ -1499,21 +1499,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     minor_must: {
                       description:
@@ -1522,21 +1522,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     recommended: {
                       description:
@@ -1545,26 +1545,26 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
-                    }
+                      type: 'object',
+                    },
                   },
-                  type: 'object'
-                }
-              ]
+                  type: 'object',
+                },
+              ],
             },
             minor_musts: {
               description:
@@ -1579,21 +1579,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     no: {
                       description:
@@ -1602,21 +1602,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     n_a: {
                       description:
@@ -1625,29 +1625,29 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     is_compliant: {
                       description:
                         'GlobalGAP has an overall true/false compliance for an audit score',
-                      type: 'boolean'
-                    }
+                      type: 'boolean',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 {
                   properties: {
@@ -1658,21 +1658,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     minor_must: {
                       description:
@@ -1681,21 +1681,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     recommended: {
                       description:
@@ -1704,34 +1704,34 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
-                    }
+                      type: 'object',
+                    },
                   },
-                  type: 'object'
-                }
-              ]
-            }
+                  type: 'object',
+                },
+              ],
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         canadagap_isautofail: {
           description:
             'If the audit is scored as autofail, this key should be set to true in the score section.  Otherwise it can either be missing or set to false.  Specific to CanadaGAP',
-          type: 'boolean'
+          type: 'boolean',
         },
         subtotals: {
           description:
@@ -1744,7 +1744,7 @@ const schema: Schema = {
                 units: {
                   description:
                     'the units used to interpret the associated value.',
-                  type: 'string'
+                  type: 'string',
                 },
                 preliminary: {
                   description: 'A prelimiary score for an audit',
@@ -1752,20 +1752,20 @@ const schema: Schema = {
                     value: {
                       description:
                         'a numeric or qualitative value, represented as a string',
-                      type: 'string'
+                      type: 'string',
                     },
                     units: {
                       description:
                         'the units used to interpret the associated value.',
-                      type: 'string'
+                      type: 'string',
                     },
                     possible: {
                       description:
                         'Number of points possible for this control point',
-                      type: 'string'
-                    }
+                      type: 'string',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 final: {
                   description: 'The final score for an audit',
@@ -1773,35 +1773,35 @@ const schema: Schema = {
                     value: {
                       description:
                         'a numeric or qualitative value, represented as a string',
-                      type: 'string'
+                      type: 'string',
                     },
                     units: {
                       description:
                         'the units used to interpret the associated value.',
-                      type: 'string'
+                      type: 'string',
                     },
                     possible: {
                       description:
                         'Number of points possible for this control point',
-                      type: 'string'
-                    }
+                      type: 'string',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 value: {
                   description:
                     'a numeric or qualitative value, represented as a string',
-                  type: 'string'
+                  type: 'string',
                 },
                 possible: {
                   description:
                     'Number of points possible for this control point',
-                  type: 'string'
+                  type: 'string',
                 },
                 compliance: {
                   description:
                     'written description indicating the level of satisfaction of the control point. E.g., "Total Compliance", "Minor Deficiency", or simply "Pass"/"Fail".',
-                  type: 'string'
+                  type: 'string',
                 },
                 globalgap_levels: {
                   description:
@@ -1820,21 +1820,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             no: {
                               description:
@@ -1843,21 +1843,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             n_a: {
                               description:
@@ -1866,29 +1866,29 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             is_compliant: {
                               description:
                                 'GlobalGAP has an overall true/false compliance for an audit score',
-                              type: 'boolean'
-                            }
+                              type: 'boolean',
+                            },
                           },
-                          type: 'object'
+                          type: 'object',
                         },
                         {
                           properties: {
@@ -1899,21 +1899,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             minor_must: {
                               description:
@@ -1922,21 +1922,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             recommended: {
                               description:
@@ -1945,26 +1945,26 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
-                            }
+                              type: 'object',
+                            },
                           },
-                          type: 'object'
-                        }
-                      ]
+                          type: 'object',
+                        },
+                      ],
                     },
                     minor_musts: {
                       description:
@@ -1979,21 +1979,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             no: {
                               description:
@@ -2002,21 +2002,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             n_a: {
                               description:
@@ -2025,29 +2025,29 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             is_compliant: {
                               description:
                                 'GlobalGAP has an overall true/false compliance for an audit score',
-                              type: 'boolean'
-                            }
+                              type: 'boolean',
+                            },
                           },
-                          type: 'object'
+                          type: 'object',
                         },
                         {
                           properties: {
@@ -2058,21 +2058,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             minor_must: {
                               description:
@@ -2081,21 +2081,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             recommended: {
                               description:
@@ -2104,43 +2104,43 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
-                            }
+                              type: 'object',
+                            },
                           },
-                          type: 'object'
-                        }
-                      ]
-                    }
+                          type: 'object',
+                        },
+                      ],
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 canadagap_isautofail: {
                   description:
                     'If the audit is scored as autofail, this key should be set to true in the score section.  Otherwise it can either be missing or set to false.  Specific to CanadaGAP',
-                  type: 'boolean'
-                }
+                  type: 'boolean',
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             name: {
               description:
                 'name is a string, typically the name of the object the key appears in.',
               type: 'string',
-              pattern: '^(?!(indexing|.*-index|_.*)).*$'
+              pattern: '^(?!(indexing|.*-index|_.*)).*$',
             },
             sectionids: {
               description:
@@ -2149,20 +2149,20 @@ const schema: Schema = {
               items: {
                 description:
                   "sectionid is the string id associated with a particular section. sectionid is constructed by prefixing the id with any parent sections, separated by periods (e.g., sectionid '2.3' is a section that is inside of a parent section with sectionid '2').  Note that CanadaGAP also has a special sectionid of \"autofail\" for their autofail items.  All other sectionids that we have seen are of the form <number_or_letter>.<number_or_letter>.<number_or_letter>... with 1 or more numbers",
-                type: 'string'
-              }
+                type: 'string',
+              },
             },
             weighting_factor: {
               description:
                 'Introduced for CanadaGAP.  Represents the weight used to combine sections into a total score.',
               type: 'string',
-              pattern: '^-?[0-9]+(.[0-9]+)?'
-            }
+              pattern: '^-?[0-9]+(.[0-9]+)?',
+            },
           },
-          type: 'object'
-        }
+          type: 'object',
+        },
       },
-      type: 'object'
+      type: 'object',
     },
     holder: {
       description: 'Introduced for smithfield-foodlogiq integration',
@@ -2170,7 +2170,7 @@ const schema: Schema = {
       properties: {
         name: {
           description: 'Certificate holder name',
-          type: 'string'
+          type: 'string',
         },
         location: {
           description:
@@ -2179,31 +2179,31 @@ const schema: Schema = {
             postal_code: {
               description:
                 'postal_code is the postal code used in a postal address',
-              type: 'string'
+              type: 'string',
             },
             street_address: {
               description:
                 'The street name and mailbox number of a postal address.',
-              type: 'string'
+              type: 'string',
             },
             city: {
               description: 'The name of the city, usually in a postal address.',
-              type: 'string'
+              type: 'string',
             },
             state: {
               description:
                 'The name of the state or major region, usually in a postal address.',
-              type: 'string'
+              type: 'string',
             },
             country: {
               description:
                 'The name of the country, usually in a postal address.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
-          type: 'object'
-        }
-      }
+          type: 'object',
+        },
+      },
     },
     policies: {
       description: 'Introduced for smithfield-foodlogiq integration',
@@ -2214,52 +2214,52 @@ const schema: Schema = {
         properties: {
           number: {
             description: 'policy number associated with the listed certificate',
-            type: 'string'
+            type: 'string',
           },
           effective_date: {
             description: 'The date the policy becomes active',
             type: 'string',
-            examples: ['2020-04-30T00:00:00']
+            examples: ['2020-04-30T00:00:00'],
           },
           expire_date: {
             description: 'The date the policy expires',
             type: 'string',
-            examples: ['2020-04-30T00:00:00']
-          }
-        }
-      }
+            examples: ['2020-04-30T00:00:00'],
+          },
+        },
+      },
     },
     _id: {
       description: '_id identifies a resource in the OADA API.',
-      type: 'string'
+      type: 'string',
     },
     _rev: {
       description:
         '_rev is the revision string for a resource in the OADA API.',
-      type: 'integer'
+      type: 'integer',
     },
     _meta: {
       description: '_meta is a link to the meta document for a resources.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
     _type: {
       enum: [
         'application/vnd.trellis.audit.primusgfs.1+json',
-        'application/vnd.trellisfw.coi.accord+json'
-      ]
-    }
+        'application/vnd.trellisfw.coi.accord+json',
+      ],
+    },
   },
   additionalProperties: true,
   required: ['_type'],
@@ -2269,37 +2269,37 @@ const schema: Schema = {
       _type: 'application/vnd.trellis.audit.primusgfs.1+json',
       certificationid: {
         id_source: 'scheme',
-        id: '00000 - Cert: 0'
+        id: '00000 - Cert: 0',
       },
       scheme: {
         name: 'PrimusGFS',
-        version: '2.1-2'
+        version: '2.1-2',
       },
       certifying_body: {
         name: 'Primus Auditing Operations',
         signee: {
-          name: 'Aaron Auditor Ault'
-        }
+          name: 'Aaron Auditor Ault',
+        },
       },
       organization: {
         organizationid: {
           id_source: 'certifying_body',
-          id: 'PA−PGFS−000−0'
+          id: 'PA−PGFS−000−0',
         },
         name: 'Noel Produce Masters',
         contacts: [
           {
-            name: 'Sam Noel'
-          }
+            name: 'Sam Noel',
+          },
         ],
         location: {
           street_address: '123 Nonexistent Street',
           postal_code: '00000',
           city: 'Nowhere',
           state: 'Florida',
-          country: 'USA'
+          country: 'USA',
         },
-        phone: '0000000000'
+        phone: '0000000000',
       },
       scope: {
         description:
@@ -2309,59 +2309,59 @@ const schema: Schema = {
           operator: {
             contacts: [
               {
-                name: 'Sam Noel'
-              }
+                name: 'Sam Noel',
+              },
             ],
-            name: 'Noel Produce - Linked to Greenhouse Noel Produce Masters'
+            name: 'Noel Produce - Linked to Greenhouse Noel Produce Masters',
           },
           shipper: {
-            name: "Noel's Happy Tomato"
+            name: "Noel's Happy Tomato",
           },
           location: {
             address: '124 Nonexistent Street',
             city: 'Lafayette',
             state: 'IN',
             postal_code: '47907',
-            country: 'USA'
-          }
+            country: 'USA',
+          },
         },
         products_observed: [
           {
-            name: 'Tomatoes'
-          }
+            name: 'Tomatoes',
+          },
         ],
         similar_products_not_observed: [
           {
-            name: 'Tomatoes Organic'
-          }
+            name: 'Tomatoes Organic',
+          },
         ],
-        products_applied_for_but_not_observed: []
+        products_applied_for_but_not_observed: [],
       },
       conditions_during_audit: {
         FSMS_observed_date: {
           start: '2016-04-08T17:00:00Z-06:00',
-          end: '2016-04-08T19:00:00Z-06:00'
+          end: '2016-04-08T19:00:00Z-06:00',
         },
         operation_observed_date: {
           start: '2016-04-08T10:00:00Z-06:00',
-          end: '2016-04-08T11:30:00Z-06:00'
-        }
+          end: '2016-04-08T11:30:00Z-06:00',
+        },
       },
       score: {
         preliminary: {
           value: '96',
-          units: '%'
+          units: '%',
         },
         final: {
           value: '100',
-          units: '%'
-        }
+          units: '%',
+        },
       },
       certificate_validity_period: {
         start: '2016-04-11',
-        end: '2017-04-11'
-      }
-    }
-  ]
-}
-export default schema
+        end: '2017-04-11',
+      },
+    },
+  ],
+};
+export default schema;

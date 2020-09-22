@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id:
@@ -15,18 +15,18 @@ const schema: Schema = {
     'response_types',
     'tos_uri',
     'policy_uri',
-    'software_id'
+    'software_id',
   ],
   additionalProperties: true,
   properties: {
     client_id: {
-      type: 'string'
+      type: 'string',
     },
     client_id_issued_at: {
-      type: 'number'
+      type: 'number',
     },
     scopes: {
-      type: 'string'
+      type: 'string',
     },
     redirect_uris: {
       type: 'array',
@@ -34,39 +34,39 @@ const schema: Schema = {
       uniqueItems: true,
       items: {
         type: 'string',
-        pattern: '^https://.*'
-      }
+        pattern: '^https://.*',
+      },
     },
     token_endpoint_auth_method: {
-      type: 'string'
+      type: 'string',
     },
     grant_types: {
       type: 'array',
       minItems: 1,
       uniqueItems: true,
       items: {
-        type: 'string'
-      }
+        type: 'string',
+      },
     },
     response_types: {
       type: 'array',
       minItems: 1,
       uniqueItems: true,
       items: {
-        type: 'string'
-      }
+        type: 'string',
+      },
     },
     tos_uri: {
       type: 'string',
-      format: 'uri'
+      format: 'uri',
     },
     policy_uri: {
       type: 'string',
-      format: 'uri'
+      format: 'uri',
     },
     software_id: {
-      type: 'string'
-    }
+      type: 'string',
+    },
   },
   type: 'object',
   examples: [
@@ -77,7 +77,7 @@ const schema: Schema = {
       scopes: 'read:planting.prescriptions write:fields',
       redirect_uris: [
         'https://client.example.com/callback',
-        'https://client.example.com/cb'
+        'https://client.example.com/cb',
       ],
       token_endpoint_auth_method:
         'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
@@ -90,8 +90,8 @@ const schema: Schema = {
       tos_uri: 'http://example.com/tos.html',
       policy_uri: 'http://example.com/policy.html',
       software_id: 'djxkjau3n937xz7jakl3',
-      registration_provider: 'registration.example.com'
-    }
-  ]
-}
-export default schema
+      registration_provider: 'registration.example.com',
+    },
+  ],
+};
+export default schema;

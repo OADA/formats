@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/sensor-hubs/v1.schema.json',
@@ -16,58 +16,58 @@ const schema: Schema = {
           properties: {
             _id: {
               description: '_id identifies a resource in the OADA API.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           required: ['_id'],
-          type: 'object'
-        }
-      }
+          type: 'object',
+        },
+      },
     },
-    _id: {
+    '_id': {
       description: '_id identifies a resource in the OADA API.',
-      type: 'string'
+      type: 'string',
     },
-    _rev: {
+    '_rev': {
       description:
         '_rev is the revision string for a resource in the OADA API.',
-      type: 'integer'
+      type: 'integer',
     },
-    _meta: {
+    '_meta': {
       description: '_meta is a link to the meta document for a resources.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
-    _type: {
-      enum: ['application/vnd.oada.sensor-hubs.1+json']
-    }
+    '_type': {
+      enum: ['application/vnd.oada.sensor-hubs.1+json'],
+    },
   },
   additionalProperties: true,
   required: ['_type'],
   type: 'object',
   examples: [
     {
-      _type: 'application/vnd.oada.sensor-hubs.1+json',
+      '_type': 'application/vnd.oada.sensor-hubs.1+json',
       'serial-numbers': {
-        df874j3: {
-          _id: '8f2ofj2308f2i'
+        'df874j3': {
+          _id: '8f2ofj2308f2i',
         },
         '02kjf20': {
-          _id: 'mxmxh92f8hsdf'
-        }
-      }
-    }
-  ]
-}
-export default schema
+          _id: 'mxmxh92f8hsdf',
+        },
+      },
+    },
+  ],
+};
+export default schema;

@@ -9,6 +9,7 @@
     "outDir": "./",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noImplicitAny": true,
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,

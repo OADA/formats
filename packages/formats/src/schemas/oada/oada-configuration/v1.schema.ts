@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/oada-configuration/v1.schema.json',
@@ -9,34 +9,34 @@ const schema: Schema = {
     'authorization_endpoint',
     'token_endpoint',
     'registration_endpoint',
-    'token_endpoint_auth_signing_alg_values_supported'
+    'token_endpoint_auth_signing_alg_values_supported',
   ],
   additionalProperties: true,
   properties: {
     oada_base_uri: {
       type: 'string',
-      pattern: '^https://.*'
+      pattern: '^https://.*',
     },
     authorization_endpoint: {
       type: 'string',
-      pattern: '^https://.*'
+      pattern: '^https://.*',
     },
     token_endpoint: {
       type: 'string',
-      pattern: '^https://.*'
+      pattern: '^https://.*',
     },
     registration_endpoint: {
       type: 'string',
-      pattern: '^https://.*'
+      pattern: '^https://.*',
     },
     token_endpoint_auth_signing_alg_values_supported: {
       type: 'array',
       minItems: 1,
       uniqueItems: true,
       items: {
-        type: 'string'
-      }
-    }
+        type: 'string',
+      },
+    },
   },
   type: 'object',
   examples: [
@@ -49,11 +49,11 @@ const schema: Schema = {
       token_endpoint_auth_signing_alg_values_supported: ['RS256'],
       scopes_supported: [
         {
-          name: 'oada.all.1',
-          'read+write': true
-        }
-      ]
-    }
-  ]
-}
-export default schema
+          'name': 'oada.all.1',
+          'read+write': true,
+        },
+      ],
+    },
+  ],
+};
+export default schema;

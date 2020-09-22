@@ -1,55 +1,55 @@
-import { promises as fs } from 'fs'
-import { resolve, join, basename, dirname } from 'path'
+import { promises as fs } from 'fs';
+import { resolve, join, basename, dirname } from 'path';
 
-import Bluebird from 'bluebird'
-import mkdirp = require('mkdirp')
-import { compileFromFile } from 'json-schema-to-typescript'
-import { dereference } from '@apidevtools/json-schema-ref-parser'
-import Ajv from 'ajv'
-import pack from 'ajv-pack'
+import Bluebird from 'bluebird';
+import mkdirp = require('mkdirp');
+import { compileFromFile } from 'json-schema-to-typescript';
+import { dereference } from '@apidevtools/json-schema-ref-parser';
+import Ajv from 'ajv';
+import pack from 'ajv-pack';
 
-import { loadSchema } from '@oada/formats/lib/ajv'
+import { loadSchema } from '@oada/formats/lib/ajv';
 
-import formats, { schemas } from '@oada/formats'
+import formats, { schemas } from '@oada/formats';
 
-import { rules } from './normalize'
+import { rules } from './normalize';
 
 // Where to put compiled types
-const typesDir = resolve('./')
+const typesDir = resolve('./');
 
-const compileStr = '`$ yarn build`'
+const compileStr = '`$ yarn build`';
 
 // Create ajv for packing validation functions
 // @ts-ignore
-const ajv = new Ajv({ loadSchema, sourceCode: true })
+const ajv = new Ajv({ loadSchema, sourceCode: true });
 
 // Compile the schema files to TypeScript types
-async function doCompile () {
+async function doCompile() {
   const metaSchema = await dereference(
     'https://json-schema.org/draft/2019-09/schema'
-  )
-  ajv.addMetaSchema(metaSchema)
+  );
+  ajv.addMetaSchema(metaSchema);
 
   // Compile schemas to TS types
   for (const { key, path, schema } of schemas()) {
     //normalize(schema)
 
-    const { $id } = schema
+    const { $id } = schema;
     const file = key
       .replace(/^https:\/\/formats\.openag\.io/, '')
-      .replace(/^\//, './')
-    const outfile = join(typesDir, file.replace(/\.schema\.json$/, '.ts'))
-    const name = basename(path, '.schema.json')
-    const cwd = join(typesDir, dirname(path))
-    const typeName = `${name[0].toUpperCase()}${name.substr(1)}`
+      .replace(/^\//, './');
+    const outfile = join(typesDir, file.replace(/\.schema\.json$/, '.ts'));
+    const name = basename(path, '.schema.json');
+    const cwd = join(typesDir, dirname(path));
+    const typeName = `${name[0].toUpperCase()}${name.substr(1)}`;
 
     // Pack up validation function
-    const validate = await ajv.compileAsync(schema)
-    const packed = pack(ajv, validate)
+    const validate = await ajv.compileAsync(schema);
+    const packed = pack(ajv, validate);
     const packedfile = join(
       typesDir,
       file.replace(/\.schema\.json$/, '-validate.js')
-    )
+    );
 
     // Make the banner comment a bit more informative
     // TODO: Figure out some TS magic to use instead of this code generation??
@@ -101,12 +101,12 @@ async function doCompile () {
         //}
 
         export default ${typeName}
-      `
+      `;
 
-    console.debug(`Compiling ${key} to TypeScript types`)
-    console.debug(`Outputting ${outfile}`)
+    console.debug(`Compiling ${key} to TypeScript types`);
+    console.debug(`Outputting ${outfile}`);
     try {
-      const r = /^https:\/\/formats\.openag\.io/
+      const r = /^https:\/\/formats\.openag\.io/;
       const ts = await compileFromFile(path, {
         bannerComment,
         unreachableDefinitions: true,
@@ -118,25 +118,25 @@ async function doCompile () {
             oada: {
               order: 0,
               canRead: r,
-              async read ({ url }: { url: string }) {
-                const path = url.replace(r, '')
+              async read({ url }: { url: string }) {
+                const path = url.replace(r, '');
                 // @ts-ignore
-                return JSON.stringify(formats.getSchema(path)?.schema)
-              }
-            }
-          }
+                return JSON.stringify(formats.getSchema(path)?.schema);
+              },
+            },
+          },
         },
-        cwd
-      })
-      await mkdirp(dirname(outfile))
+        cwd,
+      });
+      await mkdirp(dirname(outfile));
       // TODO: Figure out wtf is up with mkdirp that I need this...
-      await Bluebird.delay(50)
-      await fs.writeFile(packedfile, packed)
-      await fs.writeFile(outfile, ts)
+      await Bluebird.delay(50);
+      await fs.writeFile(packedfile, packed);
+      await fs.writeFile(outfile, ts);
     } catch (err) {
-      console.error(`Error compiling ${key}: %O`, err)
+      console.error(`Error compiling ${key}: %O`, err);
     }
   }
 }
 
-doCompile()
+doCompile();

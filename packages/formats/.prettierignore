@@ -1,0 +1,5 @@
+# Ignore compiled TS output
+lib
+
+yarn.lock
+tags*

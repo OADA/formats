@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/user/v1.schema.json',
@@ -8,14 +8,14 @@ const schema: Schema = {
   properties: {
     bookmarks: {
       $ref:
-        'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned'
-    }
+        'https://formats.openag.io/oada/link/v1.schema.json#/definitions/versioned',
+    },
   },
   examples: [
     {
       bookmarks: {
         _id: 'kdjsl028ifej',
-        _rev: '2-djfh92843hj'
+        _rev: '2-djfh92843hj',
       },
       username: 'frank',
       name: 'Farmer Frank',
@@ -23,9 +23,9 @@ const schema: Schema = {
       given_name: 'Farmer',
       middle_name: '',
       nickname: 'Frankie',
-      email: 'frank@openag.io'
-    }
-  ]
-}
+      email: 'frank@openag.io',
+    },
+  ],
+};
 
-export default schema
+export default schema;

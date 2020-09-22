@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/service/job/update.schema.json',
@@ -9,15 +9,15 @@ const schema: Schema = {
   properties: {
     status: {
       description: 'Status of job at the time of update',
-      type: 'string'
+      type: 'string',
     },
     time: {
       description: 'ISO8601 UTC date-time of update time',
-      type: 'string'
+      type: 'string',
     },
     meta: {
-      description: 'Additional meta data about the status update'
-    }
+      description: 'Additional meta data about the status update',
+    },
   },
   required: ['status', 'time'],
   examples: [
@@ -25,10 +25,10 @@ const schema: Schema = {
       status: 'started',
       time: '2018-11-14T20:20:39+00:00',
       meta: {
-        example: 'data'
-      }
-    }
-  ]
-}
+        example: 'data',
+      },
+    },
+  ],
+};
 
-export default schema
+export default schema;

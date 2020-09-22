@@ -7,28 +7,28 @@ declare module 'json-schema-traverse' {
     parentKeyword: string,
     parentSchema: Schema,
     keyIndex: number
-  ) => void
+  ) => void;
   type Options<Schema> = {
-    cb: Callback<Schema> | { pre: Callback<Schema>; post: Callback<Schema> }
+    cb: Callback<Schema> | { pre: Callback<Schema>; post: Callback<Schema> };
     /**
      * @default false
      */
-    allKeys?: boolean
-  }
+    allKeys?: boolean;
+  };
 
   type Keywords = {
-    [key: string]: boolean
-  }
+    [key: string]: boolean;
+  };
 
   interface Traverse {
-    <Schema>(schema: Schema, opts: Options<Schema>): void
-    keywords: Keywords
-    arrayKeywords: Keywords
-    propsKeywords: Keywords
-    skipKeywords: Keywords
+    <Schema>(schema: Schema, opts: Options<Schema>): void;
+    keywords: Keywords;
+    arrayKeywords: Keywords;
+    propsKeywords: Keywords;
+    skipKeywords: Keywords;
   }
 
-  const traverse: Traverse
+  const traverse: Traverse;
 
-  export = traverse
+  export = traverse;
 }

@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id:
@@ -13,64 +13,64 @@ const schema: Schema = {
       oneOf: [
         {
           type: 'string',
-          format: 'email'
+          format: 'email',
         },
         {
           type: 'object',
           properties: {
             email: {
               type: 'string',
-              format: 'email'
+              format: 'email',
             },
             name: {
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
-          required: ['email']
-        }
-      ]
-    }
+          required: ['email'],
+        },
+      ],
+    },
   },
   properties: {
     multiple: {
       description:
         'If separate emails to each `to` (true) or if one email to all of `to` (false)',
-      type: 'boolean'
+      type: 'boolean',
     },
     from: {
-      $ref: '#/definitions/email'
+      $ref: '#/definitions/email',
     },
     to: {
       oneOf: [
         {
-          $ref: '#/definitions/email'
+          $ref: '#/definitions/email',
         },
         {
           type: 'array',
           items: {
-            $ref: '#/definitions/email'
-          }
-        }
-      ]
+            $ref: '#/definitions/email',
+          },
+        },
+      ],
     },
     replyTo: {
-      $ref: '#/definitions/email'
+      $ref: '#/definitions/email',
     },
     subject: {
       type: 'string',
-      minLength: 1
+      minLength: 1,
     },
     text: {
       type: 'string',
-      minLength: 1
+      minLength: 1,
     },
     html: {
       type: 'string',
-      minLength: 1
+      minLength: 1,
     },
     templateData: {
       type: 'object',
-      description: 'Data to use when filling out email template'
+      description: 'Data to use when filling out email template',
     },
     attachments: {
       type: 'array',
@@ -82,46 +82,46 @@ const schema: Schema = {
               {
                 description: 'Base 64 encoded attachment content',
                 type: 'string',
-                minLength: 1
+                minLength: 1,
               },
               {
                 description: 'Link to OADA resource to use as content',
-                $ref: '../../../../oada.schema.json#/definitions/link'
-              }
-            ]
+                $ref: '../../../../oada.schema.json#/definitions/link',
+              },
+            ],
           },
           filename: {
             type: 'string',
-            minLength: 1
+            minLength: 1,
           },
           type: {
             type: 'string',
-            minLength: 1
+            minLength: 1,
           },
           disposition: {
             enum: ['inline', 'attachment'],
-            default: 'attachment'
+            default: 'attachment',
           },
           content_id: {
-            type: 'string'
-          }
+            type: 'string',
+          },
         },
         required: ['content', 'filename'],
         if: {
           type: 'object',
           properties: {
             disposition: {
-              const: 'inline'
-            }
+              const: 'inline',
+            },
           },
-          required: ['disposition']
+          required: ['disposition'],
         },
         then: {
           type: 'object',
-          required: ['content_id']
-        }
-      }
-    }
+          required: ['content_id'],
+        },
+      },
+    },
   },
   required: ['from', 'to'],
   examples: [
@@ -130,7 +130,7 @@ const schema: Schema = {
       from: 'john@example.com',
       to: {
         name: 'Mary Lou',
-        email: 'donuts@example.org'
+        email: 'donuts@example.org',
       },
       subject: 'Test mail',
       text: 'Test!',
@@ -139,18 +139,18 @@ const schema: Schema = {
         {
           content: 'RXhhbXBsZSBkYXRh',
           filename: 'test.dat',
-          type: 'plain/text'
+          type: 'plain/text',
         },
         {
           content: {
-            _id: 'resources/abc123'
+            _id: 'resources/abc123',
           },
           filename: 'file.pdf',
-          type: 'application/pdf'
-        }
-      ]
-    }
-  ]
-}
+          type: 'application/pdf',
+        },
+      ],
+    },
+  ],
+};
 
-export default schema
+export default schema;

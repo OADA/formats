@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/service/queue.schema.json',
@@ -8,20 +8,20 @@ const schema: Schema = {
   properties: {
     domain: {
       description: 'OADA domain of the job queue',
-      type: 'string'
+      type: 'string',
     },
     token: {
       description: 'Token to use when interacting with job queue',
-      type: 'string'
-    }
+      type: 'string',
+    },
   },
   required: ['domain', 'token'],
   examples: [
     {
       domain: 'dev.trellis.one',
-      token: 'abc1234321cba'
-    }
-  ]
-}
+      token: 'abc1234321cba',
+    },
+  ],
+};
 
-export default schema
+export default schema;

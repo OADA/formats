@@ -13,6 +13,10 @@
     "tsconfig.json",
     ".nycrc.json"
   ],
+  "prettier": {
+    "singleQuote": true,
+    "quoteProps": "consistent"
+  },
   "scripts": {
     "buildschemas": "ts-node src/schemas/compile.ts",
     "prebuild": "npm run buildschemas",
@@ -55,9 +59,9 @@
     "json-schema-traverse": "^0.4.1",
     "jsonschema8": "^1.1.0",
     "nyc": "^15.0.1",
-    "prettier-standard": "^16.2.1",
+    "prettier": "^2.1.2",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0.2",
+    "typescript": "^4.0.3",
     "yargs": "^15.3.1"
   }
 }

@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/tiled-maps/dry-yield-map/v1.schema.json',
@@ -6,58 +6,58 @@ const schema: Schema = {
   description:
     'The "dry-yield-map" document contains harvest data at the given crop\'s trade moisture, aggregated at various zoom levels for mapping and fast statistical calculation.',
   properties: {
-    datum: {
+    'datum': {
       description:
         'datum describes the model of the earth used for GPS coordinates.  It can be from a set of known strings, or an EPSG model from http://spatialreference.org',
       anyOf: [
         {
           type: 'string',
-          examples: ['WGS84']
+          examples: ['WGS84'],
         },
         {
           required: ['type', 'properties'],
           properties: {
             type: {
-              enum: ['EPSG']
+              enum: ['EPSG'],
             },
             properties: {
               required: ['code'],
               properties: {
                 code: {
-                  type: 'number'
-                }
+                  type: 'number',
+                },
               },
-              type: 'object'
-            }
+              type: 'object',
+            },
           },
-          type: 'object'
-        }
-      ]
+          type: 'object',
+        },
+      ],
     },
-    stats: {
+    'stats': {
       description:
         'stats sits at the top of a resource to list stats about the data inside that resource. Basic stats are sum, count, sum-of-squares.  The actual keys under stats are data names that you have stats for like weight, area, etc.  The same units and data names are valid under stats that are valid under data',
       properties: {
         template: {
           description:
             'template sits inside a data point and gives the name of a template (key in the templates object) which serves as prototype for a given data point.  The full data point is the merge of that template object with the data point, with the data point taking precedence in key collisions. This is a string because its value is the key in templates, not the template itself.',
-          type: 'string'
+          type: 'string',
         },
         geohash: {
           description:
             'A geohash is a base 32 encoded string which represents the combination of latitude and longitude into a single number which, in general, has a property such that points close in number are close on the globe.',
           type: 'string',
-          pattern: '^[0-9bcdefghjkmnpqrstuvwxyz]+$'
+          pattern: '^[0-9bcdefghjkmnpqrstuvwxyz]+$',
         },
         area: {
           description: 'area is a data type which holds a reading of...area...',
           properties: {
             units: {
               type: 'string',
-              examples: ['ac', 'acres', 'ha', 'hectares', 'sqft']
-            }
+              examples: ['ac', 'acres', 'ha', 'hectares', 'sqft'],
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         weight: {
           description:
@@ -65,10 +65,10 @@ const schema: Schema = {
           properties: {
             units: {
               type: 'string',
-              examples: ['bu', 'bushels', 'lbs', 'kg']
-            }
+              examples: ['bu', 'bushels', 'lbs', 'kg'],
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         moisture: {
           description:
@@ -76,15 +76,15 @@ const schema: Schema = {
           properties: {
             units: {
               type: 'string',
-              examples: ['%H2O']
-            }
+              examples: ['%H2O'],
+            },
           },
-          type: 'object'
-        }
+          type: 'object',
+        },
       },
-      type: 'object'
+      type: 'object',
     },
-    templates: {
+    'templates': {
       description:
         'templates is a general key for holding a collection of data points indexed by random strings.  Templates serve as prototypes for data points under "data" keys. If you have a piece of information that exists is all or almost all of the data points in a particular group of points, you can put the repeated things in templates and then just put the name of the template into the data point.  The full data point is therefore a merge of the template object and the data point itself, with the data point overruling when there are any keys that exist in both objects.  Schema is therefore identical to "data".',
       patternProperties: {
@@ -95,13 +95,13 @@ const schema: Schema = {
             template: {
               description:
                 'template sits inside a data point and gives the name of a template (key in the templates object) which serves as prototype for a given data point.  The full data point is the merge of that template object with the data point, with the data point taking precedence in key collisions. This is a string because its value is the key in templates, not the template itself.',
-              type: 'string'
+              type: 'string',
             },
             geohash: {
               description:
                 'A geohash is a base 32 encoded string which represents the combination of latitude and longitude into a single number which, in general, has a property such that points close in number are close on the globe.',
               type: 'string',
-              pattern: '^[0-9bcdefghjkmnpqrstuvwxyz]+$'
+              pattern: '^[0-9bcdefghjkmnpqrstuvwxyz]+$',
             },
             area: {
               description:
@@ -109,10 +109,10 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['ac', 'acres', 'ha', 'hectares', 'sqft']
-                }
+                  examples: ['ac', 'acres', 'ha', 'hectares', 'sqft'],
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             weight: {
               description:
@@ -120,10 +120,10 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['bu', 'bushels', 'lbs', 'kg']
-                }
+                  examples: ['bu', 'bushels', 'lbs', 'kg'],
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             moisture: {
               description:
@@ -131,15 +131,15 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['%H2O']
-                }
+                  examples: ['%H2O'],
+                },
               },
-              type: 'object'
-            }
+              type: 'object',
+            },
           },
-          type: 'object'
-        }
-      }
+          type: 'object',
+        },
+      },
     },
     'geohash-data': {
       description:
@@ -152,13 +152,13 @@ const schema: Schema = {
             template: {
               description:
                 'template sits inside a data point and gives the name of a template (key in the templates object) which serves as prototype for a given data point.  The full data point is the merge of that template object with the data point, with the data point taking precedence in key collisions. This is a string because its value is the key in templates, not the template itself.',
-              type: 'string'
+              type: 'string',
             },
             geohash: {
               description:
                 'A geohash is a base 32 encoded string which represents the combination of latitude and longitude into a single number which, in general, has a property such that points close in number are close on the globe.',
               type: 'string',
-              pattern: '^[0-9bcdefghjkmnpqrstuvwxyz]+$'
+              pattern: '^[0-9bcdefghjkmnpqrstuvwxyz]+$',
             },
             area: {
               description:
@@ -166,10 +166,10 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['ac', 'acres', 'ha', 'hectares', 'sqft']
-                }
+                  examples: ['ac', 'acres', 'ha', 'hectares', 'sqft'],
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             weight: {
               description:
@@ -177,10 +177,10 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['bu', 'bushels', 'lbs', 'kg']
-                }
+                  examples: ['bu', 'bushels', 'lbs', 'kg'],
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             moisture: {
               description:
@@ -188,116 +188,116 @@ const schema: Schema = {
               properties: {
                 units: {
                   type: 'string',
-                  examples: ['%H2O']
-                }
+                  examples: ['%H2O'],
+                },
               },
-              type: 'object'
-            }
+              type: 'object',
+            },
           },
           required: ['area', 'weight'],
-          type: 'object'
-        }
-      }
+          type: 'object',
+        },
+      },
     },
-    _id: {
+    '_id': {
       description: '_id identifies a resource in the OADA API.',
-      type: 'string'
+      type: 'string',
     },
-    _rev: {
+    '_rev': {
       description:
         '_rev is the revision string for a resource in the OADA API.',
-      type: 'integer'
+      type: 'integer',
     },
-    _meta: {
+    '_meta': {
       description: '_meta is a link to the meta document for a resources.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
-    _type: {
-      enum: ['application/vnd.oada.tiled-maps.dry-yield-map.1+json']
+    '_type': {
+      enum: ['application/vnd.oada.tiled-maps.dry-yield-map.1+json'],
     },
-    indexing: {
+    'indexing': {
       type: 'array',
       items: {
         anyOf: [
           {
             properties: {
               index: {
-                enum: ['year-index']
+                enum: ['year-index'],
               },
               source: {
-                enum: ['oada.vocab.year-index']
+                enum: ['oada.vocab.year-index'],
               },
               value: {
                 type: 'string',
-                pattern: '^[0-9]{4}$'
-              }
+                pattern: '^[0-9]{4}$',
+              },
             },
-            type: 'object'
+            type: 'object',
           },
           {
             properties: {
               index: {
-                enum: ['crop-index']
+                enum: ['crop-index'],
               },
               value: {
                 type: 'string',
-                examples: ['corn', 'soybeans', 'wheat']
+                examples: ['corn', 'soybeans', 'wheat'],
               },
               source: {
                 type: 'string',
-                examples: ['oada.vocab.crop-type']
-              }
+                examples: ['oada.vocab.crop-type'],
+              },
             },
-            type: 'object'
+            type: 'object',
           },
           {
             properties: {
               index: {
-                enum: ['geohash-length-index']
+                enum: ['geohash-length-index'],
               },
               value: {
                 type: 'string',
-                pattern: '^geohash-[1-9][0-9]*$'
+                pattern: '^geohash-[1-9][0-9]*$',
               },
               source: {
                 type: 'string',
-                examples: ['oada.vocab.geohash-length-index']
-              }
+                examples: ['oada.vocab.geohash-length-index'],
+              },
             },
-            type: 'object'
+            type: 'object',
           },
           {
             properties: {
               index: {
-                enum: ['geohash-index']
+                enum: ['geohash-index'],
               },
               value: {
                 description:
                   'A geohash is a base 32 encoded string which represents the combination of latitude and longitude into a single number which, in general, has a property such that points close in number are close on the globe.',
                 type: 'string',
-                pattern: '^[0-9bcdefghjkmnpqrstuvwxyz]+$'
+                pattern: '^[0-9bcdefghjkmnpqrstuvwxyz]+$',
               },
               source: {
                 type: 'string',
-                examples: ['oada.vocab.geohash']
-              }
+                examples: ['oada.vocab.geohash'],
+              },
             },
-            type: 'object'
-          }
-        ]
-      }
+            type: 'object',
+          },
+        ],
+      },
     },
     'year-index': {
       description: 'year-index splits things up by a 4-digit year',
@@ -308,13 +308,13 @@ const schema: Schema = {
           properties: {
             _id: {
               description: '_id identifies a resource in the OADA API.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           required: ['_id'],
-          type: 'object'
-        }
-      }
+          type: 'object',
+        },
+      },
     },
     'crop-index': {
       description:
@@ -326,11 +326,11 @@ const schema: Schema = {
           properties: {
             _id: {
               description: '_id identifies a resource in the OADA API.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           required: ['_id'],
-          type: 'object'
+          type: 'object',
         },
         soybeans: {
           description:
@@ -338,11 +338,11 @@ const schema: Schema = {
           properties: {
             _id: {
               description: '_id identifies a resource in the OADA API.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           required: ['_id'],
-          type: 'object'
+          type: 'object',
         },
         wheat: {
           description:
@@ -350,14 +350,14 @@ const schema: Schema = {
           properties: {
             _id: {
               description: '_id identifies a resource in the OADA API.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           required: ['_id'],
-          type: 'object'
-        }
+          type: 'object',
+        },
       },
-      type: 'object'
+      type: 'object',
     },
     'geohash-length-index': {
       description:
@@ -369,28 +369,28 @@ const schema: Schema = {
           anyOf: [
             {
               type: 'string',
-              examples: ['WGS84']
+              examples: ['WGS84'],
             },
             {
               required: ['type', 'properties'],
               properties: {
                 type: {
-                  enum: ['EPSG']
+                  enum: ['EPSG'],
                 },
                 properties: {
                   required: ['code'],
                   properties: {
                     code: {
-                      type: 'number'
-                    }
+                      type: 'number',
+                    },
                   },
-                  type: 'object'
-                }
+                  type: 'object',
+                },
               },
-              type: 'object'
-            }
-          ]
-        }
+              type: 'object',
+            },
+          ],
+        },
       },
       patternProperties: {
         '^geohash-[1-9][0-9]*$': {
@@ -399,14 +399,14 @@ const schema: Schema = {
           properties: {
             _id: {
               description: '_id identifies a resource in the OADA API.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           required: ['_id'],
-          type: 'object'
-        }
+          type: 'object',
+        },
       },
-      type: 'object'
+      type: 'object',
     },
     'geohash-index': {
       description:
@@ -418,105 +418,105 @@ const schema: Schema = {
           properties: {
             _id: {
               description: '_id identifies a resource in the OADA API.',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           required: ['_id'],
-          type: 'object'
-        }
-      }
-    }
+          type: 'object',
+        },
+      },
+    },
   },
   additionalProperties: true,
   required: ['_type'],
   type: 'object',
   examples: [
     {
-      _id: 'resources/k2fjo23lf3',
-      _rev: 9,
-      _type: 'application/vnd.oada.tiled-maps.dry-yield-map.1+json',
-      indexing: [
+      '_id': 'resources/k2fjo23lf3',
+      '_rev': 9,
+      '_type': 'application/vnd.oada.tiled-maps.dry-yield-map.1+json',
+      'indexing': [
         {
           index: 'year-index',
           source: 'oada.vocab.year-index',
-          value: '2019'
+          value: '2019',
         },
         {
           index: 'crop-index',
           source: 'oada.vocab.year-index',
-          value: 'corn'
+          value: 'corn',
         },
         {
           index: 'geohash-length-index',
           source: 'oada.vocab.geohash-length-index',
-          value: '7'
+          value: '7',
         },
         {
           index: 'geohash-index',
           source: 'oada.vocab.geohash-index',
-          value: 'dpq78df'
-        }
+          value: 'dpq78df',
+        },
       ],
-      stats: {
+      'stats': {
         weight: {
-          units: 'bushels',
-          sum: 123123.4124,
+          'units': 'bushels',
+          'sum': 123123.4124,
           'sum-of-squares': 1412413.234234,
-          count: 1243
+          'count': 1243,
         },
         area: {
-          units: 'acres',
-          sum: 1451341.34233,
+          'units': 'acres',
+          'sum': 1451341.34233,
           'sum-of-squares': 134134124.3413412,
-          count: 1243
-        }
+          'count': 1243,
+        },
       },
-      templates: {
+      'templates': {
         '123': {
           area: {
-            units: 'ac'
+            units: 'ac',
           },
           weight: {
-            units: 'bu'
+            units: 'bu',
           },
           moisture: {
             value: 15,
-            units: '%H2O'
-          }
-        }
+            units: '%H2O',
+          },
+        },
       },
-      datum: 'WGS84',
+      'datum': 'WGS84',
       'geohash-data': {
         '023jf2d': {
           template: '123',
           geohash: '023jf2d',
           weight: {
-            sum: 123123.4124,
+            'sum': 123123.4124,
             'sum-of-squares': 1412413.234234,
-            count: 1243
+            'count': 1243,
           },
           area: {
-            sum: 1451341.34233,
+            'sum': 1451341.34233,
             'sum-of-squares': 134134124.3413412,
-            count: 1243
-          }
+            'count': 1243,
+          },
         },
         '023jf2e': {
           template: '123',
           geohash: '023jf2e',
           weight: {
-            sum: 123123.4124,
+            'sum': 123123.4124,
             'sum-of-squares': 1412413.234234,
-            count: 1243
+            'count': 1243,
           },
           area: {
-            sum: 1451341.34233,
+            'sum': 1451341.34233,
             'sum-of-squares': 134134124.3413412,
-            count: 1243
-          }
-        }
-      }
-    }
-  ]
-}
-export default schema
+            'count': 1243,
+          },
+        },
+      },
+    },
+  ],
+};
+export default schema;

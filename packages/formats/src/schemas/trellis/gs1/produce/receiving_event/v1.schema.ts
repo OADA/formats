@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id:
@@ -11,7 +11,7 @@ const schema: Schema = {
       description: 'all receiving trading items',
       type: 'array',
       items: {
-        description: 'item is sold/shipped by one trading partner to the other'
+        description: 'item is sold/shipped by one trading partner to the other',
       },
       required: [
         'gtin',
@@ -19,22 +19,22 @@ const schema: Schema = {
         'product_date',
         'sell_by',
         'quantity',
-        'unit_of_measure'
+        'unit_of_measure',
       ],
-      additionalProperties: false
+      additionalProperties: false,
     },
     originator: {
       description: 'gln of the data originator and the data owner',
-      type: 'string'
+      type: 'string',
     },
     trading_partner: {
       description: 'gln of the trading partner',
-      type: 'string'
+      type: 'string',
     },
     activity_type: {
       description: 'defines the business process that taking place',
       type: 'string',
-      examples: ['purchase_order', 'production_work_order', 'bill_of_landing']
+      examples: ['purchase_order', 'production_work_order', 'bill_of_landing'],
     },
     originator_type: {
       description: 'trading_partner_type of the originating trading partner',
@@ -45,8 +45,8 @@ const schema: Schema = {
         'manufacturer',
         'processor',
         'distributor',
-        'retailor'
-      ]
+        'retailor',
+      ],
     },
     receiver_type: {
       description: 'trading_partner_type of the receiving trading partner',
@@ -57,50 +57,50 @@ const schema: Schema = {
         'manufacturer',
         'processor',
         'distributor',
-        'retailor'
-      ]
+        'retailor',
+      ],
     },
     timestamp: {
       description: 'defines the timestamp of the data capture',
-      type: 'string'
+      type: 'string',
     },
     activity_no: {
       description:
         'defines a unique identifer to implicate the transaction id of the business event - purchase order id etc',
-      type: 'string'
+      type: 'string',
     },
     _id: {
       description: '_id identifies a resource in the OADA API.',
-      type: 'string'
+      type: 'string',
     },
     _rev: {
       description:
         '_rev is the revision string for a resource in the OADA API.',
-      type: 'integer'
+      type: 'integer',
     },
     _meta: {
       description: '_meta is a link to the meta document for a resources.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
     _type: {
-      enum: ['application/vnd.trellis.gs1.produce.receiving_event.1+json']
-    }
+      enum: ['application/vnd.trellis.gs1.produce.receiving_event.1+json'],
+    },
   },
   additionalProperties: true,
   required: ['_type'],
   type: 'object',
-  examples: []
-}
-export default schema
+  examples: [],
+};
+export default schema;

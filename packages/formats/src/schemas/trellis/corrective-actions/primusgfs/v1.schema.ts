@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id:
@@ -16,26 +16,26 @@ const schema: Schema = {
             'name is a string, typically the name of the object the key appears in.',
           pattern: '^(?!(indexing|.*-index|_.*)).*$',
           enum: ['PrimusGFS'],
-          examples: ['PrimusGFS', 'GlobalGAP', 'CanadaGAP', 'SQFI']
+          examples: ['PrimusGFS', 'GlobalGAP', 'CanadaGAP', 'SQFI'],
         },
         version: {
           description:
             'version is a string which describes the version of the schema used for the current audit.',
-          type: 'string'
+          type: 'string',
         },
         option: {
           description:
             'option is used as an indicator of type of audit for a given audit version.  Introduced for GlobalGAP audit, also present in CanadaGAP audit.',
-          type: 'string'
+          type: 'string',
         },
         options: {
           description:
             'If an audit covers multiple scheme options, you can make an array of them.',
-          type: 'string'
-        }
+          type: 'string',
+        },
       },
       required: ['name', 'version'],
-      type: 'object'
+      type: 'object',
     },
     certifying_body: {
       description:
@@ -46,7 +46,7 @@ const schema: Schema = {
             'name is a string, typically the name of the object the key appears in.',
           type: 'string',
           pattern: '^(?!(indexing|.*-index|_.*)).*$',
-          examples: ['Primus Auditing Operations']
+          examples: ['Primus Auditing Operations'],
         },
         auditor: {
           description:
@@ -55,22 +55,22 @@ const schema: Schema = {
             conflict_of_interest: {
               description:
                 'conflict_of_interest indicates if a particular person (auditor) has a known conflict of interest for creating a certification for an organization',
-              type: 'boolean'
+              type: 'boolean',
             },
             number_prior_audits_this_organization: {
               description:
                 "Introduced for CanadaGAP, this is the auditor's attestation of how many times they have audited this operation before.",
               type: 'string',
-              pattern: '^[0-9]+$'
+              pattern: '^[0-9]+$',
             },
             number_prior_consecutive_audits_this_organization: {
               description:
                 "Introduced for CanadaGAP, this is the auditor's attestation of how many consecutive times they have audited this operation, excluding the current audit.",
               type: 'string',
-              pattern: '^[0-9]+$'
-            }
+              pattern: '^[0-9]+$',
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         reviewer: {
           description:
@@ -80,11 +80,11 @@ const schema: Schema = {
               description:
                 'name is a string, typically the name of the object the key appears in.',
               type: 'string',
-              pattern: '^(?!(indexing|.*-index|_.*)).*$'
+              pattern: '^(?!(indexing|.*-index|_.*)).*$',
             },
             email: {
               description: 'email address for an organization or contact',
-              type: 'string'
+              type: 'string',
             },
             location: {
               description:
@@ -93,57 +93,57 @@ const schema: Schema = {
                 postal_code: {
                   description:
                     'postal_code is the postal code used in a postal address',
-                  type: 'string'
+                  type: 'string',
                 },
                 street_address: {
                   description:
                     'The street name and mailbox number of a postal address.',
-                  type: 'string'
+                  type: 'string',
                 },
                 city: {
                   description:
                     'The name of the city, usually in a postal address.',
-                  type: 'string'
+                  type: 'string',
                 },
                 state: {
                   description:
                     'The name of the state or major region, usually in a postal address.',
-                  type: 'string'
+                  type: 'string',
                 },
                 country: {
                   description:
                     'The name of the country, usually in a postal address.',
-                  type: 'string'
+                  type: 'string',
                 },
                 name: {
                   description:
                     'name is a string, typically the name of the object the key appears in.',
                   type: 'string',
-                  pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                }
+                  pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             phone: {
               description:
                 'phone describes the phone number with country code and area code.',
-              type: 'string'
+              type: 'string',
             },
             fax: {
               description: 'fax number for a person or organization',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         review_date: {
           description:
             'Introduced for CanadaGAP.  Indicates when the review of the audit was performed.',
-          type: 'string'
-        }
+          type: 'string',
+        },
       },
       required: ['name', 'auditor'],
-      type: 'object'
+      type: 'object',
     },
     organization: {
       description:
@@ -157,7 +157,7 @@ const schema: Schema = {
               description:
                 'An id is a string which should be reasonably unique to represent the  object it belongs to.',
               type: 'string',
-              pattern: '^(?!(indexing|.*-index|_.*)).*$'
+              pattern: '^(?!(indexing|.*-index|_.*)).*$',
             },
             id_source: {
               description:
@@ -172,7 +172,7 @@ const schema: Schema = {
                         'name is a string, typically the name of the object the key appears in.',
                       type: 'string',
                       pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                      examples: ['Primus Auditing Operations']
+                      examples: ['Primus Auditing Operations'],
                     },
                     auditor: {
                       description:
@@ -181,22 +181,22 @@ const schema: Schema = {
                         conflict_of_interest: {
                           description:
                             'conflict_of_interest indicates if a particular person (auditor) has a known conflict of interest for creating a certification for an organization',
-                          type: 'boolean'
+                          type: 'boolean',
                         },
                         number_prior_audits_this_organization: {
                           description:
                             "Introduced for CanadaGAP, this is the auditor's attestation of how many times they have audited this operation before.",
                           type: 'string',
-                          pattern: '^[0-9]+$'
+                          pattern: '^[0-9]+$',
                         },
                         number_prior_consecutive_audits_this_organization: {
                           description:
                             "Introduced for CanadaGAP, this is the auditor's attestation of how many consecutive times they have audited this operation, excluding the current audit.",
                           type: 'string',
-                          pattern: '^[0-9]+$'
-                        }
+                          pattern: '^[0-9]+$',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     reviewer: {
                       description:
@@ -206,12 +206,12 @@ const schema: Schema = {
                           description:
                             'name is a string, typically the name of the object the key appears in.',
                           type: 'string',
-                          pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                          pattern: '^(?!(indexing|.*-index|_.*)).*$',
                         },
                         email: {
                           description:
                             'email address for an organization or contact',
-                          type: 'string'
+                          type: 'string',
                         },
                         location: {
                           description:
@@ -220,57 +220,57 @@ const schema: Schema = {
                             postal_code: {
                               description:
                                 'postal_code is the postal code used in a postal address',
-                              type: 'string'
+                              type: 'string',
                             },
                             street_address: {
                               description:
                                 'The street name and mailbox number of a postal address.',
-                              type: 'string'
+                              type: 'string',
                             },
                             city: {
                               description:
                                 'The name of the city, usually in a postal address.',
-                              type: 'string'
+                              type: 'string',
                             },
                             state: {
                               description:
                                 'The name of the state or major region, usually in a postal address.',
-                              type: 'string'
+                              type: 'string',
                             },
                             country: {
                               description:
                                 'The name of the country, usually in a postal address.',
-                              type: 'string'
+                              type: 'string',
                             },
                             name: {
                               description:
                                 'name is a string, typically the name of the object the key appears in.',
                               type: 'string',
-                              pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                            }
+                              pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                            },
                           },
-                          type: 'object'
+                          type: 'object',
                         },
                         phone: {
                           description:
                             'phone describes the phone number with country code and area code.',
-                          type: 'string'
+                          type: 'string',
                         },
                         fax: {
                           description:
                             'fax number for a person or organization',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     review_date: {
                       description:
                         'Introduced for CanadaGAP.  Indicates when the review of the audit was performed.',
-                      type: 'string'
-                    }
+                      type: 'string',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 scheme: {
                   description:
@@ -281,43 +281,43 @@ const schema: Schema = {
                         'name is a string, typically the name of the object the key appears in.',
                       type: 'string',
                       pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                      examples: ['PrimusGFS', 'GlobalGAP', 'CanadaGAP', 'SQFI']
+                      examples: ['PrimusGFS', 'GlobalGAP', 'CanadaGAP', 'SQFI'],
                     },
                     version: {
                       description:
                         'version is a string which describes the version of the schema used for the current audit.',
-                      type: 'string'
+                      type: 'string',
                     },
                     option: {
                       description:
                         'option is used as an indicator of type of audit for a given audit version.  Introduced for GlobalGAP audit, also present in CanadaGAP audit.',
-                      type: 'string'
+                      type: 'string',
                     },
                     options: {
                       description:
                         'If an audit covers multiple scheme options, you can make an array of them.',
-                      type: 'string'
-                    }
+                      type: 'string',
+                    },
                   },
-                  type: 'object'
-                }
+                  type: 'object',
+                },
               },
-              type: 'object'
-            }
+              type: 'object',
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         GLN: {
           description:
             'A Global Location Number, assigned by GS1.  Usually exists in "organization".',
           type: 'string',
-          pattern: '^[0-9]{13}$'
+          pattern: '^[0-9]{13}$',
         },
         name: {
           description:
             'name is a string, typically the name of the object the key appears in.',
           type: 'string',
-          pattern: '^(?!(indexing|.*-index|_.*)).*$'
+          pattern: '^(?!(indexing|.*-index|_.*)).*$',
         },
         contacts: {
           description:
@@ -331,11 +331,11 @@ const schema: Schema = {
                 description:
                   'name is a string, typically the name of the object the key appears in.',
                 type: 'string',
-                pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                pattern: '^(?!(indexing|.*-index|_.*)).*$',
               },
               email: {
                 description: 'email address for an organization or contact',
-                type: 'string'
+                type: 'string',
               },
               location: {
                 description:
@@ -344,45 +344,45 @@ const schema: Schema = {
                   postal_code: {
                     description:
                       'postal_code is the postal code used in a postal address',
-                    type: 'string'
+                    type: 'string',
                   },
                   street_address: {
                     description:
                       'The street name and mailbox number of a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   city: {
                     description:
                       'The name of the city, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   state: {
                     description:
                       'The name of the state or major region, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   country: {
                     description:
                       'The name of the country, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   name: {
                     description:
                       'name is a string, typically the name of the object the key appears in.',
                     type: 'string',
-                    pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                  }
+                    pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                  },
                 },
-                type: 'object'
+                type: 'object',
               },
               phone: {
                 description:
                   'phone describes the phone number with country code and area code.',
-                type: 'string'
+                type: 'string',
               },
               fax: {
                 description: 'fax number for a person or organization',
-                type: 'string'
+                type: 'string',
               },
               contact_type: {
                 description:
@@ -391,8 +391,8 @@ const schema: Schema = {
                 examples: [
                   'Food Safety Program Coordinator',
                   'Recall Coordinator',
-                  'Responsible For Operation'
-                ]
+                  'Responsible For Operation',
+                ],
               },
               contact_types: {
                 description:
@@ -405,13 +405,13 @@ const schema: Schema = {
                   examples: [
                     'Food Safety Program Coordinator',
                     'Recall Coordinator',
-                    'Responsible For Operation'
-                  ]
-                }
-              }
+                    'Responsible For Operation',
+                  ],
+                },
+              },
             },
-            type: 'object'
-          }
+            type: 'object',
+          },
         },
         location: {
           description:
@@ -420,44 +420,44 @@ const schema: Schema = {
             postal_code: {
               description:
                 'postal_code is the postal code used in a postal address',
-              type: 'string'
+              type: 'string',
             },
             street_address: {
               description:
                 'The street name and mailbox number of a postal address.',
-              type: 'string'
+              type: 'string',
             },
             city: {
               description: 'The name of the city, usually in a postal address.',
-              type: 'string'
+              type: 'string',
             },
             state: {
               description:
                 'The name of the state or major region, usually in a postal address.',
-              type: 'string'
+              type: 'string',
             },
             country: {
               description:
                 'The name of the country, usually in a postal address.',
-              type: 'string'
+              type: 'string',
             },
             name: {
               description:
                 'name is a string, typically the name of the object the key appears in.',
               type: 'string',
-              pattern: '^(?!(indexing|.*-index|_.*)).*$'
-            }
+              pattern: '^(?!(indexing|.*-index|_.*)).*$',
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         phone: {
           description:
             'phone describes the phone number with country code and area code.',
-          type: 'string'
+          type: 'string',
         },
         fax: {
           description: 'fax number for a person or organization',
-          type: 'string'
+          type: 'string',
         },
         orgchart: {
           description:
@@ -470,12 +470,12 @@ const schema: Schema = {
                 job_title: {
                   description:
                     'The title of this person within their organization.',
-                  type: 'string'
+                  type: 'string',
                 },
                 job_description: {
                   description:
                     'A description of what this person does or is responsible for within an organization.',
-                  type: 'string'
+                  type: 'string',
                 },
                 reports_to: {
                   description:
@@ -485,17 +485,17 @@ const schema: Schema = {
                     description:
                       'An id is a string which should be reasonably unique to represent the  object it belongs to.',
                     type: 'string',
-                    pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                  }
-                }
+                    pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                  },
+                },
               },
-              type: 'object'
-            }
-          }
-        }
+              type: 'object',
+            },
+          },
+        },
       },
       required: ['organizationid', 'name'],
-      type: 'object'
+      type: 'object',
     },
     scope: {
       description:
@@ -504,13 +504,13 @@ const schema: Schema = {
         description: {
           description:
             'a string description of an object, usually longer than "name"',
-          type: 'string'
+          type: 'string',
         },
         notification: {
           description:
             'notification describes whether the target of the audit was notified in advance that this audit would take place.  "announced" or "unannounced".',
           type: 'string',
-          examples: ['announced', 'unannounced']
+          examples: ['announced', 'unannounced'],
         },
         operation: {
           description:
@@ -530,8 +530,8 @@ const schema: Schema = {
                 'packing - production site',
                 'repacking',
                 'brokerage',
-                'wholesale'
-              ]
+                'wholesale',
+              ],
             },
             operator: {
               description:
@@ -549,12 +549,12 @@ const schema: Schema = {
                         description:
                           'name is a string, typically the name of the object the key appears in.',
                         type: 'string',
-                        pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                        pattern: '^(?!(indexing|.*-index|_.*)).*$',
                       },
                       email: {
                         description:
                           'email address for an organization or contact',
-                        type: 'string'
+                        type: 'string',
                       },
                       location: {
                         description:
@@ -563,45 +563,45 @@ const schema: Schema = {
                           postal_code: {
                             description:
                               'postal_code is the postal code used in a postal address',
-                            type: 'string'
+                            type: 'string',
                           },
                           street_address: {
                             description:
                               'The street name and mailbox number of a postal address.',
-                            type: 'string'
+                            type: 'string',
                           },
                           city: {
                             description:
                               'The name of the city, usually in a postal address.',
-                            type: 'string'
+                            type: 'string',
                           },
                           state: {
                             description:
                               'The name of the state or major region, usually in a postal address.',
-                            type: 'string'
+                            type: 'string',
                           },
                           country: {
                             description:
                               'The name of the country, usually in a postal address.',
-                            type: 'string'
+                            type: 'string',
                           },
                           name: {
                             description:
                               'name is a string, typically the name of the object the key appears in.',
                             type: 'string',
-                            pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                          }
+                            pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                          },
                         },
-                        type: 'object'
+                        type: 'object',
                       },
                       phone: {
                         description:
                           'phone describes the phone number with country code and area code.',
-                        type: 'string'
+                        type: 'string',
                       },
                       fax: {
                         description: 'fax number for a person or organization',
-                        type: 'string'
+                        type: 'string',
                       },
                       contact_type: {
                         description:
@@ -610,8 +610,8 @@ const schema: Schema = {
                         examples: [
                           'Food Safety Program Coordinator',
                           'Recall Coordinator',
-                          'Responsible For Operation'
-                        ]
+                          'Responsible For Operation',
+                        ],
                       },
                       contact_types: {
                         description:
@@ -624,19 +624,19 @@ const schema: Schema = {
                           examples: [
                             'Food Safety Program Coordinator',
                             'Recall Coordinator',
-                            'Responsible For Operation'
-                          ]
-                        }
-                      }
+                            'Responsible For Operation',
+                          ],
+                        },
+                      },
                     },
-                    type: 'object'
-                  }
+                    type: 'object',
+                  },
                 },
                 name: {
                   description:
                     'name is a string, typically the name of the object the key appears in.',
                   type: 'string',
-                  pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                  pattern: '^(?!(indexing|.*-index|_.*)).*$',
                 },
                 location: {
                   description:
@@ -645,39 +645,39 @@ const schema: Schema = {
                     postal_code: {
                       description:
                         'postal_code is the postal code used in a postal address',
-                      type: 'string'
+                      type: 'string',
                     },
                     street_address: {
                       description:
                         'The street name and mailbox number of a postal address.',
-                      type: 'string'
+                      type: 'string',
                     },
                     city: {
                       description:
                         'The name of the city, usually in a postal address.',
-                      type: 'string'
+                      type: 'string',
                     },
                     state: {
                       description:
                         'The name of the state or major region, usually in a postal address.',
-                      type: 'string'
+                      type: 'string',
                     },
                     country: {
                       description:
                         'The name of the country, usually in a postal address.',
-                      type: 'string'
+                      type: 'string',
                     },
                     name: {
                       description:
                         'name is a string, typically the name of the object the key appears in.',
                       type: 'string',
-                      pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                    }
+                      pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                    },
                   },
-                  type: 'object'
-                }
+                  type: 'object',
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             shipper: {
               description:
@@ -687,10 +687,10 @@ const schema: Schema = {
                   description:
                     'name is a string, typically the name of the object the key appears in.',
                   type: 'string',
-                  pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                }
+                  pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             location: {
               description:
@@ -699,45 +699,45 @@ const schema: Schema = {
                 postal_code: {
                   description:
                     'postal_code is the postal code used in a postal address',
-                  type: 'string'
+                  type: 'string',
                 },
                 street_address: {
                   description:
                     'The street name and mailbox number of a postal address.',
-                  type: 'string'
+                  type: 'string',
                 },
                 city: {
                   description:
                     'The name of the city, usually in a postal address.',
-                  type: 'string'
+                  type: 'string',
                 },
                 state: {
                   description:
                     'The name of the state or major region, usually in a postal address.',
-                  type: 'string'
+                  type: 'string',
                 },
                 country: {
                   description:
                     'The name of the country, usually in a postal address.',
-                  type: 'string'
+                  type: 'string',
                 },
                 name: {
                   description:
                     'name is a string, typically the name of the object the key appears in.',
                   type: 'string',
-                  pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                }
+                  pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             name: {
               description:
                 'name is a string, typically the name of the object the key appears in.',
               type: 'string',
-              pattern: '^(?!(indexing|.*-index|_.*)).*$'
-            }
+              pattern: '^(?!(indexing|.*-index|_.*)).*$',
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         products_observed: {
           description: 'The set of products evaluated in the audit.',
@@ -751,12 +751,12 @@ const schema: Schema = {
                   'name is a string, typically the name of the object the key appears in.',
                 type: 'string',
                 pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                examples: ['tomatoes', 'peppers', 'zucchini']
+                examples: ['tomatoes', 'peppers', 'zucchini'],
               },
               organic: {
                 description:
                   'organic is a true/false value indicating if a particular product is considered organic or not.',
-                type: 'boolean'
+                type: 'boolean',
               },
               area: {
                 description:
@@ -766,15 +766,15 @@ const schema: Schema = {
                     description:
                       'the units used to interpret the associated value.',
                     type: 'string',
-                    examples: ['acres', 'ac', 'hectares', 'ha']
+                    examples: ['acres', 'ac', 'hectares', 'ha'],
                   },
                   value: {
                     description:
                       'a numeric or qualitative value, represented as a string',
-                    type: 'string'
-                  }
+                    type: 'string',
+                  },
                 },
-                type: 'object'
+                type: 'object',
               },
               location: {
                 description:
@@ -783,40 +783,40 @@ const schema: Schema = {
                   postal_code: {
                     description:
                       'postal_code is the postal code used in a postal address',
-                    type: 'string'
+                    type: 'string',
                   },
                   street_address: {
                     description:
                       'The street name and mailbox number of a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   city: {
                     description:
                       'The name of the city, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   state: {
                     description:
                       'The name of the state or major region, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   country: {
                     description:
                       'The name of the country, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   name: {
                     description:
                       'name is a string, typically the name of the object the key appears in.',
                     type: 'string',
-                    pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                  }
+                    pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                  },
                 },
-                type: 'object'
-              }
+                type: 'object',
+              },
             },
-            type: 'object'
-          }
+            type: 'object',
+          },
         },
         similar_products_not_observed: {
           description:
@@ -831,12 +831,12 @@ const schema: Schema = {
                   'name is a string, typically the name of the object the key appears in.',
                 type: 'string',
                 pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                examples: ['tomatoes', 'peppers', 'zucchini']
+                examples: ['tomatoes', 'peppers', 'zucchini'],
               },
               organic: {
                 description:
                   'organic is a true/false value indicating if a particular product is considered organic or not.',
-                type: 'boolean'
+                type: 'boolean',
               },
               area: {
                 description:
@@ -846,15 +846,15 @@ const schema: Schema = {
                     description:
                       'the units used to interpret the associated value.',
                     type: 'string',
-                    examples: ['acres', 'ac', 'hectares', 'ha']
+                    examples: ['acres', 'ac', 'hectares', 'ha'],
                   },
                   value: {
                     description:
                       'a numeric or qualitative value, represented as a string',
-                    type: 'string'
-                  }
+                    type: 'string',
+                  },
                 },
-                type: 'object'
+                type: 'object',
               },
               location: {
                 description:
@@ -863,40 +863,40 @@ const schema: Schema = {
                   postal_code: {
                     description:
                       'postal_code is the postal code used in a postal address',
-                    type: 'string'
+                    type: 'string',
                   },
                   street_address: {
                     description:
                       'The street name and mailbox number of a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   city: {
                     description:
                       'The name of the city, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   state: {
                     description:
                       'The name of the state or major region, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   country: {
                     description:
                       'The name of the country, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   name: {
                     description:
                       'name is a string, typically the name of the object the key appears in.',
                     type: 'string',
-                    pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                  }
+                    pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                  },
                 },
-                type: 'object'
-              }
+                type: 'object',
+              },
             },
-            type: 'object'
-          }
+            type: 'object',
+          },
         },
         products_applied_for_but_not_observed: {
           description:
@@ -911,12 +911,12 @@ const schema: Schema = {
                   'name is a string, typically the name of the object the key appears in.',
                 type: 'string',
                 pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                examples: ['tomatoes', 'peppers', 'zucchini']
+                examples: ['tomatoes', 'peppers', 'zucchini'],
               },
               organic: {
                 description:
                   'organic is a true/false value indicating if a particular product is considered organic or not.',
-                type: 'boolean'
+                type: 'boolean',
               },
               area: {
                 description:
@@ -926,15 +926,15 @@ const schema: Schema = {
                     description:
                       'the units used to interpret the associated value.',
                     type: 'string',
-                    examples: ['acres', 'ac', 'hectares', 'ha']
+                    examples: ['acres', 'ac', 'hectares', 'ha'],
                   },
                   value: {
                     description:
                       'a numeric or qualitative value, represented as a string',
-                    type: 'string'
-                  }
+                    type: 'string',
+                  },
                 },
-                type: 'object'
+                type: 'object',
               },
               location: {
                 description:
@@ -943,40 +943,40 @@ const schema: Schema = {
                   postal_code: {
                     description:
                       'postal_code is the postal code used in a postal address',
-                    type: 'string'
+                    type: 'string',
                   },
                   street_address: {
                     description:
                       'The street name and mailbox number of a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   city: {
                     description:
                       'The name of the city, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   state: {
                     description:
                       'The name of the state or major region, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   country: {
                     description:
                       'The name of the country, usually in a postal address.',
-                    type: 'string'
+                    type: 'string',
                   },
                   name: {
                     description:
                       'name is a string, typically the name of the object the key appears in.',
                     type: 'string',
-                    pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                  }
+                    pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                  },
                 },
-                type: 'object'
-              }
+                type: 'object',
+              },
             },
-            type: 'object'
-          }
+            type: 'object',
+          },
         },
         production_sites: {
           description:
@@ -989,13 +989,13 @@ const schema: Schema = {
                 description:
                   'name is a string, typically the name of the object the key appears in.',
                 type: 'string',
-                pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                pattern: '^(?!(indexing|.*-index|_.*)).*$',
               },
               id: {
                 description:
                   'An id is a string which should be reasonably unique to represent the  object it belongs to.',
                 type: 'string',
-                pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                pattern: '^(?!(indexing|.*-index|_.*)).*$',
               },
               products_observed: {
                 description: 'The set of products evaluated in the audit.',
@@ -1009,12 +1009,12 @@ const schema: Schema = {
                         'name is a string, typically the name of the object the key appears in.',
                       type: 'string',
                       pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                      examples: ['tomatoes', 'peppers', 'zucchini']
+                      examples: ['tomatoes', 'peppers', 'zucchini'],
                     },
                     organic: {
                       description:
                         'organic is a true/false value indicating if a particular product is considered organic or not.',
-                      type: 'boolean'
+                      type: 'boolean',
                     },
                     area: {
                       description:
@@ -1024,15 +1024,15 @@ const schema: Schema = {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['acres', 'ac', 'hectares', 'ha']
+                          examples: ['acres', 'ac', 'hectares', 'ha'],
                         },
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     location: {
                       description:
@@ -1041,63 +1041,63 @@ const schema: Schema = {
                         postal_code: {
                           description:
                             'postal_code is the postal code used in a postal address',
-                          type: 'string'
+                          type: 'string',
                         },
                         street_address: {
                           description:
                             'The street name and mailbox number of a postal address.',
-                          type: 'string'
+                          type: 'string',
                         },
                         city: {
                           description:
                             'The name of the city, usually in a postal address.',
-                          type: 'string'
+                          type: 'string',
                         },
                         state: {
                           description:
                             'The name of the state or major region, usually in a postal address.',
-                          type: 'string'
+                          type: 'string',
                         },
                         country: {
                           description:
                             'The name of the country, usually in a postal address.',
-                          type: 'string'
+                          type: 'string',
                         },
                         name: {
                           description:
                             'name is a string, typically the name of the object the key appears in.',
                           type: 'string',
-                          pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                        }
+                          pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                        },
                       },
-                      type: 'object'
-                    }
+                      type: 'object',
+                    },
                   },
-                  type: 'object'
-                }
-              }
+                  type: 'object',
+                },
+              },
             },
-            type: 'object'
-          }
+            type: 'object',
+          },
         },
         parallel_production: {
           description:
             'parallel_production is defined for GlobalGAP as to whether the site is growing other things in addition to those under audit.',
-          type: 'boolean'
+          type: 'boolean',
         },
         parallel_ownership: {
           description:
             'parallel_ownership is defined for GlobalGAP as to whether the site is growing things owned by someone other than the party under audit',
-          type: 'boolean'
+          type: 'boolean',
         },
         applicable_sites_description: {
           description:
             'Introduced for CanadaGAP, this holds a free-form string describing which  types of sites this audit applies to.',
-          type: 'string'
-        }
+          type: 'string',
+        },
       },
       required: ['description', 'operation', 'products_observed'],
-      type: 'object'
+      type: 'object',
     },
     conditions_during_audit: {
       description:
@@ -1110,12 +1110,12 @@ const schema: Schema = {
             start: {
               description:
                 'start describes the date and time when the audit started',
-              type: 'string'
+              type: 'string',
             },
             end: {
               description:
                 'end describes the date and time when the audit was completed.',
-              type: 'string'
+              type: 'string',
             },
             duration: {
               description:
@@ -1125,19 +1125,19 @@ const schema: Schema = {
                   description:
                     'the units used to interpret the associated value.',
                   type: 'string',
-                  examples: ['hours']
+                  examples: ['hours'],
                 },
                 value: {
                   description:
                     'a numeric or qualitative value, represented as a string',
-                  type: 'string'
-                }
+                  type: 'string',
+                },
               },
-              type: 'object'
-            }
+              type: 'object',
+            },
           },
           required: ['start', 'end'],
-          type: 'object'
+          type: 'object',
         },
         operation_observed_date: {
           description:
@@ -1146,12 +1146,12 @@ const schema: Schema = {
             start: {
               description:
                 'start describes the date and time when the audit started',
-              type: 'string'
+              type: 'string',
             },
             end: {
               description:
                 'end describes the date and time when the audit was completed.',
-              type: 'string'
+              type: 'string',
             },
             duration: {
               description:
@@ -1161,23 +1161,23 @@ const schema: Schema = {
                   description:
                     'the units used to interpret the associated value.',
                   type: 'string',
-                  examples: ['hours']
+                  examples: ['hours'],
                 },
                 value: {
                   description:
                     'a numeric or qualitative value, represented as a string',
-                  type: 'string'
-                }
+                  type: 'string',
+                },
               },
-              type: 'object'
-            }
+              type: 'object',
+            },
           },
           required: ['start', 'end'],
-          type: 'object'
-        }
+          type: 'object',
+        },
       },
       required: ['FSMS_observed_date', 'operation_observed_date'],
-      type: 'object'
+      type: 'object',
     },
     certificationid: {
       description:
@@ -1187,7 +1187,7 @@ const schema: Schema = {
           description:
             'An id is a string which should be reasonably unique to represent the  object it belongs to.',
           type: 'string',
-          pattern: '^(?!(indexing|.*-index|_.*)).*$'
+          pattern: '^(?!(indexing|.*-index|_.*)).*$',
         },
         id_source: {
           description:
@@ -1202,7 +1202,7 @@ const schema: Schema = {
                     'name is a string, typically the name of the object the key appears in.',
                   type: 'string',
                   pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                  examples: ['Primus Auditing Operations']
+                  examples: ['Primus Auditing Operations'],
                 },
                 auditor: {
                   description:
@@ -1211,22 +1211,22 @@ const schema: Schema = {
                     conflict_of_interest: {
                       description:
                         'conflict_of_interest indicates if a particular person (auditor) has a known conflict of interest for creating a certification for an organization',
-                      type: 'boolean'
+                      type: 'boolean',
                     },
                     number_prior_audits_this_organization: {
                       description:
                         "Introduced for CanadaGAP, this is the auditor's attestation of how many times they have audited this operation before.",
                       type: 'string',
-                      pattern: '^[0-9]+$'
+                      pattern: '^[0-9]+$',
                     },
                     number_prior_consecutive_audits_this_organization: {
                       description:
                         "Introduced for CanadaGAP, this is the auditor's attestation of how many consecutive times they have audited this operation, excluding the current audit.",
                       type: 'string',
-                      pattern: '^[0-9]+$'
-                    }
+                      pattern: '^[0-9]+$',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 reviewer: {
                   description:
@@ -1236,12 +1236,12 @@ const schema: Schema = {
                       description:
                         'name is a string, typically the name of the object the key appears in.',
                       type: 'string',
-                      pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                      pattern: '^(?!(indexing|.*-index|_.*)).*$',
                     },
                     email: {
                       description:
                         'email address for an organization or contact',
-                      type: 'string'
+                      type: 'string',
                     },
                     location: {
                       description:
@@ -1250,56 +1250,56 @@ const schema: Schema = {
                         postal_code: {
                           description:
                             'postal_code is the postal code used in a postal address',
-                          type: 'string'
+                          type: 'string',
                         },
                         street_address: {
                           description:
                             'The street name and mailbox number of a postal address.',
-                          type: 'string'
+                          type: 'string',
                         },
                         city: {
                           description:
                             'The name of the city, usually in a postal address.',
-                          type: 'string'
+                          type: 'string',
                         },
                         state: {
                           description:
                             'The name of the state or major region, usually in a postal address.',
-                          type: 'string'
+                          type: 'string',
                         },
                         country: {
                           description:
                             'The name of the country, usually in a postal address.',
-                          type: 'string'
+                          type: 'string',
                         },
                         name: {
                           description:
                             'name is a string, typically the name of the object the key appears in.',
                           type: 'string',
-                          pattern: '^(?!(indexing|.*-index|_.*)).*$'
-                        }
+                          pattern: '^(?!(indexing|.*-index|_.*)).*$',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     phone: {
                       description:
                         'phone describes the phone number with country code and area code.',
-                      type: 'string'
+                      type: 'string',
                     },
                     fax: {
                       description: 'fax number for a person or organization',
-                      type: 'string'
-                    }
+                      type: 'string',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 review_date: {
                   description:
                     'Introduced for CanadaGAP.  Indicates when the review of the audit was performed.',
-                  type: 'string'
-                }
+                  type: 'string',
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             scheme: {
               description:
@@ -1310,31 +1310,31 @@ const schema: Schema = {
                     'name is a string, typically the name of the object the key appears in.',
                   type: 'string',
                   pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                  examples: ['PrimusGFS', 'GlobalGAP', 'CanadaGAP', 'SQFI']
+                  examples: ['PrimusGFS', 'GlobalGAP', 'CanadaGAP', 'SQFI'],
                 },
                 version: {
                   description:
                     'version is a string which describes the version of the schema used for the current audit.',
-                  type: 'string'
+                  type: 'string',
                 },
                 option: {
                   description:
                     'option is used as an indicator of type of audit for a given audit version.  Introduced for GlobalGAP audit, also present in CanadaGAP audit.',
-                  type: 'string'
+                  type: 'string',
                 },
                 options: {
                   description:
                     'If an audit covers multiple scheme options, you can make an array of them.',
-                  type: 'string'
-                }
+                  type: 'string',
+                },
               },
-              type: 'object'
-            }
+              type: 'object',
+            },
           },
-          type: 'object'
-        }
+          type: 'object',
+        },
       },
-      type: 'object'
+      type: 'object',
     },
     score: {
       description:
@@ -1342,7 +1342,7 @@ const schema: Schema = {
       properties: {
         units: {
           description: 'the units used to interpret the associated value.',
-          type: 'string'
+          type: 'string',
         },
         preliminary: {
           description: 'A prelimiary score for an audit',
@@ -1350,18 +1350,18 @@ const schema: Schema = {
             value: {
               description:
                 'a numeric or qualitative value, represented as a string',
-              type: 'string'
+              type: 'string',
             },
             units: {
               description: 'the units used to interpret the associated value.',
-              type: 'string'
+              type: 'string',
             },
             possible: {
               description: 'Number of points possible for this control point',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         final: {
           description: 'The final score for an audit',
@@ -1369,32 +1369,32 @@ const schema: Schema = {
             value: {
               description:
                 'a numeric or qualitative value, represented as a string',
-              type: 'string'
+              type: 'string',
             },
             units: {
               description: 'the units used to interpret the associated value.',
-              type: 'string'
+              type: 'string',
             },
             possible: {
               description: 'Number of points possible for this control point',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         value: {
           description:
             'a numeric or qualitative value, represented as a string',
-          type: 'string'
+          type: 'string',
         },
         possible: {
           description: 'Number of points possible for this control point',
-          type: 'string'
+          type: 'string',
         },
         compliance: {
           description:
             'written description indicating the level of satisfaction of the control point. E.g., "Total Compliance", "Minor Deficiency", or simply "Pass"/"Fail".',
-          type: 'string'
+          type: 'string',
         },
         globalgap_levels: {
           description:
@@ -1413,21 +1413,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     no: {
                       description:
@@ -1436,21 +1436,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     n_a: {
                       description:
@@ -1459,29 +1459,29 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     is_compliant: {
                       description:
                         'GlobalGAP has an overall true/false compliance for an audit score',
-                      type: 'boolean'
-                    }
+                      type: 'boolean',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 {
                   properties: {
@@ -1492,21 +1492,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     minor_must: {
                       description:
@@ -1515,21 +1515,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     recommended: {
                       description:
@@ -1538,26 +1538,26 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
-                    }
+                      type: 'object',
+                    },
                   },
-                  type: 'object'
-                }
-              ]
+                  type: 'object',
+                },
+              ],
             },
             minor_musts: {
               description:
@@ -1572,21 +1572,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     no: {
                       description:
@@ -1595,21 +1595,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     n_a: {
                       description:
@@ -1618,29 +1618,29 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     is_compliant: {
                       description:
                         'GlobalGAP has an overall true/false compliance for an audit score',
-                      type: 'boolean'
-                    }
+                      type: 'boolean',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 {
                   properties: {
@@ -1651,21 +1651,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     minor_must: {
                       description:
@@ -1674,21 +1674,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     recommended: {
                       description:
@@ -1697,34 +1697,34 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
-                    }
+                      type: 'object',
+                    },
                   },
-                  type: 'object'
-                }
-              ]
-            }
+                  type: 'object',
+                },
+              ],
+            },
           },
-          type: 'object'
+          type: 'object',
         },
         canadagap_isautofail: {
           description:
             'If the audit is scored as autofail, this key should be set to true in the score section.  Otherwise it can either be missing or set to false.  Specific to CanadaGAP',
-          type: 'boolean'
+          type: 'boolean',
         },
         subtotals: {
           description:
@@ -1737,7 +1737,7 @@ const schema: Schema = {
                 units: {
                   description:
                     'the units used to interpret the associated value.',
-                  type: 'string'
+                  type: 'string',
                 },
                 preliminary: {
                   description: 'A prelimiary score for an audit',
@@ -1745,20 +1745,20 @@ const schema: Schema = {
                     value: {
                       description:
                         'a numeric or qualitative value, represented as a string',
-                      type: 'string'
+                      type: 'string',
                     },
                     units: {
                       description:
                         'the units used to interpret the associated value.',
-                      type: 'string'
+                      type: 'string',
                     },
                     possible: {
                       description:
                         'Number of points possible for this control point',
-                      type: 'string'
-                    }
+                      type: 'string',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 final: {
                   description: 'The final score for an audit',
@@ -1766,35 +1766,35 @@ const schema: Schema = {
                     value: {
                       description:
                         'a numeric or qualitative value, represented as a string',
-                      type: 'string'
+                      type: 'string',
                     },
                     units: {
                       description:
                         'the units used to interpret the associated value.',
-                      type: 'string'
+                      type: 'string',
                     },
                     possible: {
                       description:
                         'Number of points possible for this control point',
-                      type: 'string'
-                    }
+                      type: 'string',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 value: {
                   description:
                     'a numeric or qualitative value, represented as a string',
-                  type: 'string'
+                  type: 'string',
                 },
                 possible: {
                   description:
                     'Number of points possible for this control point',
-                  type: 'string'
+                  type: 'string',
                 },
                 compliance: {
                   description:
                     'written description indicating the level of satisfaction of the control point. E.g., "Total Compliance", "Minor Deficiency", or simply "Pass"/"Fail".',
-                  type: 'string'
+                  type: 'string',
                 },
                 globalgap_levels: {
                   description:
@@ -1813,21 +1813,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             no: {
                               description:
@@ -1836,21 +1836,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             n_a: {
                               description:
@@ -1859,29 +1859,29 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             is_compliant: {
                               description:
                                 'GlobalGAP has an overall true/false compliance for an audit score',
-                              type: 'boolean'
-                            }
+                              type: 'boolean',
+                            },
                           },
-                          type: 'object'
+                          type: 'object',
                         },
                         {
                           properties: {
@@ -1892,21 +1892,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             minor_must: {
                               description:
@@ -1915,21 +1915,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             recommended: {
                               description:
@@ -1938,26 +1938,26 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
-                            }
+                              type: 'object',
+                            },
                           },
-                          type: 'object'
-                        }
-                      ]
+                          type: 'object',
+                        },
+                      ],
                     },
                     minor_musts: {
                       description:
@@ -1972,21 +1972,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             no: {
                               description:
@@ -1995,21 +1995,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             n_a: {
                               description:
@@ -2018,29 +2018,29 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             is_compliant: {
                               description:
                                 'GlobalGAP has an overall true/false compliance for an audit score',
-                              type: 'boolean'
-                            }
+                              type: 'boolean',
+                            },
                           },
-                          type: 'object'
+                          type: 'object',
                         },
                         {
                           properties: {
@@ -2051,21 +2051,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             minor_must: {
                               description:
@@ -2074,21 +2074,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             recommended: {
                               description:
@@ -2097,43 +2097,43 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
-                            }
+                              type: 'object',
+                            },
                           },
-                          type: 'object'
-                        }
-                      ]
-                    }
+                          type: 'object',
+                        },
+                      ],
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 canadagap_isautofail: {
                   description:
                     'If the audit is scored as autofail, this key should be set to true in the score section.  Otherwise it can either be missing or set to false.  Specific to CanadaGAP',
-                  type: 'boolean'
-                }
+                  type: 'boolean',
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             name: {
               description:
                 'name is a string, typically the name of the object the key appears in.',
               type: 'string',
-              pattern: '^(?!(indexing|.*-index|_.*)).*$'
+              pattern: '^(?!(indexing|.*-index|_.*)).*$',
             },
             sectionids: {
               description:
@@ -2142,20 +2142,20 @@ const schema: Schema = {
               items: {
                 description:
                   "sectionid is the string id associated with a particular section. sectionid is constructed by prefixing the id with any parent sections, separated by periods (e.g., sectionid '2.3' is a section that is inside of a parent section with sectionid '2').  Note that CanadaGAP also has a special sectionid of \"autofail\" for their autofail items.  All other sectionids that we have seen are of the form <number_or_letter>.<number_or_letter>.<number_or_letter>... with 1 or more numbers",
-                type: 'string'
-              }
+                type: 'string',
+              },
             },
             weighting_factor: {
               description:
                 'Introduced for CanadaGAP.  Represents the weight used to combine sections into a total score.',
               type: 'string',
-              pattern: '^-?[0-9]+(.[0-9]+)?'
-            }
+              pattern: '^-?[0-9]+(.[0-9]+)?',
+            },
           },
-          type: 'object'
-        }
+          type: 'object',
+        },
       },
-      type: 'object'
+      type: 'object',
     },
     sections: {
       description:
@@ -2170,12 +2170,12 @@ const schema: Schema = {
             description:
               'name is a string, typically the name of the object the key appears in.',
             type: 'string',
-            pattern: '^(?!(indexing|.*-index|_.*)).*$'
+            pattern: '^(?!(indexing|.*-index|_.*)).*$',
           },
           sectionid: {
             description:
               "sectionid is the string id associated with a particular section. sectionid is constructed by prefixing the id with any parent sections, separated by periods (e.g., sectionid '2.3' is a section that is inside of a parent section with sectionid '2').  Note that CanadaGAP also has a special sectionid of \"autofail\" for their autofail items.  All other sectionids that we have seen are of the form <number_or_letter>.<number_or_letter>.<number_or_letter>... with 1 or more numbers",
-            type: 'string'
+            type: 'string',
           },
           score: {
             description:
@@ -2184,7 +2184,7 @@ const schema: Schema = {
               units: {
                 description:
                   'the units used to interpret the associated value.',
-                type: 'string'
+                type: 'string',
               },
               preliminary: {
                 description: 'A prelimiary score for an audit',
@@ -2192,20 +2192,20 @@ const schema: Schema = {
                   value: {
                     description:
                       'a numeric or qualitative value, represented as a string',
-                    type: 'string'
+                    type: 'string',
                   },
                   units: {
                     description:
                       'the units used to interpret the associated value.',
-                    type: 'string'
+                    type: 'string',
                   },
                   possible: {
                     description:
                       'Number of points possible for this control point',
-                    type: 'string'
-                  }
+                    type: 'string',
+                  },
                 },
-                type: 'object'
+                type: 'object',
               },
               final: {
                 description: 'The final score for an audit',
@@ -2213,34 +2213,34 @@ const schema: Schema = {
                   value: {
                     description:
                       'a numeric or qualitative value, represented as a string',
-                    type: 'string'
+                    type: 'string',
                   },
                   units: {
                     description:
                       'the units used to interpret the associated value.',
-                    type: 'string'
+                    type: 'string',
                   },
                   possible: {
                     description:
                       'Number of points possible for this control point',
-                    type: 'string'
-                  }
+                    type: 'string',
+                  },
                 },
-                type: 'object'
+                type: 'object',
               },
               value: {
                 description:
                   'a numeric or qualitative value, represented as a string',
-                type: 'string'
+                type: 'string',
               },
               possible: {
                 description: 'Number of points possible for this control point',
-                type: 'string'
+                type: 'string',
               },
               compliance: {
                 description:
                   'written description indicating the level of satisfaction of the control point. E.g., "Total Compliance", "Minor Deficiency", or simply "Pass"/"Fail".',
-                type: 'string'
+                type: 'string',
               },
               globalgap_levels: {
                 description:
@@ -2259,21 +2259,21 @@ const schema: Schema = {
                               value: {
                                 description:
                                   'a numeric or qualitative value, represented as a string',
-                                type: 'string'
+                                type: 'string',
                               },
                               units: {
                                 description:
                                   'the units used to interpret the associated value.',
                                 type: 'string',
-                                examples: ['count']
+                                examples: ['count'],
                               },
                               possible: {
                                 description:
                                   'Number of points possible for this control point',
-                                type: 'string'
-                              }
+                                type: 'string',
+                              },
                             },
-                            type: 'object'
+                            type: 'object',
                           },
                           no: {
                             description:
@@ -2282,21 +2282,21 @@ const schema: Schema = {
                               value: {
                                 description:
                                   'a numeric or qualitative value, represented as a string',
-                                type: 'string'
+                                type: 'string',
                               },
                               units: {
                                 description:
                                   'the units used to interpret the associated value.',
                                 type: 'string',
-                                examples: ['count']
+                                examples: ['count'],
                               },
                               possible: {
                                 description:
                                   'Number of points possible for this control point',
-                                type: 'string'
-                              }
+                                type: 'string',
+                              },
                             },
-                            type: 'object'
+                            type: 'object',
                           },
                           n_a: {
                             description:
@@ -2305,29 +2305,29 @@ const schema: Schema = {
                               value: {
                                 description:
                                   'a numeric or qualitative value, represented as a string',
-                                type: 'string'
+                                type: 'string',
                               },
                               units: {
                                 description:
                                   'the units used to interpret the associated value.',
                                 type: 'string',
-                                examples: ['count']
+                                examples: ['count'],
                               },
                               possible: {
                                 description:
                                   'Number of points possible for this control point',
-                                type: 'string'
-                              }
+                                type: 'string',
+                              },
                             },
-                            type: 'object'
+                            type: 'object',
                           },
                           is_compliant: {
                             description:
                               'GlobalGAP has an overall true/false compliance for an audit score',
-                            type: 'boolean'
-                          }
+                            type: 'boolean',
+                          },
                         },
-                        type: 'object'
+                        type: 'object',
                       },
                       {
                         properties: {
@@ -2338,21 +2338,21 @@ const schema: Schema = {
                               value: {
                                 description:
                                   'a numeric or qualitative value, represented as a string',
-                                type: 'string'
+                                type: 'string',
                               },
                               units: {
                                 description:
                                   'the units used to interpret the associated value.',
                                 type: 'string',
-                                examples: ['count']
+                                examples: ['count'],
                               },
                               possible: {
                                 description:
                                   'Number of points possible for this control point',
-                                type: 'string'
-                              }
+                                type: 'string',
+                              },
                             },
-                            type: 'object'
+                            type: 'object',
                           },
                           minor_must: {
                             description:
@@ -2361,21 +2361,21 @@ const schema: Schema = {
                               value: {
                                 description:
                                   'a numeric or qualitative value, represented as a string',
-                                type: 'string'
+                                type: 'string',
                               },
                               units: {
                                 description:
                                   'the units used to interpret the associated value.',
                                 type: 'string',
-                                examples: ['count']
+                                examples: ['count'],
                               },
                               possible: {
                                 description:
                                   'Number of points possible for this control point',
-                                type: 'string'
-                              }
+                                type: 'string',
+                              },
                             },
-                            type: 'object'
+                            type: 'object',
                           },
                           recommended: {
                             description:
@@ -2384,26 +2384,26 @@ const schema: Schema = {
                               value: {
                                 description:
                                   'a numeric or qualitative value, represented as a string',
-                                type: 'string'
+                                type: 'string',
                               },
                               units: {
                                 description:
                                   'the units used to interpret the associated value.',
                                 type: 'string',
-                                examples: ['count']
+                                examples: ['count'],
                               },
                               possible: {
                                 description:
                                   'Number of points possible for this control point',
-                                type: 'string'
-                              }
+                                type: 'string',
+                              },
                             },
-                            type: 'object'
-                          }
+                            type: 'object',
+                          },
                         },
-                        type: 'object'
-                      }
-                    ]
+                        type: 'object',
+                      },
+                    ],
                   },
                   minor_musts: {
                     description:
@@ -2418,21 +2418,21 @@ const schema: Schema = {
                               value: {
                                 description:
                                   'a numeric or qualitative value, represented as a string',
-                                type: 'string'
+                                type: 'string',
                               },
                               units: {
                                 description:
                                   'the units used to interpret the associated value.',
                                 type: 'string',
-                                examples: ['count']
+                                examples: ['count'],
                               },
                               possible: {
                                 description:
                                   'Number of points possible for this control point',
-                                type: 'string'
-                              }
+                                type: 'string',
+                              },
                             },
-                            type: 'object'
+                            type: 'object',
                           },
                           no: {
                             description:
@@ -2441,21 +2441,21 @@ const schema: Schema = {
                               value: {
                                 description:
                                   'a numeric or qualitative value, represented as a string',
-                                type: 'string'
+                                type: 'string',
                               },
                               units: {
                                 description:
                                   'the units used to interpret the associated value.',
                                 type: 'string',
-                                examples: ['count']
+                                examples: ['count'],
                               },
                               possible: {
                                 description:
                                   'Number of points possible for this control point',
-                                type: 'string'
-                              }
+                                type: 'string',
+                              },
                             },
-                            type: 'object'
+                            type: 'object',
                           },
                           n_a: {
                             description:
@@ -2464,29 +2464,29 @@ const schema: Schema = {
                               value: {
                                 description:
                                   'a numeric or qualitative value, represented as a string',
-                                type: 'string'
+                                type: 'string',
                               },
                               units: {
                                 description:
                                   'the units used to interpret the associated value.',
                                 type: 'string',
-                                examples: ['count']
+                                examples: ['count'],
                               },
                               possible: {
                                 description:
                                   'Number of points possible for this control point',
-                                type: 'string'
-                              }
+                                type: 'string',
+                              },
                             },
-                            type: 'object'
+                            type: 'object',
                           },
                           is_compliant: {
                             description:
                               'GlobalGAP has an overall true/false compliance for an audit score',
-                            type: 'boolean'
-                          }
+                            type: 'boolean',
+                          },
                         },
-                        type: 'object'
+                        type: 'object',
                       },
                       {
                         properties: {
@@ -2497,21 +2497,21 @@ const schema: Schema = {
                               value: {
                                 description:
                                   'a numeric or qualitative value, represented as a string',
-                                type: 'string'
+                                type: 'string',
                               },
                               units: {
                                 description:
                                   'the units used to interpret the associated value.',
                                 type: 'string',
-                                examples: ['count']
+                                examples: ['count'],
                               },
                               possible: {
                                 description:
                                   'Number of points possible for this control point',
-                                type: 'string'
-                              }
+                                type: 'string',
+                              },
                             },
-                            type: 'object'
+                            type: 'object',
                           },
                           minor_must: {
                             description:
@@ -2520,21 +2520,21 @@ const schema: Schema = {
                               value: {
                                 description:
                                   'a numeric or qualitative value, represented as a string',
-                                type: 'string'
+                                type: 'string',
                               },
                               units: {
                                 description:
                                   'the units used to interpret the associated value.',
                                 type: 'string',
-                                examples: ['count']
+                                examples: ['count'],
                               },
                               possible: {
                                 description:
                                   'Number of points possible for this control point',
-                                type: 'string'
-                              }
+                                type: 'string',
+                              },
                             },
-                            type: 'object'
+                            type: 'object',
                           },
                           recommended: {
                             description:
@@ -2543,34 +2543,34 @@ const schema: Schema = {
                               value: {
                                 description:
                                   'a numeric or qualitative value, represented as a string',
-                                type: 'string'
+                                type: 'string',
                               },
                               units: {
                                 description:
                                   'the units used to interpret the associated value.',
                                 type: 'string',
-                                examples: ['count']
+                                examples: ['count'],
                               },
                               possible: {
                                 description:
                                   'Number of points possible for this control point',
-                                type: 'string'
-                              }
+                                type: 'string',
+                              },
                             },
-                            type: 'object'
-                          }
+                            type: 'object',
+                          },
                         },
-                        type: 'object'
-                      }
-                    ]
-                  }
+                        type: 'object',
+                      },
+                    ],
+                  },
                 },
-                type: 'object'
+                type: 'object',
               },
               canadagap_isautofail: {
                 description:
                   'If the audit is scored as autofail, this key should be set to true in the score section.  Otherwise it can either be missing or set to false.  Specific to CanadaGAP',
-                type: 'boolean'
+                type: 'boolean',
               },
               subtotals: {
                 description:
@@ -2583,7 +2583,7 @@ const schema: Schema = {
                       units: {
                         description:
                           'the units used to interpret the associated value.',
-                        type: 'string'
+                        type: 'string',
                       },
                       preliminary: {
                         description: 'A prelimiary score for an audit',
@@ -2591,20 +2591,20 @@ const schema: Schema = {
                           value: {
                             description:
                               'a numeric or qualitative value, represented as a string',
-                            type: 'string'
+                            type: 'string',
                           },
                           units: {
                             description:
                               'the units used to interpret the associated value.',
-                            type: 'string'
+                            type: 'string',
                           },
                           possible: {
                             description:
                               'Number of points possible for this control point',
-                            type: 'string'
-                          }
+                            type: 'string',
+                          },
                         },
-                        type: 'object'
+                        type: 'object',
                       },
                       final: {
                         description: 'The final score for an audit',
@@ -2612,35 +2612,35 @@ const schema: Schema = {
                           value: {
                             description:
                               'a numeric or qualitative value, represented as a string',
-                            type: 'string'
+                            type: 'string',
                           },
                           units: {
                             description:
                               'the units used to interpret the associated value.',
-                            type: 'string'
+                            type: 'string',
                           },
                           possible: {
                             description:
                               'Number of points possible for this control point',
-                            type: 'string'
-                          }
+                            type: 'string',
+                          },
                         },
-                        type: 'object'
+                        type: 'object',
                       },
                       value: {
                         description:
                           'a numeric or qualitative value, represented as a string',
-                        type: 'string'
+                        type: 'string',
                       },
                       possible: {
                         description:
                           'Number of points possible for this control point',
-                        type: 'string'
+                        type: 'string',
                       },
                       compliance: {
                         description:
                           'written description indicating the level of satisfaction of the control point. E.g., "Total Compliance", "Minor Deficiency", or simply "Pass"/"Fail".',
-                        type: 'string'
+                        type: 'string',
                       },
                       globalgap_levels: {
                         description:
@@ -2659,21 +2659,21 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   no: {
                                     description:
@@ -2682,21 +2682,21 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   n_a: {
                                     description:
@@ -2705,29 +2705,29 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   is_compliant: {
                                     description:
                                       'GlobalGAP has an overall true/false compliance for an audit score',
-                                    type: 'boolean'
-                                  }
+                                    type: 'boolean',
+                                  },
                                 },
-                                type: 'object'
+                                type: 'object',
                               },
                               {
                                 properties: {
@@ -2738,21 +2738,21 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   minor_must: {
                                     description:
@@ -2761,21 +2761,21 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   recommended: {
                                     description:
@@ -2784,26 +2784,26 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
-                                  }
+                                    type: 'object',
+                                  },
                                 },
-                                type: 'object'
-                              }
-                            ]
+                                type: 'object',
+                              },
+                            ],
                           },
                           minor_musts: {
                             description:
@@ -2818,21 +2818,21 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   no: {
                                     description:
@@ -2841,21 +2841,21 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   n_a: {
                                     description:
@@ -2864,29 +2864,29 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   is_compliant: {
                                     description:
                                       'GlobalGAP has an overall true/false compliance for an audit score',
-                                    type: 'boolean'
-                                  }
+                                    type: 'boolean',
+                                  },
                                 },
-                                type: 'object'
+                                type: 'object',
                               },
                               {
                                 properties: {
@@ -2897,21 +2897,21 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   minor_must: {
                                     description:
@@ -2920,21 +2920,21 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   recommended: {
                                     description:
@@ -2943,43 +2943,43 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
-                                  }
+                                    type: 'object',
+                                  },
                                 },
-                                type: 'object'
-                              }
-                            ]
-                          }
+                                type: 'object',
+                              },
+                            ],
+                          },
                         },
-                        type: 'object'
+                        type: 'object',
                       },
                       canadagap_isautofail: {
                         description:
                           'If the audit is scored as autofail, this key should be set to true in the score section.  Otherwise it can either be missing or set to false.  Specific to CanadaGAP',
-                        type: 'boolean'
-                      }
+                        type: 'boolean',
+                      },
                     },
-                    type: 'object'
+                    type: 'object',
                   },
                   name: {
                     description:
                       'name is a string, typically the name of the object the key appears in.',
                     type: 'string',
-                    pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                    pattern: '^(?!(indexing|.*-index|_.*)).*$',
                   },
                   sectionids: {
                     description:
@@ -2988,20 +2988,20 @@ const schema: Schema = {
                     items: {
                       description:
                         "sectionid is the string id associated with a particular section. sectionid is constructed by prefixing the id with any parent sections, separated by periods (e.g., sectionid '2.3' is a section that is inside of a parent section with sectionid '2').  Note that CanadaGAP also has a special sectionid of \"autofail\" for their autofail items.  All other sectionids that we have seen are of the form <number_or_letter>.<number_or_letter>.<number_or_letter>... with 1 or more numbers",
-                      type: 'string'
-                    }
+                      type: 'string',
+                    },
                   },
                   weighting_factor: {
                     description:
                       'Introduced for CanadaGAP.  Represents the weight used to combine sections into a total score.',
                     type: 'string',
-                    pattern: '^-?[0-9]+(.[0-9]+)?'
-                  }
+                    pattern: '^-?[0-9]+(.[0-9]+)?',
+                  },
                 },
-                type: 'object'
-              }
+                type: 'object',
+              },
             },
-            type: 'object'
+            type: 'object',
           },
           sectionids: {
             description:
@@ -3010,8 +3010,8 @@ const schema: Schema = {
             items: {
               description:
                 "sectionid is the string id associated with a particular section. sectionid is constructed by prefixing the id with any parent sections, separated by periods (e.g., sectionid '2.3' is a section that is inside of a parent section with sectionid '2').  Note that CanadaGAP also has a special sectionid of \"autofail\" for their autofail items.  All other sectionids that we have seen are of the form <number_or_letter>.<number_or_letter>.<number_or_letter>... with 1 or more numbers",
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           control_pointids: {
             description:
@@ -3021,8 +3021,8 @@ const schema: Schema = {
               description:
                 'control_pointid is the id associated with a particular control point.',
               type: 'string',
-              pattern: '^(?!(indexing|.*-index|_.*)).*$'
-            }
+              pattern: '^(?!(indexing|.*-index|_.*)).*$',
+            },
           },
           supporting_points: {
             description:
@@ -3036,7 +3036,7 @@ const schema: Schema = {
                     description:
                       'name is a string, typically the name of the object the key appears in.',
                     type: 'string',
-                    pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                    pattern: '^(?!(indexing|.*-index|_.*)).*$',
                   },
                   score: {
                     description:
@@ -3045,7 +3045,7 @@ const schema: Schema = {
                       units: {
                         description:
                           'the units used to interpret the associated value.',
-                        type: 'string'
+                        type: 'string',
                       },
                       preliminary: {
                         description: 'A prelimiary score for an audit',
@@ -3053,20 +3053,20 @@ const schema: Schema = {
                           value: {
                             description:
                               'a numeric or qualitative value, represented as a string',
-                            type: 'string'
+                            type: 'string',
                           },
                           units: {
                             description:
                               'the units used to interpret the associated value.',
-                            type: 'string'
+                            type: 'string',
                           },
                           possible: {
                             description:
                               'Number of points possible for this control point',
-                            type: 'string'
-                          }
+                            type: 'string',
+                          },
                         },
-                        type: 'object'
+                        type: 'object',
                       },
                       final: {
                         description: 'The final score for an audit',
@@ -3074,35 +3074,35 @@ const schema: Schema = {
                           value: {
                             description:
                               'a numeric or qualitative value, represented as a string',
-                            type: 'string'
+                            type: 'string',
                           },
                           units: {
                             description:
                               'the units used to interpret the associated value.',
-                            type: 'string'
+                            type: 'string',
                           },
                           possible: {
                             description:
                               'Number of points possible for this control point',
-                            type: 'string'
-                          }
+                            type: 'string',
+                          },
                         },
-                        type: 'object'
+                        type: 'object',
                       },
                       value: {
                         description:
                           'a numeric or qualitative value, represented as a string',
-                        type: 'string'
+                        type: 'string',
                       },
                       possible: {
                         description:
                           'Number of points possible for this control point',
-                        type: 'string'
+                        type: 'string',
                       },
                       compliance: {
                         description:
                           'written description indicating the level of satisfaction of the control point. E.g., "Total Compliance", "Minor Deficiency", or simply "Pass"/"Fail".',
-                        type: 'string'
+                        type: 'string',
                       },
                       globalgap_levels: {
                         description:
@@ -3121,21 +3121,21 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   no: {
                                     description:
@@ -3144,21 +3144,21 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   n_a: {
                                     description:
@@ -3167,29 +3167,29 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   is_compliant: {
                                     description:
                                       'GlobalGAP has an overall true/false compliance for an audit score',
-                                    type: 'boolean'
-                                  }
+                                    type: 'boolean',
+                                  },
                                 },
-                                type: 'object'
+                                type: 'object',
                               },
                               {
                                 properties: {
@@ -3200,21 +3200,21 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   minor_must: {
                                     description:
@@ -3223,21 +3223,21 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   recommended: {
                                     description:
@@ -3246,26 +3246,26 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
-                                  }
+                                    type: 'object',
+                                  },
                                 },
-                                type: 'object'
-                              }
-                            ]
+                                type: 'object',
+                              },
+                            ],
                           },
                           minor_musts: {
                             description:
@@ -3280,21 +3280,21 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   no: {
                                     description:
@@ -3303,21 +3303,21 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   n_a: {
                                     description:
@@ -3326,29 +3326,29 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   is_compliant: {
                                     description:
                                       'GlobalGAP has an overall true/false compliance for an audit score',
-                                    type: 'boolean'
-                                  }
+                                    type: 'boolean',
+                                  },
                                 },
-                                type: 'object'
+                                type: 'object',
                               },
                               {
                                 properties: {
@@ -3359,21 +3359,21 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   minor_must: {
                                     description:
@@ -3382,21 +3382,21 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
+                                    type: 'object',
                                   },
                                   recommended: {
                                     description:
@@ -3405,34 +3405,34 @@ const schema: Schema = {
                                       value: {
                                         description:
                                           'a numeric or qualitative value, represented as a string',
-                                        type: 'string'
+                                        type: 'string',
                                       },
                                       units: {
                                         description:
                                           'the units used to interpret the associated value.',
                                         type: 'string',
-                                        examples: ['count']
+                                        examples: ['count'],
                                       },
                                       possible: {
                                         description:
                                           'Number of points possible for this control point',
-                                        type: 'string'
-                                      }
+                                        type: 'string',
+                                      },
                                     },
-                                    type: 'object'
-                                  }
+                                    type: 'object',
+                                  },
                                 },
-                                type: 'object'
-                              }
-                            ]
-                          }
+                                type: 'object',
+                              },
+                            ],
+                          },
                         },
-                        type: 'object'
+                        type: 'object',
                       },
                       canadagap_isautofail: {
                         description:
                           'If the audit is scored as autofail, this key should be set to true in the score section.  Otherwise it can either be missing or set to false.  Specific to CanadaGAP',
-                        type: 'boolean'
+                        type: 'boolean',
                       },
                       subtotals: {
                         description:
@@ -3445,7 +3445,7 @@ const schema: Schema = {
                               units: {
                                 description:
                                   'the units used to interpret the associated value.',
-                                type: 'string'
+                                type: 'string',
                               },
                               preliminary: {
                                 description: 'A prelimiary score for an audit',
@@ -3453,20 +3453,20 @@ const schema: Schema = {
                                   value: {
                                     description:
                                       'a numeric or qualitative value, represented as a string',
-                                    type: 'string'
+                                    type: 'string',
                                   },
                                   units: {
                                     description:
                                       'the units used to interpret the associated value.',
-                                    type: 'string'
+                                    type: 'string',
                                   },
                                   possible: {
                                     description:
                                       'Number of points possible for this control point',
-                                    type: 'string'
-                                  }
+                                    type: 'string',
+                                  },
                                 },
-                                type: 'object'
+                                type: 'object',
                               },
                               final: {
                                 description: 'The final score for an audit',
@@ -3474,35 +3474,35 @@ const schema: Schema = {
                                   value: {
                                     description:
                                       'a numeric or qualitative value, represented as a string',
-                                    type: 'string'
+                                    type: 'string',
                                   },
                                   units: {
                                     description:
                                       'the units used to interpret the associated value.',
-                                    type: 'string'
+                                    type: 'string',
                                   },
                                   possible: {
                                     description:
                                       'Number of points possible for this control point',
-                                    type: 'string'
-                                  }
+                                    type: 'string',
+                                  },
                                 },
-                                type: 'object'
+                                type: 'object',
                               },
                               value: {
                                 description:
                                   'a numeric or qualitative value, represented as a string',
-                                type: 'string'
+                                type: 'string',
                               },
                               possible: {
                                 description:
                                   'Number of points possible for this control point',
-                                type: 'string'
+                                type: 'string',
                               },
                               compliance: {
                                 description:
                                   'written description indicating the level of satisfaction of the control point. E.g., "Total Compliance", "Minor Deficiency", or simply "Pass"/"Fail".',
-                                type: 'string'
+                                type: 'string',
                               },
                               globalgap_levels: {
                                 description:
@@ -3521,21 +3521,21 @@ const schema: Schema = {
                                               value: {
                                                 description:
                                                   'a numeric or qualitative value, represented as a string',
-                                                type: 'string'
+                                                type: 'string',
                                               },
                                               units: {
                                                 description:
                                                   'the units used to interpret the associated value.',
                                                 type: 'string',
-                                                examples: ['count']
+                                                examples: ['count'],
                                               },
                                               possible: {
                                                 description:
                                                   'Number of points possible for this control point',
-                                                type: 'string'
-                                              }
+                                                type: 'string',
+                                              },
                                             },
-                                            type: 'object'
+                                            type: 'object',
                                           },
                                           no: {
                                             description:
@@ -3544,21 +3544,21 @@ const schema: Schema = {
                                               value: {
                                                 description:
                                                   'a numeric or qualitative value, represented as a string',
-                                                type: 'string'
+                                                type: 'string',
                                               },
                                               units: {
                                                 description:
                                                   'the units used to interpret the associated value.',
                                                 type: 'string',
-                                                examples: ['count']
+                                                examples: ['count'],
                                               },
                                               possible: {
                                                 description:
                                                   'Number of points possible for this control point',
-                                                type: 'string'
-                                              }
+                                                type: 'string',
+                                              },
                                             },
-                                            type: 'object'
+                                            type: 'object',
                                           },
                                           n_a: {
                                             description:
@@ -3567,29 +3567,29 @@ const schema: Schema = {
                                               value: {
                                                 description:
                                                   'a numeric or qualitative value, represented as a string',
-                                                type: 'string'
+                                                type: 'string',
                                               },
                                               units: {
                                                 description:
                                                   'the units used to interpret the associated value.',
                                                 type: 'string',
-                                                examples: ['count']
+                                                examples: ['count'],
                                               },
                                               possible: {
                                                 description:
                                                   'Number of points possible for this control point',
-                                                type: 'string'
-                                              }
+                                                type: 'string',
+                                              },
                                             },
-                                            type: 'object'
+                                            type: 'object',
                                           },
                                           is_compliant: {
                                             description:
                                               'GlobalGAP has an overall true/false compliance for an audit score',
-                                            type: 'boolean'
-                                          }
+                                            type: 'boolean',
+                                          },
                                         },
-                                        type: 'object'
+                                        type: 'object',
                                       },
                                       {
                                         properties: {
@@ -3600,21 +3600,21 @@ const schema: Schema = {
                                               value: {
                                                 description:
                                                   'a numeric or qualitative value, represented as a string',
-                                                type: 'string'
+                                                type: 'string',
                                               },
                                               units: {
                                                 description:
                                                   'the units used to interpret the associated value.',
                                                 type: 'string',
-                                                examples: ['count']
+                                                examples: ['count'],
                                               },
                                               possible: {
                                                 description:
                                                   'Number of points possible for this control point',
-                                                type: 'string'
-                                              }
+                                                type: 'string',
+                                              },
                                             },
-                                            type: 'object'
+                                            type: 'object',
                                           },
                                           minor_must: {
                                             description:
@@ -3623,21 +3623,21 @@ const schema: Schema = {
                                               value: {
                                                 description:
                                                   'a numeric or qualitative value, represented as a string',
-                                                type: 'string'
+                                                type: 'string',
                                               },
                                               units: {
                                                 description:
                                                   'the units used to interpret the associated value.',
                                                 type: 'string',
-                                                examples: ['count']
+                                                examples: ['count'],
                                               },
                                               possible: {
                                                 description:
                                                   'Number of points possible for this control point',
-                                                type: 'string'
-                                              }
+                                                type: 'string',
+                                              },
                                             },
-                                            type: 'object'
+                                            type: 'object',
                                           },
                                           recommended: {
                                             description:
@@ -3646,26 +3646,26 @@ const schema: Schema = {
                                               value: {
                                                 description:
                                                   'a numeric or qualitative value, represented as a string',
-                                                type: 'string'
+                                                type: 'string',
                                               },
                                               units: {
                                                 description:
                                                   'the units used to interpret the associated value.',
                                                 type: 'string',
-                                                examples: ['count']
+                                                examples: ['count'],
                                               },
                                               possible: {
                                                 description:
                                                   'Number of points possible for this control point',
-                                                type: 'string'
-                                              }
+                                                type: 'string',
+                                              },
                                             },
-                                            type: 'object'
-                                          }
+                                            type: 'object',
+                                          },
                                         },
-                                        type: 'object'
-                                      }
-                                    ]
+                                        type: 'object',
+                                      },
+                                    ],
                                   },
                                   minor_musts: {
                                     description:
@@ -3680,21 +3680,21 @@ const schema: Schema = {
                                               value: {
                                                 description:
                                                   'a numeric or qualitative value, represented as a string',
-                                                type: 'string'
+                                                type: 'string',
                                               },
                                               units: {
                                                 description:
                                                   'the units used to interpret the associated value.',
                                                 type: 'string',
-                                                examples: ['count']
+                                                examples: ['count'],
                                               },
                                               possible: {
                                                 description:
                                                   'Number of points possible for this control point',
-                                                type: 'string'
-                                              }
+                                                type: 'string',
+                                              },
                                             },
-                                            type: 'object'
+                                            type: 'object',
                                           },
                                           no: {
                                             description:
@@ -3703,21 +3703,21 @@ const schema: Schema = {
                                               value: {
                                                 description:
                                                   'a numeric or qualitative value, represented as a string',
-                                                type: 'string'
+                                                type: 'string',
                                               },
                                               units: {
                                                 description:
                                                   'the units used to interpret the associated value.',
                                                 type: 'string',
-                                                examples: ['count']
+                                                examples: ['count'],
                                               },
                                               possible: {
                                                 description:
                                                   'Number of points possible for this control point',
-                                                type: 'string'
-                                              }
+                                                type: 'string',
+                                              },
                                             },
-                                            type: 'object'
+                                            type: 'object',
                                           },
                                           n_a: {
                                             description:
@@ -3726,29 +3726,29 @@ const schema: Schema = {
                                               value: {
                                                 description:
                                                   'a numeric or qualitative value, represented as a string',
-                                                type: 'string'
+                                                type: 'string',
                                               },
                                               units: {
                                                 description:
                                                   'the units used to interpret the associated value.',
                                                 type: 'string',
-                                                examples: ['count']
+                                                examples: ['count'],
                                               },
                                               possible: {
                                                 description:
                                                   'Number of points possible for this control point',
-                                                type: 'string'
-                                              }
+                                                type: 'string',
+                                              },
                                             },
-                                            type: 'object'
+                                            type: 'object',
                                           },
                                           is_compliant: {
                                             description:
                                               'GlobalGAP has an overall true/false compliance for an audit score',
-                                            type: 'boolean'
-                                          }
+                                            type: 'boolean',
+                                          },
                                         },
-                                        type: 'object'
+                                        type: 'object',
                                       },
                                       {
                                         properties: {
@@ -3759,21 +3759,21 @@ const schema: Schema = {
                                               value: {
                                                 description:
                                                   'a numeric or qualitative value, represented as a string',
-                                                type: 'string'
+                                                type: 'string',
                                               },
                                               units: {
                                                 description:
                                                   'the units used to interpret the associated value.',
                                                 type: 'string',
-                                                examples: ['count']
+                                                examples: ['count'],
                                               },
                                               possible: {
                                                 description:
                                                   'Number of points possible for this control point',
-                                                type: 'string'
-                                              }
+                                                type: 'string',
+                                              },
                                             },
-                                            type: 'object'
+                                            type: 'object',
                                           },
                                           minor_must: {
                                             description:
@@ -3782,21 +3782,21 @@ const schema: Schema = {
                                               value: {
                                                 description:
                                                   'a numeric or qualitative value, represented as a string',
-                                                type: 'string'
+                                                type: 'string',
                                               },
                                               units: {
                                                 description:
                                                   'the units used to interpret the associated value.',
                                                 type: 'string',
-                                                examples: ['count']
+                                                examples: ['count'],
                                               },
                                               possible: {
                                                 description:
                                                   'Number of points possible for this control point',
-                                                type: 'string'
-                                              }
+                                                type: 'string',
+                                              },
                                             },
-                                            type: 'object'
+                                            type: 'object',
                                           },
                                           recommended: {
                                             description:
@@ -3805,43 +3805,43 @@ const schema: Schema = {
                                               value: {
                                                 description:
                                                   'a numeric or qualitative value, represented as a string',
-                                                type: 'string'
+                                                type: 'string',
                                               },
                                               units: {
                                                 description:
                                                   'the units used to interpret the associated value.',
                                                 type: 'string',
-                                                examples: ['count']
+                                                examples: ['count'],
                                               },
                                               possible: {
                                                 description:
                                                   'Number of points possible for this control point',
-                                                type: 'string'
-                                              }
+                                                type: 'string',
+                                              },
                                             },
-                                            type: 'object'
-                                          }
+                                            type: 'object',
+                                          },
                                         },
-                                        type: 'object'
-                                      }
-                                    ]
-                                  }
+                                        type: 'object',
+                                      },
+                                    ],
+                                  },
                                 },
-                                type: 'object'
+                                type: 'object',
                               },
                               canadagap_isautofail: {
                                 description:
                                   'If the audit is scored as autofail, this key should be set to true in the score section.  Otherwise it can either be missing or set to false.  Specific to CanadaGAP',
-                                type: 'boolean'
-                              }
+                                type: 'boolean',
+                              },
                             },
-                            type: 'object'
+                            type: 'object',
                           },
                           name: {
                             description:
                               'name is a string, typically the name of the object the key appears in.',
                             type: 'string',
-                            pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                            pattern: '^(?!(indexing|.*-index|_.*)).*$',
                           },
                           sectionids: {
                             description:
@@ -3850,35 +3850,35 @@ const schema: Schema = {
                             items: {
                               description:
                                 "sectionid is the string id associated with a particular section. sectionid is constructed by prefixing the id with any parent sections, separated by periods (e.g., sectionid '2.3' is a section that is inside of a parent section with sectionid '2').  Note that CanadaGAP also has a special sectionid of \"autofail\" for their autofail items.  All other sectionids that we have seen are of the form <number_or_letter>.<number_or_letter>.<number_or_letter>... with 1 or more numbers",
-                              type: 'string'
-                            }
+                              type: 'string',
+                            },
                           },
                           weighting_factor: {
                             description:
                               'Introduced for CanadaGAP.  Represents the weight used to combine sections into a total score.',
                             type: 'string',
-                            pattern: '^-?[0-9]+(.[0-9]+)?'
-                          }
+                            pattern: '^-?[0-9]+(.[0-9]+)?',
+                          },
                         },
-                        type: 'object'
-                      }
+                        type: 'object',
+                      },
                     },
-                    type: 'object'
-                  }
+                    type: 'object',
+                  },
                 },
-                type: 'object'
-              }
-            }
+                type: 'object',
+              },
+            },
           },
           auditor_comments: {
             description:
               'Free-form text comments from the auditor for a particular control point or section.',
             type: 'string',
-            pattern: '.*'
-          }
+            pattern: '.*',
+          },
         },
-        type: 'object'
-      }
+        type: 'object',
+      },
     },
     control_points: {
       description:
@@ -3892,7 +3892,7 @@ const schema: Schema = {
               description:
                 'name is a string, typically the name of the object the key appears in.',
               type: 'string',
-              pattern: '^(?!(indexing|.*-index|_.*)).*$'
+              pattern: '^(?!(indexing|.*-index|_.*)).*$',
             },
             score: {
               description:
@@ -3901,7 +3901,7 @@ const schema: Schema = {
                 units: {
                   description:
                     'the units used to interpret the associated value.',
-                  type: 'string'
+                  type: 'string',
                 },
                 preliminary: {
                   description: 'A prelimiary score for an audit',
@@ -3909,20 +3909,20 @@ const schema: Schema = {
                     value: {
                       description:
                         'a numeric or qualitative value, represented as a string',
-                      type: 'string'
+                      type: 'string',
                     },
                     units: {
                       description:
                         'the units used to interpret the associated value.',
-                      type: 'string'
+                      type: 'string',
                     },
                     possible: {
                       description:
                         'Number of points possible for this control point',
-                      type: 'string'
-                    }
+                      type: 'string',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 final: {
                   description: 'The final score for an audit',
@@ -3930,35 +3930,35 @@ const schema: Schema = {
                     value: {
                       description:
                         'a numeric or qualitative value, represented as a string',
-                      type: 'string'
+                      type: 'string',
                     },
                     units: {
                       description:
                         'the units used to interpret the associated value.',
-                      type: 'string'
+                      type: 'string',
                     },
                     possible: {
                       description:
                         'Number of points possible for this control point',
-                      type: 'string'
-                    }
+                      type: 'string',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 value: {
                   description:
                     'a numeric or qualitative value, represented as a string',
-                  type: 'string'
+                  type: 'string',
                 },
                 possible: {
                   description:
                     'Number of points possible for this control point',
-                  type: 'string'
+                  type: 'string',
                 },
                 compliance: {
                   description:
                     'written description indicating the level of satisfaction of the control point. E.g., "Total Compliance", "Minor Deficiency", or simply "Pass"/"Fail".',
-                  type: 'string'
+                  type: 'string',
                 },
                 globalgap_levels: {
                   description:
@@ -3977,21 +3977,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             no: {
                               description:
@@ -4000,21 +4000,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             n_a: {
                               description:
@@ -4023,29 +4023,29 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             is_compliant: {
                               description:
                                 'GlobalGAP has an overall true/false compliance for an audit score',
-                              type: 'boolean'
-                            }
+                              type: 'boolean',
+                            },
                           },
-                          type: 'object'
+                          type: 'object',
                         },
                         {
                           properties: {
@@ -4056,21 +4056,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             minor_must: {
                               description:
@@ -4079,21 +4079,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             recommended: {
                               description:
@@ -4102,26 +4102,26 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
-                            }
+                              type: 'object',
+                            },
                           },
-                          type: 'object'
-                        }
-                      ]
+                          type: 'object',
+                        },
+                      ],
                     },
                     minor_musts: {
                       description:
@@ -4136,21 +4136,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             no: {
                               description:
@@ -4159,21 +4159,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             n_a: {
                               description:
@@ -4182,29 +4182,29 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             is_compliant: {
                               description:
                                 'GlobalGAP has an overall true/false compliance for an audit score',
-                              type: 'boolean'
-                            }
+                              type: 'boolean',
+                            },
                           },
-                          type: 'object'
+                          type: 'object',
                         },
                         {
                           properties: {
@@ -4215,21 +4215,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             minor_must: {
                               description:
@@ -4238,21 +4238,21 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             recommended: {
                               description:
@@ -4261,34 +4261,34 @@ const schema: Schema = {
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
                                   type: 'string',
-                                  examples: ['count']
+                                  examples: ['count'],
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
-                                }
+                                  type: 'string',
+                                },
                               },
-                              type: 'object'
-                            }
+                              type: 'object',
+                            },
                           },
-                          type: 'object'
-                        }
-                      ]
-                    }
+                          type: 'object',
+                        },
+                      ],
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 canadagap_isautofail: {
                   description:
                     'If the audit is scored as autofail, this key should be set to true in the score section.  Otherwise it can either be missing or set to false.  Specific to CanadaGAP',
-                  type: 'boolean'
+                  type: 'boolean',
                 },
                 subtotals: {
                   description:
@@ -4301,7 +4301,7 @@ const schema: Schema = {
                         units: {
                           description:
                             'the units used to interpret the associated value.',
-                          type: 'string'
+                          type: 'string',
                         },
                         preliminary: {
                           description: 'A prelimiary score for an audit',
@@ -4309,20 +4309,20 @@ const schema: Schema = {
                             value: {
                               description:
                                 'a numeric or qualitative value, represented as a string',
-                              type: 'string'
+                              type: 'string',
                             },
                             units: {
                               description:
                                 'the units used to interpret the associated value.',
-                              type: 'string'
+                              type: 'string',
                             },
                             possible: {
                               description:
                                 'Number of points possible for this control point',
-                              type: 'string'
-                            }
+                              type: 'string',
+                            },
                           },
-                          type: 'object'
+                          type: 'object',
                         },
                         final: {
                           description: 'The final score for an audit',
@@ -4330,35 +4330,35 @@ const schema: Schema = {
                             value: {
                               description:
                                 'a numeric or qualitative value, represented as a string',
-                              type: 'string'
+                              type: 'string',
                             },
                             units: {
                               description:
                                 'the units used to interpret the associated value.',
-                              type: 'string'
+                              type: 'string',
                             },
                             possible: {
                               description:
                                 'Number of points possible for this control point',
-                              type: 'string'
-                            }
+                              type: 'string',
+                            },
                           },
-                          type: 'object'
+                          type: 'object',
                         },
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
+                          type: 'string',
                         },
                         compliance: {
                           description:
                             'written description indicating the level of satisfaction of the control point. E.g., "Total Compliance", "Minor Deficiency", or simply "Pass"/"Fail".',
-                          type: 'string'
+                          type: 'string',
                         },
                         globalgap_levels: {
                           description:
@@ -4377,21 +4377,21 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     no: {
                                       description:
@@ -4400,21 +4400,21 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     n_a: {
                                       description:
@@ -4423,29 +4423,29 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     is_compliant: {
                                       description:
                                         'GlobalGAP has an overall true/false compliance for an audit score',
-                                      type: 'boolean'
-                                    }
+                                      type: 'boolean',
+                                    },
                                   },
-                                  type: 'object'
+                                  type: 'object',
                                 },
                                 {
                                   properties: {
@@ -4456,21 +4456,21 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     minor_must: {
                                       description:
@@ -4479,21 +4479,21 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     recommended: {
                                       description:
@@ -4502,26 +4502,26 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
-                                    }
+                                      type: 'object',
+                                    },
                                   },
-                                  type: 'object'
-                                }
-                              ]
+                                  type: 'object',
+                                },
+                              ],
                             },
                             minor_musts: {
                               description:
@@ -4536,21 +4536,21 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     no: {
                                       description:
@@ -4559,21 +4559,21 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     n_a: {
                                       description:
@@ -4582,29 +4582,29 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     is_compliant: {
                                       description:
                                         'GlobalGAP has an overall true/false compliance for an audit score',
-                                      type: 'boolean'
-                                    }
+                                      type: 'boolean',
+                                    },
                                   },
-                                  type: 'object'
+                                  type: 'object',
                                 },
                                 {
                                   properties: {
@@ -4615,21 +4615,21 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     minor_must: {
                                       description:
@@ -4638,21 +4638,21 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     recommended: {
                                       description:
@@ -4661,43 +4661,43 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
-                                    }
+                                      type: 'object',
+                                    },
                                   },
-                                  type: 'object'
-                                }
-                              ]
-                            }
+                                  type: 'object',
+                                },
+                              ],
+                            },
                           },
-                          type: 'object'
+                          type: 'object',
                         },
                         canadagap_isautofail: {
                           description:
                             'If the audit is scored as autofail, this key should be set to true in the score section.  Otherwise it can either be missing or set to false.  Specific to CanadaGAP',
-                          type: 'boolean'
-                        }
+                          type: 'boolean',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     name: {
                       description:
                         'name is a string, typically the name of the object the key appears in.',
                       type: 'string',
-                      pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                      pattern: '^(?!(indexing|.*-index|_.*)).*$',
                     },
                     sectionids: {
                       description:
@@ -4706,25 +4706,25 @@ const schema: Schema = {
                       items: {
                         description:
                           "sectionid is the string id associated with a particular section. sectionid is constructed by prefixing the id with any parent sections, separated by periods (e.g., sectionid '2.3' is a section that is inside of a parent section with sectionid '2').  Note that CanadaGAP also has a special sectionid of \"autofail\" for their autofail items.  All other sectionids that we have seen are of the form <number_or_letter>.<number_or_letter>.<number_or_letter>... with 1 or more numbers",
-                        type: 'string'
-                      }
+                        type: 'string',
+                      },
                     },
                     weighting_factor: {
                       description:
                         'Introduced for CanadaGAP.  Represents the weight used to combine sections into a total score.',
                       type: 'string',
-                      pattern: '^-?[0-9]+(.[0-9]+)?'
-                    }
+                      pattern: '^-?[0-9]+(.[0-9]+)?',
+                    },
                   },
-                  type: 'object'
-                }
+                  type: 'object',
+                },
               },
-              type: 'object'
+              type: 'object',
             },
             comments: {
               description:
                 'comments from an auditor on a particular control point',
-              type: 'string'
+              type: 'string',
             },
             files: {
               description:
@@ -4736,23 +4736,23 @@ const schema: Schema = {
                 properties: {
                   url: {
                     description: 'a string representing a URL link',
-                    type: 'string'
-                  }
+                    type: 'string',
+                  },
                 },
-                type: 'object'
-              }
+                type: 'object',
+              },
             },
             justification: {
               description:
                 'justification is an explanation by the auditor of why they scored a control_point the way they did',
-              type: 'string'
+              type: 'string',
             },
             criteria: {
               description:
                 'criteria is an arrray of strings representing the various criteria needed for the certifying body to pass/fail a given control point',
               items: {
-                type: 'string'
-              }
+                type: 'string',
+              },
             },
             globalgap_level: {
               description:
@@ -4767,21 +4767,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     no: {
                       description:
@@ -4790,21 +4790,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     n_a: {
                       description:
@@ -4813,29 +4813,29 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     is_compliant: {
                       description:
                         'GlobalGAP has an overall true/false compliance for an audit score',
-                      type: 'boolean'
-                    }
+                      type: 'boolean',
+                    },
                   },
-                  type: 'object'
+                  type: 'object',
                 },
                 {
                   properties: {
@@ -4846,21 +4846,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     minor_must: {
                       description:
@@ -4869,21 +4869,21 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
+                      type: 'object',
                     },
                     recommended: {
                       description:
@@ -4892,32 +4892,32 @@ const schema: Schema = {
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         units: {
                           description:
                             'the units used to interpret the associated value.',
                           type: 'string',
-                          examples: ['count']
+                          examples: ['count'],
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
-                        }
+                          type: 'string',
+                        },
                       },
-                      type: 'object'
-                    }
+                      type: 'object',
+                    },
                   },
-                  type: 'object'
-                }
-              ]
+                  type: 'object',
+                },
+              ],
             },
             auditor_comments: {
               description:
                 'Free-form text comments from the auditor for a particular control point or section.',
               type: 'string',
-              pattern: '.*'
+              pattern: '.*',
             },
             supporting_points: {
               description:
@@ -4931,7 +4931,7 @@ const schema: Schema = {
                       description:
                         'name is a string, typically the name of the object the key appears in.',
                       type: 'string',
-                      pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                      pattern: '^(?!(indexing|.*-index|_.*)).*$',
                     },
                     score: {
                       description:
@@ -4940,7 +4940,7 @@ const schema: Schema = {
                         units: {
                           description:
                             'the units used to interpret the associated value.',
-                          type: 'string'
+                          type: 'string',
                         },
                         preliminary: {
                           description: 'A prelimiary score for an audit',
@@ -4948,20 +4948,20 @@ const schema: Schema = {
                             value: {
                               description:
                                 'a numeric or qualitative value, represented as a string',
-                              type: 'string'
+                              type: 'string',
                             },
                             units: {
                               description:
                                 'the units used to interpret the associated value.',
-                              type: 'string'
+                              type: 'string',
                             },
                             possible: {
                               description:
                                 'Number of points possible for this control point',
-                              type: 'string'
-                            }
+                              type: 'string',
+                            },
                           },
-                          type: 'object'
+                          type: 'object',
                         },
                         final: {
                           description: 'The final score for an audit',
@@ -4969,35 +4969,35 @@ const schema: Schema = {
                             value: {
                               description:
                                 'a numeric or qualitative value, represented as a string',
-                              type: 'string'
+                              type: 'string',
                             },
                             units: {
                               description:
                                 'the units used to interpret the associated value.',
-                              type: 'string'
+                              type: 'string',
                             },
                             possible: {
                               description:
                                 'Number of points possible for this control point',
-                              type: 'string'
-                            }
+                              type: 'string',
+                            },
                           },
-                          type: 'object'
+                          type: 'object',
                         },
                         value: {
                           description:
                             'a numeric or qualitative value, represented as a string',
-                          type: 'string'
+                          type: 'string',
                         },
                         possible: {
                           description:
                             'Number of points possible for this control point',
-                          type: 'string'
+                          type: 'string',
                         },
                         compliance: {
                           description:
                             'written description indicating the level of satisfaction of the control point. E.g., "Total Compliance", "Minor Deficiency", or simply "Pass"/"Fail".',
-                          type: 'string'
+                          type: 'string',
                         },
                         globalgap_levels: {
                           description:
@@ -5016,21 +5016,21 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     no: {
                                       description:
@@ -5039,21 +5039,21 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     n_a: {
                                       description:
@@ -5062,29 +5062,29 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     is_compliant: {
                                       description:
                                         'GlobalGAP has an overall true/false compliance for an audit score',
-                                      type: 'boolean'
-                                    }
+                                      type: 'boolean',
+                                    },
                                   },
-                                  type: 'object'
+                                  type: 'object',
                                 },
                                 {
                                   properties: {
@@ -5095,21 +5095,21 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     minor_must: {
                                       description:
@@ -5118,21 +5118,21 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     recommended: {
                                       description:
@@ -5141,26 +5141,26 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
-                                    }
+                                      type: 'object',
+                                    },
                                   },
-                                  type: 'object'
-                                }
-                              ]
+                                  type: 'object',
+                                },
+                              ],
                             },
                             minor_musts: {
                               description:
@@ -5175,21 +5175,21 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     no: {
                                       description:
@@ -5198,21 +5198,21 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     n_a: {
                                       description:
@@ -5221,29 +5221,29 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     is_compliant: {
                                       description:
                                         'GlobalGAP has an overall true/false compliance for an audit score',
-                                      type: 'boolean'
-                                    }
+                                      type: 'boolean',
+                                    },
                                   },
-                                  type: 'object'
+                                  type: 'object',
                                 },
                                 {
                                   properties: {
@@ -5254,21 +5254,21 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     minor_must: {
                                       description:
@@ -5277,21 +5277,21 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
+                                      type: 'object',
                                     },
                                     recommended: {
                                       description:
@@ -5300,34 +5300,34 @@ const schema: Schema = {
                                         value: {
                                           description:
                                             'a numeric or qualitative value, represented as a string',
-                                          type: 'string'
+                                          type: 'string',
                                         },
                                         units: {
                                           description:
                                             'the units used to interpret the associated value.',
                                           type: 'string',
-                                          examples: ['count']
+                                          examples: ['count'],
                                         },
                                         possible: {
                                           description:
                                             'Number of points possible for this control point',
-                                          type: 'string'
-                                        }
+                                          type: 'string',
+                                        },
                                       },
-                                      type: 'object'
-                                    }
+                                      type: 'object',
+                                    },
                                   },
-                                  type: 'object'
-                                }
-                              ]
-                            }
+                                  type: 'object',
+                                },
+                              ],
+                            },
                           },
-                          type: 'object'
+                          type: 'object',
                         },
                         canadagap_isautofail: {
                           description:
                             'If the audit is scored as autofail, this key should be set to true in the score section.  Otherwise it can either be missing or set to false.  Specific to CanadaGAP',
-                          type: 'boolean'
+                          type: 'boolean',
                         },
                         subtotals: {
                           description:
@@ -5340,7 +5340,7 @@ const schema: Schema = {
                                 units: {
                                   description:
                                     'the units used to interpret the associated value.',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 preliminary: {
                                   description:
@@ -5349,20 +5349,20 @@ const schema: Schema = {
                                     value: {
                                       description:
                                         'a numeric or qualitative value, represented as a string',
-                                      type: 'string'
+                                      type: 'string',
                                     },
                                     units: {
                                       description:
                                         'the units used to interpret the associated value.',
-                                      type: 'string'
+                                      type: 'string',
                                     },
                                     possible: {
                                       description:
                                         'Number of points possible for this control point',
-                                      type: 'string'
-                                    }
+                                      type: 'string',
+                                    },
                                   },
-                                  type: 'object'
+                                  type: 'object',
                                 },
                                 final: {
                                   description: 'The final score for an audit',
@@ -5370,35 +5370,35 @@ const schema: Schema = {
                                     value: {
                                       description:
                                         'a numeric or qualitative value, represented as a string',
-                                      type: 'string'
+                                      type: 'string',
                                     },
                                     units: {
                                       description:
                                         'the units used to interpret the associated value.',
-                                      type: 'string'
+                                      type: 'string',
                                     },
                                     possible: {
                                       description:
                                         'Number of points possible for this control point',
-                                      type: 'string'
-                                    }
+                                      type: 'string',
+                                    },
                                   },
-                                  type: 'object'
+                                  type: 'object',
                                 },
                                 value: {
                                   description:
                                     'a numeric or qualitative value, represented as a string',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 possible: {
                                   description:
                                     'Number of points possible for this control point',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 compliance: {
                                   description:
                                     'written description indicating the level of satisfaction of the control point. E.g., "Total Compliance", "Minor Deficiency", or simply "Pass"/"Fail".',
-                                  type: 'string'
+                                  type: 'string',
                                 },
                                 globalgap_levels: {
                                   description:
@@ -5417,21 +5417,21 @@ const schema: Schema = {
                                                 value: {
                                                   description:
                                                     'a numeric or qualitative value, represented as a string',
-                                                  type: 'string'
+                                                  type: 'string',
                                                 },
                                                 units: {
                                                   description:
                                                     'the units used to interpret the associated value.',
                                                   type: 'string',
-                                                  examples: ['count']
+                                                  examples: ['count'],
                                                 },
                                                 possible: {
                                                   description:
                                                     'Number of points possible for this control point',
-                                                  type: 'string'
-                                                }
+                                                  type: 'string',
+                                                },
                                               },
-                                              type: 'object'
+                                              type: 'object',
                                             },
                                             no: {
                                               description:
@@ -5440,21 +5440,21 @@ const schema: Schema = {
                                                 value: {
                                                   description:
                                                     'a numeric or qualitative value, represented as a string',
-                                                  type: 'string'
+                                                  type: 'string',
                                                 },
                                                 units: {
                                                   description:
                                                     'the units used to interpret the associated value.',
                                                   type: 'string',
-                                                  examples: ['count']
+                                                  examples: ['count'],
                                                 },
                                                 possible: {
                                                   description:
                                                     'Number of points possible for this control point',
-                                                  type: 'string'
-                                                }
+                                                  type: 'string',
+                                                },
                                               },
-                                              type: 'object'
+                                              type: 'object',
                                             },
                                             n_a: {
                                               description:
@@ -5463,29 +5463,29 @@ const schema: Schema = {
                                                 value: {
                                                   description:
                                                     'a numeric or qualitative value, represented as a string',
-                                                  type: 'string'
+                                                  type: 'string',
                                                 },
                                                 units: {
                                                   description:
                                                     'the units used to interpret the associated value.',
                                                   type: 'string',
-                                                  examples: ['count']
+                                                  examples: ['count'],
                                                 },
                                                 possible: {
                                                   description:
                                                     'Number of points possible for this control point',
-                                                  type: 'string'
-                                                }
+                                                  type: 'string',
+                                                },
                                               },
-                                              type: 'object'
+                                              type: 'object',
                                             },
                                             is_compliant: {
                                               description:
                                                 'GlobalGAP has an overall true/false compliance for an audit score',
-                                              type: 'boolean'
-                                            }
+                                              type: 'boolean',
+                                            },
                                           },
-                                          type: 'object'
+                                          type: 'object',
                                         },
                                         {
                                           properties: {
@@ -5496,21 +5496,21 @@ const schema: Schema = {
                                                 value: {
                                                   description:
                                                     'a numeric or qualitative value, represented as a string',
-                                                  type: 'string'
+                                                  type: 'string',
                                                 },
                                                 units: {
                                                   description:
                                                     'the units used to interpret the associated value.',
                                                   type: 'string',
-                                                  examples: ['count']
+                                                  examples: ['count'],
                                                 },
                                                 possible: {
                                                   description:
                                                     'Number of points possible for this control point',
-                                                  type: 'string'
-                                                }
+                                                  type: 'string',
+                                                },
                                               },
-                                              type: 'object'
+                                              type: 'object',
                                             },
                                             minor_must: {
                                               description:
@@ -5519,21 +5519,21 @@ const schema: Schema = {
                                                 value: {
                                                   description:
                                                     'a numeric or qualitative value, represented as a string',
-                                                  type: 'string'
+                                                  type: 'string',
                                                 },
                                                 units: {
                                                   description:
                                                     'the units used to interpret the associated value.',
                                                   type: 'string',
-                                                  examples: ['count']
+                                                  examples: ['count'],
                                                 },
                                                 possible: {
                                                   description:
                                                     'Number of points possible for this control point',
-                                                  type: 'string'
-                                                }
+                                                  type: 'string',
+                                                },
                                               },
-                                              type: 'object'
+                                              type: 'object',
                                             },
                                             recommended: {
                                               description:
@@ -5542,26 +5542,26 @@ const schema: Schema = {
                                                 value: {
                                                   description:
                                                     'a numeric or qualitative value, represented as a string',
-                                                  type: 'string'
+                                                  type: 'string',
                                                 },
                                                 units: {
                                                   description:
                                                     'the units used to interpret the associated value.',
                                                   type: 'string',
-                                                  examples: ['count']
+                                                  examples: ['count'],
                                                 },
                                                 possible: {
                                                   description:
                                                     'Number of points possible for this control point',
-                                                  type: 'string'
-                                                }
+                                                  type: 'string',
+                                                },
                                               },
-                                              type: 'object'
-                                            }
+                                              type: 'object',
+                                            },
                                           },
-                                          type: 'object'
-                                        }
-                                      ]
+                                          type: 'object',
+                                        },
+                                      ],
                                     },
                                     minor_musts: {
                                       description:
@@ -5576,21 +5576,21 @@ const schema: Schema = {
                                                 value: {
                                                   description:
                                                     'a numeric or qualitative value, represented as a string',
-                                                  type: 'string'
+                                                  type: 'string',
                                                 },
                                                 units: {
                                                   description:
                                                     'the units used to interpret the associated value.',
                                                   type: 'string',
-                                                  examples: ['count']
+                                                  examples: ['count'],
                                                 },
                                                 possible: {
                                                   description:
                                                     'Number of points possible for this control point',
-                                                  type: 'string'
-                                                }
+                                                  type: 'string',
+                                                },
                                               },
-                                              type: 'object'
+                                              type: 'object',
                                             },
                                             no: {
                                               description:
@@ -5599,21 +5599,21 @@ const schema: Schema = {
                                                 value: {
                                                   description:
                                                     'a numeric or qualitative value, represented as a string',
-                                                  type: 'string'
+                                                  type: 'string',
                                                 },
                                                 units: {
                                                   description:
                                                     'the units used to interpret the associated value.',
                                                   type: 'string',
-                                                  examples: ['count']
+                                                  examples: ['count'],
                                                 },
                                                 possible: {
                                                   description:
                                                     'Number of points possible for this control point',
-                                                  type: 'string'
-                                                }
+                                                  type: 'string',
+                                                },
                                               },
-                                              type: 'object'
+                                              type: 'object',
                                             },
                                             n_a: {
                                               description:
@@ -5622,29 +5622,29 @@ const schema: Schema = {
                                                 value: {
                                                   description:
                                                     'a numeric or qualitative value, represented as a string',
-                                                  type: 'string'
+                                                  type: 'string',
                                                 },
                                                 units: {
                                                   description:
                                                     'the units used to interpret the associated value.',
                                                   type: 'string',
-                                                  examples: ['count']
+                                                  examples: ['count'],
                                                 },
                                                 possible: {
                                                   description:
                                                     'Number of points possible for this control point',
-                                                  type: 'string'
-                                                }
+                                                  type: 'string',
+                                                },
                                               },
-                                              type: 'object'
+                                              type: 'object',
                                             },
                                             is_compliant: {
                                               description:
                                                 'GlobalGAP has an overall true/false compliance for an audit score',
-                                              type: 'boolean'
-                                            }
+                                              type: 'boolean',
+                                            },
                                           },
-                                          type: 'object'
+                                          type: 'object',
                                         },
                                         {
                                           properties: {
@@ -5655,21 +5655,21 @@ const schema: Schema = {
                                                 value: {
                                                   description:
                                                     'a numeric or qualitative value, represented as a string',
-                                                  type: 'string'
+                                                  type: 'string',
                                                 },
                                                 units: {
                                                   description:
                                                     'the units used to interpret the associated value.',
                                                   type: 'string',
-                                                  examples: ['count']
+                                                  examples: ['count'],
                                                 },
                                                 possible: {
                                                   description:
                                                     'Number of points possible for this control point',
-                                                  type: 'string'
-                                                }
+                                                  type: 'string',
+                                                },
                                               },
-                                              type: 'object'
+                                              type: 'object',
                                             },
                                             minor_must: {
                                               description:
@@ -5678,21 +5678,21 @@ const schema: Schema = {
                                                 value: {
                                                   description:
                                                     'a numeric or qualitative value, represented as a string',
-                                                  type: 'string'
+                                                  type: 'string',
                                                 },
                                                 units: {
                                                   description:
                                                     'the units used to interpret the associated value.',
                                                   type: 'string',
-                                                  examples: ['count']
+                                                  examples: ['count'],
                                                 },
                                                 possible: {
                                                   description:
                                                     'Number of points possible for this control point',
-                                                  type: 'string'
-                                                }
+                                                  type: 'string',
+                                                },
                                               },
-                                              type: 'object'
+                                              type: 'object',
                                             },
                                             recommended: {
                                               description:
@@ -5701,43 +5701,43 @@ const schema: Schema = {
                                                 value: {
                                                   description:
                                                     'a numeric or qualitative value, represented as a string',
-                                                  type: 'string'
+                                                  type: 'string',
                                                 },
                                                 units: {
                                                   description:
                                                     'the units used to interpret the associated value.',
                                                   type: 'string',
-                                                  examples: ['count']
+                                                  examples: ['count'],
                                                 },
                                                 possible: {
                                                   description:
                                                     'Number of points possible for this control point',
-                                                  type: 'string'
-                                                }
+                                                  type: 'string',
+                                                },
                                               },
-                                              type: 'object'
-                                            }
+                                              type: 'object',
+                                            },
                                           },
-                                          type: 'object'
-                                        }
-                                      ]
-                                    }
+                                          type: 'object',
+                                        },
+                                      ],
+                                    },
                                   },
-                                  type: 'object'
+                                  type: 'object',
                                 },
                                 canadagap_isautofail: {
                                   description:
                                     'If the audit is scored as autofail, this key should be set to true in the score section.  Otherwise it can either be missing or set to false.  Specific to CanadaGAP',
-                                  type: 'boolean'
-                                }
+                                  type: 'boolean',
+                                },
                               },
-                              type: 'object'
+                              type: 'object',
                             },
                             name: {
                               description:
                                 'name is a string, typically the name of the object the key appears in.',
                               type: 'string',
-                              pattern: '^(?!(indexing|.*-index|_.*)).*$'
+                              pattern: '^(?!(indexing|.*-index|_.*)).*$',
                             },
                             sectionids: {
                               description:
@@ -5746,59 +5746,59 @@ const schema: Schema = {
                               items: {
                                 description:
                                   "sectionid is the string id associated with a particular section. sectionid is constructed by prefixing the id with any parent sections, separated by periods (e.g., sectionid '2.3' is a section that is inside of a parent section with sectionid '2').  Note that CanadaGAP also has a special sectionid of \"autofail\" for their autofail items.  All other sectionids that we have seen are of the form <number_or_letter>.<number_or_letter>.<number_or_letter>... with 1 or more numbers",
-                                type: 'string'
-                              }
+                                type: 'string',
+                              },
                             },
                             weighting_factor: {
                               description:
                                 'Introduced for CanadaGAP.  Represents the weight used to combine sections into a total score.',
                               type: 'string',
-                              pattern: '^-?[0-9]+(.[0-9]+)?'
-                            }
+                              pattern: '^-?[0-9]+(.[0-9]+)?',
+                            },
                           },
-                          type: 'object'
-                        }
+                          type: 'object',
+                        },
                       },
-                      type: 'object'
-                    }
+                      type: 'object',
+                    },
                   },
-                  type: 'object'
-                }
-              }
-            }
+                  type: 'object',
+                },
+              },
+            },
           },
-          type: 'object'
-        }
-      }
+          type: 'object',
+        },
+      },
     },
     _id: {
       description: '_id identifies a resource in the OADA API.',
-      type: 'string'
+      type: 'string',
     },
     _rev: {
       description:
         '_rev is the revision string for a resource in the OADA API.',
-      type: 'integer'
+      type: 'integer',
     },
     _meta: {
       description: '_meta is a link to the meta document for a resources.',
       properties: {
         _id: {
           description: '_id identifies a resource in the OADA API.',
-          type: 'string'
+          type: 'string',
         },
         _rev: {
           description:
             '_rev is the revision string for a resource in the OADA API.',
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
       required: ['_id', '_rev'],
-      type: 'object'
+      type: 'object',
     },
     _type: {
-      enum: ['application/vnd.trellis.audit.primusgfs.1+json']
-    }
+      enum: ['application/vnd.trellis.audit.primusgfs.1+json'],
+    },
   },
   additionalProperties: true,
   required: ['_type'],
@@ -5808,14 +5808,14 @@ const schema: Schema = {
       _type: 'application/vnd.trellis.audit.primusgfs.1+json',
       scheme: {
         name: 'PrimusGFS',
-        version: '2.1-2'
+        version: '2.1-2',
       },
       certifying_body: {
         registration_number: 'PAâˆ’PGFSâˆ’000âˆ’0',
         name: 'Primus Auditing Operations',
         auditor: {
-          name: 'Aaron Auditor Ault'
-        }
+          name: 'Aaron Auditor Ault',
+        },
       },
       organization: {
         primus_gfs_id: '00000',
@@ -5823,17 +5823,17 @@ const schema: Schema = {
         name: 'Noel Produce Masters',
         contacts: [
           {
-            name: 'Sam Noel'
-          }
+            name: 'Sam Noel',
+          },
         ],
         location: {
           stree_address: '123 Nonexistent Street',
           postal_code: '00000',
           city: 'Nowhere',
           state: 'Florida',
-          country: 'USA'
+          country: 'USA',
         },
-        phone: '0000000000'
+        phone: '0000000000',
       },
       scope: {
         description:
@@ -5843,53 +5843,53 @@ const schema: Schema = {
           crew: {
             contacts: [
               {
-                name: 'Sam Noel'
-              }
+                name: 'Sam Noel',
+              },
             ],
             name: 'Noel Produce - Linked to Greenhouse Noel Produce Masters',
             shipper: {
-              name: "Noel's Happy Tomato"
+              name: "Noel's Happy Tomato",
             },
             location: {
               address: '124 Nonexistent Street',
               city: 'Lafayette',
               state: 'IN',
               postal_code: '47907',
-              country: 'USA'
-            }
+              country: 'USA',
+            },
           },
           products_observed: [
             {
-              name: 'Tomatoes'
-            }
+              name: 'Tomatoes',
+            },
           ],
           similar_products_not_observed: [
             {
-              name: 'Tomatoes Organic'
-            }
+              name: 'Tomatoes Organic',
+            },
           ],
-          products_applied_for_but_not_observed: []
-        }
+          products_applied_for_but_not_observed: [],
+        },
       },
       conditions_during_audit: {
         FSMS_observed_date: {
           start: '2016-04-08T17:00:00Z-06:00',
-          end: '2016-04-08T19:00:00Z-06:00'
+          end: '2016-04-08T19:00:00Z-06:00',
         },
         operation_observed_date: {
           start: '2016-04-08T10:00:00Z-06:00',
-          end: '2016-04-08T11:30:00Z-06:00'
-        }
+          end: '2016-04-08T11:30:00Z-06:00',
+        },
       },
       score: {
         preliminary: {
           value: '96',
-          units: '%'
+          units: '%',
         },
         final: {
           value: '100',
-          units: '%'
-        }
+          units: '%',
+        },
       },
       sections: [
         {
@@ -5898,16 +5898,16 @@ const schema: Schema = {
           score: {
             preliminary: {
               value: '179',
-              units: 'points'
+              units: 'points',
             },
             final: {
               value: '194',
-              units: 'points'
+              units: 'points',
             },
             possible: {
               value: '194',
-              units: 'points'
-            }
+              units: 'points',
+            },
           },
           sections: [
             {
@@ -5916,16 +5916,16 @@ const schema: Schema = {
               score: {
                 preliminary: {
                   value: '179',
-                  units: 'points'
+                  units: 'points',
                 },
                 final: {
                   value: '194',
-                  units: 'points'
+                  units: 'points',
                 },
                 possible: {
                   value: '194',
-                  units: 'points'
-                }
+                  units: 'points',
+                },
               },
               control_pointids: [
                 '1.01.01',
@@ -5933,24 +5933,24 @@ const schema: Schema = {
                 '1.01.03',
                 '1.01.04',
                 '1.01.05',
-                '1.01.06'
-              ]
+                '1.01.06',
+              ],
             },
             {
               sectionid: '1.02',
               name: 'Control of Documents and Records',
-              control_pointids: ['1.02.01', '1.02.02', '1.02.03', '1.02.04']
+              control_pointids: ['1.02.01', '1.02.02', '1.02.03', '1.02.04'],
             },
             {
               sectionid: '1.03',
               name:
                 'Procedures and Corrective Actions Internal and External Inspections',
-              control_pointids: ['1.03.01', '1.03.02', '1.03.03', '1.03.04']
+              control_pointids: ['1.03.01', '1.03.02', '1.03.03', '1.03.04'],
             },
             {
               sectionid: '1.04',
               name: 'Rejection and Release of Product',
-              control_pointids: ['1.04.01', '1.04.02', '1.04.03', '1.04.04']
+              control_pointids: ['1.04.01', '1.04.02', '1.04.03', '1.04.04'],
             },
             {
               sectionid: '1.05',
@@ -5960,8 +5960,8 @@ const schema: Schema = {
                 '1.05.02',
                 '1.05.03',
                 '1.05.04',
-                '1.05.05'
-              ]
+                '1.05.05',
+              ],
             },
             {
               sectionid: '1.06',
@@ -5972,20 +5972,20 @@ const schema: Schema = {
                 '1.06.03',
                 '1.06.04',
                 '1.06.05',
-                '1.06.06'
-              ]
+                '1.06.06',
+              ],
             },
             {
               sectionid: '1.07',
               name: 'Tracability and Recall',
-              control_pointids: ['1.07.01', '1.07.02', '1.07.03']
+              control_pointids: ['1.07.01', '1.07.02', '1.07.03'],
             },
             {
               sectionid: '1.08',
               name: 'Food Defense',
-              control_pointids: ['1.08.01', '1.08.02', '1.08.03']
-            }
-          ]
+              control_pointids: ['1.08.01', '1.08.02', '1.08.03'],
+            },
+          ],
         },
         {
           sectionid: '2',
@@ -5993,16 +5993,16 @@ const schema: Schema = {
           score: {
             preliminary: {
               value: '382',
-              units: 'points'
+              units: 'points',
             },
             final: {
               value: '387',
-              units: 'points'
+              units: 'points',
             },
             possible: {
               value: '387',
-              units: 'points'
-            }
+              units: 'points',
+            },
           },
           sections: [
             {
@@ -6015,8 +6015,8 @@ const schema: Schema = {
                 '2.11.03',
                 '2.11.04',
                 '2.11.05',
-                '2.11.06'
-              ]
+                '2.11.06',
+              ],
             },
             {
               sectionid: '2.12',
@@ -6068,8 +6068,8 @@ const schema: Schema = {
                 '2.12.15',
                 '2.12.15a',
                 '2.12.16',
-                '2.12.17'
-              ]
+                '2.12.17',
+              ],
             },
             {
               sectionid: '2.13',
@@ -6080,8 +6080,8 @@ const schema: Schema = {
                 '2.13.03',
                 '2.13.04',
                 '2.13.05',
-                '2.13.06'
-              ]
+                '2.13.06',
+              ],
             },
             {
               sectionid: '2.14',
@@ -6092,8 +6092,8 @@ const schema: Schema = {
                 '2.14.03',
                 '2.14.04',
                 '2.14.05',
-                '2.14.06'
-              ]
+                '2.14.06',
+              ],
             },
             {
               sectionid: '2.15',
@@ -6104,11 +6104,11 @@ const schema: Schema = {
                 '2.15.03',
                 '2.15.04',
                 '2.15.05',
-                '2.15.06'
-              ]
-            }
-          ]
-        }
+                '2.15.06',
+              ],
+            },
+          ],
+        },
       ],
       control_points: {
         '1.01.03': {
@@ -6120,19 +6120,19 @@ const schema: Schema = {
               units: 'points',
               possible: {
                 value: '5',
-                units: 'points'
+                units: 'points',
               },
               compliance: {
                 value: 'Minor Deficiency',
-                units: 'enum-pgfs-compliance'
-              }
+                units: 'enum-pgfs-compliance',
+              },
             },
             final: {
               compliance: {
                 value: 'Total Compliance',
-                units: 'enum-pgfs-compliance'
-              }
-            }
+                units: 'enum-pgfs-compliance',
+              },
+            },
           },
           auditor_comments:
             'Mn.Have a document called Chart, dated (16.1.2016).job functions have.Lack positions include the role of the production department.Missing some alternates.',
@@ -6141,8 +6141,8 @@ const schema: Schema = {
             score: {
               compliance: {
                 value: 'Total Compliance',
-                units: 'enum-pgfs-compliance'
-              }
+                units: 'enum-pgfs-compliance',
+              },
             },
             files: [],
             organization_response:
@@ -6151,9 +6151,9 @@ const schema: Schema = {
               'format with corrective actions is attached, as well as the missing positions and the new organization with alternates.',
             decision: {
               value: 'accepted',
-              units: 'enum-pgfs-actiondecision'
-            }
-          }
+              units: 'enum-pgfs-actiondecision',
+            },
+          },
         },
         '1.03.03': {
           name:
@@ -6164,26 +6164,26 @@ const schema: Schema = {
               units: 'points',
               possible: {
                 value: '5',
-                units: 'points'
+                units: 'points',
               },
               compliance: {
                 value: 'Minor Deficiency',
-                units: 'enum-pgfs-compliance'
-              }
+                units: 'enum-pgfs-compliance',
+              },
             },
             final: {
               compliance: {
                 value: 'Total Compliance',
-                units: 'enum-pgfs-compliance'
-              }
-            }
+                units: 'enum-pgfs-compliance',
+              },
+            },
           },
           corrective_action: {
             score: {
               compliance: {
                 value: 'Total Compliance',
-                units: 'enum-pgfs-compliance'
-              }
+                units: 'enum-pgfs-compliance',
+              },
             },
             files: [],
             organization_response:
@@ -6192,12 +6192,12 @@ const schema: Schema = {
               'format with corrective actions is attached, as well as the missing positions and the new organization with alternates.',
             decision: {
               value: 'accepted',
-              units: 'enum-pgfs-actiondecision'
-            }
+              units: 'enum-pgfs-actiondecision',
+            },
           },
           auditor_comments:
             'Yes. They have a record Registering weekly crop inspection personnel.',
-          files: []
+          files: [],
         },
         '1.05.05': {
           name:
@@ -6208,26 +6208,26 @@ const schema: Schema = {
               units: 'points',
               possible: {
                 value: '0',
-                units: 'points'
+                units: 'points',
               },
               compliance: {
                 value: 'Major Deficiency',
-                units: 'enum-pgfs-compliance'
-              }
+                units: 'enum-pgfs-compliance',
+              },
             },
             final: {
               compliance: {
                 value: 'Total Compliance',
-                units: 'enum-pgfs-compliance'
-              }
-            }
+                units: 'enum-pgfs-compliance',
+              },
+            },
           },
           corrective_action: {
             score: {
               compliance: {
                 value: 'Total Compliance',
-                units: 'enum-pgfs-compliance'
-              }
+                units: 'enum-pgfs-compliance',
+              },
             },
             files: [],
             organization_response:
@@ -6236,12 +6236,12 @@ const schema: Schema = {
               'format with corrective actions is attached, as well as the missing positions and the new organization with alternates.',
             decision: {
               value: 'accepted',
-              units: 'enum-pgfs-actiondecision'
-            }
+              units: 'enum-pgfs-actiondecision',
+            },
           },
           auditor_comments:
             'MJ.It has a record called "Registering complaints and suggestions".the procedure is missing.',
-          files: []
+          files: [],
         },
         '1.06.01': {
           name:
@@ -6252,26 +6252,26 @@ const schema: Schema = {
               units: 'points',
               possible: {
                 value: '5',
-                units: 'points'
+                units: 'points',
               },
               compliance: {
                 value: 'Minor Deficiency',
-                units: 'enum-pgfs-compliance'
-              }
+                units: 'enum-pgfs-compliance',
+              },
             },
             final: {
               compliance: {
                 value: 'Total Compliance',
-                units: 'enum-pgfs-compliance'
-              }
-            }
+                units: 'enum-pgfs-compliance',
+              },
+            },
           },
           corrective_action: {
             score: {
               compliance: {
                 value: 'Total Compliance',
-                units: 'enum-pgfs-compliance'
-              }
+                units: 'enum-pgfs-compliance',
+              },
             },
             files: [],
             organization_response:
@@ -6280,12 +6280,12 @@ const schema: Schema = {
               'format with corrective actions is attached, as well as the missing positions and the new organization with alternates.',
             decision: {
               value: 'accepted',
-              units: 'enum-pgfs-actiondecision'
-            }
+              units: 'enum-pgfs-actiondecision',
+            },
           },
           auditor_comments:
             'Mn.They have a document called "Accredited providers".service providers and materials are included.Missing specifications calibration providers, consulting and third−party proceedings.Date 20 / Jan / 2016.',
-          files: []
+          files: [],
         },
         '1.06.03': {
           name: 'Is there a list of approved suppliers?',
@@ -6295,26 +6295,26 @@ const schema: Schema = {
               units: 'points',
               possible: {
                 value: '5',
-                units: 'points'
+                units: 'points',
               },
               compliance: {
                 value: 'Minor Deficiency',
-                units: 'enum-pgfs-compliance'
-              }
+                units: 'enum-pgfs-compliance',
+              },
             },
             final: {
               compliance: {
                 value: 'Total Compliance',
-                units: 'enum-pgfs-compliance'
-              }
-            }
+                units: 'enum-pgfs-compliance',
+              },
+            },
           },
           corrective_action: {
             score: {
               compliance: {
                 value: 'Total Compliance',
-                units: 'enum-pgfs-compliance'
-              }
+                units: 'enum-pgfs-compliance',
+              },
             },
             files: [],
             organization_response:
@@ -6323,12 +6323,12 @@ const schema: Schema = {
               'format with corrective actions is attached, as well as the missing positions and the new organization with alternates.',
             decision: {
               value: 'accepted',
-              units: 'enum-pgfs-actiondecision'
-            }
+              units: 'enum-pgfs-actiondecision',
+            },
           },
           auditor_comments:
             'Mn.They have a document called "Accredited providers".service providers and materials are included.Missing calibration providers, consulting and third−party proceedings.',
-          files: []
+          files: [],
         },
         '1.08.02': {
           name:
@@ -6339,26 +6339,26 @@ const schema: Schema = {
               units: 'points',
               possible: {
                 value: '5',
-                units: 'points'
+                units: 'points',
               },
               compliance: {
                 value: 'Minor Deficiency',
-                units: 'enum-pgfs-compliance'
-              }
+                units: 'enum-pgfs-compliance',
+              },
             },
             final: {
               compliance: {
                 value: 'Total Compliance',
-                units: 'enum-pgfs-compliance'
-              }
-            }
+                units: 'enum-pgfs-compliance',
+              },
+            },
           },
           corrective_action: {
             score: {
               compliance: {
                 value: 'Total Compliance',
-                units: 'enum-pgfs-compliance'
-              }
+                units: 'enum-pgfs-compliance',
+              },
             },
             files: [],
             organization_response:
@@ -6367,12 +6367,12 @@ const schema: Schema = {
               'format with corrective actions is attached, as well as the missing positions and the new organization with alternates.',
             decision: {
               value: 'accepted',
-              units: 'enum-pgfs-actiondecision'
-            }
+              units: 'enum-pgfs-actiondecision',
+            },
           },
           auditor_comments:
             'Mn.They have emergency telephones, missing regulatory agencies.',
-          files: []
+          files: [],
         },
         '2.11.01': {
           name: 'Have self−audits been completed for this harvest crew?',
@@ -6382,22 +6382,22 @@ const schema: Schema = {
               units: 'boolean',
               compliance: {
                 value: '',
-                units: 'enum-pgfs-compliance'
-              }
+                units: 'enum-pgfs-compliance',
+              },
             },
             final: {
               compliance: {
                 value: 'Yes',
-                units: 'boolean'
-              }
-            }
+                units: 'boolean',
+              },
+            },
           },
           corrective_action: {
             score: {
               compliance: {
                 value: 'Yes',
-                units: 'boolean'
-              }
+                units: 'boolean',
+              },
             },
             files: [],
             organization_response:
@@ -6406,14 +6406,14 @@ const schema: Schema = {
               'corrective action file is attached.Within the same are the necessary files.the new format gang harvest was created and first internal audit was conducted.',
             decision: {
               value: 'accepted',
-              units: 'enum-pgfs-actiondecision'
-            }
+              units: 'enum-pgfs-actiondecision',
+            },
           },
           auditor_comments: 'No. missing internal audit report harvest crew.',
-          files: []
-        }
-      }
-    }
-  ]
-}
-export default schema
+          files: [],
+        },
+      },
+    },
+  ],
+};
+export default schema;

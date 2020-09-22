@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/trellis/service/ift-pusher/sync.schema.json',
@@ -10,11 +10,11 @@ const schema: Schema = {
   properties: {
     service: {
       description: 'Service Name',
-      const: 'ift-pusher'
+      const: 'ift-pusher',
     },
     type: {
       description: 'IFT Synchronization Job',
-      const: 'sync'
+      const: 'sync',
     },
     config: {
       description: 'Job specific configuration object',
@@ -23,13 +23,13 @@ const schema: Schema = {
       properties: {
         resourceId: {
           description: 'id for virtualized pdf',
-          type: 'string'
-        }
-      }
+          type: 'string',
+        },
+      },
     },
     result: {
-      description: 'Final result of job'
-    }
+      description: 'Final result of job',
+    },
   },
 
   examples: [
@@ -37,18 +37,18 @@ const schema: Schema = {
       service: 'ift-pusher',
       type: 'sync',
       config: {
-        resourceId: 'resources/oivnoseklnvaoeij329814ng'
+        resourceId: 'resources/oivnoseklnvaoeij329814ng',
       },
       status: 'pending',
       updates: {
         aoihngklsdmfjoavin2398havj: {
           status: 'started',
           time: '2019-10-20T20:07:21+00:00',
-          information: 'started'
-        }
-      }
-    }
-  ]
-}
+          information: 'started',
+        },
+      },
+    },
+  ],
+};
 
-export default schema
+export default schema;

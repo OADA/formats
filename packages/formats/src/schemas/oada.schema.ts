@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada.schema.json',
@@ -13,16 +13,16 @@ const schema: Schema = {
           required: ['_rev'],
           properties: {
             _rev: {
-              $ref: '#/definitions/_rev'
+              $ref: '#/definitions/_rev',
             },
             _id: {
-              $ref: '#/definitions/_id'
+              $ref: '#/definitions/_id',
             },
             _type: {
-              $ref: '#/definitions/_type'
-            }
+              $ref: '#/definitions/_type',
+            },
           },
-          additionalProperties: false
+          additionalProperties: false,
         },
         unversioned: {
           $anchor: 'unversioned',
@@ -30,53 +30,53 @@ const schema: Schema = {
           required: ['_id'],
           properties: {
             _id: {
-              $ref: '#/definitions/_id'
+              $ref: '#/definitions/_id',
             },
             _type: {
-              $ref: '#/definitions/_type'
-            }
+              $ref: '#/definitions/_type',
+            },
           },
-          additionalProperties: false
-        }
+          additionalProperties: false,
+        },
       },
       anyOf: [
         {
-          $ref: '#/definitions/link/definitions/versioned'
+          $ref: '#/definitions/link/definitions/versioned',
         },
         {
-          $ref: '#/definitions/link/definitions/unversioned'
-        }
-      ]
+          $ref: '#/definitions/link/definitions/unversioned',
+        },
+      ],
     },
     _meta: {
       $comment: '_meta is a versioned link',
       description: '_meta is a link to the meta document for a resources.',
-      $ref: '#/definitions/link/definitions/versioned'
+      $ref: '#/definitions/link/definitions/versioned',
     },
     _id: {
       description: '_id identifies a resource in the OADA API.',
       type: 'string',
-      pattern: '^resources/.*$'
+      pattern: '^resources/.*$',
     },
     _type: {
       description:
         '_type identifies the content-type of a resource in the OADA API and             is required for all OADA-defined formats.  It usually looks like            application/vnd.oada.something.1+json.',
-      type: 'string'
+      type: 'string',
     },
     _rev: {
       description: '_rev is the revision for a resource in the OADA API.',
-      type: 'integer'
+      type: 'integer',
     },
     method: {
       description: 'The request methods (a la HTTP) supported by OADA',
-      enum: ['head', 'get', 'put', 'post', 'delete']
+      enum: ['head', 'get', 'put', 'post', 'delete'],
     },
     path: {
       description: 'The represenation of a path within an OADA server',
       type: 'string',
-      format: 'uri-reference'
-    }
-  }
-}
+      format: 'uri-reference',
+    },
+  },
+};
 
-export default schema
+export default schema;

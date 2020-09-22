@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/websockets/request.schema.json',
@@ -7,8 +7,8 @@ const schema: Schema = {
     'This is the format of an OADA websocket request (client to server)',
   definitions: {
     id: {
-      type: 'string'
-    }
+      type: 'string',
+    },
   },
   type: 'object',
   required: ['requestId', 'path', 'method', 'headers'],
@@ -18,18 +18,18 @@ const schema: Schema = {
     method: {
       anyOf: [
         { $ref: '../../oada.schema.json#/definitions/method' },
-        { enum: ['watch', 'unwatch'] }
-      ]
+        { enum: ['watch', 'unwatch'] },
+      ],
     },
     headers: {
       type: 'object',
       required: ['authorization'],
-      properties: { authorization: { type: 'string' } }
+      properties: { authorization: { type: 'string' } },
     },
     data: {
-      description: 'The optional data payload of the request'
-    }
-  }
-}
+      description: 'The optional data payload of the request',
+    },
+  },
+};
 
-export default schema
+export default schema;

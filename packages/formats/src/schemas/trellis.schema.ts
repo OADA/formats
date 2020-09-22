@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/trellis.schema.json',
@@ -9,49 +9,49 @@ const schema: Schema = {
         'location describes the postal address used to identify where         something is.',
       properties: {
         street_address: {
-          $ref: '#/definitions/street_address'
+          $ref: '#/definitions/street_address',
         },
         postal_code: {
-          $ref: '#/definitions/postal_code'
+          $ref: '#/definitions/postal_code',
         },
         city: {
-          $ref: '#/definitions/city'
+          $ref: '#/definitions/city',
         },
         state: {
-          $ref: '#/definitions/state'
+          $ref: '#/definitions/state',
         },
         country: {
-          $ref: '#/definitions/country'
-        }
-      }
+          $ref: '#/definitions/country',
+        },
+      },
     },
     street_address: {
       description: 'The street name and mailbox number of a postal address.',
-      type: 'string'
+      type: 'string',
     },
     postal_code: {
       description: 'postal_code is the postal code used in a postal address',
-      type: 'string'
+      type: 'string',
     },
     city: {
       description: 'The name of the city, usually in a postal address.',
-      type: 'string'
+      type: 'string',
     },
     state: {
       description:
         'The name of the state or major region, usually in a postal address.',
-      type: 'string'
+      type: 'string',
     },
     country: {
       description: 'The name of the country, usually in a postal address.',
-      type: 'string'
+      type: 'string',
     },
     phone: {
       description:
         'phone describes the phone number with country code and area         code.',
-      type: 'string'
-    }
-  }
-}
+      type: 'string',
+    },
+  },
+};
 
-export default schema
+export default schema;

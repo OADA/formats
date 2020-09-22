@@ -1,4 +1,4 @@
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/rules.schema.json',
@@ -9,8 +9,8 @@ const schema: Schema = {
     actions: { $ref: '' },
     conditions: {},
     configured: {},
-    compiled: {}
-  }
-}
+    compiled: {},
+  },
+};
 
-export default schema
+export default schema;
