@@ -1,8 +1,3 @@
-export { formats, Schema } from '@oada/formats';
-
-import { formats } from '@oada/formats';
-export default formats;
-
 /**
  * Type for the `is` functions of @oada/types types
  */

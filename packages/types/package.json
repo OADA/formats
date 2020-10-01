@@ -35,7 +35,6 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@oada/formats": "^1.2.0-beta",
     "@types/json-schema-merge-allof": "^0.6.0",
     "@types/lodash.omit": "^4.5.6",
     "ajv": "^6.12.2",
@@ -45,6 +44,7 @@
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.1",
+    "@oada/formats": "^1.2.0-beta",
     "@types/bluebird": "^3.5.32",
     "@types/mkdirp": "^1.0.0",
     "@types/node": "^14.6.0",
