@@ -31,8 +31,8 @@ const schema: Schema = {
       examples: ['send an email to {{address}}'],
     },
     params: {
-      description: 'Parameters for the action',
-      $comment: 'Not yet implemented',
+      description: 'Input parameters for the action',
+      $ref: 'https://json-schema.org/draft/2019-09/schema',
     },
   },
   required: ['name', 'service', 'type', 'description'],

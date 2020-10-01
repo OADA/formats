@@ -36,9 +36,22 @@ const schema: Schema = {
       examples: ['has a valid signature'],
     },
     params: {
-      description: 'Parameters for the condtion',
+      description: 'Input parameters for the condition',
+      $ref: 'https://json-schema.org/draft/2019-09/schema',
+    },
+    pointers: {
+      description: 'A map for applying params to schema.',
       type: 'object',
-      $comment: 'Not yet implemented',
+      $comment: 'Is there a way to specify the keys are JSON pointers?',
+      additionalProperties: {
+        type: 'boolean',
+      },
+      examples: [
+        {
+          '/a/b/c': true,
+          '/d/e': false,
+        },
+      ],
     },
   },
   required: ['name', 'type', 'description'],

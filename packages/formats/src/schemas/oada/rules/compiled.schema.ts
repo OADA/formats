@@ -20,7 +20,7 @@ const schema: Schema = {
       type: 'string',
     },
     schema: {
-      description: 'A JSON Schema to which filters inputs to this work',
+      description: 'A JSON Schema which filters inputs to this work',
       $ref: 'https://json-schema.org/draft/2019-09/schema',
     },
     path: {
@@ -28,7 +28,7 @@ const schema: Schema = {
       $ref: '../../oada.schema.json#/definitions/path',
     },
     type: {
-      description: 'Content-type(s) with which this condition works',
+      description: 'Content-type(s) with which this works',
       oneOf: [
         { type: 'string' },
         {
