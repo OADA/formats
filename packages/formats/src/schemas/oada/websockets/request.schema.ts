@@ -18,7 +18,7 @@ const schema: Schema = {
     method: {
       anyOf: [
         { $ref: '../../oada.schema.json#/definitions/method' },
-        { enum: ['watch', 'unwatch'] },
+        { enum: ['watch', 'unwatch', 'ping'] },
       ],
     },
     headers: {
