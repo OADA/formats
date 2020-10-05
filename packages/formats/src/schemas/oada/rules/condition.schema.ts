@@ -44,12 +44,23 @@ const schema: Schema = {
       type: 'object',
       $comment: 'Is there a way to specify the keys are JSON pointers?',
       additionalProperties: {
-        type: 'boolean',
+        type: 'object',
+        required: ['name', 'iskey'],
+        properties: {
+          name: {
+            description: 'Name of the input to apply at this path.',
+            type: 'string',
+          },
+          iskey: {
+            description: 'Wether to replace the key or the value.',
+            type: 'boolean',
+          },
+        },
       },
       examples: [
         {
-          '/a/b/c': true,
-          '/d/e': false,
+          '/a/b/c': { name: 's1', iskey: true },
+          '/d/e': { name: 's2', iskey: false },
         },
       ],
     },
