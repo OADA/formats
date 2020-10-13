@@ -30,6 +30,11 @@ const schema: Schema = {
       type: 'string',
       examples: ['send an email to {{address}}'],
     },
+    uischema: {
+      description: 'UISchema for the params',
+      $comment: 'Not sure this is a good idea',
+      type: 'object',
+    },
     params: {
       description: 'Input parameters for the action',
       $ref: 'https://json-schema.org/draft/2019-09/schema',
