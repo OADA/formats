@@ -10,6 +10,15 @@ const schema: Schema = {
       type: 'boolean',
       default: true,
     },
+    services: {
+      description: 'Array of the names of the services involved in this rule',
+      $comment: 'Should this be here?',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+      uniqueItems: true,
+    },
     type: {
       description: 'Content-type this rule applies to',
       type: 'string',
