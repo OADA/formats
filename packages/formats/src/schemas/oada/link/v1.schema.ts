@@ -34,8 +34,7 @@ const schema: Schema = {
           type: 'string',
         },
         _rev: {
-          type: 'string',
-          pattern: '^[0-9]+-.+',
+          $ref: '../../oada.schema.json#/definitions/_rev',
         },
       },
     },

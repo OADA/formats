@@ -15,7 +15,7 @@ const schema: Schema = {
     {
       bookmarks: {
         _id: 'kdjsl028ifej',
-        _rev: '2-djfh92843hj',
+        _rev: 2,
       },
       username: 'frank',
       name: 'Farmer Frank',

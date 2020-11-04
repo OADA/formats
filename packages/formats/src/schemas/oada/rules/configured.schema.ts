@@ -43,7 +43,12 @@ const schema: Schema = {
       enabled: true,
       path: '/bookmarks/foo',
       services: ['test-service'],
-      actions: {},
+      actions: {
+        'test-action': {
+          _id: 'resources/foo',
+          _rev: 1,
+        },
+      },
       conditions: {},
     },
   ],
