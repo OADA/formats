@@ -37,6 +37,16 @@ const schema: Schema = {
     },
   },
   required: ['type', 'path', 'conditions', 'actions'],
+  examples: [
+    {
+      type: 'application/json',
+      enabled: true,
+      path: '/bookmarks/foo',
+      services: ['test-service'],
+      actions: {},
+      conditions: {},
+    },
+  ],
 };
 
 export default schema;
