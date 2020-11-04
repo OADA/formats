@@ -36,7 +36,7 @@ const schema: Schema = {
       $ref: '../link/v1.schema.json#/definitions/list/definitions/versioned',
     },
   },
-  required: ['type', 'path', 'condtions', 'actions'],
+  required: ['type', 'path', 'conditions', 'actions'],
 };
 
 export default schema;
