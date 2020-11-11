@@ -19,6 +19,18 @@ rules.set('$id to id', schema => {
 })
 */
 
+// Add jsdoc of default to description
+rules.set('default to jsdoc', (schema) => {
+  if (typeof schema.default !== 'undefined') {
+    const jsdoc = `@default ${JSON.stringify(schema.default, null, 2)}`;
+    if (schema.description) {
+      schema.description += '\n' + jsdoc;
+    } else {
+      schema.description = jsdoc;
+    }
+  }
+});
+
 rules.set('$ref to absolute path', (schema, { $id }) => {
   if (schema.$ref) {
     schema.$ref = new URL(schema.$ref, $id).toString();

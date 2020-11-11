@@ -23,6 +23,21 @@ const schema: Schema = {
       description: 'Content-type this rule applies to',
       type: 'string',
     },
+    on: {
+      $comment: 'Where should this definiton live?',
+      description: 'Whether to trigger on new item, changed item, etc.',
+      oneOf: [
+        {
+          description: 'Trigger on a new item being added',
+          enum: ['new'],
+        },
+        {
+          description: 'Trigger on any change to an item',
+          enum: ['change'],
+        },
+      ],
+      default: 'new',
+    },
     path: {
       description: 'The path to an OADA list to which to apply this rule',
       $ref: '../../oada.schema.json#/definitions/path',
@@ -42,6 +57,7 @@ const schema: Schema = {
       type: 'application/json',
       enabled: true,
       path: '/bookmarks/foo',
+      on: 'new',
       services: ['test-service'],
       actions: {
         'test-action': {

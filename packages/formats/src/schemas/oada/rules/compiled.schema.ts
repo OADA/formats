@@ -37,13 +37,16 @@ const schema: Schema = {
         },
       ],
     },
+    on: {
+      $comment: 'Where should this definiton live?',
+      $ref: './configured.schema.json#/properties/on',
+    },
     options: {
       description: 'Parameter values for this work',
       type: 'object',
-      $comment: 'Not yet implemented',
     },
   },
-  required: ['rule', 'action', 'service', 'type', 'path', 'schema'],
+  required: ['rule', 'action', 'service', 'type', 'on', 'path', 'schema'],
 };
 
 export default schema;
