@@ -10,7 +10,7 @@ import pack from 'ajv-pack';
 
 import { loadSchema } from '@oada/formats/lib/ajv';
 
-import formats, { schemas } from '@oada/formats';
+import loadFormats, { schemas } from '@oada/formats';
 
 import { rules } from './normalize';
 
@@ -29,6 +29,8 @@ async function doCompile() {
     'https://json-schema.org/draft/2019-09/schema'
   );
   ajv.addMetaSchema(metaSchema);
+
+  const formats = await loadFormats();
 
   // Compile schemas to TS types
   for (const { key, path, schema } of schemas()) {
@@ -119,9 +121,7 @@ async function doCompile() {
               order: 0,
               canRead: r,
               async read({ url }: { url: string }) {
-                const path = url.replace(r, '');
-                // @ts-ignore
-                return JSON.stringify(formats.getSchema(path)?.schema);
+                return JSON.stringify(formats.getSchema(url)?.schema);
               },
             },
           },
