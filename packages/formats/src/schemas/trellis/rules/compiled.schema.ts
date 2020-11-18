@@ -1,7 +1,7 @@
 import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
-  $id: 'https://formats.openag.io/oada/rules/compiled.schema.json',
+  $id: 'https://formats.openag.io/trellis/rules/compiled.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'Represents a "compiled" bit of work to implement rules',
   allOf: [{ $ref: '../resource.schema.json' }],
