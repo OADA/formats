@@ -4,11 +4,11 @@ const schema: Schema = {
   $id: 'https://formats.openag.io/trellis/rules/compiled.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'Represents a "compiled" bit of work to implement rules',
-  allOf: [{ $ref: '../resource.schema.json' }],
+  allOf: [{ $ref: '../../oada/resource.schema.json' }],
   properties: {
     rule: {
       description: 'Reference to the rule this is implementing',
-      $ref: '../link/v1.schema.json#/definitions/versioned',
+      $ref: '../../oada/link/v1.schema.json#/definitions/versioned',
     },
     action: {
       description: 'Name of the action invloved',
@@ -43,6 +43,7 @@ const schema: Schema = {
     },
     options: {
       description: 'Parameter values for this work',
+      $comment: 'Should these live in parent rule?',
       type: 'object',
     },
   },

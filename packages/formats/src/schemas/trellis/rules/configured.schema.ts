@@ -43,12 +43,40 @@ const schema: Schema = {
       $ref: '../../oada.schema.json#/definitions/path',
     },
     conditions: {
-      description: 'OADA list of conditions used in this rule',
-      $ref: '../link/v1.schema.json#/definitions/list/definitions/versioned',
+      description: 'List of conditions involved in this rule',
+      additionalProperties: {
+        description: 'Particular condition involved in this rule',
+        type: 'object',
+        properties: {
+          condition: {
+            description: 'A link to the condition document',
+            $ref: '../../oada/link/v1.schema.json#/definitions/versioned',
+          },
+          options: {
+            description: 'Parameter values for this condition',
+            type: 'object',
+          },
+        },
+        required: ['condition'],
+      },
     },
     actions: {
-      description: 'OADA list of actions used in this rule',
-      $ref: '../link/v1.schema.json#/definitions/list/definitions/versioned',
+      description: 'List of actions involved in this rule',
+      additionalProperties: {
+        description: 'Particular action involved in this rule',
+        type: 'object',
+        properties: {
+          action: {
+            description: 'A link to the action document',
+            $ref: '../../oada/link/v1.schema.json#/definitions/versioned',
+          },
+          options: {
+            description: 'Parameter values for this action',
+            type: 'object',
+          },
+        },
+        required: ['action'],
+      },
     },
   },
   required: ['type', 'path', 'conditions', 'actions'],
@@ -61,8 +89,14 @@ const schema: Schema = {
       services: ['test-service'],
       actions: {
         'test-action': {
-          _id: 'resources/foo',
-          _rev: 1,
+          action: {
+            _id: 'resources/foo',
+            _rev: 1,
+          },
+          options: {
+            foo: 1,
+            bar: 'a',
+          },
         },
       },
       conditions: {},

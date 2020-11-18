@@ -4,7 +4,7 @@ const schema: Schema = {
   $id: 'https://formats.openag.io/trellis/rules/condition.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'A description of a condtion which can be used in OADA rules',
-  allOf: [{ $ref: '../resource.schema.json' }],
+  allOf: [{ $ref: '../../oada/resource.schema.json' }],
   properties: {
     name: {
       description: 'Name of the condition',
