@@ -1,0 +1,5 @@
+# Ignore TS output
+*.d.ts
+*.js
+*.map
+*.tsbuildinfo

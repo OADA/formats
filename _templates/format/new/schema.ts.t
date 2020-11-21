@@ -1,5 +1,5 @@
 ---
-to: src/schemas/<%= name %>.schema.ts
+to: schemas/<%= name %>.schema.ts
 ---
 import { JSONSchema8 as Schema } from 'jsonschema8'
 

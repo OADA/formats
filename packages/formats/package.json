@@ -18,9 +18,9 @@
     "quoteProps": "consistent"
   },
   "scripts": {
-    "buildschemas": "ts-node src/schemas/compile.ts",
-    "prebuild": "npm run buildschemas",
-    "build": "tsc",
+    "buildschemas": "node ./lib/schemas/compile.js",
+    "postbuild": "npm run buildschemas",
+    "build": "tsc -b tsconfig.build.json",
     "prepare": "npm run build",
     "coverage": "nyc report",
     "coveralls": "nyc report --reporter text-lcov | coveralls"

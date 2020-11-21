@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "npm run clean && cd src && ts-node --files compile.ts",
     "clean": "git clean -dfx",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "postbuild": "cpy '**/*.js' ../ --cwd=src --parents",
     "prestart": "npm run build",
     "prepare": "npm run build",

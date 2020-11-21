@@ -10,29 +10,31 @@ type TypeModule<T = unknown> = {
   is: TypeCheck<T>;
   assert: TypeAssert<T>;
 };
-test.meta.file;
-for (const { key, schema } of schemas()) {
-  const type = key
-    .replace(/^https:\/\/formats\.openag\.io/, '')
-    .replace(/^\//, '../')
-    .replace(/\.schema\.json$/, '');
 
-  for (const i in schema.examples ?? []) {
-    const example = schema.examples?.[i];
+(async () => {
+  for await (const { key, schema } of schemas()) {
+    const type = key
+      .replace(/^https:\/\/formats\.openag\.io/, '')
+      .replace(/^\//, '../')
+      .replace(/\.schema\.json$/, '');
 
-    test(`${key} should check true for example ${i}`, async (t) => {
-      const typeModule: TypeModule = await import(type);
-      t.assert(typeModule.is(example));
-    });
+    for (const i in schema.examples ?? []) {
+      const example = schema.examples?.[i];
 
-    test(`${key} should assert example ${i}`, async (t) => {
-      const typeModule: TypeModule = await import(type);
-      try {
-        typeModule.assert(example);
-        t.pass();
-      } catch (err) {
-        t.fail(err);
-      }
-    });
+      test(`${key} should check true for example ${i}`, async (t) => {
+        const typeModule: TypeModule = await import(type);
+        t.assert(typeModule.is(example));
+      });
+
+      test(`${key} should assert example ${i}`, async (t) => {
+        const typeModule: TypeModule = await import(type);
+        try {
+          typeModule.assert(example);
+          t.pass();
+        } catch (err) {
+          t.fail(err);
+        }
+      });
+    }
   }
-}
+})();

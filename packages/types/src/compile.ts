@@ -33,7 +33,7 @@ async function doCompile() {
   const formats = await loadFormats();
 
   // Compile schemas to TS types
-  for (const { key, path, schema } of schemas()) {
+  for await (const { key, path, schema } of schemas()) {
     //normalize(schema)
 
     const { $id } = schema;

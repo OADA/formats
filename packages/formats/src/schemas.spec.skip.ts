@@ -83,43 +83,45 @@ test.before('Initiallize $ref checker', () => {
 });
 
 // TODO: Make these parallel in ava?
-for (const { schema, key, glob } of schemas()) {
-  const { $id } = schema as { $id: string };
-  test.before(`Compile schema ${key}`, async () => {
-    try {
-      await ajv.compileAsync(schema);
-    } catch (err) {
-      // Already compiled
+(async () => {
+  for await (const { schema, key, glob } of schemas()) {
+    const { $id } = schema as { $id: string };
+    test.before(`Compile schema ${key}`, async () => {
+      try {
+        await ajv.compileAsync(schema);
+      } catch (err) {
+        // Already compiled
+      }
+    });
+
+    test(`${key} should be valid JSON Schema`, (t) => {
+      t.assert(ajv.validateSchema(schema));
+    });
+
+    // $id needs to be consistent with file structure
+    // or most tools get upset
+    test(`${key} should have conistent $id`, (t) => {
+      t.is($id, `https://${join('formats.openag.io/', glob)}`);
+    });
+
+    test.todo(`${key} should have valid self $ref's`);
+
+    test(`${key} should have valid external $ref's`, async (t) => {
+      await t.notThrowsAsync(checkRefs(glob, schema));
+    });
+
+    if (schema.default) {
+      test(`${key} should have valid default`, (t) => {
+        t.assert(ajv.validate($id, schema.default), ajv.errorsText());
+      });
     }
-  });
 
-  test(`${key} should be valid JSON Schema`, (t) => {
-    t.assert(ajv.validateSchema(schema));
-  });
+    for (const i in schema.examples ?? []) {
+      const example = schema.examples?.[i];
 
-  // $id needs to be consistent with file structure
-  // or most tools get upset
-  test(`${key} should have conistent $id`, (t) => {
-    t.is($id, `https://${join('formats.openag.io/', glob)}`);
-  });
-
-  test.todo(`${key} should have valid self $ref's`);
-
-  test(`${key} should have valid external $ref's`, async (t) => {
-    await t.notThrowsAsync(checkRefs(glob, schema));
-  });
-
-  if (schema.default) {
-    test(`${key} should have valid default`, (t) => {
-      t.assert(ajv.validate($id, schema.default), ajv.errorsText());
-    });
+      test(`${key} should validate example ${i}`, (t) => {
+        t.assert(ajv.validate($id, example), ajv.errorsText());
+      });
+    }
   }
-
-  for (const i in schema.examples ?? []) {
-    const example = schema.examples?.[i];
-
-    test(`${key} should validate example ${i}`, (t) => {
-      t.assert(ajv.validate($id, example), ajv.errorsText());
-    });
-  }
-}
+})();

@@ -1,6 +1,7 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.build.json",
   "compilerOptions": {
+    "esModuleInterop": true,
     "rootDir": "src",
     "outDir": "."
   },
