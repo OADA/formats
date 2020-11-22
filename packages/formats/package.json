@@ -19,7 +19,19 @@
     "build": "tsc -b tsconfig.build.json",
     "prepare": "npm run build",
     "coverage": "nyc report",
-    "coveralls": "nyc report --reporter text-lcov | coveralls"
+    "coveralls": "nyc report --reporter text-lcov | coveralls",
+    "test": "ava"
+  },
+  "ava": {
+    "files": [
+      "**/*.spec.ts"
+    ],
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
   },
   "repository": "https://github.com/OADA/formats",
   "author": "Alex Layton <alex@layton.in>",
@@ -32,7 +44,11 @@
     "ava": "^3.8.2",
     "axios": "^0.19.2",
     "glob": "^7.1.6",
+    "jsonschema8": "^1.1.0",
     "lerna": "^3.22.0",
     "mkdirp": "^1.0.4"
+  },
+  "devDependencies": {
+    "@ava/typescript": "^1.1.1"
   }
 }

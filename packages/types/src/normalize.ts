@@ -31,6 +31,13 @@ rules.set('default to jsdoc', (schema) => {
   }
 });
 
+// Not expressible is TS, just causes issues
+rules.set('ingore patternProperties', (schema) => {
+  if (schema.patternProperties) {
+    delete schema.patternProperties;
+  }
+});
+
 rules.set('$ref to absolute path', (schema, { $id }) => {
   if (schema.$ref) {
     schema.$ref = new URL(schema.$ref, $id).toString();

@@ -10,7 +10,13 @@
     "postbuild": "cpy '**/*.js' ../ --cwd=src --parents",
     "prestart": "npm run build",
     "prepare": "npm run build",
-    "pretest": "npm run build"
+    "pretest": "npm run build",
+    "test": "ava"
+  },
+  "ava": {
+    "files": [
+      "**/*.spec.js"
+    ]
   },
   "files": [
     "**/*.d.ts",
@@ -19,13 +25,6 @@
     "**/*.js.map",
     "tsconfig.json"
   ],
-  "mocha": {
-    "spec": "*.spec.ts",
-    "extension": [
-      "ts"
-    ],
-    "require": "ts-node/register"
-  },
   "repository": "https://github.com/OADA/types",
   "author": "Alex Layton <alex@layton.in>",
   "license": "MIT",
@@ -36,6 +35,7 @@
     "lodash.omit": "^4.5.0"
   },
   "devDependencies": {
+    "@ava/typescript": "^1.1.1",
     "@oada/formats": "^1.2.0-beta"
   }
 }

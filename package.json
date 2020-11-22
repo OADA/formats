@@ -6,20 +6,8 @@
   "scripts": {
     "prepare": "lerna run build",
     "build": "bundle exec jekyll build",
-    "lint": "spectral lint packages/formats/lib/\\*\\*/*.schema.json",
-    "test": "ava"
-  },
-  "ava": {
-    "files": [
-      "**/*.spec.ts",
-      "!**/lib"
-    ],
-    "extensions": [
-      "ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ]
+    "lint": "spectral lint packages/formats/src/schemas/\\*\\*/*.schema.json",
+    "test": "lerna run test"
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.1",

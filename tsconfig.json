@@ -7,7 +7,6 @@
       "@trellisfw/rules-*": ["packages/*/src"]
     },
     "jsx": "react",
-    "esModuleInterop": true,
     "skipLibCheck": true,
     "types": []
   }

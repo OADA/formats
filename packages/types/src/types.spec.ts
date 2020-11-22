@@ -15,7 +15,7 @@ type TypeModule<T = unknown> = {
   for await (const { key, schema } of schemas()) {
     const type = key
       .replace(/^https:\/\/formats\.openag\.io/, '')
-      .replace(/^\//, '../')
+      .replace(/^\//, './')
       .replace(/\.schema\.json$/, '');
 
     for (const i in schema.examples ?? []) {

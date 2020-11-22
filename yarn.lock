@@ -1021,6 +1021,7 @@
     ava "^3.8.2"
     axios "^0.19.2"
     glob "^7.1.6"
+    jsonschema8 "^1.1.0"
     lerna "^3.22.0"
     mkdirp "^1.0.4"
 
