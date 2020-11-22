@@ -24,17 +24,17 @@ we wrap our JSON Schemas in TypeScript modules.
 
 ```ts
 // Somewhat opinionated TypeScript type definitions for JSON Schema
-import { JSONSchema8 as Schema } from 'jsonschema8'
+import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   /* The actual JSON Schema */
-}
+};
 
 /**
  * Simply exports an object of the schema,
  * but now TS understands what it is and how it should look.
  */
-export default schema
+export default schema;
 ```
 
 The original intention was to simply have json files of the [JSON Schema][],
@@ -83,16 +83,16 @@ that resolves to an [Ajv][] instance
 which is loaded with all the the schemas from this project.
 
 ```ts
-import loadAllFormats from '@oada/formats'
+import loadAllFormats from '@oada/formats';
 
 const obj = {
   /* Properties and stuff here */
-}
+};
 
-let formats = await loadAllFormats()
+let formats = await loadAllFormats();
 
 // Check that obj matches the format for and OADA bookmarks document
-formats.validate('https://formats.openag.io/oada/bookmarks.schema', obj)
+formats.validate('https://formats.openag.io/oada/bookmarks.schema', obj);
 ```
 
 In addition to being loaded with all the OADA formats,
@@ -101,7 +101,7 @@ to resolve content types to the relevant schema.
 
 ```ts
 // Returns the schema for an OADA Bookmarks document
-const { schema } = formats.getSchema('applications/vnd.oada.bookmarks.1+json')
+const { schema } = formats.getSchema('applications/vnd.oada.bookmarks.1+json');
 ```
 
 [json schema]: https://json-schema.org

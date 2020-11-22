@@ -1,0 +1,27 @@
+LICENSE
+
+tags*
+
+yarn.lock
+yarn-error.log
+
+*.toml
+
+Gemfile
+Gemfile.lock
+
+.coverage
+
+_site/
+
+lib
+
+# Ignore generated types
+packages/types/**/*.js
+packages/types/**/*.ts
+packages/types/**/*.d.ts
+packages/types/**/*.map
+!packages/types/src/compile.ts
+!packages/types/src/index.ts
+!packages/types/src/types.d.ts
+!packages/types/src/types.spec.ts

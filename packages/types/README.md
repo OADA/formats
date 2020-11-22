@@ -19,7 +19,7 @@ For example, the OADA Bookmarks v1 format can be imported like so:
  * Import the type definition for
  * {@link https://formats.openag.io/oada/bookmarks/v1.schema.json}
  */
-import Bookmarks from '@oada/types/oada/bookmarks/v1'
+import Bookmarks from '@oada/types/oada/bookmarks/v1';
 ```
 
 ### Runtime Validation

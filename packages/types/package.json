@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "npm run clean && cd src && ts-node --files compile.ts",
-    "clean": "git clean -dfx",
-    "build": "tsc -p tsconfig.build.json",
+    "clean": "tsc -b tsconfig.build.json --clean",
+    "build": "tsc -b tsconfig.build.json",
     "postbuild": "cpy '**/*.js' ../ --cwd=src --parents",
     "prestart": "npm run build",
     "prepare": "npm run build",
@@ -19,10 +19,6 @@
     "**/*.js.map",
     "tsconfig.json"
   ],
-  "prettier": {
-    "singleQuote": true,
-    "quoteProps": "consistent"
-  },
   "mocha": {
     "spec": "*.spec.ts",
     "extension": [
@@ -35,26 +31,11 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@types/json-schema-merge-allof": "^0.6.0",
-    "@types/lodash.omit": "^4.5.6",
     "ajv": "^6.12.2",
     "json-schema-merge-allof": "^0.7.0",
-    "lodash.omit": "^4.5.0",
-    "typescript": "^4.0.3"
+    "lodash.omit": "^4.5.0"
   },
   "devDependencies": {
-    "@apidevtools/json-schema-ref-parser": "^9.0.1",
-    "@oada/formats": "^1.2.0-beta",
-    "@types/bluebird": "^3.5.32",
-    "@types/mkdirp": "^1.0.0",
-    "@types/node": "^14.6.0",
-    "@types/prettier": "^2.0.0",
-    "ajv-pack": "^0.3.1",
-    "cpy-cli": "^3.1.1",
-    "json-schema-to-typescript": "https://github.com/awlayton/json-schema-to-typescript.git#custom-rules",
-    "jsonschema8": "^1.1.0",
-    "mkdirp": "^1.0.4",
-    "prettier": "^2.1.2",
-    "ts-node": "^9.0.0"
+    "@oada/formats": "^1.2.0-beta"
   }
 }

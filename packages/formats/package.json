@@ -13,10 +13,6 @@
     "tsconfig.json",
     ".nycrc.json"
   ],
-  "prettier": {
-    "singleQuote": true,
-    "quoteProps": "consistent"
-  },
   "scripts": {
     "buildschemas": "node ./lib/schemas/compile.js",
     "postbuild": "npm run buildschemas",
@@ -38,30 +34,5 @@
     "glob": "^7.1.6",
     "lerna": "^3.22.0",
     "mkdirp": "^1.0.4"
-  },
-  "devDependencies": {
-    "@types/istanbul-lib-coverage": "^2.0.1",
-    "@types/istanbul-lib-instrument": "^1.7.3",
-    "@types/istanbul-lib-report": "^3.0.0",
-    "@types/istanbul-reports": "^1.1.1",
-    "@types/js-beautify": "^1.8.2",
-    "@types/json-schema": "^7.0.4",
-    "@types/mkdirp": "^1.0.0",
-    "@types/node": "^14.6.0",
-    "@types/yargs": "^15.0.4",
-    "c8": "^7.1.0",
-    "coveralls": "^3.0.13",
-    "istanbul-lib-coverage": "^3.0.0",
-    "istanbul-lib-instrument": "^4.0.1",
-    "istanbul-lib-report": "^3.0.0",
-    "istanbul-reports": "^3.0.2",
-    "js-beautify": "^1.11.0",
-    "json-schema-traverse": "^0.4.1",
-    "jsonschema8": "^1.1.0",
-    "nyc": "^15.0.1",
-    "prettier": "^2.1.2",
-    "ts-node": "^9.0.0",
-    "typescript": "^4.0.3",
-    "yargs": "^15.3.1"
   }
 }

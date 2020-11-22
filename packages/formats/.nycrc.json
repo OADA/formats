@@ -1,15 +1,8 @@
 {
   "reports-dir": ".coverage",
   "temp-dir": ".coverage",
-  "extension": [
-    ".js",
-    ".ts",
-    ".schema.json"
-  ],
-  "include": [
-    "src/**/*.ts",
-    "https://formats.openag.io/**/*.schema.json"
-  ],
+  "extension": [".js", ".ts", ".schema.json"],
+  "include": ["src/**/*.ts", "https://formats.openag.io/**/*.schema.json"],
   "exclude": [
     "**/*.d.ts",
     "**/*.spec.ts",
