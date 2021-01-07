@@ -15,7 +15,7 @@ import {
 import { contentTypeToKey } from './ajv';
 
 import { JSONSchema8 as RealSchema } from 'jsonschema8';
-import * as Ajv from 'ajv';
+import Ajv from 'ajv';
 
 import traverse from './traverse';
 
@@ -23,11 +23,11 @@ export namespace Old {
   // The IDs on the generated schemas are weird
   export type Schema = RealSchema & { id: string };
   export interface Model {
-    validate: Ajv.ValidateFunction;
+    validate: Ajv['validate'];
     schema: () => Promise<Schema>;
     examples: () => Promise<{ [key: string]: any }>;
   }
-  export interface Formats extends Ajv.Ajv {
+  export interface Formats extends Ajv {
     mediatypes: { [key: string]: string };
     _addMediatypes(types: { [key: string]: string }): void;
     model: (type: string) => Promise<Model>;

@@ -13,7 +13,7 @@ import { create as createReport } from 'istanbul-reports'
  */
 
 import { JSONSchema8 as Schema } from 'jsonschema8';
-import * as Ajv from 'ajv';
+import Ajv from 'ajv';
 import * as $RefParser from '@apidevtools/json-schema-ref-parser';
 
 import schemas from './schemas';

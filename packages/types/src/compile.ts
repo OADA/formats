@@ -6,7 +6,7 @@ import mkdirp = require('mkdirp');
 import { compileFromFile } from 'json-schema-to-typescript';
 import { dereference } from '@apidevtools/json-schema-ref-parser';
 import Ajv from 'ajv';
-import pack from 'ajv-pack';
+import standaloneCode from 'ajv/dist/standalone';
 
 import { loadSchema } from '@oada/formats/lib/ajv';
 
@@ -20,8 +20,7 @@ const typesDir = resolve('./');
 const compileStr = '`$ yarn build`';
 
 // Create ajv for packing validation functions
-// @ts-ignore
-const ajv = new Ajv({ loadSchema, sourceCode: true });
+const ajv = new Ajv({ strict: false, loadSchema, code: { source: true } });
 
 // Compile the schema files to TypeScript types
 async function doCompile() {
@@ -47,7 +46,7 @@ async function doCompile() {
 
     // Pack up validation function
     const validate = await ajv.compileAsync(schema);
-    const packed = pack(ajv, validate);
+    const moduleCode = standaloneCode(ajv, validate);
     const packedfile = join(
       typesDir,
       file.replace(/\.schema\.json$/, '-validate.js')
@@ -131,7 +130,7 @@ async function doCompile() {
       await mkdirp(dirname(outfile));
       // TODO: Figure out wtf is up with mkdirp that I need this...
       await Bluebird.delay(50);
-      await fs.writeFile(packedfile, packed);
+      await fs.writeFile(packedfile, moduleCode);
       await fs.writeFile(outfile, ts);
     } catch (err) {
       console.error(`Error compiling ${key}: %O`, err);

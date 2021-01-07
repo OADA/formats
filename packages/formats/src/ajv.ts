@@ -2,16 +2,19 @@ import { join } from 'path';
 
 import { JSONSchema8 as Schema } from 'jsonschema8';
 
-import * as Ajv from 'ajv';
+import Ajv from 'ajv';
 import { dereference } from '@apidevtools/json-schema-ref-parser';
 import axios from 'axios';
 
 import schemas from './schemas';
 
-export const ajv: OADAFormats = new Ajv({ loadSchema }) as OADAFormats;
+export const ajv: OADAFormats = new Ajv({
+  strict: false,
+  loadSchema,
+}) as OADAFormats;
 
-export interface OADAFormats extends Ajv.Ajv {
-  validate(ref: string | Schema, data: any): boolean;
+export interface OADAFormats extends Ajv {
+  //validate(ref: string | Schema, data: any): boolean;
 }
 
 // Load all the schemas into ajv
@@ -71,7 +74,7 @@ export function* contentTypeToKey(
 
 // Support getting schema by content type?
 const _getSchema = ajv.getSchema.bind(ajv);
-ajv.getSchema = (ref: string) => {
+ajv.getSchema = ((ref) => {
   const schema = _getSchema(ref);
   if (schema) {
     return schema;
@@ -83,7 +86,7 @@ ajv.getSchema = (ref: string) => {
       return schema;
     }
   }
-};
+}) as typeof _getSchema;
 
 export async function loadSchema(uri: string) {
   const r = /^https:\/\/formats\.openag\.io/i;
