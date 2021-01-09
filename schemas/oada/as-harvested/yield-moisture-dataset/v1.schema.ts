@@ -114,7 +114,7 @@ const schema: Schema = {
                 },
                 altitude: {
                   description: 'altitude is a string in the format of a number',
-                  type: 'number',
+                  type: 'string',
                   pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 lat: {
@@ -129,7 +129,7 @@ const schema: Schema = {
                 },
                 alt: {
                   description: 'alt is shorthand for altitude',
-                  type: 'number',
+                  type: 'string',
                   pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 geohash: {
@@ -264,7 +264,7 @@ const schema: Schema = {
                 },
                 altitude: {
                   description: 'altitude is a string in the format of a number',
-                  type: 'number',
+                  type: 'string',
                   pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 lat: {
@@ -279,7 +279,7 @@ const schema: Schema = {
                 },
                 alt: {
                   description: 'alt is shorthand for altitude',
-                  type: 'number',
+                  type: 'string',
                   pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 geohash: {
@@ -542,13 +542,13 @@ const schema: Schema = {
   examples: [
     {
       _id: 'ifjo2ifkl23',
-      _rev: '2-ihdofi223',
+      _rev: 2,
       _type: 'application/vnd.oada.as-harvested.yield-moisture-dataset.1+json',
       indexing: [
         {
           index: 'year-index',
           value: '2018',
-          source: 'oada.vocab.year',
+          source: 'oada.vocab.year-index',
         },
         {
           index: 'crop-index',
@@ -558,7 +558,7 @@ const schema: Schema = {
         {
           index: 'geohash-length-index',
           source: 'oada.vocab.geohash-length-index',
-          value: '7',
+          value: 'geohash-7',
         },
         {
           index: 'geohash-index',
@@ -602,9 +602,9 @@ const schema: Schema = {
             value: 28.79,
           },
           location: {
-            latitude: -41.9384932,
-            longitude: 80.9284923,
-            altitude: 200.49583,
+            latitude: '-41.9384932',
+            longitude: '80.9284923',
+            altitude: '200.49583',
           },
         },
         '0f2jflk2j3l': {
@@ -623,9 +623,9 @@ const schema: Schema = {
             value: 23.81,
           },
           location: {
-            latitude: -41.9384931,
-            longitude: 80.9284921,
-            altitude: 200.49581,
+            latitude: '-41.9384931',
+            longitude: '80.9284921',
+            altitude: '200.49581',
           },
         },
       },

@@ -161,147 +161,8 @@ const schema: Schema = {
             id_source: {
               description:
                 'An id_source is a representation of who assigned the id: i.e. who do you go ask to figure out what a particular ID goes to.',
-              properties: {
-                certifying_body: {
-                  description:
-                    'specifies the credentials of the organization is performing the audit along with the specific individual performing the audit.',
-                  properties: {
-                    name: {
-                      description:
-                        'name is a string, typically the name of the object the key appears in.',
-                      type: 'string',
-                      pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                      examples: ['Primus Auditing Operations'],
-                    },
-                    auditor: {
-                      description:
-                        '"auditor" is the person performing the audit for the certifying body',
-                      properties: {
-                        conflict_of_interest: {
-                          description:
-                            'conflict_of_interest indicates if a particular person (auditor) has a known conflict of interest for creating a certification for an organization',
-                          type: 'boolean',
-                        },
-                        number_prior_audits_this_organization: {
-                          description:
-                            "Introduced for CanadaGAP, this is the auditor's attestation of how many times they have audited this operation before.",
-                          type: 'string',
-                          pattern: '^[0-9]+$',
-                        },
-                        number_prior_consecutive_audits_this_organization: {
-                          description:
-                            "Introduced for CanadaGAP, this is the auditor's attestation of how many consecutive times they have audited this operation, excluding the current audit.",
-                          type: 'string',
-                          pattern: '^[0-9]+$',
-                        },
-                      },
-                      type: 'object',
-                    },
-                    reviewer: {
-                      description:
-                        'Introduced for CanadaGAP audit.  Represents the person who reviewed the audit within the certifiation body.',
-                      properties: {
-                        name: {
-                          description:
-                            'name is a string, typically the name of the object the key appears in.',
-                          type: 'string',
-                          pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                        },
-                        email: {
-                          description:
-                            'email address for an organization or contact',
-                          type: 'string',
-                        },
-                        location: {
-                          description:
-                            'location describes the postal address used to identify where something is.',
-                          properties: {
-                            postal_code: {
-                              description:
-                                'postal_code is the postal code used in a postal address',
-                              type: 'string',
-                            },
-                            street_address: {
-                              description:
-                                'The street name and mailbox number of a postal address.',
-                              type: 'string',
-                            },
-                            city: {
-                              description:
-                                'The name of the city, usually in a postal address.',
-                              type: 'string',
-                            },
-                            state: {
-                              description:
-                                'The name of the state or major region, usually in a postal address.',
-                              type: 'string',
-                            },
-                            country: {
-                              description:
-                                'The name of the country, usually in a postal address.',
-                              type: 'string',
-                            },
-                            name: {
-                              description:
-                                'name is a string, typically the name of the object the key appears in.',
-                              type: 'string',
-                              pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                            },
-                          },
-                          type: 'object',
-                        },
-                        phone: {
-                          description:
-                            'phone describes the phone number with country code and area code.',
-                          type: 'string',
-                        },
-                        fax: {
-                          description:
-                            'fax number for a person or organization',
-                          type: 'string',
-                        },
-                      },
-                      type: 'object',
-                    },
-                    review_date: {
-                      description:
-                        'Introduced for CanadaGAP.  Indicates when the review of the audit was performed.',
-                      type: 'string',
-                    },
-                  },
-                  type: 'object',
-                },
-                scheme: {
-                  description:
-                    'the set of descriptors for identifying the current audit scheme for this document.',
-                  properties: {
-                    name: {
-                      description:
-                        'name is a string, typically the name of the object the key appears in.',
-                      type: 'string',
-                      pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                      examples: ['PrimusGFS', 'GlobalGAP', 'CanadaGAP', 'SQFI'],
-                    },
-                    version: {
-                      description:
-                        'version is a string which describes the version of the schema used for the current audit.',
-                      type: 'string',
-                    },
-                    option: {
-                      description:
-                        'option is used as an indicator of type of audit for a given audit version.  Introduced for GlobalGAP audit, also present in CanadaGAP audit.',
-                      type: 'string',
-                    },
-                    options: {
-                      description:
-                        'If an audit covers multiple scheme options, you can make an array of them.',
-                      type: 'string',
-                    },
-                  },
-                  type: 'object',
-                },
-              },
-              type: 'object',
+              type: 'string',
+              examples: [ 'scheme', 'certifying_body' ],
             },
           },
           type: 'object',
@@ -493,7 +354,7 @@ const schema: Schema = {
           },
         },
       },
-      required: ['organizationid', 'name', 'otherids'],
+      required: ['organizationid', 'name' ],
       type: 'object',
     },
     scope: {
@@ -1115,11 +976,13 @@ const schema: Schema = {
               description:
                 'start describes the date and time when the audit started',
               type: 'string',
+              pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}$',
             },
             end: {
               description:
                 'end describes the date and time when the audit was completed.',
               type: 'string',
+              pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}$',
             },
             duration: {
               description:
@@ -1151,11 +1014,13 @@ const schema: Schema = {
               description:
                 'start describes the date and time when the audit started',
               type: 'string',
+              pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}$',
             },
             end: {
               description:
                 'end describes the date and time when the audit was completed.',
               type: 'string',
+              pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}$',
             },
             duration: {
               description:
@@ -1196,146 +1061,8 @@ const schema: Schema = {
         id_source: {
           description:
             'An id_source is a representation of who assigned the id: i.e. who do you go ask to figure out what a particular ID goes to.',
-          properties: {
-            certifying_body: {
-              description:
-                'specifies the credentials of the organization is performing the audit along with the specific individual performing the audit.',
-              properties: {
-                name: {
-                  description:
-                    'name is a string, typically the name of the object the key appears in.',
-                  type: 'string',
-                  pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                  examples: ['Primus Auditing Operations'],
-                },
-                auditor: {
-                  description:
-                    '"auditor" is the person performing the audit for the certifying body',
-                  properties: {
-                    conflict_of_interest: {
-                      description:
-                        'conflict_of_interest indicates if a particular person (auditor) has a known conflict of interest for creating a certification for an organization',
-                      type: 'boolean',
-                    },
-                    number_prior_audits_this_organization: {
-                      description:
-                        "Introduced for CanadaGAP, this is the auditor's attestation of how many times they have audited this operation before.",
-                      type: 'string',
-                      pattern: '^[0-9]+$',
-                    },
-                    number_prior_consecutive_audits_this_organization: {
-                      description:
-                        "Introduced for CanadaGAP, this is the auditor's attestation of how many consecutive times they have audited this operation, excluding the current audit.",
-                      type: 'string',
-                      pattern: '^[0-9]+$',
-                    },
-                  },
-                  type: 'object',
-                },
-                reviewer: {
-                  description:
-                    'Introduced for CanadaGAP audit.  Represents the person who reviewed the audit within the certifiation body.',
-                  properties: {
-                    name: {
-                      description:
-                        'name is a string, typically the name of the object the key appears in.',
-                      type: 'string',
-                      pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                    },
-                    email: {
-                      description:
-                        'email address for an organization or contact',
-                      type: 'string',
-                    },
-                    location: {
-                      description:
-                        'location describes the postal address used to identify where something is.',
-                      properties: {
-                        postal_code: {
-                          description:
-                            'postal_code is the postal code used in a postal address',
-                          type: 'string',
-                        },
-                        street_address: {
-                          description:
-                            'The street name and mailbox number of a postal address.',
-                          type: 'string',
-                        },
-                        city: {
-                          description:
-                            'The name of the city, usually in a postal address.',
-                          type: 'string',
-                        },
-                        state: {
-                          description:
-                            'The name of the state or major region, usually in a postal address.',
-                          type: 'string',
-                        },
-                        country: {
-                          description:
-                            'The name of the country, usually in a postal address.',
-                          type: 'string',
-                        },
-                        name: {
-                          description:
-                            'name is a string, typically the name of the object the key appears in.',
-                          type: 'string',
-                          pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                        },
-                      },
-                      type: 'object',
-                    },
-                    phone: {
-                      description:
-                        'phone describes the phone number with country code and area code.',
-                      type: 'string',
-                    },
-                    fax: {
-                      description: 'fax number for a person or organization',
-                      type: 'string',
-                    },
-                  },
-                  type: 'object',
-                },
-                review_date: {
-                  description:
-                    'Introduced for CanadaGAP.  Indicates when the review of the audit was performed.',
-                  type: 'string',
-                },
-              },
-              type: 'object',
-            },
-            scheme: {
-              description:
-                'the set of descriptors for identifying the current audit scheme for this document.',
-              properties: {
-                name: {
-                  description:
-                    'name is a string, typically the name of the object the key appears in.',
-                  type: 'string',
-                  pattern: '^(?!(indexing|.*-index|_.*)).*$',
-                  examples: ['PrimusGFS', 'GlobalGAP', 'CanadaGAP', 'SQFI'],
-                },
-                version: {
-                  description:
-                    'version is a string which describes the version of the schema used for the current audit.',
-                  type: 'string',
-                },
-                option: {
-                  description:
-                    'option is used as an indicator of type of audit for a given audit version.  Introduced for GlobalGAP audit, also present in CanadaGAP audit.',
-                  type: 'string',
-                },
-                options: {
-                  description:
-                    'If an audit covers multiple scheme options, you can make an array of them.',
-                  type: 'string',
-                },
-              },
-              type: 'object',
-            },
-          },
-          type: 'object',
+          type: 'string',
+          examples: [ 'scheme', 'certifying_body' ],
         },
       },
       type: 'object',
@@ -4761,161 +4488,8 @@ const schema: Schema = {
             globalgap_level: {
               description:
                 "globalgap_level is not actually a key that is used, but rather describes a class of objects which represent a level's summary score",
-              anyOf: [
-                {
-                  properties: {
-                    yes: {
-                      description:
-                        'yes is used to represent the summary count of "yes" answers in the audit',
-                      properties: {
-                        value: {
-                          description:
-                            'a numeric or qualitative value, represented as a string',
-                          type: 'string',
-                        },
-                        units: {
-                          description:
-                            'the units used to interpret the associated value.',
-                          type: 'string',
-                          examples: ['count'],
-                        },
-                        possible: {
-                          description:
-                            'Number of points possible for this control point',
-                          type: 'string',
-                        },
-                      },
-                      type: 'object',
-                    },
-                    no: {
-                      description:
-                        'no is used to represent the summary count of "no" answers in the audit',
-                      properties: {
-                        value: {
-                          description:
-                            'a numeric or qualitative value, represented as a string',
-                          type: 'string',
-                        },
-                        units: {
-                          description:
-                            'the units used to interpret the associated value.',
-                          type: 'string',
-                          examples: ['count'],
-                        },
-                        possible: {
-                          description:
-                            'Number of points possible for this control point',
-                          type: 'string',
-                        },
-                      },
-                      type: 'object',
-                    },
-                    n_a: {
-                      description:
-                        'n_a is used to represent the summary count of "Not Applicable" answers in the audit',
-                      properties: {
-                        value: {
-                          description:
-                            'a numeric or qualitative value, represented as a string',
-                          type: 'string',
-                        },
-                        units: {
-                          description:
-                            'the units used to interpret the associated value.',
-                          type: 'string',
-                          examples: ['count'],
-                        },
-                        possible: {
-                          description:
-                            'Number of points possible for this control point',
-                          type: 'string',
-                        },
-                      },
-                      type: 'object',
-                    },
-                    is_compliant: {
-                      description:
-                        'GlobalGAP has an overall true/false compliance for an audit score',
-                      type: 'boolean',
-                    },
-                  },
-                  type: 'object',
-                },
-                {
-                  properties: {
-                    major_must: {
-                      description:
-                        'major_must is used to represent the summary count of "Major Must" answers in the audit',
-                      properties: {
-                        value: {
-                          description:
-                            'a numeric or qualitative value, represented as a string',
-                          type: 'string',
-                        },
-                        units: {
-                          description:
-                            'the units used to interpret the associated value.',
-                          type: 'string',
-                          examples: ['count'],
-                        },
-                        possible: {
-                          description:
-                            'Number of points possible for this control point',
-                          type: 'string',
-                        },
-                      },
-                      type: 'object',
-                    },
-                    minor_must: {
-                      description:
-                        'major_must is used to represent the summary count of "Minor Must" answers in the audit',
-                      properties: {
-                        value: {
-                          description:
-                            'a numeric or qualitative value, represented as a string',
-                          type: 'string',
-                        },
-                        units: {
-                          description:
-                            'the units used to interpret the associated value.',
-                          type: 'string',
-                          examples: ['count'],
-                        },
-                        possible: {
-                          description:
-                            'Number of points possible for this control point',
-                          type: 'string',
-                        },
-                      },
-                      type: 'object',
-                    },
-                    recommended: {
-                      description:
-                        'major_must is used to represent the summary count of "Minor Must" answers in the audit',
-                      properties: {
-                        value: {
-                          description:
-                            'a numeric or qualitative value, represented as a string',
-                          type: 'string',
-                        },
-                        units: {
-                          description:
-                            'the units used to interpret the associated value.',
-                          type: 'string',
-                          examples: ['count'],
-                        },
-                        possible: {
-                          description:
-                            'Number of points possible for this control point',
-                          type: 'string',
-                        },
-                      },
-                      type: 'object',
-                    },
-                  },
-                  type: 'object',
-                },
-              ],
+              type: 'string',
+              enum: [ 'major_must', 'minor_must', 'recommended' ],
             },
             auditor_comments: {
               description:
@@ -5815,7 +5389,7 @@ const schema: Schema = {
         id: '12345-AAAAA-6789',
       },
       scheme: {
-        name: 'GLOBALG.A.P.',
+        name: 'GLOBALGAP',
         version: '5.0-1',
         option: '1',
         modules: [
@@ -5920,10 +5494,17 @@ const schema: Schema = {
         parallel_ownership: false,
       },
       conditions_during_audit: {
-        operation_observed_date: '2016-07-26',
-        duration: {
-          value: 4.5,
-          units: 'hours',
+        FSMS_observed_date: {
+          start: '2016-07-26',
+          end: '2016-07-26',
+        },
+        operation_observed_date: {
+          start: '2016-07-26',
+          end: '2016-07-26',
+          duration: {
+            value: '4.5',
+            units: 'hours',
+          },
         },
       },
       score: {

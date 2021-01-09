@@ -449,7 +449,7 @@ const schema: Schema = {
         {
           index: 'geohash-length-index',
           source: 'oada.vocab.geohash-length-index',
-          value: '7',
+          value: 'geohash-7',
         },
         {
           index: 'geohash-index',
