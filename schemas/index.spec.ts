@@ -66,9 +66,6 @@ test.before('Initiallize $ref checker', () => {
               ? join(dir, path)
               : join(dir, dirname(key), path)
             ).replace(/\.json$/, '');
-            console.log(key);
-            console.log(path);
-            console.log(file);
             const { default: schema } = await import('./' + file);
             return schema;
           },
