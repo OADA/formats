@@ -75,7 +75,7 @@ test.before('Initiallize $ref checker', () => {
 });
 
 // TODO: Can you make these parallel in ava?
-for (const { schema, key, glob } of schemas()) {
+for (const { schema, key } of schemas()) {
   test.before(`Compile schema ${key}`, async () => {
     try {
       await ajv.compileAsync(await schema);
@@ -91,7 +91,7 @@ for (const { schema, key, glob } of schemas()) {
   // $id needs to be consistent with file structure or most tools get upset
   test(`${key} should have conistent $id`, async (t) => {
     const { $id } = await schema;
-    t.is($id, `https://${join('formats.openag.io/', glob)}`);
+    t.is($id, `https://${join('formats.openag.io/', key)}`);
   });
 
   test.todo(`${key} should have valid self $ref's`);

@@ -12,19 +12,22 @@ export const glob = _glob('/**/*.schema.{ts,js}', {
   nomount: true,
 }).map((key) => key.replace(/\/+/, '/').replace(/\.(ts|js)$/, '.json'));
 
-export interface SchemaInfo {
-  schema: Promise<Schema>;
+export class SchemaInfo {
+  constructor(key: string) {
+    this.path = join(__dirname, key);
+    this.key = key;
+  }
+  // Don't load schema until needed
+  #schema?: Promise<Schema>;
+  get schema(): Promise<Schema> {
+    if (this.#schema === undefined) {
+      const infile = this.key.replace(/^\//, './').replace(/\.json$/, '');
+      this.#schema = import(infile).then(({ default: schema }) => schema);
+    }
+    return this.#schema;
+  }
   key: string;
   path: string;
-  glob: string;
-}
-
-function loadSchema(key: string): SchemaInfo {
-  const infile = key.replace(/^\//, './').replace(/\.json$/, '');
-  const schema = import(infile).then(({ default: schema }) => schema);
-  const path = join(__dirname, key);
-
-  return { schema, key, path, glob: key };
 }
 
 /**
@@ -32,6 +35,6 @@ function loadSchema(key: string): SchemaInfo {
  */
 export default function* (): Generator<SchemaInfo, void, void> {
   for (const key of glob) {
-    yield loadSchema(key);
+    yield new SchemaInfo(key);
   }
 }
