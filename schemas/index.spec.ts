@@ -18,7 +18,7 @@ export async function loadSchema(uri: string) {
   if (uri.match(r)) {
     // Use local verison of openag schemas
     const file = uri.replace(r, '.').replace(/\.json$/, '');
-    const schema = await import(file);
+    const { default: schema } = await import(file);
     return schema;
   } else {
     /*

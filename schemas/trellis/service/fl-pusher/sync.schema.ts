@@ -2,8 +2,7 @@ import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/trellis/service/fl-pusher/sync.schema.json',
-  $schema: 'https://json-schema.org/draft/2019-09/schema',
-  /* TODO: Put your JSON Schema here */
+  $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'Extension of @oada/job format for fl-pusher',
   type: 'object',
   allOf: [{ $ref: '../../../oada/service/job.schema.json' }],
