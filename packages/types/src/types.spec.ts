@@ -12,14 +12,15 @@ type TypeModule<T = unknown> = {
 };
 
 (async () => {
-  for await (const { key, schema } of schemas()) {
+  for (const { key, schema } of schemas()) {
     const type = key
       .replace(/^https:\/\/formats\.openag\.io/, '')
       .replace(/^\//, './')
       .replace(/\.schema\.json$/, '');
 
-    for (const i in schema.examples ?? []) {
-      const example = schema.examples?.[i];
+    const { examples } = await schema;
+    for (const i in examples ?? []) {
+      const example = examples![i];
 
       test(`${key} should check true for example ${i}`, async (t) => {
         const typeModule: TypeModule = await import(type);

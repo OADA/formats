@@ -4,6 +4,6 @@
     "rootDir": "src",
     "outDir": "lib"
   },
-  "exclude": ["lib", "test"],
-  "references": [{ "path": "./tsconfig.schemas.json" }]
+  "exclude": ["./lib", "./test"],
+  "references": [{ "path": "./src/schemas" }]
 }

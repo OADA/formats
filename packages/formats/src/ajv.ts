@@ -25,10 +25,10 @@ export async function loadAllFormats() {
   // TODO: Why does compileAsync not work for meta schema?
   ajv.addMetaSchema(meta);
 
-  for await (const { key, schema } of schemas()) {
+  for (const { key, schema } of schemas()) {
     try {
       if (!ajv.getSchema(key)) {
-        await ajv.compileAsync(schema);
+        await ajv.compileAsync(await schema);
       }
     } catch (err) {
       console.error(err);

@@ -3,10 +3,6 @@
 
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "@trellisfw/rules-*": ["packages/*/src"]
-    },
-    "jsx": "react",
     "skipLibCheck": true,
     "types": []
   }
