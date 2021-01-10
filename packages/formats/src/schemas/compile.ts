@@ -18,7 +18,7 @@ async function doCompile(outdir: string) {
     console.debug(`Writing ${key} schema as JSON`);
     console.debug(outfile);
     await mkdirp(dirname(outfile));
-    await fs.writeFile(outfile, JSON.stringify(schema, null, 2));
+    await fs.writeFile(outfile, JSON.stringify(await schema, null, 2));
   }
 }
 
