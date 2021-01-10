@@ -7,6 +7,7 @@
   "scripts": {
     "prepare": "lerna run build",
     "build": "bundle exec jekyll build",
+    "clean": "lerna run clean",
     "lint": "spectral lint packages/formats/src/schemas/\\*\\*/*.schema.json",
     "test": "lerna run test",
     "test:dev": "lerna run clean && lerna run build && lerna run test"
