@@ -50,9 +50,9 @@ test.before('Initialize JSON Schema validator', async () => {
 // TODO: Figure out less hacky way to make it find the files correctly
 let checkRefs: (key: string, schema: Schema) => Promise<any>;
 test.before('Initiallize $ref checker', () => {
-  const $refparser = new $RefParser();
-  checkRefs = (key: string, schema: Schema) =>
-    $refparser.dereference(schema as JSONSchema6, {
+  checkRefs = (key: string, schema: Schema) => {
+    const $refparser = new $RefParser();
+    return $refparser.dereference(schema as JSONSchema6, {
       resolve: {
         file: {
           order: 0,
@@ -66,12 +66,16 @@ test.before('Initiallize $ref checker', () => {
               ? join(dir, path)
               : join(dir, dirname(key), path)
             ).replace(/\.json$/, '');
+            console.log(key);
+            console.log(path);
+            console.log(file);
             const { default: schema } = await import('./' + file);
             return schema;
           },
         },
       },
     });
+  };
 });
 
 // TODO: Can you make these parallel in ava?
