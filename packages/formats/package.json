@@ -1,6 +1,6 @@
 {
   "name": "@oada/formats",
-  "version": "1.2.0-beta",
+  "version": "1.2.0",
   "description": "Reworked OADA formats",
   "keywords": [
     "oada",
