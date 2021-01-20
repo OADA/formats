@@ -5,7 +5,7 @@ import { relative, isAbsolute, dirname, join } from 'path';
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 import type { JSONSchema6 } from 'json-schema';
 import Ajv from 'ajv';
-import * as $RefParser from '@apidevtools/json-schema-ref-parser';
+import $RefParser from '@apidevtools/json-schema-ref-parser';
 
 import schemas from './';
 

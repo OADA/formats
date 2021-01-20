@@ -15,6 +15,7 @@
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.1",
     "@stoplight/spectral": "^5.4.0",
+    "@tsconfig/node12": "^1.0.7",
     "@types/bluebird": "^3.5.32",
     "@types/istanbul-lib-coverage": "^2.0.1",
     "@types/istanbul-lib-instrument": "^1.7.3",

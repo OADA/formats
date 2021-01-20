@@ -2,6 +2,24 @@
   "name": "@oada/formats",
   "version": "1.2.0-beta",
   "description": "Reworked OADA formats",
+  "keywords": [
+    "oada",
+    "trellis",
+    "JSON Schema",
+    "schema"
+  ],
+  "author": "Alex Layton <alex@layton.in>",
+  "homepage": "https://github.com/OADA/formats/packages/formats",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OADA/formats.git",
+    "directory": "packages/formats"
+  },
+  "bugs": {
+    "url": "https://github.com/OADA/formats/labels/@oada/formats"
+  },
+  "license": "MIT",
+  "private": false,
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "directories": {
@@ -16,7 +34,6 @@
   "scripts": {
     "buildschemas": "node ./lib/schemas/compile.js",
     "postbuild": "npm run buildschemas",
-    "clean": "tsc -b tsconfig.build.json --clean",
     "build": "tsc -b tsconfig.build.json",
     "clean": "tsc -b tsconfig.build.json --clean",
     "prepare": "npm run build",
@@ -35,10 +52,6 @@
       "ts-node/register"
     ]
   },
-  "repository": "https://github.com/OADA/formats",
-  "author": "Alex Layton <alex@layton.in>",
-  "license": "MIT",
-  "private": false,
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.1",
     "@stoplight/spectral": "^5.4.0",

@@ -106,7 +106,6 @@ async function doCompile() {
       `;
 
     console.debug(`Compiling ${key} to TypeScript types`);
-    console.debug(`Outputting ${outfile}`);
     try {
       const r = /^https:\/\/formats\.openag\.io/;
       const ts = await compileFromFile(path, {
@@ -116,12 +115,12 @@ async function doCompile() {
         $refOptions: {
           // Use local versions of openag schemas
           resolve: {
-            // @ts-ignore
-            oada: {
+            file: {
               order: 0,
               canRead: r,
+              // @ts-ignore
               async read({ url }: { url: string }) {
-                return JSON.stringify(formats.getSchema(url)?.schema);
+                return formats.getSchema(url)?.schema;
               },
             },
           },
@@ -131,7 +130,9 @@ async function doCompile() {
       await mkdirp(dirname(outfile));
       // TODO: Figure out wtf is up with mkdirp that I need this...
       await Bluebird.delay(50);
+      console.debug(`Outputting ${packedfile}`);
       await fs.writeFile(packedfile, moduleCode);
+      console.debug(`Outputting ${outfile}`);
       await fs.writeFile(outfile, ts);
     } catch (err) {
       console.error(`Error compiling ${key}: %O`, err);

@@ -1,7 +1,7 @@
 # @OADA/types
 
 This package is TypeScript type definitions for known OADA formats.
-These type are based on [@OADA/formats](https://github.com/OADA/formats).
+These type are based on [OADA/formats](https://github.com/OADA/formats).
 
 ## Installation
 

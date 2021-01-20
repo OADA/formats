@@ -2,7 +2,27 @@
   "name": "@oada/types",
   "version": "1.2.0-beta",
   "description": "TypeScript type definitions for OADA formats",
+  "keywords": [
+    "oada",
+    "trellis"
+  ],
+  "author": "Alex Layton <alex@layton.in>",
+  "homepage": "https://github.com/OADA/formats/packages/types",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OADA/formats.git",
+    "directory": "packages/types"
+  },
+  "bugs": {
+    "url": "https://github.com/OADA/formats/labels/@oada/types"
+  },
+  "license": "MIT",
+  "private": false,
   "main": "index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
     "prebuild": "npm run clean && cd src && ts-node --files compile.ts",
     "clean": "tsc -b tsconfig.build.json --clean",
@@ -25,10 +45,6 @@
     "**/*.js.map",
     "tsconfig.json"
   ],
-  "repository": "https://github.com/OADA/types",
-  "author": "Alex Layton <alex@layton.in>",
-  "license": "MIT",
-  "private": false,
   "dependencies": {
     "ajv": "^7.0.3",
     "json-schema-merge-allof": "^0.7.0",
