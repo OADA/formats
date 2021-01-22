@@ -1,6 +1,6 @@
 {
   "name": "@oada/formats",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Reworked OADA formats",
   "keywords": [
     "oada",
@@ -57,6 +57,5 @@
     "ajv": "^7.0.3",
     "axios": "^0.21.1",
     "glob": "^7.1.6"
-  },
-  "devDependencies": {}
+  }
 }
