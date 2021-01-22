@@ -54,16 +54,9 @@
   },
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.1",
-    "@stoplight/spectral": "^5.4.0",
     "ajv": "^7.0.3",
-    "ava": "^3.8.2",
     "axios": "^0.21.1",
-    "glob": "^7.1.6",
-    "jsonschema8": "^1.1.0",
-    "lerna": "^3.22.0",
-    "mkdirp": "^1.0.4"
+    "glob": "^7.1.6"
   },
-  "devDependencies": {
-    "@ava/typescript": "^1.1.1"
-  }
+  "devDependencies": {}
 }

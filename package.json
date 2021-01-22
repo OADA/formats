@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.1",
+    "@ava/typescript": "^1.1.1",
     "@stoplight/spectral": "^5.4.0",
     "@tsconfig/node12": "^1.0.7",
     "@types/bluebird": "^3.5.32",
