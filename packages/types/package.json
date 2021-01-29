@@ -46,11 +46,11 @@
     "tsconfig.json"
   ],
   "dependencies": {
-    "ajv": "^7.0.3",
-    "json-schema-merge-allof": "^0.7.0",
-    "lodash.omit": "^4.5.0"
+    "ajv": "^7.0.3"
   },
   "devDependencies": {
-    "@oada/formats": "^1.2.2"
+    "@oada/formats": "^1.2.2",
+    "json-schema-merge-allof": "^0.7.0",
+    "lodash.omit": "^4.5.0"
   }
 }
