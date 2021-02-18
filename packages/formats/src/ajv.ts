@@ -1,17 +1,25 @@
+/// <reference types='./types' />
+
 import { join } from 'path';
 
 import { JSONSchema8 as Schema } from 'jsonschema8';
 
 import Ajv from 'ajv';
+import addFormats from 'ajv-formats';
+import addFormats2019 from 'ajv-formats-draft2019';
 import { dereference } from '@apidevtools/json-schema-ref-parser';
 import axios from 'axios';
 
 import schemas from './schemas';
 
-export const ajv: OADAFormats = new Ajv({
-  strict: false,
-  loadSchema,
-}) as OADAFormats;
+export const ajv: OADAFormats = addFormats2019(
+  addFormats(
+    new Ajv({
+      strict: false,
+      loadSchema,
+    })
+  )
+) as OADAFormats;
 
 export interface OADAFormats extends Ajv {
   //validate(ref: string | Schema, data: any): boolean;

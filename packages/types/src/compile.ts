@@ -6,6 +6,8 @@ import mkdirp = require('mkdirp');
 import { compileFromFile } from 'json-schema-to-typescript';
 import { dereference } from '@apidevtools/json-schema-ref-parser';
 import Ajv from 'ajv';
+import addFormats from 'ajv-formats';
+import addFormats2019 from 'ajv-formats-draft2019';
 import standaloneCode from 'ajv/dist/standalone';
 
 import { loadSchema } from '@oada/formats/lib/ajv';
@@ -20,7 +22,9 @@ const typesDir = resolve('./');
 const compileStr = '`$ yarn build`';
 
 // Create ajv for packing validation functions
-const ajv = new Ajv({ strict: false, loadSchema, code: { source: true } });
+const ajv = addFormats2019(
+  addFormats(new Ajv({ strict: false, loadSchema, code: { source: true } }))
+);
 
 // Compile the schema files to TypeScript types
 async function doCompile() {
