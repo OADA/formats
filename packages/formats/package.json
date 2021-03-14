@@ -1,6 +1,6 @@
 {
   "name": "@oada/formats",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Reworked OADA formats",
   "keywords": [
     "oada",
@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.1",
-    "@oada/media-types": "^1.0.0",
+    "@oada/media-types": "^1.4.0",
     "ajv": "^7.0.3",
     "ajv-formats": "^1.5.1",
     "ajv-formats-draft2019": "^1.4.3",
