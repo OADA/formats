@@ -63,7 +63,7 @@ ajv.getSchema = ((ref) => {
   }
 
   const key = contentTypeToKey(ref);
-  return key && _getSchema(key);
+  return key && _getSchema('https://formats.openag.io/' + key);
 }) as typeof _getSchema;
 
 export async function loadSchema(uri: string) {

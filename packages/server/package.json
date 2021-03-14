@@ -67,5 +67,9 @@
     "fastify": {
       "optional": true
     }
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.11",
+    "fastify": "^3.14.0"
   }
 }
