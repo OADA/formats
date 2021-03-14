@@ -1,7 +1,7 @@
 {
-  "name": "@oada/formats",
-  "version": "1.3.0",
-  "description": "Reworked OADA formats",
+  "name": "@oada/media-types",
+  "version": "1.0.0",
+  "description": "OADA formats media type resolution",
   "keywords": [
     "oada",
     "trellis",
@@ -9,14 +9,14 @@
     "schema"
   ],
   "author": "Alex Layton <alex@layton.in>",
-  "homepage": "https://github.com/OADA/formats/packages/formats",
+  "homepage": "https://github.com/OADA/formats/packages/media-types",
   "repository": {
     "type": "git",
     "url": "https://github.com/OADA/formats.git",
-    "directory": "packages/formats"
+    "directory": "packages/media-types"
   },
   "bugs": {
-    "url": "https://github.com/OADA/formats/labels/@oada/formats"
+    "url": "https://github.com/OADA/formats/labels/@oada/media-types"
   },
   "license": "MIT",
   "private": false,
@@ -32,13 +32,9 @@
     ".nycrc.json"
   ],
   "scripts": {
-    "buildschemas": "node ./lib/schemas/compile.js",
-    "postbuild": "npm run buildschemas",
     "build": "tsc -b tsconfig.build.json",
     "clean": "tsc -b tsconfig.build.json --clean",
     "prepare": "npm run build",
-    "coverage": "nyc report",
-    "coveralls": "nyc report --reporter text-lcov | coveralls",
     "test": "ava"
   },
   "ava": {
@@ -53,12 +49,7 @@
     ]
   },
   "dependencies": {
-    "@apidevtools/json-schema-ref-parser": "^9.0.1",
-    "@oada/media-types": "^1.0.0",
-    "ajv": "^7.0.3",
-    "ajv-formats": "^1.5.1",
-    "ajv-formats-draft2019": "^1.4.3",
-    "axios": "^0.21.1",
-    "glob": "^7.1.6"
+    "@types/content-type": "^1.1.3",
+    "content-type": "^1.0.4"
   }
 }

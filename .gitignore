@@ -1,5 +1,6 @@
 # "Compiled" stuff
 lib
+*.tsbuildinfo
 
 # istanbul/c8 output
 .coverage

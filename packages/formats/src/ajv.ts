@@ -2,13 +2,15 @@
 
 import { join } from 'path';
 
-import { JSONSchema8 as Schema } from 'jsonschema8';
+import type { JSONSchema8 as Schema } from 'jsonschema8';
 
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 import addFormats2019 from 'ajv-formats-draft2019';
 import { dereference } from '@apidevtools/json-schema-ref-parser';
 import axios from 'axios';
+
+import { getSchema as contentTypeToKey } from '@oada/media-types';
 
 import schemas from './schemas';
 
@@ -50,35 +52,7 @@ export async function loadAllFormats() {
 /**
  * Resolves a content-type to possible schema IDs
  */
-export function* contentTypeToKey(
-  contentType: string
-): Generator<string, void, void> {
-  const regex = /^application\/vnd\.([^.]+)\.(.*)\+json$/;
-  const root = 'https://formats.openag.io';
-
-  const matches = regex.exec(contentType.toLowerCase());
-  if (!matches) {
-    return;
-  }
-
-  const [, domain, type] = matches;
-  const types = type.split('.');
-  // Handle versioned types
-  const key = `${root}/${domain}/${types.join('/')}.schema.json`;
-  const ver = types.pop() ?? NaN;
-  if (!+ver) {
-    yield key;
-  }
-
-  // TODO: Enforce that version is a number??
-  // Get separate version schema
-  yield `${root}/${domain}/${types.join('/')}/v${ver}.schema.json`;
-  // Allow versions definined within schemas??
-  // Current verison of JSON Schema definitions
-  yield `${root}/${domain}/${types.join('/')}.schema.json#/$defs/v${ver}`;
-  // Deprecated version of JSON Schema definitions
-  yield `${root}/${domain}/${types.join('/')}.schema.json#/definitions/v${ver}`;
-}
+export { contentTypeToKey };
 
 // Support getting schema by content type?
 const _getSchema = ajv.getSchema.bind(ajv);
@@ -88,12 +62,8 @@ ajv.getSchema = ((ref) => {
     return schema;
   }
 
-  for (const key of contentTypeToKey(ref)) {
-    const schema = _getSchema(key);
-    if (schema) {
-      return schema;
-    }
-  }
+  const key = contentTypeToKey(ref);
+  return key && _getSchema(key);
 }) as typeof _getSchema;
 
 export async function loadSchema(uri: string) {
