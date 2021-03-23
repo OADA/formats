@@ -99,9 +99,7 @@ const schema: Schema = {
     },
     certifications: {
       type: "object",
-      patternProperties: {
-        '.*': { $ref: "#/definitions/certification" },
-      }
+      additionalProperties: { $ref: "#/definitions/certification" },
     }
 
   },
@@ -128,19 +126,17 @@ const schema: Schema = {
         locations: {
           type: "object",
           // objects w/ lat, lon, time:
-          patternProperties: {
-            '.*': { 
-              allOf: [
-                { $ref: "#/definitions/latlon" },
-                { 
-                  type: 'object',
-                  properties: {
-                    time: { $ref: '#/definitions/timestamp' }
-                  },
+          additionalProperties: {
+            allOf: [
+              { $ref: "#/definitions/latlon" },
+              { 
+                type: 'object',
+                properties: {
+                  time: { $ref: '#/definitions/timestamp' }
                 },
-              ],
-            },
-          }
+              },
+            ],
+          },
         },
       },
     },
@@ -158,9 +154,7 @@ const schema: Schema = {
         name: { type: 'string' },
         certifications: { 
           type: 'object',
-          patternProperties: {
-            '.*': { $ref: "#/definitions/certification" },
-          }
+          additionalProperties: { $ref: "#/definitions/certification" },
         },
         // Any internal ID's the farmer's system uses to identify processor or farmer:
         processorid: { type: 'string' },
@@ -173,9 +167,7 @@ const schema: Schema = {
         name: { type: 'string' },
         certifications: { 
           type: 'object',
-          patternProperties: {
-            '.*': { $ref: "#/definitions/certification" },
-          }
+          additionalProperties: { $ref: "#/definitions/certification" },
         },
         // Any internal ID's the farmer's system uses to identify processor or hauler:
         farmerid: { type: 'string' },
@@ -188,18 +180,13 @@ const schema: Schema = {
         name: { type: 'string' },
         certifications: { 
           type: 'object',
-          patternProperties: {
-            '.*': { $ref: "#/definitions/certification" },
-          }
+          additionalProperties: { $ref: "#/definitions/certification" },
         },
         // Any internal ID's the farmer's system uses to identify farmer or hauler:
         farmerid: { type: 'string' },
         haulerid: { type: 'string' },
       }
     },
-
-
-    
   },
   required: [ 'shipdate', 'status' ],
   examples: [
