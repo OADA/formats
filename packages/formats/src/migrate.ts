@@ -67,7 +67,11 @@ export async function migrate(
       throw new Error('Schema has neither id nor type');
     }
 
-    const { value: key } = contentTypeToKey(type).next() as { value: string };
+    const key = contentTypeToKey(type);
+    if (!key) {
+      throw new Error('Failed to find schema key for type');
+    }
+
     const $id = root + key;
 
     return { $id, key };

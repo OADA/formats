@@ -41,3 +41,11 @@ declare module 'json-schema-traverse' {
 
   export = traverse;
 }
+
+declare module 'ajv-formats-draft2019' {
+  import type Ajv from 'ajv';
+
+  function apply(ajv: Ajv): Ajv;
+
+  export = apply;
+}
