@@ -54,6 +54,7 @@ const schema: Schema = {
       type: 'object',
       additionalProperties: { $ref: '#/definitions/location' }
     },
+    bookmarks: { $ref: "../../../oada/link/v1.schema.json#/definitions/nonversioned" },
   },
 
   examples: [
