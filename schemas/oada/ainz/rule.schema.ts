@@ -26,10 +26,20 @@ const schema: Schema = {
         type: { enum: ['reindex'] },
         destination: {
           description: 'A path to an OADA list to which to add maching items',
-          $ref: '../../oada.schema.json#/definitions/path',
+          type: 'string',
+          //$ref: '../../oada.schema.json#/definitions/path',
+        },
+        tree: {
+          $ref: '../tree/v1.schema.json',
+        },
+        itemsPath: {
+          description: 'A JSONPath for resolving the items of an indexed list',
+          type: 'string',
+          examples: ['$.day-index.*.*'],
+          default: '$.*',
         },
         meta: {
-          description: "And object to PUT on matching items's _meta",
+          description: "An object to PUT on matching items's _meta",
           type: 'object',
         },
       },
