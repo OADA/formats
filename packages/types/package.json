@@ -1,6 +1,6 @@
 {
   "name": "@oada/types",
-  "version": "1.4.1",
+  "version": "1.5.1",
   "description": "TypeScript type definitions for OADA formats",
   "keywords": [
     "oada",
@@ -51,7 +51,7 @@
     "ajv-formats-draft2019": "^1.4.3"
   },
   "devDependencies": {
-    "@oada/formats": "^1.4.1",
+    "@oada/formats": "^1.5.1",
     "json-schema-merge-allof": "^0.7.0",
     "lodash.omit": "^4.5.0"
   }
