@@ -30,7 +30,10 @@ const schema: Schema = {
           //$ref: '../../oada.schema.json#/definitions/path',
         },
         tree: {
-          $ref: '../tree/v1.schema.json',
+          description: 'A tree to use for "tree PUTs"',
+          type: 'object',
+          $comment: 'Recursive schema breaks schema to TS compiler',
+          //$ref: '../tree/v1.schema.json',
         },
         itemsPath: {
           description: 'A JSONPath for resolving the items of an indexed list',
