@@ -10,9 +10,9 @@ import { Options, handleResponse } from './';
 export function middleware(_opts: Options): RequestHandler {
   return async function (_req, res, next) {
     try {
-      const headers = handleResponse(res);
+      const headers = handleResponse(res.get('Content-Type'), res.get('Link'));
       // @ts-ignore
-      res.log?.trace(`Setting schema headers: %O`, headers);
+      res.log?.trace('Setting schema headers: %O', headers);
       res.set(headers);
     } catch (err) {
       return next(err);
