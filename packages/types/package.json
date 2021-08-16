@@ -46,9 +46,9 @@
     "tsconfig.json"
   ],
   "dependencies": {
-    "ajv": "^7.0.3",
-    "ajv-formats": "^1.5.1",
-    "ajv-formats-draft2019": "^1.4.3"
+    "ajv": "^8.6.2",
+    "ajv-formats": "^2.1.1",
+    "ajv-formats-draft2019": "^1.6.1"
   },
   "devDependencies": {
     "@oada/formats": "^1.5.1",

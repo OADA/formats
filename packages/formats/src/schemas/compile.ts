@@ -31,4 +31,5 @@ const { argv } = yargs.options({
   },
 });
 
+// @ts-ignore
 doCompile(argv.outdir);

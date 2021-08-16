@@ -53,12 +53,12 @@
     ]
   },
   "dependencies": {
-    "@apidevtools/json-schema-ref-parser": "^9.0.1",
+    "@apidevtools/json-schema-ref-parser": "^9.0.9",
     "@oada/media-types": "^1.5.1",
-    "ajv": "^7.0.3",
-    "ajv-formats": "^1.5.1",
-    "ajv-formats-draft2019": "^1.4.3",
+    "ajv": "^8.6.2",
+    "ajv-formats": "^2.1.1",
+    "ajv-formats-draft2019": "^1.6.1",
     "axios": "^0.21.1",
-    "glob": "^7.1.6"
+    "glob": "^7.1.7"
   }
 }
