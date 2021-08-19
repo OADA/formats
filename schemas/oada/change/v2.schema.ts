@@ -5,17 +5,50 @@ const schema: Schema = {
   $schema: 'http://json-schema.org/draft-07/schema#',
   definitions: {
     change: {
-      type: 'object',
-      required: ['type', 'body', 'path', 'resource_id'],
-      properties: {
-        type: { enum: ['merge', 'delete'] },
-        body: {
-          $comment: 'Should probably narrow this schema down',
-          description: 'The contents of what was changed.',
+      allOf: [
+        {
+          type: 'object',
+          required: ['type', 'body', 'path', 'resource_id'],
+          properties: {
+            type: { enum: ['merge', 'delete'] },
+            path: { $ref: '../../oada.schema.json#/definitions/path' },
+            resource_id: { $ref: '../../oada.schema.json#/definitions/_id' },
+          },
         },
-        path: { $ref: '../../oada.schema.json#/definitions/path' },
-        resource_id: { $ref: '../../oada.schema.json#/definitions/_id' },
-      },
+        {
+          oneOf: [
+            {
+              type: 'object',
+              required: ['body'],
+              properties: {
+                body: {
+                  $comment: 'Should probably narrow this schema down',
+                  description: 'The contents of what changed',
+                  type: 'object',
+                  required: ['_rev'],
+                  properties: {
+                    _rev: {
+                      $ref: '../../oada.schema.json#/definitions/_rev',
+                    },
+                  },
+                },
+              },
+            },
+            {
+              type: 'object',
+              required: ['type', 'body'],
+              properties: {
+                type: {
+                  enum: ['delete'],
+                },
+                body: {
+                  type: 'null',
+                },
+              },
+            },
+          ],
+        },
+      ],
     },
   },
   type: 'array',
