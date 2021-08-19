@@ -19,7 +19,6 @@
     "url": "https://github.com/OADA/formats/labels/@oada/formats"
   },
   "license": "MIT",
-  "private": false,
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "directories": {
@@ -33,9 +32,8 @@
   ],
   "scripts": {
     "buildschemas": "node ./lib/schemas/compile.js",
-    "postbuild": "npm run buildschemas",
-    "build": "tsc -b tsconfig.build.json",
-    "clean": "tsc -b tsconfig.build.json --clean",
+    "build": "yarn g:tsc tsconfig.build.json && yarn run buildschemas",
+    "clean": "rm -rf lib",
     "prepare": "npm run build",
     "coverage": "nyc report",
     "coveralls": "nyc report --reporter text-lcov | coveralls",
@@ -60,5 +58,15 @@
     "ajv-formats-draft2019": "^1.6.1",
     "axios": "^0.21.1",
     "glob": "^7.1.7"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.4",
+    "@types/mkdirp": "^1.0.2",
+    "@types/node": "^12.20.19",
+    "@types/yargs": "^17.0.2",
+    "ava": "^3.15.0",
+    "jsonschema8": "^1.1.1",
+    "mkdirp": "^1.0.4",
+    "yargs": "^17.1.1"
   }
 }

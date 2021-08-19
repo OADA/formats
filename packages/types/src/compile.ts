@@ -80,14 +80,14 @@ async function doCompile() {
         /**
          * Returns true if val is a @type ${typeName}, false otherwise
          */
-        export function is (val: any): val is ${typeName} {
+        export function is (val: unknown): val is ${typeName} {
           return validate(val) as boolean
         }
 
         /**
          * Asserts that val is a @type ${typeName}
          */
-        export function assert (val: any): asserts val is ${typeName} {
+        export function assert (val: unknown): asserts val is ${typeName} {
           if (!validate(val) as boolean) {
             throw {
               errors: validate.errors,
@@ -111,7 +111,6 @@ async function doCompile() {
 
     console.debug(`Compiling ${key} to TypeScript types`);
     try {
-      const r = /^https:\/\/formats\.openag\.io/;
       const ts = await compileFromFile(path, {
         bannerComment,
         unreachableDefinitions: true,
@@ -121,11 +120,16 @@ async function doCompile() {
           resolve: {
             file: {
               order: 0,
-              canRead: r,
-              // @ts-ignore
+            },
+            oada: {
+              order: 1,
+              canRead: /^https:\/\/formats\.openag\.io/,
               async read({ url }: { url: string }) {
                 return formats.getSchema(url)?.schema;
               },
+            },
+            http: {
+              order: 2,
             },
           },
         },
