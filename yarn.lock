@@ -1289,7 +1289,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@oada/formats-server@workspace:packages/server"
   dependencies:
-    "@oada/media-types": ^1.5.1
+    "@oada/media-types": ^1.7.0
     "@types/content-type": ^1.1.5
     "@types/express": ^4.17.13
     ava: ^3.15.0
@@ -1309,12 +1309,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@oada/formats@^1.5.1, @oada/formats@workspace:packages/formats":
+"@oada/formats@^1.7.0, @oada/formats@workspace:packages/formats":
   version: 0.0.0-use.local
   resolution: "@oada/formats@workspace:packages/formats"
   dependencies:
     "@apidevtools/json-schema-ref-parser": ^9.0.9
-    "@oada/media-types": ^1.5.1
+    "@oada/media-types": ^1.7.0
     "@types/glob": ^7.1.4
     "@types/mkdirp": ^1.0.2
     "@types/node": ^12.20.19
@@ -1331,7 +1331,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@oada/media-types@^1.5.1, @oada/media-types@workspace:packages/media-types":
+"@oada/media-types@^1.7.0, @oada/media-types@workspace:packages/media-types":
   version: 0.0.0-use.local
   resolution: "@oada/media-types@workspace:packages/media-types"
   dependencies:
@@ -1355,7 +1355,7 @@ __metadata:
   resolution: "@oada/types@workspace:packages/types"
   dependencies:
     "@apidevtools/json-schema-ref-parser": ^9.0.9
-    "@oada/formats": ^1.5.1
+    "@oada/formats": ^1.7.0
     "@types/bluebird": ^3.5.36
     "@types/json-schema-merge-allof": ^0.6.1
     "@types/lodash.omit": ^4.5.6
