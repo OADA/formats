@@ -1,6 +1,6 @@
 {
   "name": "@oada/types",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "TypeScript type definitions for OADA formats",
   "keywords": [
     "oada",
@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.9",
-    "@oada/formats": "^1.7.0",
+    "@oada/formats": "^1.8.0",
     "@types/bluebird": "^3.5.36",
     "@types/json-schema-merge-allof": "^0.6.1",
     "@types/lodash.omit": "^4.5.6",
