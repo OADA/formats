@@ -1,0 +1,16 @@
+{
+  "files.exclude": {
+    "oada": true,
+    "src/oada": true,
+    "src/oada.ts": true,
+    "trellis": true,
+    "src/trellis": true,
+    "src/trellis.ts": true,
+    "trellisfw": true,
+    "src/trellisfw": true,
+    "src/trellisfw.ts": true,
+    "**/*.js": true,
+    "**/*.map": true,
+    "*.ts": true
+  }
+}

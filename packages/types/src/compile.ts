@@ -4,7 +4,7 @@ import { resolve, join, basename, dirname } from 'path';
 import Bluebird from 'bluebird';
 import mkdirp = require('mkdirp');
 import { compileFromFile } from 'json-schema-to-typescript';
-import { dereference } from '@apidevtools/json-schema-ref-parser';
+import $RefParser from '@apidevtools/json-schema-ref-parser';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 import addFormats2019 from 'ajv-formats-draft2019';
@@ -15,6 +15,10 @@ import { loadSchema } from '@oada/formats/lib/ajv';
 import loadFormats, { schemas } from '@oada/formats';
 
 import { rules } from './normalize';
+
+// Hacky fix for ref-parser
+$RefParser.dereference = $RefParser.dereference.bind($RefParser);
+$RefParser.resolve = $RefParser.resolve.bind($RefParser);
 
 // Where to put compiled types
 const typesDir = resolve('./');
@@ -28,7 +32,7 @@ const ajv = addFormats2019(
 
 // Compile the schema files to TypeScript types
 async function doCompile() {
-  const metaSchema = await dereference(
+  const metaSchema = await $RefParser.dereference(
     'https://json-schema.org/draft/2019-09/schema'
   );
   ajv.addMetaSchema(metaSchema);

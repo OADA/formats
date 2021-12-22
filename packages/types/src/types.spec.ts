@@ -32,8 +32,8 @@ type TypeModule<T = unknown> = {
         try {
           typeModule.assert(example);
           t.pass();
-        } catch (err) {
-          t.fail(err);
+        } catch (err: unknown) {
+          t.fail(`${err}`);
         }
       });
     }

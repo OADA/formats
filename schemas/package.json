@@ -22,7 +22,7 @@
     ]
   },
   "devDependencies": {
-    "@types/node": "12.20.19",
+    "@types/node": "12.20.38",
     "jsonschema8": "^1.1.1"
   }
 }

@@ -53,20 +53,20 @@
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.9",
     "@oada/media-types": "^1.7.0",
-    "ajv": "^8.6.2",
+    "ajv": "^8.8.2",
     "ajv-formats": "^2.1.1",
     "ajv-formats-draft2019": "^1.6.1",
-    "axios": "^0.21.1",
-    "glob": "^7.1.7"
+    "axios": "^0.24.0",
+    "glob": "^7.2.0"
   },
   "devDependencies": {
-    "@types/glob": "^7.1.4",
+    "@types/glob": "^7.2.0",
     "@types/mkdirp": "^1.0.2",
-    "@types/node": "^12.20.19",
-    "@types/yargs": "^17.0.2",
+    "@types/node": "^12.20.38",
+    "@types/yargs": "^17.0.7",
     "ava": "^3.15.0",
     "jsonschema8": "^1.1.1",
     "mkdirp": "^1.0.4",
-    "yargs": "^17.1.1"
+    "yargs": "^17.3.0"
   }
 }

@@ -1,0 +1,68 @@
+{
+  "folders": [
+    {
+      "name": "✨ @oada/formats-monorepo",
+      "path": "."
+    },
+    {
+      "name": "📦 @oada/formats",
+      "path": "packages/formats"
+    },
+    {
+      "name": "📦 @oada/media-types",
+      "path": "packages/media-types"
+    },
+    {
+      "name": "📦 @oada/formats-server",
+      "path": "packages/server"
+    },
+    {
+      "name": "📦 @oada/types",
+      "path": "packages/types"
+    },
+    {
+      "name": "@oada/schemas",
+      "path": "schemas"
+    }
+  ],
+  "settings": {
+    "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+    "typescript.tsdk": ".yarn/sdks/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "eslint.nodePath": "../.yarn/sdks",
+    "search.exclude": {
+      "tsconfig.tsbuildinfo": true,
+      ".history": true,
+      ".dccache": true,
+      ".coverage": true,
+      ".sass-cache": true,
+      ".pnp.*": true,
+      ".vim": true,
+      "tags.*": true,
+      ".nvimlog": true,
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true
+    },
+    "files.exclude": {
+      "tsconfig.tsbuildinfo": true,
+      ".history": true,
+      ".dccache": true,
+      ".coverage": true,
+      ".sass-cache": true,
+      ".pnp.*": true,
+      ".vim": true,
+      "tags.*": true,
+      ".nvimlog": true,
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true
+    }
+  }
+}

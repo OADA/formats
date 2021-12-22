@@ -5,5 +5,5 @@
     "rootDir": "src",
     "outDir": "."
   },
-  "exclude": ["lib", "test"]
+  "exclude": ["lib", "test", "**/*.d.ts"]
 }

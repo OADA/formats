@@ -17,8 +17,23 @@ const schema: Schema = {
     path: { $ref: '../../oada.schema.json#/definitions/path' },
     method: {
       anyOf: [
-        { $ref: '../../oada.schema.json#/definitions/method' },
-        { enum: ['watch', 'unwatch', 'ping'] },
+        {
+          $comment: 'Standard HTTP methods',
+          $ref: '../../oada.schema.json#/definitions/method',
+        },
+        {
+          $comment: 'WebSocket only methods',
+          enum: [
+            'watch',
+            'head-watch',
+            'get-watch',
+            'put-watch',
+            'post-watch',
+            'delete-watch',
+            'unwatch',
+            'ping',
+          ],
+        },
       ],
     },
     headers: {
