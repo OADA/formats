@@ -1281,6 +1281,7 @@ __metadata:
     "@types/istanbul-lib-report": ^3.0.0
     "@types/istanbul-reports": ^3.0.1
     "@types/node": ^12.20.38
+    "@types/semver": ^7
     "@yarnpkg/sdks": ^2.5.1-rc.6
     ava: ^3.15.0
     c8: ^7.10.0
@@ -1292,6 +1293,7 @@ __metadata:
     lerna: ^4.0.0
     nyc: ^15.1.0
     prettier: ^2.5.1
+    semver: ^7.3.5
     ts-node: ^10.4.0
     typescript: ^4.5.4
   languageName: unknown
@@ -1301,7 +1303,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@oada/formats-server@workspace:packages/server"
   dependencies:
-    "@oada/media-types": ^1.7.0
+    "@oada/media-types": ^1.8.0
     "@types/content-type": ^1.1.5
     "@types/express": ^4.17.13
     ava: ^3.15.0
@@ -1321,12 +1323,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@oada/formats@^1.7.0, @oada/formats@workspace:packages/formats":
+"@oada/formats@^1.8.0, @oada/formats@workspace:packages/formats":
   version: 0.0.0-use.local
   resolution: "@oada/formats@workspace:packages/formats"
   dependencies:
     "@apidevtools/json-schema-ref-parser": ^9.0.9
-    "@oada/media-types": ^1.7.0
+    "@oada/media-types": ^1.8.0
     "@types/glob": ^7.2.0
     "@types/mkdirp": ^1.0.2
     "@types/node": ^12.20.38
@@ -1343,7 +1345,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@oada/media-types@^1.7.0, @oada/media-types@workspace:packages/media-types":
+"@oada/media-types@^1.8.0, @oada/media-types@workspace:packages/media-types":
   version: 0.0.0-use.local
   resolution: "@oada/media-types@workspace:packages/media-types"
   dependencies:
@@ -1367,7 +1369,7 @@ __metadata:
   resolution: "@oada/types@workspace:packages/types"
   dependencies:
     "@apidevtools/json-schema-ref-parser": ^9.0.9
-    "@oada/formats": ^1.7.0
+    "@oada/formats": ^1.8.0
     "@types/bluebird": ^3.5.36
     "@types/json-schema-merge-allof": ^0.6.1
     "@types/lodash.omit": ^4.5.6
@@ -2226,10 +2228,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semver@npm:^7.1.0":
-  version: 7.3.8
-  resolution: "@types/semver@npm:7.3.8"
-  checksum: bc90f5a9d5430e36f766c08c898e3c28af88830ebc7736baef8ffc74783bad2efb32f29c40d450e85fc341847ee74e2dd97b76cfc7da407e4232ba9ecae4ff9c
+"@types/semver@npm:^7, @types/semver@npm:^7.1.0":
+  version: 7.3.9
+  resolution: "@types/semver@npm:7.3.9"
+  checksum: 60bfcfdfa7f937be2c6f4b37ddb6714fb0f27b05fe4cbdfdd596a97d35ed95d13ee410efdd88e72a66449d0384220bf20055ab7d6b5df10de4990fbd20e5cbe0
   languageName: node
   linkType: hard
 
