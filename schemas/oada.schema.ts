@@ -72,7 +72,7 @@ const schema: Schema = {
       enum: ['head', 'get', 'put', 'post', 'delete'],
     },
     path: {
-      description: 'The represenation of a path within an OADA server',
+      description: 'The representation of a path within an OADA server',
       type: 'string',
       format: 'uri-reference',
     },

@@ -30,6 +30,8 @@ act/
 !.yarn/plugins
 !.yarn/versions
 .pnp.*
+yarn.lock
+
 # ignore sdk stuff
 .vim
 
@@ -39,3 +41,6 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
+
+# other files
+*.swp

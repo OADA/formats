@@ -1,7 +1,7 @@
 {
   "files.exclude": {
-    "packages": true,
-    "schemas": true,
+    "packages": false,
+    "schemas": false,
     "**/.yarn": true,
     "**/.pnp.*": true
   },
