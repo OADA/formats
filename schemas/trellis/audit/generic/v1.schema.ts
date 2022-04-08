@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
 import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
@@ -20,7 +28,7 @@ const schema: Schema = {
           description:
             'An id_source is a representation of who assigned the id: i.e. who do you go ask to figure out what a particular ID goes to.',
           type: 'string',
-          examples: [ 'scheme', 'certifying_body' ],
+          examples: ['scheme', 'certifying_body'],
         },
       },
       type: 'object',
@@ -33,7 +41,7 @@ const schema: Schema = {
           description:
             'An id_source is a representation of who assigned the id: i.e. who do you go ask to figure out what a particular ID goes to.',
           type: 'string',
-          examples: [ 'scheme', 'certifying_body' ],
+          examples: ['scheme', 'certifying_body'],
         },
         id: {
           description:
@@ -211,7 +219,7 @@ const schema: Schema = {
               description:
                 'An id_source is a representation of who assigned the id: i.e. who do you go ask to figure out what a particular ID goes to.',
               type: 'string',
-              examples: [ 'scheme', 'certifying_body' ],
+              examples: ['scheme', 'certifying_body'],
             },
           },
           type: 'object',
@@ -1243,7 +1251,16 @@ const schema: Schema = {
                 description:
                   'written description indicating the level of satisfaction of the control point. E.g., "Total Compliance", "Minor Deficiency", or simply "Pass"/"Fail".',
                 type: 'string',
-                examples: [ 'Total Compliance', 'Minor Deficiency', 'Major Deficiency', 'Yes', 'No', 'Pass', 'Fail', 'N/A' ],
+                examples: [
+                  'Total Compliance',
+                  'Minor Deficiency',
+                  'Major Deficiency',
+                  'Yes',
+                  'No',
+                  'Pass',
+                  'Fail',
+                  'N/A',
+                ],
               },
               globalgap_levels: {
                 description:
@@ -4838,8 +4855,8 @@ const schema: Schema = {
       description:
         'An id_source is a representation of who assigned the id: i.e. who do you go ask to figure out what a particular ID goes to.',
       type: 'string',
-      examples: [ 'scheme', 'certifying_body' ],
-    }
+      examples: ['scheme', 'certifying_body'],
+    },
   },
   examples: [
     {
@@ -4980,8 +4997,7 @@ const schema: Schema = {
             },
             {
               sectionid: '1.03',
-              name:
-                'Procedures and Corrective Actions Internal and External Inspections',
+              name: 'Procedures and Corrective Actions Internal and External Inspections',
               control_pointids: ['1.03.01', '1.03.02', '1.03.03', '1.03.04'],
             },
             {
@@ -5135,8 +5151,7 @@ const schema: Schema = {
       ],
       control_points: {
         '1.01.01': {
-          name:
-            'Is there a Food Safety Manual or other documented food safety management system covering the scope of business included in this audit and procedures/instructions for all food safety processes?',
+          name: 'Is there a Food Safety Manual or other documented food safety management system covering the scope of business included in this audit and procedures/instructions for all food safety processes?',
           score: {
             value: '5',
             units: 'points',
@@ -5148,8 +5163,7 @@ const schema: Schema = {
           files: [],
         },
         '1.01.02': {
-          name:
-            'Is there a documented food safety policy detailing the company ́s commitment to food safety?',
+          name: 'Is there a documented food safety policy detailing the company ́s commitment to food safety?',
           score: {
             value: '5',
             units: 'points',
@@ -5173,8 +5187,7 @@ const schema: Schema = {
           files: [],
         },
         '2.11.02': {
-          name:
-            'Was a pre−harvest inspection performed on the block being harvested and was the block cleared for harvest? If No, go to 2.11.03.',
+          name: 'Was a pre−harvest inspection performed on the block being harvested and was the block cleared for harvest? If No, go to 2.11.03.',
           score: {
             value: '5',
             units: 'points',
@@ -5186,8 +5199,7 @@ const schema: Schema = {
           files: [],
         },
         '2.11.02a': {
-          name:
-            'Where pre−harvest inspections have discovered issues, have buffer zones been clearly identified and at the time of the audit, are these buffer zones being respected?',
+          name: 'Where pre−harvest inspections have discovered issues, have buffer zones been clearly identified and at the time of the audit, are these buffer zones being respected?',
           score: {
             value: '0',
             units: 'points',

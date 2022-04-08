@@ -1,9 +1,16 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "esModuleInterop": true,
     "rootDir": "src",
     "outDir": "."
   },
-  "exclude": ["lib", "test", "**/*.d.ts"]
+  "include": ["src"],
+  "exclude": ["test", "**/*.d.ts"],
+  "references": [
+    {
+      "path": "../formats"
+    }
+  ]
 }

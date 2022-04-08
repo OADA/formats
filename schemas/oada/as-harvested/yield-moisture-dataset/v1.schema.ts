@@ -1,8 +1,15 @@
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
 import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
-  $id:
-    'https://formats.openag.io/oada/as-harvested/yield-moisture-dataset/v1.schema.json',
+  $id: 'https://formats.openag.io/oada/as-harvested/yield-moisture-dataset/v1.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description:
     'The "yield-moisture" document contains as-harvested yield-moisture data. This is where a typical "yield map" from an existing FMIS software would go.  We encourage geospatial indexing here (rather than field-based).',
@@ -225,7 +232,7 @@ const schema: Schema = {
               properties: {
                 datum: {
                   description:
-                    'datum describes the model of the earth used for GPS coordinates.  It can be from a set of known strings, or an EPSG model from http://spatialreference.org',
+                    'datum describes the model of the earth used for GPS coordinates. It can be from a set of known strings, or an EPSG model from http://spatialreference.org',
                   anyOf: [
                     {
                       type: 'string',
@@ -469,53 +476,7 @@ const schema: Schema = {
       type: 'object',
     },
     'geohash-length-index': {
-      description:
-        'geohash-length-index is an indexing scheme that groups data by geohash string lengths. As with all indexes, it is not a document type itself and therefore cannot be linked to.  It can also have a "datum" key which tells the earth model used for GPS.',
-      properties: {
-        datum: {
-          description:
-            'datum describes the model of the earth used for GPS coordinates.  It can be from a set of known strings, or an EPSG model from http://spatialreference.org',
-          anyOf: [
-            {
-              type: 'string',
-              examples: ['WGS84'],
-            },
-            {
-              required: ['type', 'properties'],
-              properties: {
-                type: {
-                  enum: ['EPSG'],
-                },
-                properties: {
-                  required: ['code'],
-                  properties: {
-                    code: {
-                      type: 'number',
-                    },
-                  },
-                  type: 'object',
-                },
-              },
-              type: 'object',
-            },
-          ],
-        },
-      },
-      patternProperties: {
-        '^geohash-[1-9][0-9]*$': {
-          description:
-            'A link in OADA has at least an _id key and links one resource to another.',
-          properties: {
-            _id: {
-              description: '_id identifies a resource in the OADA API.',
-              type: 'string',
-            },
-          },
-          required: ['_id'],
-          type: 'object',
-        },
-      },
-      type: 'object',
+      $ref: '../../indexes/geohash-length-index.schema.json',
     },
     'geohash-index': {
       description:
@@ -590,7 +551,7 @@ const schema: Schema = {
           id: '902jfl3jo2kf2l3f',
           template: 'k20ifkj',
           time: {
-            value: 192847322.14521,
+            value: 192_847_322.145_21,
           },
           area: {
             value: 1.1,
@@ -611,7 +572,7 @@ const schema: Schema = {
           id: 'llll23jf02i2o3ffdsf',
           template: 'k20ifkj',
           time: {
-            value: 192847323.78321,
+            value: 192_847_323.783_21,
           },
           area: {
             value: '0.9',

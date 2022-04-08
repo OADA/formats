@@ -1,4 +1,13 @@
-import { parse, format } from 'content-type';
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
+
+import { format, parse } from 'content-type';
 
 import mediaType2schema from '@oada/media-types';
 
@@ -15,6 +24,7 @@ export function handleResponse(
     // Nothing to do
     return {};
   }
+
   const { type, parameters } = parse(contentType);
   const schema = mediaType2schema(contentType);
   if (schema.length === 0) {
@@ -24,7 +34,7 @@ export function handleResponse(
 
   /**
    * Looks like sending the same info twice,
-   * becaue OADA formats use their public URL as their $id
+   * because OADA formats use their public URL as their $id
    *
    * @todo Check for non-OADA schema rather than assuming $id is always URL?
    */
@@ -36,7 +46,7 @@ export function handleResponse(
      */
     'Link': [
       ...(links ? [links] : []),
-      schema.map((schema) => `<${schema}#>; rel="describedby"`),
+      schema.map((s) => `<${s}#>; rel="describedby"`),
     ].join(', '),
     /**
      *  @see https://json-schema.org/draft/2019-09/json-schema-core.html#parameter
@@ -49,11 +59,11 @@ export function handleResponse(
 }
 
 /**
- * express middleware version
+ * Express middleware version
  */
 export { middleware } from './middleware';
 
 /**
- * fastify plugin version
+ * Fastify plugin version
  */
 export { plugin } from './plugin';

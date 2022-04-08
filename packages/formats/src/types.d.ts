@@ -1,3 +1,12 @@
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
+
 declare module 'json-schema-traverse' {
   type Callback<Schema> = (
     schema: Schema,
@@ -16,12 +25,10 @@ declare module 'json-schema-traverse' {
     allKeys?: boolean;
   };
 
-  type Keywords = {
-    [key: string]: boolean;
-  };
+  type Keywords = Record<string, boolean>;
 
   interface Traverse {
-    <Schema>(schema: Schema, opts: Options<Schema>): void;
+    <Schema>(schema: Schema, options: Options<Schema>): void;
     keywords: Keywords;
     arrayKeywords: Keywords;
     propsKeywords: Keywords;

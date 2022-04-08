@@ -1,3 +1,14 @@
 {
-  "extends": "./tsconfig.build.json"
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["src"],
+  "exclude": ["./test"],
+  "references": [
+    { "path": "./tsconfig.schemas.json" },
+    { "path": "../media-types" }
+  ]
 }

@@ -19,11 +19,10 @@ If it cannot determine a corresponding schema, the array will be empty.
 import mediaType2schema from '@oada/media-types';
 
 // ['https://formats.openag.io/oada/bookmarks/v1.schema.json']
-const schema = mediaType2schema('application/vnd.oada.bookmarks.1+json')
+const schema = mediaType2schema('application/vnd.oada.bookmarks.1+json');
 
 // Or when dealing with http requests (e.g., in express)
 app.use((req) => {
-    const schema = mediaType2schema(req)
-})
+  const schema = mediaType2schema(req);
+});
 ```
-

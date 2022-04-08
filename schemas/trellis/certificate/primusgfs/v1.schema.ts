@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
 import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
@@ -162,7 +170,7 @@ const schema: Schema = {
               description:
                 'An id_source is a representation of who assigned the id: i.e. who do you go ask to figure out what a particular ID goes to.',
               type: 'string',
-              examples: [ 'scheme', 'certifying_body' ],
+              examples: ['scheme', 'certifying_body'],
             },
           },
           type: 'object',
@@ -1069,7 +1077,7 @@ const schema: Schema = {
           description:
             'An id_source is a representation of who assigned the id: i.e. who do you go ask to figure out what a particular ID goes to.',
           type: 'string',
-          examples: [ 'certifying_body', 'scheme' ],
+          examples: ['certifying_body', 'scheme'],
         },
       },
       type: 'object',

@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
 import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
@@ -12,8 +20,7 @@ const schema: Schema = {
       pattern: 'clients',
     },
     list: {
-      $ref:
-        'https://formats.openag.io/oada/link/v1.schema.json#/definitions/list',
+      $ref: 'https://formats.openag.io/oada/link/v1.schema.json#/definitions/list',
     },
   },
   examples: [

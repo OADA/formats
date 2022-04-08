@@ -1,4 +1,13 @@
-import { join } from 'path';
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
+
+import { join } from 'node:path';
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 import { sync as _glob } from 'glob';

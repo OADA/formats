@@ -1,9 +1,22 @@
 {
   "files.exclude": {
-    "packages": false,
-    "schemas": false,
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/tags": true,
     "**/.yarn": true,
-    "**/.pnp.*": true
+    "**/.pnp.*": true,
+    "**/.history": true,
+    "**/dist": true,
+    ".sass-cache": true,
+    ".vim": true,
+    ".dccache": true,
+    ".nvimlog": true,
+    "schemas": true,
+    "packages": true
   },
   "search.exclude": {
     "packages": true,
@@ -13,5 +26,21 @@
   },
   "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "explorerExclude.backup": null,
+  "npm.packageManager": "yarn",
+  "debug.javascript.autoAttachFilter": "smart",
+  "debug.javascript.breakOnConditionalError": true,
+  "debug.javascript.defaultRuntimeExecutable": {
+    "node": "yarn",
+    "pwa-node": "yarn"
+  },
+  "debug.javascript.autoAttachSmartPattern": [
+    "${workspaceFolder}/**",
+    "!**/node_modules/**",
+    "**/$KNOWN_TOOLS$/**",
+    "!**/yarn-*",
+    "!**/ava-*/**/cli.mjs"
+  ],
+  "eslint.nodePath": ".yarn/sdks"
 }

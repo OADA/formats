@@ -19,20 +19,18 @@
     "url": "https://github.com/OADA/formats/labels/@oada/formats-server"
   },
   "license": "MIT",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.js",
   "directories": {
-    "lib": "lib"
+    "lib": "dist"
   },
   "files": [
     "src",
-    "lib",
-    "tsconfig.json",
-    ".nycrc.json"
+    "dist",
+    "tsconfig.json"
   ],
   "scripts": {
-    "build": "yarn g:tsc tsconfig.build.json",
-    "clean": "yarn g:tsc tsconfig.build.json --clean",
+    "build": "yarn g:tsc",
+    "clean": "yarn g:tsc --clean",
     "prepare": "npm run build",
     "test": "ava"
   },
@@ -71,6 +69,6 @@
     "@types/content-type": "^1.1.5",
     "@types/express": "^4.17.13",
     "ava": "^3.15.0",
-    "fastify": "^3.25.1"
+    "fastify": "^3.28.0"
   }
 }

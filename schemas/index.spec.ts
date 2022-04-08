@@ -62,9 +62,8 @@ test.before('Initiallize $ref checker', () => {
             const r = /^https:\/\/formats\.openag\.io/;
             const dir = '.';
             const path = r.test(url) ? url.replace(r, '') : relative('', url);
-            const file = (isAbsolute(path)
-              ? join(dir, path)
-              : join(dir, dirname(key), path)
+            const file = (
+              isAbsolute(path) ? join(dir, path) : join(dir, dirname(key), path)
             ).replace(/\.json$/, '');
             const { default: schema } = await import('./' + file);
             return schema;

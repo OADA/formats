@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
 import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
@@ -6,7 +14,7 @@ const schema: Schema = {
   description: 'Endpoint for rules engine stuff',
   allOf: [{ $ref: '../oada/resource.schema.json' }],
   properties: {
-    actions: { $ref: '' },
+    actions: {},
     conditions: {},
     configured: {},
     compiled: {},

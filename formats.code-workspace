@@ -29,7 +29,6 @@
     "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
     "typescript.tsdk": ".yarn/sdks/typescript/lib",
     "typescript.enablePromptUseWorkspaceTsdk": true,
-    "eslint.nodePath": "../.yarn/sdks",
     "search.exclude": {
       "tsconfig.tsbuildinfo": true,
       ".history": true,
@@ -40,6 +39,7 @@
       ".vim": true,
       "tags.*": true,
       ".nvimlog": true,
+      "**/dist": true,
       "**/.git": true,
       "**/.svn": true,
       "**/.hg": true,
@@ -48,6 +48,14 @@
       "**/Thumbs.db": true
     },
     "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "**/tags": true,
+      "**/dist": true,
       "tsconfig.tsbuildinfo": true,
       ".history": true,
       ".dccache": true,
@@ -56,13 +64,25 @@
       ".pnp.*": true,
       ".vim": true,
       "tags.*": true,
-      ".nvimlog": true,
-      "**/.git": true,
-      "**/.svn": true,
-      "**/.hg": true,
-      "**/CVS": true,
-      "**/.DS_Store": true,
-      "**/Thumbs.db": true
-    }
+      ".nvimlog": true
+    },
+    "explorerExclude.backup": null,
+    "npm.packageManager": "yarn",
+    "debug.javascript.autoAttachFilter": "smart",
+    "debug.javascript.breakOnConditionalError": true,
+    "debug.javascript.defaultRuntimeExecutable": {
+      "node": "yarn",
+      "pwa-node": "yarn"
+    },
+    "debug.javascript.autoAttachSmartPattern": [
+      "${workspaceFolder}/**",
+      "!**/node_modules/**",
+      "**/$KNOWN_TOOLS$/**",
+      "!**/yarn-*",
+      "!**/ava-*/**/cli.mjs"
+    ],
+    "eslint.nodePath": "../../.yarn/sdks",
+    "eslint.useESLintClass": true,
+    "cSpell.words": ["Fastify", "lcov", "sonarjs"]
   }
 }

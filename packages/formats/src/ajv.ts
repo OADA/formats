@@ -1,14 +1,21 @@
-/// <reference types='./types' />
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
 
-import { join } from 'path';
+import { join } from 'node:path';
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 import addFormats2019 from 'ajv-formats-draft2019';
-import { dereference } from '@apidevtools/json-schema-ref-parser';
 import axios from 'axios';
+import { dereference } from '@apidevtools/json-schema-ref-parser';
 
 import { getSchema as contentTypeToKey } from '@oada/media-types';
 
@@ -24,7 +31,7 @@ export const ajv: OADAFormats = addFormats2019(
 ) as OADAFormats;
 
 export interface OADAFormats extends Ajv {
-  //validate(ref: string | Schema, data: any): boolean;
+  // Validate(ref: string | Schema, data: any): boolean;
 }
 
 // Load all the schemas into ajv
@@ -35,13 +42,13 @@ export async function loadAllFormats() {
   // TODO: Why does compileAsync not work for meta schema?
   ajv.addMetaSchema(meta);
 
-  for (const { key, schema } of schemas()) {
+  for await (const { key, schema } of schemas()) {
     try {
       if (!ajv.getSchema(key)) {
         await ajv.compileAsync(await schema);
       }
-    } catch (err) {
-      console.error(err);
+    } catch (error: unknown) {
+      console.error(error);
       throw new Error(`Error loading schema ${key}`);
     }
   }
@@ -52,33 +59,34 @@ export async function loadAllFormats() {
 /**
  * Resolves a content-type to possible schema IDs
  */
-export { contentTypeToKey };
 
 // Support getting schema by content type?
 const _getSchema = ajv.getSchema.bind(ajv);
-ajv.getSchema = ((ref) => {
-  const schema = _getSchema(ref);
+ajv.getSchema = ((reference) => {
+  const schema = _getSchema(reference);
   if (schema) {
     return schema;
   }
 
-  const key = contentTypeToKey(ref);
-  return key && _getSchema('https://formats.openag.io/' + key);
+  const key = contentTypeToKey(reference);
+  return key && _getSchema(`https://formats.openag.io/${key}`);
 }) as typeof _getSchema;
 
 export async function loadSchema(uri: string) {
   const r = /^https:\/\/formats\.openag\.io/i;
 
-  if (uri.match(r)) {
+  if (r.test(uri)) {
     // Use local verison of openag schemas
     const file = uri
       .replace(r, join(__dirname, 'schemas'))
       .replace(/\.json$/, '');
     const { default: schema } = await import(file);
     return schema;
-  } else {
-    // Try to fetch schema online
-    const { data: schema } = await axios.get<Schema>(uri);
-    return schema;
   }
+
+  // Try to fetch schema online
+  const { data: schema } = await axios.get<Schema>(uri);
+  return schema;
 }
+
+export { getSchema as contentTypeToKey } from '@oada/media-types';

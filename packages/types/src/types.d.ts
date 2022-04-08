@@ -1,3 +1,14 @@
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
+
+/* eslint-disable @typescript-eslint/no-duplicate-imports */
+
 // Declare packed validation functions modules
 declare module '*-validate.js' {
   import { ValidateFunction } from 'ajv';
@@ -25,12 +36,10 @@ declare module 'json-schema-traverse' {
     allKeys?: boolean;
   };
 
-  type Keywords = {
-    [key: string]: boolean;
-  };
+  type Keywords = Record<string, boolean>;
 
   interface Traverse {
-    <Schema>(schema: Schema, opts: Options<Schema>): void;
+    <Schema>(schema: Schema, options: Options<Schema>): void;
     keywords: Keywords;
     arrayKeywords: Keywords;
     propsKeywords: Keywords;
@@ -40,6 +49,12 @@ declare module 'json-schema-traverse' {
   const traverse: Traverse;
 
   export = traverse;
+}
+
+declare module 'ajv/dist/standalone.js' {
+  import Ajv, { ValidateFunction } from 'ajv';
+  function pack(ajv: Ajv, validate: ValidateFunction): string;
+  export default pack;
 }
 
 declare module 'ajv-formats-draft2019' {

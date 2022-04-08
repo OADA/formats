@@ -19,20 +19,18 @@
     "url": "https://github.com/OADA/formats/labels/@oada/media-types"
   },
   "license": "MIT",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.js",
   "directories": {
-    "lib": "lib"
+    "lib": "dist"
   },
   "files": [
     "src",
-    "lib",
-    "tsconfig.json",
-    ".nycrc.json"
+    "dist",
+    "tsconfig.json"
   ],
   "scripts": {
-    "build": "yarn g:tsc tsconfig.build.json",
-    "clean": "yarn g:tsc tsconfig.build.json --clean",
+    "build": "yarn g:tsc",
+    "clean": "yarn g:tsc --clean",
     "prepare": "npm run build",
     "test": "ava"
   },

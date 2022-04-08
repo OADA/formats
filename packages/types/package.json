@@ -18,13 +18,12 @@
   },
   "license": "MIT",
   "main": "index.js",
-  "types": "lib/index.d.ts",
   "directories": {
-    "lib": "lib"
+    "lib": "dist"
   },
   "scripts": {
-    "clean": "yarn g:tsc tsconfig.build.json --clean",
-    "build": "cd src && yarn g:ts-node --files compile.ts && cd .. && yarn g:tsc tsconfig.build.json && cpy '**/*.js' ../ --cwd=src --parents",
+    "clean": "yarn g:tsc --clean",
+    "build": "yarn g:ts-node --files src/compile.ts && yarn g:tsc && cpy '**/*.js' ../ --cwd=src --parents",
     "prestart": "npm run build",
     "prepare": "npm run build",
     "pretest": "npm run build",
@@ -43,23 +42,26 @@
     "tsconfig.json"
   ],
   "dependencies": {
-    "ajv": "^8.8.2",
+    "ajv": "8.11.0",
     "ajv-formats": "^2.1.1",
     "ajv-formats-draft2019": "^1.6.1"
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.9",
+    "@ava/typescript": "^3.0.1",
     "@oada/formats": "^1.8.1",
-    "@types/bluebird": "^3.5.36",
+    "@types/clone-deep": "^4.0.1",
+    "@types/debug": "^4",
     "@types/json-schema-merge-allof": "^0.6.1",
     "@types/lodash.omit": "^4.5.6",
     "@types/mkdirp": "^1.0.2",
-    "@types/node": "^12.20.38",
+    "@types/node": "^14.18.12",
     "ava": "^3.15.0",
-    "bluebird": "^3.7.2",
-    "cpy-cli": "^3.1.1",
+    "clone-deep": "^4.0.1",
+    "cpy-cli": "^4.1.0",
+    "debug": "^4.3.4",
     "json-schema-merge-allof": "^0.8.1",
-    "json-schema-to-typescript": "https://github.com/awlayton/json-schema-to-typescript.git#9b79fadf33df6e5d4b2947305d8c939ae2c6180a",
+    "json-schema-to-typescript": "^10.1.5",
     "jsonschema8": "^1.1.1",
     "lodash.omit": "^4.5.0",
     "mkdirp": "^1.0.4"

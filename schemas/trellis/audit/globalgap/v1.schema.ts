@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
 import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
@@ -162,7 +170,7 @@ const schema: Schema = {
               description:
                 'An id_source is a representation of who assigned the id: i.e. who do you go ask to figure out what a particular ID goes to.',
               type: 'string',
-              examples: [ 'scheme', 'certifying_body' ],
+              examples: ['scheme', 'certifying_body'],
             },
           },
           type: 'object',
@@ -354,7 +362,7 @@ const schema: Schema = {
           },
         },
       },
-      required: ['organizationid', 'name' ],
+      required: ['organizationid', 'name'],
       type: 'object',
     },
     scope: {
@@ -1062,7 +1070,7 @@ const schema: Schema = {
           description:
             'An id_source is a representation of who assigned the id: i.e. who do you go ask to figure out what a particular ID goes to.',
           type: 'string',
-          examples: [ 'scheme', 'certifying_body' ],
+          examples: ['scheme', 'certifying_body'],
         },
       },
       type: 'object',
@@ -4489,7 +4497,7 @@ const schema: Schema = {
               description:
                 "globalgap_level is not actually a key that is used, but rather describes a class of objects which represent a level's summary score",
               type: 'string',
-              enum: [ 'major_must', 'minor_must', 'recommended' ],
+              enum: ['major_must', 'minor_must', 'recommended'],
             },
             auditor_comments: {
               description:
@@ -5567,8 +5575,7 @@ const schema: Schema = {
             },
             {
               sectionid: 'AF 2',
-              name:
-                'Record Keeping And Internal Self-Assessment/Internal Inspection',
+              name: 'Record Keeping And Internal Self-Assessment/Internal Inspection',
               control_pointids: ['AF 2.1', 'AF 2.2', 'AF 2.3'],
             },
           ],
@@ -5576,8 +5583,7 @@ const schema: Schema = {
       ],
       control_points: {
         'AF 1.1.1': {
-          name:
-            'Is there a reference system for each field, orchard, greenhouse, yard, plot, livestock building/pen, and/or other area/location used in production?',
+          name: 'Is there a reference system for each field, orchard, greenhouse, yard, plot, livestock building/pen, and/or other area/location used in production?',
           criteria: [
             'A physical sign at each field/orchard, greenhouse/yard/plot/livestock building/pen, or other farm area/location',
             'A farm map, which also identifies the location of water sources, storage/handling facilities, ponds, stables, etc. and that could be cross-referenced to the identification system.',

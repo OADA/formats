@@ -1,7 +1,7 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "@tsconfig/node14",
   "compilerOptions": {
     "composite": true
   },
-  "include": ["**/*.schema.ts"]
+  "include": ["index.ts", "**/*.schema.ts"]
 }

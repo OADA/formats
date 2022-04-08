@@ -32,4 +32,3 @@ import { plugin:formats } from '@oada/formats-server';
 
 fastify.register(formats)
 ```
-

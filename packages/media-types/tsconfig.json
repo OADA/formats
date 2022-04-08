@@ -1,3 +1,10 @@
 {
-  "extends": "./tsconfig.build.json"
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "exclude": ["./test"]
 }

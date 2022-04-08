@@ -67,10 +67,9 @@ any mocha tests in it will run with our the test suite.
 ## JavaScript/TypeScript libraries
 
 This project is chiefly a collection of pure [JSON Schema][] schemas,
-but there are also node library for utilizing the schemas 
+but there are also node library for utilizing the schemas
 in TypeScript/JavaScript
 under [packages](packages).
-
 
 [json schema]: https://json-schema.org
 [`examples`]: https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5

@@ -19,21 +19,19 @@
     "url": "https://github.com/OADA/formats/labels/@oada/formats"
   },
   "license": "MIT",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.js",
   "directories": {
-    "lib": "lib"
+    "lib": "dist"
   },
   "files": [
     "src",
-    "lib",
-    "tsconfig.json",
-    ".nycrc.json"
+    "dist",
+    "tsconfig.json"
   ],
   "scripts": {
-    "buildschemas": "node ./lib/schemas/compile.js",
-    "build": "yarn g:tsc tsconfig.build.json && yarn run buildschemas",
-    "clean": "rm -rf lib",
+    "buildschemas": "node ./dist/schemas/compile.js",
+    "build": "yarn g:tsc && yarn run buildschemas",
+    "clean": "yarn g:tsc --clean; rm -rf dist",
     "prepare": "npm run build",
     "coverage": "nyc report",
     "coveralls": "nyc report --reporter text-lcov | coveralls",
@@ -53,20 +51,22 @@
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.9",
     "@oada/media-types": "^1.8.1",
-    "ajv": "^8.8.2",
+    "ajv": "^8.11.0",
     "ajv-formats": "^2.1.1",
     "ajv-formats-draft2019": "^1.6.1",
-    "axios": "^0.24.0",
+    "axios": "^0.26.1",
     "glob": "^7.2.0"
   },
   "devDependencies": {
+    "@types/debug": "^4",
     "@types/glob": "^7.2.0",
     "@types/mkdirp": "^1.0.2",
-    "@types/node": "^12.20.38",
-    "@types/yargs": "^17.0.7",
+    "@types/node": "^14.18.12",
+    "@types/yargs": "^17.0.10",
     "ava": "^3.15.0",
+    "debug": "^4.3.4",
     "jsonschema8": "^1.1.1",
     "mkdirp": "^1.0.4",
-    "yargs": "^17.3.0"
+    "yargs": "^17.4.0"
   }
 }

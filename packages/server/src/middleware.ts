@@ -1,3 +1,12 @@
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
+
 import type { RequestHandler } from 'express';
 
 import { Options, handleResponse } from './';
@@ -7,16 +16,20 @@ import { Options, handleResponse } from './';
  *
  * Must be mounted _after_ Content-Type of response is set
  */
-export function middleware(_opts: Options): RequestHandler {
-  return async function (_req, res, next) {
+export function middleware(_options: Options): RequestHandler {
+  return async function (_request, response, next) {
     try {
-      const headers = handleResponse(res.get('Content-Type'), res.get('Link'));
-      // @ts-ignore
-      res.log?.trace('Setting schema headers: %O', headers);
-      res.set(headers);
-    } catch (err) {
-      return next(err);
+      const headers = handleResponse(
+        response.get('Content-Type'),
+        response.get('Link')
+      );
+      // @ts-expect-error stuff
+      response.log?.trace('Setting schema headers: %O', headers);
+      response.set(headers);
+
+      next();
+    } catch (error: unknown) {
+      next(error);
     }
-    return next();
   };
 }

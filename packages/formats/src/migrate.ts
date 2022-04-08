@@ -1,36 +1,48 @@
-/// <reference types='./types'/>
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
 
-import { cwd } from 'process';
-import { promises as fs } from 'fs';
-import { dirname, join } from 'path';
+/* eslint-disable no-console, security/detect-non-literal-fs-filename */
 
+import { dirname, join } from 'node:path';
+import { cwd } from 'node:process';
+import fs from 'node:fs/promises';
+
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 import mkdirp = require('mkdirp');
 
 import {
-  JSONSchema8 as Schema,
   JSONSchema8ObjectSchema,
   JSONSchema8StringSchema,
+  JSONSchema8 as RealSchema,
+  JSONSchema8 as Schema,
 } from 'jsonschema8';
 
 import { contentTypeToKey } from './ajv';
 
-import { JSONSchema8 as RealSchema } from 'jsonschema8';
 import Ajv from 'ajv';
 
 import traverse from './traverse';
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Old {
   // The IDs on the generated schemas are weird
   export type Schema = RealSchema & { id: string };
   export interface Model {
     validate: Ajv['validate'];
     schema: () => Promise<Schema>;
-    examples: () => Promise<{ [key: string]: any }>;
+    examples: () => Promise<Record<string, unknown>>;
   }
   export interface Formats extends Ajv {
-    mediatypes: { [key: string]: string };
-    _addMediatypes(types: { [key: string]: string }): void;
-    model: (type: string) => Promise<Model>;
+    mediatypes: Record<string, string>;
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    _addMediatypes(types: Record<string, string>): void;
+    model(type: string): Promise<Model>;
   }
 }
 
@@ -52,9 +64,9 @@ export async function migrate(
   }: MigrateOptions = {}
 ) {
   const r = /^oada-formats:\/\/(.+)$/;
-  function fixid(
+  function fixID(
     id: string | undefined,
-    type: string | null
+    type?: string
   ): { $id: Schema['$id']; key: string } {
     if (id) {
       // Parse id into content type
@@ -63,6 +75,7 @@ export async function migrate(
         [, type] = matches;
       }
     }
+
     if (!type) {
       throw new Error('Schema has neither id nor type');
     }
@@ -77,15 +90,22 @@ export async function migrate(
     return { $id, key };
   }
 
-  for (const type in formats.mediatypes) {
+  function fixReference($reference: string): string {
+    const [id, path] = $reference.split('#');
+    const { $id } = id ? fixID(id) : { $id: '' };
+    return `${$id}#${path}`;
+  }
+
+  for await (const type of Object.values(formats.mediatypes)) {
     console.info(type);
     let model;
     try {
       model = await formats.model(type);
-    } catch (err) {
-      console.error(`Failed to load type ${type}: %O`, err);
+    } catch (error: unknown) {
+      console.error(`Failed to load type ${type}: %O`, error);
       continue;
     }
+
     let schema;
     let $id;
     let key;
@@ -94,85 +114,79 @@ export async function migrate(
       const { id, ...oldSchema }: Old.Schema = await model.schema();
 
       // Generate proper id
-      ({ $id, key } = fixid(id, type));
+      ({ $id, key } = fixID(id, type));
       schema = { $id, ...oldSchema };
-    } catch (err) {
-      console.error(`Failed to load schema for ${type}: %O`, err);
+    } catch (error: unknown) {
+      console.error(`Failed to load schema for ${type}: %O`, error);
       continue;
-    }
-
-    function fixRef($ref: string): string {
-      const [id, path] = $ref.split('#');
-      const { $id } = id ? fixid(id, null) : { $id: '' };
-      return `${$id}#${path}`;
     }
 
     // Traverse schema to fix/normalize keywords?
     traverse<Schema>(schema, {
-      cb(schema: Schema) {
+      cb(s: Schema) {
         // Fix any refs
-        if (schema.$ref) {
-          schema.$ref = fixRef(schema.$ref);
+        if (s.$ref) {
+          s.$ref = fixReference(s.$ref);
         }
 
         // Clean up types?
-        if (!('type' in schema)) {
-          if ('properties' in schema) {
-            (schema as JSONSchema8ObjectSchema).type = 'object';
+        if (!('type' in s)) {
+          if ('properties' in s) {
+            (s as JSONSchema8ObjectSchema).type = 'object';
           }
-        } else {
-          if ('enum' in schema || 'const' in schema) {
-            // Typing an enum is redundant
-            // @ts-ignore
-            delete schema.type;
-          }
+        } else if ('enum' in s || 'const' in s) {
+          // Typing an enum is redundant
+          // @ts-expect-error delete
+          delete s.type;
         }
 
         // Delete extra keywords
-        // @ts-ignore
-        delete schema.vocab;
-        // @ts-ignore
-        delete schema._type;
-        // @ts-ignore
-        delete schema.indexingSchema;
-        // @ts-ignore
-        delete schema.indexing;
-        // @ts-ignore
-        delete schema.propertySchema;
-        // @ts-ignore
-        delete schema.propertySchemaDefault;
+        // @ts-expect-error delete
+        delete s.vocab;
+        // @ts-expect-error delete
+        delete s._type;
+        // @ts-expect-error delete
+        delete s.indexingSchema;
+        // @ts-expect-error delete
+        delete s.indexing;
+        // @ts-expect-error delete
+        delete s.propertySchema;
+        // @ts-expect-error delete
+        delete s.propertySchemaDefault;
 
-        // TODO: Should probably just delete these keys...
+        // FIXME: Should probably just delete these keys...
         // * is not a regex... (.* is)
-        if ((schema as JSONSchema8StringSchema).pattern === '*') {
-          (schema as JSONSchema8StringSchema).pattern = '.*';
+        if ((s as JSONSchema8StringSchema).pattern === '*') {
+          (s as JSONSchema8StringSchema).pattern = '.*';
         }
-        const prop = (schema as JSONSchema8ObjectSchema).patternProperties?.[
+
+        const property = (s as JSONSchema8ObjectSchema).patternProperties?.[
           '*'
         ];
-        if (prop) {
-          // @ts-ignore
-          delete schema.patternProperties['*'];
-          // @ts-ignore
-          schema.patternProperties['.*'] = prop;
+        if (property) {
+          // @ts-expect-error delete
+          delete s.patternProperties['*'];
+          // @ts-expect-error whatever
+          s.patternProperties['.*'] = property;
         }
 
         // Change "known" to examples
-        // @ts-ignore
-        if (schema.known) {
-          // @ts-ignore
-          schema.examples = schema.known;
-          // @ts-ignore
-          delete schema.known;
+        // @ts-expect-error known
+        if (s.known) {
+          // @ts-expect-error known
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          s.examples = s.known;
+          // @ts-expect-error delete
+          delete s.known;
         }
       },
     });
 
     // Fetch the examples
     const oldExamples = await model.examples();
-    const examples: any[] = [];
-    for (const example in oldExamples) {
-      examples.push(oldExamples[example]);
+    const examples: unknown[] = [];
+    for (const example of Object.values(oldExamples)) {
+      examples.push(example);
     }
 
     let output;
@@ -193,6 +207,8 @@ export async function migrate(
         `;
         path = path.replace(/\.json$/, '.ts');
         break;
+      default:
+        throw new Error(`Unknown format ${format}`);
     }
 
     // Write file out

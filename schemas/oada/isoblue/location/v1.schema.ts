@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
 import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
@@ -101,7 +109,7 @@ const schema: Schema = {
               },
               type: 'object',
             },
-            //'[object Object]': 'location'
+            // '[object Object]': 'location'
           },
           type: 'object',
         },

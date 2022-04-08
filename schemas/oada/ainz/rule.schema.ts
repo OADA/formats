@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
 import { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
@@ -27,13 +35,13 @@ const schema: Schema = {
         destination: {
           description: 'A path to an OADA list to which to add maching items',
           type: 'string',
-          //$ref: '../../oada.schema.json#/definitions/path',
+          // $ref: '../../oada.schema.json#/definitions/path',
         },
         tree: {
           description: 'A tree to use for "tree PUTs"',
           type: 'object',
           $comment: 'Recursive schema breaks schema to TS compiler',
-          //$ref: '../tree/v1.schema.json',
+          // $ref: '../tree/v1.schema.json',
         },
         itemsPath: {
           description: 'A JSONPath for resolving the items of an indexed list',
