@@ -1,6 +1,6 @@
 {
   "name": "@oada/formats",
-  "version": "1.8.1",
+  "version": "2.0.0",
   "description": "Reworked OADA formats",
   "keywords": [
     "oada",
@@ -58,7 +58,7 @@
     "glob": "^7.2.0"
   },
   "devDependencies": {
-    "@types/debug": "^4",
+    "@types/debug": "^4.1.7",
     "@types/glob": "^7.2.0",
     "@types/mkdirp": "^1.0.2",
     "@types/node": "^14.18.12",
@@ -67,6 +67,6 @@
     "debug": "^4.3.4",
     "jsonschema8": "^1.1.1",
     "mkdirp": "^1.0.4",
-    "yargs": "^17.4.0"
+    "yargs": "^17.4.1"
   }
 }

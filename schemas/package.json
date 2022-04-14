@@ -22,7 +22,7 @@
     "@tsconfig/node14": "^1.0.1",
     "@tsconfig/node16": "^1.0.2",
     "@types/glob": "^7.2.0",
-    "@types/node": "^14",
+    "@types/node": "^14.18.12",
     "jsonschema8": "^1.1.1"
   }
 }

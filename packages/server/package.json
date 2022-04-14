@@ -1,6 +1,6 @@
 {
   "name": "@oada/formats-server",
-  "version": "1.8.1",
+  "version": "2.0.0",
   "description": "OADA formats server plugins",
   "keywords": [
     "oada",
@@ -46,7 +46,7 @@
     ]
   },
   "dependencies": {
-    "@oada/media-types": "^1.8.1",
+    "@oada/media-types": "^2.0.0",
     "content-type": "^1.0.4"
   },
   "peerDependencies": {
