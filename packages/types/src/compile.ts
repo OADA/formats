@@ -82,8 +82,8 @@ async function doCompile() {
     // Pack up validation function
     const validate = await ajv.compileAsync(schema);
     const moduleCode = standaloneCode(ajv, validate);
-    const packedfile = join(
-      typesDirectory,
+    const packedfile = resolve(
+      './',
       file.replace(/\.schema\.json$/, '-validate.js')
     );
 
@@ -104,7 +104,7 @@ async function doCompile() {
  */
 
 // Import packed validation function
-import validate from './${name}-validate.js'
+import validate from './${basename(packedfile)}'
 
 /**
  * \`$id\` of the source schema
