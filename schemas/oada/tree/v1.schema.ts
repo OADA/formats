@@ -28,6 +28,7 @@ const schema: Schema = {
   definitions: {
     tree: {
       // FIXME: Override TypeScript type for Tree
+      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
       ...({ tsType } as Record<string, unknown>),
       type: 'object',
       properties: {
