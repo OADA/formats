@@ -7,44 +7,40 @@
  * https://opensource.org/licenses/MIT.
  */
 
-/* eslint-disable unicorn/prefer-module */
-
-import { join } from 'node:path';
+import { createRequire } from 'node:module';
+import path from 'node:path';
+import url from 'node:url';
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
-import { sync as _glob } from 'glob';
+import globP from 'glob-promise';
 
+const dirname = path.dirname(url.fileURLToPath(import.meta.url));
+
+const schemas = await globP('/**/*.schema.{c,m,}js', {
+  cwd: dirname,
+  root: dirname,
+  nomount: true,
+});
 /**
  * Every .schema.ts file we have
  */
-export const glob = _glob('/**/*.schema.{ts,js}', {
-  cwd: __dirname,
-  root: __dirname,
-  nomount: true,
-}).map((key) => key.replace(/\/+/, '/').replace(/\.(?:ts|js)$/, '.json'));
+export const glob = schemas.map((key) =>
+  key.replace(/\/+/, '/').replace(/\.[cm]?[jt]s$/, '.json')
+);
 
+export const requireSchema: (path: string) => Schema = createRequire(
+  path.join(dirname, 'schemas')
+);
 export class SchemaInfo {
-  // Don't load schema until needed
-  #schema?: Promise<Schema>;
-
-  key: string;
-  path: string;
+  key;
+  path;
+  readonly schema;
 
   constructor(key: string) {
-    this.path = join(__dirname, key);
+    this.path = path.join(dirname, key);
     this.key = key;
-  }
-
-  get schema(): Promise<Schema> {
-    if (this.#schema === undefined) {
-      const inFile = this.key.replace(/^\//, './').replace(/\.json$/, '');
-      // eslint-disable-next-line github/no-then
-      this.#schema = import(inFile).then(
-        ({ default: schema }) => schema as Schema
-      );
-    }
-
-    return this.#schema;
+    const inFile = this.key.replace(/^\//, './').replace(/\.json$/, '.cjs');
+    this.schema = requireSchema(inFile);
   }
 }
 

@@ -1,6 +1,15 @@
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
+
 import test from 'ava';
 
-import { formats } from './';
+import { formats } from './index.js';
 
 const testSchema = { enum: ['foo1'] };
 test.before('Load test schema', () => {

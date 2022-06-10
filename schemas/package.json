@@ -1,28 +1,47 @@
 {
   "name": "@oada/schemas",
-  "version": "1.8.2",
+  "version": "3.0.0",
   "author": "Alex Layton <alex@layton.in>",
   "license": "MIT",
   "private": true,
+  "type": "module",
+  "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "build": "tsc -b",
+    "clean": "tsc -b --clean",
+    "test": "ava",
+    "test:debug": "ava -T 60m -svc 1 --no-worker-threads"
   },
   "ava": {
+    "failFast": false,
     "files": [
       "**/*.spec.ts"
     ],
-    "extensions": [
-      "ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ]
+    "typescript": {
+      "extensions": [
+        "ts",
+        "cts",
+        "mts"
+      ],
+      "rewritePaths": {
+        "/": "/"
+      },
+      "compile": false
+    }
   },
   "devDependencies": {
+    "@apidevtools/json-schema-ref-parser": "^9.0.9",
+    "@ava/typescript": "^3.0.1",
     "@tsconfig/node14": "^1.0.1",
-    "@tsconfig/node16": "^1.0.2",
     "@types/glob": "^7.2.0",
-    "@types/node": "^14.18.16",
-    "jsonschema8": "^1.1.1"
+    "@types/json-schema": "^7.0.11",
+    "@types/node": "^14.18.21",
+    "ajv": "^8.11.0",
+    "ava": "4.0.0-rc.1",
+    "glob": "^8.0.3",
+    "glob-promise": "^4.2.2",
+    "jsonschema8": "^1.1.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.3"
   }
 }

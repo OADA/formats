@@ -9,7 +9,7 @@
 
 import test from 'ava';
 
-import mediaType2schema from './';
+import mediaType2schema from './index.js';
 
 test('should resolve OADA formats media-type string', (t) => {
   const schema = mediaType2schema('application/vnd.oada.bookmarks.1+json');

@@ -19,12 +19,13 @@ _site/
 
 lib
 dist
+coverage
+.test
+*.{c,m,}js
 
 # Ignore generated types
-packages/types/**/*.js
 packages/types/**/*.ts
-packages/types/**/*.d.ts
-packages/types/**/*.map
+packages/types/**/*.js
 !packages/types/src/compile.ts
 !packages/types/src/index.ts
 !packages/types/src/types.d.ts

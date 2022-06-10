@@ -7,19 +7,17 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import { join } from 'node:path';
-
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
+import $ref from '@apidevtools/json-schema-ref-parser';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 import addFormats2019 from 'ajv-formats-draft2019';
 import axios from 'axios';
-import { dereference } from '@apidevtools/json-schema-ref-parser';
 
 import { getSchema as contentTypeToKey } from '@oada/media-types';
 
-import schemas from './schemas';
+import schemas, { requireSchema } from './schemas/index.js';
 
 export const ajv: OADAFormats = addFormats2019(
   addFormats(
@@ -36,20 +34,15 @@ export interface OADAFormats extends Ajv {
 
 // Load all the schemas into ajv
 export async function loadAllFormats() {
-  const meta = await dereference(
+  const meta = await $ref.dereference(
     'https://json-schema.org/draft/2019-09/schema'
   );
   // TODO: Why does compileAsync not work for meta schema?
   ajv.addMetaSchema(meta);
 
   for await (const { key, schema } of schemas()) {
-    try {
-      if (!ajv.getSchema(key)) {
-        await ajv.compileAsync(await schema);
-      }
-    } catch (error: unknown) {
-      console.error(error);
-      throw new Error(`Error loading schema ${key}`);
+    if (!ajv.getSchema(key)) {
+      await ajv.compileAsync(schema);
     }
   }
 
@@ -74,14 +67,10 @@ ajv.getSchema = ((reference) => {
 
 export async function loadSchema(uri: string) {
   const r = /^https:\/\/formats\.openag\.io/i;
-
   if (r.test(uri)) {
-    // Use local verison of openag schemas
-    const file = uri
-      .replace(r, join(__dirname, 'schemas'))
-      .replace(/\.json$/, '');
-    const { default: schema } = await import(file);
-    return schema;
+    // Use local version of openag schemas
+    const file = uri.replace(r, './').replace(/\.json$/, '');
+    return requireSchema(file);
   }
 
   // Try to fetch schema online

@@ -30,20 +30,19 @@
     "typescript.tsdk": ".yarn/sdks/typescript/lib",
     "typescript.enablePromptUseWorkspaceTsdk": true,
     "search.exclude": {
-      "tsconfig.tsbuildinfo": true,
+      "*.tsbuildinfo": true,
       ".history": true,
       ".dccache": true,
       ".coverage": true,
       ".sass-cache": true,
       ".pnp.*": true,
+      "**/node_modules": true,
       ".vim": true,
       "tags.*": true,
       ".nvimlog": true,
       "**/dist": true,
-      "**/.git": true,
-      "**/.svn": true,
-      "**/.hg": true,
-      "**/CVS": true,
+      "**/coverage": true,
+      ".git": true,
       "**/.DS_Store": true,
       "**/Thumbs.db": true
     },
@@ -55,13 +54,16 @@
       "**/.DS_Store": true,
       "**/Thumbs.db": true,
       "**/tags": true,
+      ".git": true,
       "**/dist": true,
-      "tsconfig.tsbuildinfo": true,
+      "**/coverage": true,
+      "*.tsbuildinfo": true,
       ".history": true,
       ".dccache": true,
       ".coverage": true,
       ".sass-cache": true,
       ".pnp.*": true,
+      "**/node_modules": true,
       ".vim": true,
       "tags.*": true,
       ".nvimlog": true
@@ -83,6 +85,6 @@
     ],
     "eslint.nodePath": "../../.yarn/sdks",
     "eslint.useESLintClass": true,
-    "cSpell.words": ["Fastify", "lcov", "sonarjs"]
+    "cSpell.words": ["allof", "Fastify", "jwks", "lcov", "sonarjs"]
   }
 }

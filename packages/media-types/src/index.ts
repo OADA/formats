@@ -26,7 +26,7 @@ export function getSchema(mediaType: string): string | undefined {
   }
 
   const [, domain, type] = matches;
-  const types = type.split('.');
+  const types = type?.split('.') ?? [];
   // Handle versioned types
   const version = types.pop() ?? Number.NaN;
   if (!Number(version)) {

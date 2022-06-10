@@ -11,6 +11,7 @@ import { format, parse } from 'content-type';
 
 import mediaType2schema from '@oada/media-types';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Options {}
 
 /**

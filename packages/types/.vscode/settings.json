@@ -1,3 +1,12 @@
 {
-  "files.exclude": {}
+  "files.exclude": {
+    "**/*.js": true,
+    "**/*.map": true,
+    "**/*-validate.js": true
+  },
+  "search.exclude": {
+    "**/*.js": true,
+    "**/*.map": true,
+    "**/*-validate.js": true
+  }
 }

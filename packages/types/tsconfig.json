@@ -7,7 +7,7 @@
     "outDir": "."
   },
   "include": ["src"],
-  "exclude": ["test", "**/*.d.ts"],
+  "exclude": ["**/*.d.ts"],
   "references": [
     {
       "path": "../formats"
