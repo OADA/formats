@@ -18,7 +18,7 @@ If it encounters an unknown format, it leaves the headers alone.
 
 ```ts
 // Import the middleware version
-import { middleware:formats } from '@oada/formats-server';
+import { middleware: formats } from '@oada/formats-server';
 
 // Must be `use`d _after_ the `Content-Type` is set to work properly
 app.use(formats())
@@ -28,7 +28,7 @@ app.use(formats())
 
 ```ts
 // Import the fastify plugin
-import { plugin:formats } from '@oada/formats-server';
+import { plugin: formats } from '@oada/formats-server';
 
 fastify.register(formats)
 ```

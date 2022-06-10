@@ -13,7 +13,7 @@ yarn add @oada/formats
 
 This TypeScript/JavaScript library exports an async function
 that resolves to an [Ajv][] instance
-which is loaded with all the the schemas from this project.
+which is loaded with all the schemas from this project.
 
 ```ts
 import loadAllFormats from '@oada/formats';

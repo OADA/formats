@@ -9,8 +9,12 @@
 
 // TODO: What the heck should I export??
 
-export { JSONSchema8 as Schema } from 'jsonschema8';
+export type { JSONSchema8 as Schema } from 'jsonschema8';
 
-export { OADAFormats, ajv as formats, loadAllFormats as default } from './ajv';
+export {
+  OADAFormats,
+  ajv as formats,
+  loadAllFormats as default,
+} from './ajv.js';
 
-export { default as schemas } from './schemas';
+export { default as schemas } from './schemas/index.js';

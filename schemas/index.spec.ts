@@ -1,37 +1,48 @@
+/**
+ * @license
+ * Copyright 2022 Open Ag Data Alliance
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
+ */
+
 import test from 'ava';
 
-import { relative, isAbsolute, dirname, join } from 'path';
+import { dirname, isAbsolute, join, relative } from 'node:path';
 
-import type { JSONSchema8 as Schema } from 'jsonschema8';
-import type { JSONSchema6 } from 'json-schema';
-import Ajv from 'ajv';
 import $RefParser from '@apidevtools/json-schema-ref-parser';
+import Ajv from 'ajv';
+import type { JSONSchema6 } from 'json-schema';
+import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-import schemas from './';
+import schemas, { requireSchema } from './';
 
 /**
  * @todo where should this live?
  */
-export async function loadSchema(uri: string) {
+export function loadSchema(uri: string) {
   const r = /^https:\/\/formats\.openag\.io/i;
 
-  if (uri.match(r)) {
-    // Use local verison of openag schemas
+  if (r.test(uri)) {
+    // Use local version of openag schemas
     const file = uri.replace(r, '.').replace(/\.json$/, '');
-    const { default: schema } = await import(file);
-    return schema;
-  } else {
-    /*
+    return requireSchema(file);
+  }
+
+  throw new Error(`Unknown schema URI: ${uri}`);
+  /*
     // Try to fetch schema online
     const { data: schema } = await axios.get<Schema>(uri);
     return schema;
      */
-  }
 }
 
 const ajv = new Ajv({
-  loadSchema,
-  /* processCode, */
+  async loadSchema(uri) {
+    return loadSchema(uri);
+  },
+  /* ProcessCode, */
   inlineRefs: false,
   allErrors: true,
   strict: false,
@@ -43,14 +54,14 @@ test.before('Initialize JSON Schema validator', async () => {
     'https://json-schema.org/draft/2019-09/schema'
   );
 
-  // TODO: Why does compileAsync not work for meta schema?
+  // ???: Why does compileAsync not work for meta schema?
   ajv.addMetaSchema(meta);
 });
 
 // TODO: Figure out less hacky way to make it find the files correctly
-let checkRefs: (key: string, schema: Schema) => Promise<any>;
-test.before('Initiallize $ref checker', () => {
-  checkRefs = (key: string, schema: Schema) => {
+let checkReferences: (key: string, schema: Schema) => Promise<unknown>;
+test.before('Initialize $ref checker', () => {
+  checkReferences = async (key: string, schema: Schema) => {
     const $refparser = new $RefParser();
     return $refparser.dereference(schema as JSONSchema6, {
       resolve: {
@@ -60,13 +71,15 @@ test.before('Initiallize $ref checker', () => {
           // TODO: Support external $ref
           async read({ url }) {
             const r = /^https:\/\/formats\.openag\.io/;
-            const dir = '.';
-            const path = r.test(url) ? url.replace(r, '') : relative('', url);
-            const file = (
-              isAbsolute(path) ? join(dir, path) : join(dir, dirname(key), path)
-            ).replace(/\.json$/, '');
-            const { default: schema } = await import('./' + file);
-            return schema;
+            const directory = './';
+            const path = url.startsWith('https://formats.openag.io')
+              ? url.replace(r, '')
+              : relative('', url);
+            const file = `./${(isAbsolute(path)
+              ? join(directory, path)
+              : join(directory, dirname(key), path)
+            ).replace(/\.json$/, '.cjs')}`;
+            return requireSchema(file);
           },
         },
       },
@@ -78,42 +91,43 @@ test.before('Initiallize $ref checker', () => {
 for (const { schema, key } of schemas()) {
   test.before(`Compile schema ${key}`, async () => {
     try {
-      await ajv.compileAsync(await schema);
-    } catch (err) {
+      await ajv.compileAsync(schema);
+    } catch {
       // Already compiled?
     }
   });
 
   test(`${key} should be valid JSON Schema`, async (t) => {
-    t.assert(ajv.validateSchema(await schema));
+    t.assert(ajv.validateSchema(schema));
   });
 
   // $id needs to be consistent with file structure or most tools get upset
-  test(`${key} should have conistent $id`, async (t) => {
-    const { $id } = await schema;
+  test(`${key} should have consistent $id`, async (t) => {
+    const { $id } = schema;
     t.is($id, `https://${join('formats.openag.io/', key)}`);
   });
 
   test.todo(`${key} should have valid self $ref's`);
 
+  // eslint-disable-next-line @typescript-eslint/no-loop-func
   test(`${key} should have valid external $ref's`, async (t) => {
-    await t.notThrowsAsync(checkRefs(key, await schema));
+    await t.notThrowsAsync(checkReferences(key, schema));
   });
 
   test(`${key} should have valid default`, async (t) => {
-    const { default: def } = await schema;
+    // eslint-disable-next-line unicorn/prevent-abbreviations
+    const { default: def } = schema;
     t.plan(def ? 1 : 0);
     if (def) {
-      t.assert(ajv.validate(await schema, def), ajv.errorsText());
+      t.assert(ajv.validate(schema, def), ajv.errorsText());
     }
   });
 
   test(`${key} should validate examples`, async (t) => {
-    const { examples } = await schema;
+    const { examples = [] } = schema;
     t.plan(examples?.length ?? 0);
-    for (const i in examples ?? []) {
-      const example = examples![i];
-      t.assert(ajv.validate(await schema, example), ajv.errorsText());
+    for (const example of examples) {
+      t.assert(ajv.validate(schema, example), ajv.errorsText());
     }
   });
 }

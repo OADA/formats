@@ -24,12 +24,11 @@ import addFormats2019 from 'ajv-formats-draft2019';
 import clone from 'clone-deep';
 import { compile } from 'json-schema-to-typescript';
 import log from 'debug';
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-import mkdirp = require('mkdirp');
-import standaloneCode from 'ajv/dist/standalone';
+import mkdirp from 'mkdirp';
+import standaloneCode from 'ajv/dist/standalone/index.js';
 import { toSafeString } from 'json-schema-to-typescript/dist/src/utils.js';
 
-import { loadSchema } from '@oada/formats/dist/ajv';
+import { loadSchema } from '@oada/formats/dist/ajv.js';
 
 import { schemas } from '@oada/formats';
 
@@ -62,11 +61,9 @@ async function doCompile() {
   ajv.addMetaSchema(metaSchema);
 
   // Compile schemas to TS types
-  for await (const { key, path, schema: _schema } of schemas()) {
+  for await (const { key, path, schema } of schemas()) {
     debug('Loading %s', key);
-
     // Normalize(schema)
-    const schema = await _schema;
 
     const { $id, title } = schema;
     const file = key

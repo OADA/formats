@@ -13,11 +13,10 @@ import { dirname, join, resolve } from 'node:path';
 import fs from 'node:fs/promises';
 
 import log from 'debug';
-import { options } from 'yargs';
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-import mkdirp = require('mkdirp');
+import mkdirp from 'mkdirp';
+import yargs from 'yargs';
 
-import schemas from './';
+import schemas from './index.js';
 
 const debug = log('@oada/formats:compile:debug');
 
@@ -33,11 +32,11 @@ async function doCompile(outdir: string) {
     debug('Writing %s schema as JSON', key);
     debug(outfile);
     await mkdirp(dirname(outfile));
-    await fs.writeFile(outfile, JSON.stringify(await schema));
+    await fs.writeFile(outfile, JSON.stringify(schema));
   }
 }
 
-const { argv } = options({
+const { argv } = yargs(process.argv.slice(2)).options({
   outdir: {
     alias: 'o',
     describe: 'directory to which to output schemas',
@@ -46,5 +45,5 @@ const { argv } = options({
   },
 });
 
-// @ts-expect-error nonsense
-void doCompile(argv.outdir);
+const { outdir } = await argv;
+await doCompile(outdir);

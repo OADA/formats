@@ -7,40 +7,54 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import { join } from 'node:path';
+import { createRequire } from 'node:module';
+import path from 'node:path';
+import url from 'node:url';
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
-import { sync as _glob } from 'glob';
+import globP from 'glob-promise';
+
+const dirname = path.dirname(url.fileURLToPath(import.meta.url));
+
+const schemas = await globP('/**/*.schema.{ts,js}', {
+  cwd: dirname,
+  root: dirname,
+  nomount: true,
+});
 
 /**
  * Every .schema.ts file we have
  */
-export const glob = _glob('/**/*.schema.{ts,js}', {
-  cwd: __dirname,
-  root: __dirname,
-  nomount: true,
-}).map((key) => key.replace(/\/+/, '/').replace(/\.(ts|js)$/, '.json'));
+export const glob = schemas.map((key) =>
+  key.replace(/\/+/, '/').replace(/\.(?:ts|js)$/, '.json')
+);
 
 export interface SchemaInfo {
-  schema: Promise<Schema>;
+  schema: Schema;
   key: string;
   path: string;
   glob: string;
 }
 
-function loadSchema(key: string): SchemaInfo {
-  const infile = key.replace(/^\//, './').replace(/\.json$/, '');
-  const schema = import(infile).then(({ default: schema }) => schema);
-  const path = join(__dirname, key);
+export const requireSchema: (path: string) => Schema = createRequire(
+  path.join(dirname, 'schemas')
+);
 
-  return { schema, key, path, glob: key };
+function loadSchemaInfo(key: string): SchemaInfo {
+  const inFile = key.replace(/^\//, './').replace(/\.json$/, '');
+  const schema = requireSchema(inFile);
+  const schemaPath = path.join(dirname, key);
+
+  return { schema, key, path: schemaPath, glob: key };
 }
 
 /**
  * Load all the schemas
  */
-export default function* (): Generator<SchemaInfo, void, void> {
+function* loadAll(): Generator<SchemaInfo, void, void> {
   for (const key of glob) {
-    yield loadSchema(key);
+    yield loadSchemaInfo(key);
   }
 }
+
+export default loadAll;

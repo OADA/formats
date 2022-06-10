@@ -6,7 +6,6 @@
     "outDir": "dist"
   },
   "include": ["src"],
-  "exclude": ["./test"],
   "references": [
     { "path": "./tsconfig.schemas.json" },
     { "path": "../media-types" }

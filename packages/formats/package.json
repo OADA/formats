@@ -1,6 +1,6 @@
 {
   "name": "@oada/formats",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Reworked OADA formats",
   "keywords": [
     "oada",
@@ -19,6 +19,7 @@
     "url": "https://github.com/OADA/formats/labels/@oada/formats"
   },
   "license": "MIT",
+  "type": "module",
   "main": "dist/index.js",
   "directories": {
     "lib": "dist"
@@ -29,23 +30,42 @@
     "tsconfig.json"
   ],
   "scripts": {
-    "buildschemas": "node ./dist/schemas/compile.js",
-    "build": "yarn g:tsc && yarn run buildschemas",
-    "clean": "yarn g:tsc --clean; rm -rf dist",
+    "buildschemas": "node --enable-source-maps ./dist/schemas/compile.js",
+    "build": "yarn tsc -b && yarn run buildschemas",
+    "clean": "yarn tsc -b --clean; rm -rf dist",
     "prepare": "npm run build",
-    "coverage": "nyc report",
-    "coveralls": "nyc report --reporter text-lcov | coveralls",
-    "test": "ava"
+    "test": "c8 ava",
+    "test:debug": "ava -T 60m -svc 1 --no-worker-threads"
   },
   "ava": {
+    "failFast": false,
     "files": [
       "**/*.spec.ts"
     ],
-    "extensions": [
-      "ts"
+    "typescript": {
+      "extensions": [
+        "ts",
+        "cts",
+        "mts"
+      ],
+      "rewritePaths": {
+        "src/": "dist/",
+        "test/": ".test/"
+      },
+      "compile": false
+    }
+  },
+  "c8": {
+    "reporter": [
+      "text",
+      "lcov"
     ],
-    "require": [
-      "ts-node/register"
+    "all": true,
+    "src": "src",
+    "exclude": [
+      "*.d.ts",
+      ".pnp.*",
+      ".test"
     ]
   },
   "dependencies": {
@@ -55,18 +75,23 @@
     "ajv-formats": "^2.1.1",
     "ajv-formats-draft2019": "^1.6.1",
     "axios": "^0.27.2",
-    "glob": "^7.2.0"
+    "glob": "^8.0.3",
+    "glob-promise": "^4.2.2",
+    "tslib": "^2.4.0"
   },
   "devDependencies": {
+    "@ava/typescript": "^3.0.1",
     "@types/debug": "^4.1.7",
     "@types/glob": "^7.2.0",
     "@types/mkdirp": "^1.0.2",
-    "@types/node": "^14.18.16",
+    "@types/node": "^14.18.21",
     "@types/yargs": "^17.0.10",
     "ava": "4.0.0-rc.1",
+    "c8": "^7.11.3",
     "debug": "^4.3.4",
     "jsonschema8": "^1.1.1",
     "mkdirp": "^1.0.4",
-    "yargs": "^17.4.1"
+    "typescript": "^4.7.3",
+    "yargs": "^17.5.1"
   }
 }

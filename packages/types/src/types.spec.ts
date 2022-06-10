@@ -11,36 +11,34 @@ import test from 'ava';
 
 import { schemas } from '@oada/formats';
 
-import { TypeAssert, TypeCheck } from './';
+import type { TypeAssert, TypeCheck } from './index.js';
 
 type TypeModule<T = unknown> = {
   is: TypeCheck<T>;
   assert: TypeAssert<T>;
 };
 
-(async () => {
-  for await (const { key, schema } of schemas()) {
-    const type = key
-      .replace(/^https:\/\/formats\.openag\.io/, '')
-      .replace(/^\//, './')
-      .replace(/\.schema\.json$/, '');
+for (const { key, schema } of schemas()) {
+  const type = key
+    .replace(/^https:\/\/formats\.openag\.io/, '')
+    .replace(/^\//, './')
+    .replace(/\.schema\.json$/, '');
 
-    const { examples } = await schema;
-    for (const [index, example] of Object.entries(examples ?? [])) {
-      test(`${key} should check true for example ${index}`, async (t) => {
-        const typeModule: TypeModule = (await import(type)) as TypeModule;
-        t.assert(typeModule.is(example));
-      });
+  const { examples } = schema;
+  for (const [index, example] of Object.entries(examples ?? [])) {
+    test(`${key} should check true for example ${index}`, async (t) => {
+      const typeModule: TypeModule = (await import(type)) as TypeModule;
+      t.assert(typeModule.is(example));
+    });
 
-      test(`${key} should assert example ${index}`, async (t) => {
-        const typeModule: TypeModule = (await import(type)) as TypeModule;
-        try {
-          typeModule.assert(example);
-          t.pass();
-        } catch (error: unknown) {
-          t.fail(`${error}`);
-        }
-      });
-    }
+    test(`${key} should assert example ${index}`, async (t) => {
+      const typeModule: TypeModule = (await import(type)) as TypeModule;
+      try {
+        typeModule.assert(example);
+        t.pass();
+      } catch (error: unknown) {
+        t.fail(`${error}`);
+      }
+    });
   }
-})();
+}

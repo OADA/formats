@@ -13,25 +13,25 @@ import { dirname, join } from 'node:path';
 import { cwd } from 'node:process';
 import fs from 'node:fs/promises';
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-import mkdirp = require('mkdirp');
+import mkdirp from 'mkdirp';
 
-import {
+import type {
   JSONSchema8ObjectSchema,
   JSONSchema8StringSchema,
   JSONSchema8 as RealSchema,
   JSONSchema8 as Schema,
 } from 'jsonschema8';
 
-import { contentTypeToKey } from './ajv';
+import { contentTypeToKey } from './ajv.js';
 
-import Ajv from 'ajv';
+import type Ajv from 'ajv';
 
-import traverse from './traverse';
+import traverse from './traverse.js';
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Old {
   // The IDs on the generated schemas are weird
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   export type Schema = RealSchema & { id: string };
   export interface Model {
     validate: Ajv['validate'];

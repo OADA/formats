@@ -1,6 +1,6 @@
 {
   "name": "@oada/types",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "TypeScript type definitions for OADA formats",
   "keywords": [
     "oada",
@@ -17,21 +17,49 @@
     "url": "https://github.com/OADA/formats/labels/@oada/types"
   },
   "license": "MIT",
-  "main": "index.js",
+  "type": "module",
+  "main": "dist/index.js",
   "directories": {
     "lib": "dist"
   },
   "scripts": {
-    "clean": "yarn g:tsc --clean",
-    "build": "yarn g:ts-node --files src/compile.ts && yarn g:tsc",
+    "clean": "yarn tsc -b --clean",
+    "build": "yarn tsc -b && yarn node ./compile.js && yarn tsc -b",
     "prestart": "npm run build",
     "prepare": "npm run build",
     "pretest": "npm run build",
-    "test": "ava"
+    "test": "c8 ava",
+    "test:debug": "ava -T 60m -svc 1 --no-worker-threads"
   },
   "ava": {
+    "failFast": false,
     "files": [
-      "**/*.spec.js"
+      "**/*.spec.ts"
+    ],
+    "typescript": {
+      "extensions": [
+        "ts",
+        "cts",
+        "mts"
+      ],
+      "rewritePaths": {
+        "src/": "dist/",
+        "test/": ".test/"
+      },
+      "compile": false
+    }
+  },
+  "c8": {
+    "reporter": [
+      "text",
+      "lcov"
+    ],
+    "all": true,
+    "src": "src",
+    "exclude": [
+      "*.d.ts",
+      ".pnp.*",
+      ".test"
     ]
   },
   "files": [
@@ -44,7 +72,8 @@
   "dependencies": {
     "ajv": "8.11.0",
     "ajv-formats": "^2.1.1",
-    "ajv-formats-draft2019": "^1.6.1"
+    "ajv-formats-draft2019": "^1.6.1",
+    "tslib": "^2.4.0"
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.9",
@@ -55,14 +84,16 @@
     "@types/json-schema-merge-allof": "^0.6.1",
     "@types/lodash.omit": "^4.5.7",
     "@types/mkdirp": "^1.0.2",
-    "@types/node": "^14.18.16",
+    "@types/node": "^14.18.21",
     "ava": "4.0.0-rc.1",
+    "c8": "^7.11.3",
     "clone-deep": "^4.0.1",
     "debug": "^4.3.4",
     "json-schema-merge-allof": "^0.8.1",
     "json-schema-to-typescript": "^10.1.5",
     "jsonschema8": "^1.1.1",
     "lodash.omit": "^4.5.0",
-    "mkdirp": "^1.0.4"
+    "mkdirp": "^1.0.4",
+    "typescript": "^4.7.3"
   }
 }

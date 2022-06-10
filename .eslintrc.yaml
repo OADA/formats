@@ -34,10 +34,10 @@ parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: 2020
   project:
-    - './tsconfig.json'
+    - '**/tsconfig*.json'
 
 overrides:
-  - files: '*.ts'
+  - files: '*.{m,c,}ts'
     extends:
       - plugin:github/typescript
       - plugin:import/typescript
@@ -46,7 +46,7 @@ overrides:
     parserOptions:
       ecmaVersion: 2020
       project:
-        - './tsconfig.json'
+        - '**/tsconfig*.json'
     rules:
       '@typescript-eslint/naming-convention':
         [
@@ -78,6 +78,20 @@ overrides:
         ]
       '@typescript-eslint/restrict-template-expressions': off
       '@typescript-eslint/no-shadow': warn
+  - files: '*.schema.{m,c,}ts'
+    extends:
+      - plugin:github/typescript
+      - plugin:import/typescript
+      - xo-typescript
+      - prettier
+    parserOptions:
+      ecmaVersion: 2020
+      project:
+        - '**/tsconfig*.json'
+    rules:
+      'sonarjs/no-duplicate-string': off
+      'no-secrets/no-secrets': off
+      '@typescript-eslint/naming-convention': off
 
 rules:
   notice/notice:

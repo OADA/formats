@@ -3,12 +3,22 @@
   "extends": "@tsconfig/node14",
   "compilerOptions": {
     "composite": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "stripInternal": true,
+    "importHelpers": true,
+    "alwaysStrict": true,
     "strict": true,
-    "resolveJsonModule": true,
+    "importsNotUsedAsValues": "error",
+    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
     "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true
+    "forceConsistentCasingInFileNames": true
   }
 }
