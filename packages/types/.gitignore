@@ -2,6 +2,7 @@
 lib
 *.ts
 *.js
+*.cjs
 *.map
 !*.spec.ts
 !/src/index.ts

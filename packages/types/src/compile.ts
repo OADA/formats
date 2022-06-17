@@ -54,34 +54,32 @@ const ajv = addFormats2019(
 const delay = util.promisify((done) => setTimeout(done, 50));
 
 // Compile the schema files to TypeScript types
-async function doCompile() {
-  const metaSchema = await $RefParser.dereference(
-    'https://json-schema.org/draft/2019-09/schema'
-  );
-  ajv.addMetaSchema(metaSchema);
+const metaSchema = await $RefParser.dereference(
+  'https://json-schema.org/draft/2019-09/schema'
+);
+ajv.addMetaSchema(metaSchema);
 
-  // Compile schemas to TS types
-  for await (const { key, path, schema } of schemas()) {
-    debug('Loading %s', key);
-    // Normalize(schema)
+let errored: Error | undefined;
+// Compile schemas to TS types
+for await (const { key, path, schema } of schemas()) {
+  debug('Loading %s', key);
+  // Normalize(schema)
 
-    const { $id, title } = schema;
-    const file = key
-      .replace(/^https:\/\/formats\.openag\.io/, '')
-      .replace(/^\//, './');
-    const outfile = join(
-      typesDirectory,
-      file.replace(/\.schema\.json$/, '.ts')
-    );
-    const name = basename(path, '.json');
-    const typeName = toSafeString(title ?? name);
+  const { $id, title } = schema;
+  const file = key
+    .replace(/^https:\/\/formats\.openag\.io/, '')
+    .replace(/^\//, './');
+  const outfile = join(typesDirectory, file.replace(/\.schema\.json$/, '.ts'));
+  const name = basename(path, '.json');
+  const typeName = toSafeString(title ?? name);
 
+  try {
     // Pack up validation function
-    const validate = await ajv.compileAsync(schema);
+    const validate = ajv.getSchema($id!) ?? (await ajv.compileAsync(schema));
     const moduleCode = standaloneCode(ajv, validate);
     const packedfile = resolve(
       './',
-      file.replace(/\.schema\.json$/, '-validate.js')
+      file.replace(/\.schema\.json$/, '-validate.cjs')
     );
 
     /**
@@ -131,40 +129,43 @@ export function assert (val: unknown): asserts val is ${typeName} {
 export default ${typeName}`;
 
     debug('Compiling %s to TypeScript types', key);
-    try {
-      // This function mutates the input, so be sure to clone it first
-      const ts = await compile(clone(schema) as Record<string, unknown>, $id!, {
-        format: false,
-        bannerComment,
-        unreachableDefinitions: true,
-        // NormalizerRules: rules,
-        $refOptions: {
-          // Use local versions of openag schemas
-          resolve: {
-            // Load schemas through @oada/formats
-            formats: {
-              order: 1,
-              canRead: true,
-              async read({ url }: { url: string }) {
-                return loadSchema(url);
-              },
+    // This function mutates the input, so be sure to clone it first
+    const ts = await compile(clone(schema) as Record<string, unknown>, $id!, {
+      format: false,
+      bannerComment,
+      unreachableDefinitions: true,
+      // NormalizerRules: rules,
+      $refOptions: {
+        // Use local versions of openag schemas
+        resolve: {
+          // Load schemas through @oada/formats
+          formats: {
+            order: 1,
+            canRead: true,
+            async read({ url }: { url: string }) {
+              return loadSchema(url);
             },
           },
         },
-        // Resolve relative to current file?
-        cwd: dirname(path),
-      });
-      await mkdirp(dirname(outfile));
-      // TODO: Figure out wtf is up with mkdirp that I need this...
-      await delay();
-      debug('Outputting %s', packedfile);
-      await fs.writeFile(packedfile, moduleCode);
-      debug('Outputting %s', outfile);
-      await fs.writeFile(outfile, ts);
-    } catch (cError: unknown) {
-      error(cError, `Error compiling ${$id}`);
+      },
+      // Resolve relative to current file?
+      cwd: dirname(path),
+    });
+    await Promise.all([mkdirp(dirname(outfile)), mkdirp(dirname(packedfile))]);
+    // ???: Figure out wtf is up with mkdirp that I need this...
+    await delay();
+    debug('Outputting %s', packedfile);
+    await fs.writeFile(packedfile, moduleCode);
+    debug('Outputting %s', outfile);
+    await fs.writeFile(outfile, ts);
+  } catch (cError: unknown) {
+    error({ error: cError }, `Error compiling ${$id}`);
+    if (!errored) {
+      errored = cError as Error;
     }
   }
 }
 
-void doCompile();
+if (errored) {
+  throw errored;
+}

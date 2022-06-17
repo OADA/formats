@@ -1,6 +1,6 @@
 {
   "name": "@oada/types",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": "TypeScript type definitions for OADA formats",
   "keywords": [
     "oada",
@@ -24,7 +24,7 @@
   },
   "scripts": {
     "clean": "yarn tsc -b --clean",
-    "build": "yarn tsc -b && yarn node ./compile.js && yarn tsc -b",
+    "build": "yarn tsc -b && yarn node --enable-source-maps ./compile.js && yarn tsc -b",
     "prestart": "npm run build",
     "prepare": "npm run build",
     "pretest": "npm run build",
@@ -43,8 +43,8 @@
         "mts"
       ],
       "rewritePaths": {
-        "src/": "dist/",
-        "test/": ".test/"
+        "src/": "/",
+        "/": "/"
       },
       "compile": false
     }
@@ -67,6 +67,8 @@
     "**/*.ts.map",
     "**/*.js",
     "**/*.js.map",
+    "**/*.cjs",
+    "**/*.cjs.map",
     "tsconfig.json"
   ],
   "dependencies": {
@@ -78,7 +80,7 @@
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.9",
     "@ava/typescript": "^3.0.1",
-    "@oada/formats": "^2.0.0",
+    "@oada/formats": "^3.0.0",
     "@types/clone-deep": "^4.0.1",
     "@types/debug": "^4.1.7",
     "@types/json-schema-merge-allof": "^0.6.1",
@@ -94,6 +96,6 @@
     "jsonschema8": "^1.1.1",
     "lodash.omit": "^4.5.0",
     "mkdirp": "^1.0.4",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.4"
   }
 }

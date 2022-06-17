@@ -10,12 +10,12 @@
 /* eslint-disable @typescript-eslint/no-duplicate-imports */
 
 // Declare packed validation functions modules
-declare module '*-validate.js' {
-  import { ValidateFunction } from 'ajv';
+declare module '*-validate.cjs' {
+  import type { ValidateFunction } from 'ajv';
 
   const validate: ValidateFunction;
 
-  export default validate;
+  export = validate;
 }
 
 declare module 'json-schema-traverse' {
@@ -52,7 +52,7 @@ declare module 'json-schema-traverse' {
 }
 
 declare module 'ajv/dist/standalone.js' {
-  import Ajv, { ValidateFunction } from 'ajv';
+  import type Ajv, { ValidateFunction } from 'ajv';
   function pack(ajv: Ajv, validate: ValidateFunction): string;
   export default pack;
 }

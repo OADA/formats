@@ -21,6 +21,7 @@ const schemas = await globP('/**/*.schema.{c,m,}js', {
   root: dirname,
   nomount: true,
 });
+
 /**
  * Every .schema.ts file we have
  */

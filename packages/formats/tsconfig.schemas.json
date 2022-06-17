@@ -1,5 +1,5 @@
 {
-  "extends": "../../schemas/tsconfig.json",
+  "extends": "../../schemas/tsconfig.schemas.json",
   "compilerOptions": {
     "rootDir": "../../schemas",
     "outDir": "./dist/schemas"

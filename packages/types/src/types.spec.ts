@@ -22,7 +22,7 @@ for (const { key, schema } of schemas()) {
   const type = key
     .replace(/^https:\/\/formats\.openag\.io/, '')
     .replace(/^\//, './')
-    .replace(/\.schema\.json$/, '');
+    .replace(/\.schema\.json$/, '.js');
 
   const { examples } = schema;
   for (const [index, example] of Object.entries(examples ?? [])) {

@@ -26,8 +26,8 @@ const schemasDirectory = resolve('dist', 'schemas');
 // Compile the schema files to JSON and to TypeScript types
 async function doCompile(outdir: string) {
   // "Compile" schemas to JSON
-  for await (const { glob: key, schema } of schemas()) {
-    const outfile = join(outdir, key.replace(/\.ts$/, '.json'));
+  for await (const { key, schema } of schemas()) {
+    const outfile = join(outdir, key.replace(/\.cts$/, '.json'));
 
     debug('Writing %s schema as JSON', key);
     debug(outfile);
