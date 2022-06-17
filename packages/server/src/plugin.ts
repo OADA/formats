@@ -9,7 +9,7 @@
 
 import type { FastifyPluginAsync } from 'fastify';
 
-import { Options, handleResponse } from './';
+import { Options, handleResponse } from './index.js';
 
 /**
  * Create a fastify plugin version

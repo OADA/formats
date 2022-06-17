@@ -62,9 +62,9 @@ export function handleResponse(
 /**
  * Express middleware version
  */
-export { middleware } from './middleware';
+export { middleware } from './middleware.js';
 
 /**
  * Fastify plugin version
  */
-export { plugin } from './plugin';
+export { plugin } from './plugin.js';
