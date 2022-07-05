@@ -130,27 +130,31 @@ export default ${typeName}`;
 
     debug('Compiling %s to TypeScript types', key);
     // This function mutates the input, so be sure to clone it first
-    const ts = await compile(clone(schema) as Record<string, unknown>, $id!, {
-      format: false,
-      bannerComment,
-      unreachableDefinitions: true,
-      // NormalizerRules: rules,
-      $refOptions: {
-        // Use local versions of openag schemas
-        resolve: {
-          // Load schemas through @oada/formats
-          formats: {
-            order: 1,
-            canRead: true,
-            async read({ url }: { url: string }) {
-              return loadSchema(url);
+    const ts = await compile(
+      { title: typeName, ...clone(schema) } as Record<string, unknown>,
+      $id!,
+      {
+        format: false,
+        bannerComment,
+        unreachableDefinitions: true,
+        // NormalizerRules: rules,
+        $refOptions: {
+          // Use local versions of openag schemas
+          resolve: {
+            // Load schemas through @oada/formats
+            formats: {
+              order: 1,
+              canRead: true,
+              async read({ url }: { url: string }) {
+                return loadSchema(url);
+              },
             },
           },
         },
-      },
-      // Resolve relative to current file?
-      cwd: dirname(path),
-    });
+        // Resolve relative to current file?
+        cwd: dirname(path),
+      }
+    );
     await Promise.all([mkdirp(dirname(outfile)), mkdirp(dirname(packedfile))]);
     // ???: Figure out wtf is up with mkdirp that I need this...
     await delay();

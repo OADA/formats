@@ -9,97 +9,111 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-// Handy helper function for the refs:
-const ref = (term: string, description?: string) => {
-  const refschema: Schema = { $ref: `./global.schema.json#/$defs/${term}` };
-  if (description) refschema.description = description;
-  return refschema;
-}
-
 const schema: Schema = {
   $id: 'https://formats.openag.io/modus/v1/modus-submit.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'Modus document for submitting sample events to FMIS',
-  $comment: 'Sadly, the standard appears to duplicate a lot of things here from modus-result.  Sticking to the standard in the hope of fixing in the future.',
+  $comment:
+    'Sadly, the standard appears to duplicate a lot of things here from modus-result. Sticking to the standard in the hope of fixing in the future.',
   type: 'object',
   properties: {
     _type: {
-      const: 'application/vnd.modus.v1.modus-submit+json', // content type for API responses
+      $comment: 'content type for API responses',
+      const: 'application/vnd.modus.v1.modus-submit+json',
     },
     Events: {
       type: 'array',
       items: {
-        type: 'object', // this is an "Event"
+        $comment: 'this is an "Event"',
+        type: 'object',
         properties: {
+          EventMetaData: { $ref: './global.schema.json#/$defs/EventMetaData' },
 
-          EventMetaData: ref('EventMetaData'),
+          LabMetaData: { $ref: './global.schema.json#/$defs/LabMetaData' },
 
-          LabMetaData: ref('LabMetaData'),
+          FMISMetadata: { $ref: './global.schema.json#/$defs/FMISMetadata' },
 
-          FMISMetadata: ref('FMISMetadata'),
+          SubmissionAttributes: {
+            $ref: './global.schema.json#/$defs/SubmissionAttributes',
+          },
 
-          SubmissionAttributes: ref('SubmissionAttributes'),
-
-          EventSamples: { 
+          EventSamples: {
             type: 'object',
             properties: {
-              
               Soil: {
                 type: 'object',
                 properties: {
-                  DepthRefs: ref('DepthRefs'),
-                  RecommendationRefs: ref('RecommendationRefs'),
+                  DepthRefs: { $ref: './global.schema.json#/$defs/DepthRefs' },
+                  RecommendationRefs: {
+                    $ref: './global.schema.json#/$defs/RecommendationRefs',
+                  },
                   SoilSamples: {
                     type: 'array',
-                    items: { // A "SoilSample" 
+                    items: {
+                      $comment: 'A "SoilSample"',
                       type: 'object',
                       properties: {
-                        SampleMetaData: ref('SampleMetaData'),
+                        SampleMetaData: {
+                          $ref: './global.schema.json#/$defs/SampleMetaData',
+                        },
                         Depths: {
                           type: 'array',
                           items: {
-                            type: 'object', 
+                            type: 'object',
                             properties: {
-                              DepthID: { 
-                                description: 'Depth ID from the Depth Reference',
-                                type: 'string'
+                              DepthID: {
+                                description:
+                                  'Depth ID from the Depth Reference',
+                                type: 'string',
                               },
                             },
                           },
-                        }, // end Depths
-                        Comments: ref('Comments'),
+                        },
+                        Comments: {
+                          $ref: './global.schema.json#/$defs/Comments',
+                        },
                       },
                     },
                   },
                 },
-              }, // end Soil key in EventSamples
+              },
 
               Plant: {
-                description: 'Element to place samples and results from a plant tissue sample event',
+                description:
+                  'Element to place samples and results from a plant tissue sample event',
                 type: 'object',
                 properties: {
-                  RecommendationRefs: ref('RecommendationRefs'),
+                  RecommendationRefs: {
+                    $ref: './global.schema.json#/$defs/RecommendationRefs',
+                  },
                   PlantSample: {
                     type: 'object',
                     properties: {
-                      SampleMetaData: ref('SampleMetaData'),
-                      Comments: ref('Comments'),
+                      SampleMetaData: {
+                        $ref: './global.schema.json#/$defs/SampleMetaData',
+                      },
+                      Comments: {
+                        $ref: './global.schema.json#/$defs/Comments',
+                      },
                     },
                   },
                 },
-              }, // end Plant key in EventSamples
+              },
 
               Nematode: {
-                description: 'Element to place samples and results from a nematode sample event',
+                description:
+                  'Element to place samples and results from a nematode sample event',
                 type: 'object',
                 properties: {
-                  DepthRefs: ref('DepthRefs'),
+                  DepthRefs: { $ref: './global.schema.json#/$defs/DepthRefs' },
                   NematodeSamples: {
                     type: 'array',
                     items: {
                       type: 'object',
                       properties: {
-                        SampleMetaData: ref('SampleMetaData'),
+                        SampleMetaData: {
+                          $ref: './global.schema.json#/$defs/SampleMetaData',
+                        },
                         Depths: {
                           type: 'array',
                           items: {
@@ -109,12 +123,14 @@ const schema: Schema = {
                             },
                           },
                         },
-                        Comments: ref('Comments'),
+                        Comments: {
+                          $ref: './global.schema.json#/$defs/Comments',
+                        },
                       },
                     },
                   },
                 },
-              }, // end Nematode key in EventSamples
+              },
 
               Water: {
                 type: 'object',
@@ -124,15 +140,21 @@ const schema: Schema = {
                     items: {
                       type: 'object',
                       properties: {
-                        SampleMetaData: ref('SampleMetaData'),
+                        SampleMetaData: {
+                          $ref: './global.schema.json#/$defs/SampleMetaData',
+                        },
                         Source: { type: 'string' },
-                        NutrientResults: ref('NutrientResults'),
-                        Comments: ref('Comments'),
+                        NutrientResults: {
+                          $ref: './global.schema.json#/$defs/NutrientResults',
+                        },
+                        Comments: {
+                          $ref: './global.schema.json#/$defs/Comments',
+                        },
                       },
                     },
                   },
                 },
-              }, // end Water key in EventSamples
+              },
 
               Residue: {
                 type: 'object',
@@ -142,27 +164,32 @@ const schema: Schema = {
                     items: {
                       type: 'object',
                       properties: {
-                        SampleMetaData: ref('SampleMetaData'),
-                        ResidueResults: ref('ResidueResults'),
-                        Comments: ref('Comments'),
+                        SampleMetaData: {
+                          $ref: './global.schema.json#/$defs/SampleMetaData',
+                        },
+                        ResidueResults: {
+                          $ref: './global.schema.json#/$defs/ResidueResults',
+                        },
+                        Comments: {
+                          $ref: './global.schema.json#/$defs/Comments',
+                        },
                       },
                     },
                   },
                 },
-
-              }, // end Residue key in EventSamples
-
+              },
             },
-          }, // end EventSamples
+          },
 
-          Comments: ref('Comments'),
+          Comments: { $ref: './global.schema.json#/$defs/Comments' },
 
-          ModusSubmit: { $ref: './modus-submit.schema.json' }, // can hold an entire ModusSubmit document?
-
-        }, // end Events.items.properties
-
-      }, // end Events.items
-    }, // end Events
+          ModusSubmit: {
+            $comment: 'can hold an entire ModusSubmit document?',
+            $ref: '#',
+          },
+        },
+      },
+    },
     Version: { type: 'string', default: '1.0' },
   },
 };

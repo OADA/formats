@@ -92,7 +92,7 @@
     "clone-deep": "^4.0.1",
     "debug": "^4.3.4",
     "json-schema-merge-allof": "^0.8.1",
-    "json-schema-to-typescript": "^10.1.5",
+    "json-schema-to-typescript": "^11.0.1",
     "jsonschema8": "^1.1.1",
     "lodash.omit": "^4.5.0",
     "mkdirp": "^1.0.4",

@@ -85,6 +85,15 @@
     ],
     "eslint.nodePath": "../../.yarn/sdks",
     "eslint.useESLintClass": true,
-    "cSpell.words": ["allof", "Fastify", "jwks", "lcov", "sonarjs"]
+    "cSpell.words": [
+      "allof",
+      "ault",
+      "epsg",
+      "Fastify",
+      "FMIS",
+      "jwks",
+      "lcov",
+      "sonarjs"
+    ]
   }
 }
