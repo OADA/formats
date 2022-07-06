@@ -1,3 +1,6 @@
+[build.environment]
+  NODE_VERSION = "16.15.0"
+
 [[headers]]
   for = "/*.schema.json"
   [headers.values]

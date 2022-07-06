@@ -49,6 +49,11 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - packages
+  - schemas
+  - '*.json'
   - '*.js'
+  - '*.cjs'
   - '*.ts'
+  - '*.cts'
   - '*.map'
