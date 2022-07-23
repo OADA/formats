@@ -97,7 +97,7 @@ const schema: Schema = {
               File: {
                 description:
                   'The file data for the report. The lab has the choice to pass a URL or embed the file data.',
-                oneOf: [
+                anyOf: [
                   {
                     type: 'object',
                     properties: {
