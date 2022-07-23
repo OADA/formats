@@ -241,7 +241,7 @@ const schema: Schema = {
             EventMetaData: {
               EventCode: 'ece3a2a8-4340-48b1-ae1f-d48d1f1e1692',
               EventDate: '2021-09-24',
-              EventType: 'Soil',
+              EventType: { Soil: true },
             },
             LabMetaData: {
               LabName: 'A & L Great Lakes Laboratories',
