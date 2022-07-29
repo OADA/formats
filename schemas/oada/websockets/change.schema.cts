@@ -22,7 +22,7 @@ const schema: Schema = {
     },
   },
   type: 'object',
-  required: ['requestId', 'resourceId', 'path_leftover', 'change'],
+  required: ['requestId', 'resourceId', 'change'],
   properties: {
     requestId: {
       description: 'List of WATCH requests that should receive this change',
