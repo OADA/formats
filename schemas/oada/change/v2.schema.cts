@@ -12,16 +12,31 @@ import type { JSONSchema8 as Schema } from 'jsonschema8';
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/change/v2.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
+  title: 'Array-based change representation (OADA v2)',
+  description:
+    'Array of the changes to this resource and its ancestor changes to descendant resources',
   definitions: {
     change: {
+      description:
+        'An element of a change array representing a single change to a single resource',
       allOf: [
         {
           type: 'object',
           required: ['type', 'body', 'path', 'resource_id'],
           properties: {
-            type: { enum: ['merge', 'delete'] },
-            path: { $ref: '../../oada.schema.json#/definitions/path' },
-            resource_id: { $ref: '../../oada.schema.json#/definitions/_id' },
+            type: {
+              description: 'Indicates the type of change that occurred.',
+              enum: ['merge', 'delete'],
+            },
+            path: {
+              description:
+                'JSON Pointer to the descendant of this resource which changed (or "" for this resource)',
+              $ref: '../../oada.schema.json#/definitions/path',
+            },
+            resource_id: {
+              description: 'The `_id` of the resource which actually changed',
+              $ref: '../../oada.schema.json#/definitions/_id',
+            },
           },
         },
         {
@@ -61,7 +76,6 @@ const schema: Schema = {
     },
   },
   type: 'array',
-  description: 'Array-based change representation (OADA v2)',
   items: {
     $ref: '#/definitions/change',
   },

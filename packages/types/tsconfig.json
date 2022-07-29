@@ -3,6 +3,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "esModuleInterop": true,
+    "removeComments": false,
     "rootDir": "src",
     "outDir": "."
   },

@@ -12,20 +12,20 @@ import type { JSONSchema8 as Schema } from 'jsonschema8';
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/websockets/change.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
+  title: 'Websocket change representation',
   description:
     'This is the format of an OADA websocket change notification (server to client)',
   definitions: {
     id: {
+      description: 'The id a WATCH request',
       $ref: 'request.schema.json#/properties/requestId',
-    },
-    path_leftover: {
-      $ref: '../../oada.schema.json#/definitions/path',
     },
   },
   type: 'object',
   required: ['requestId', 'resourceId', 'path_leftover', 'change'],
   properties: {
     requestId: {
+      description: 'List of WATCH requests that should receive this change',
       type: 'array',
       minItems: 1,
       items: {
@@ -33,19 +33,8 @@ const schema: Schema = {
       },
     },
     resourceId: {
+      description: 'The `_id` of the resource which received the change',
       $ref: '../../oada.schema.json#/definitions/_id',
-    },
-    path_leftover: {
-      anyOf: [
-        {
-          type: 'array',
-          minItems: 1,
-          items: {
-            $ref: '#/definitions/path_leftover',
-          },
-        },
-        { $ref: '#/definitions/path_leftover' },
-      ],
     },
     change: {
       $ref: '../change.schema.json#',
