@@ -76,10 +76,9 @@ const schema: Schema = {
           format: 'date-time',
         },
         Reports: {
-          // Key-ing by the report ID will enforce the "unique" constraint from the XSD
-          description: 'List of lab reports, keyed by ReportID from the XML',
-          type: 'object',
-          additionalProperties: {
+          description: 'List of lab reports',
+          type: 'array',
+          items: {
             type: 'object',
             properties: {
               ReportID: {
@@ -141,7 +140,6 @@ const schema: Schema = {
                 ],
               },
             },
-            required: ['ReportID'],
           },
         },
         ClientAccount: {
@@ -166,36 +164,28 @@ const schema: Schema = {
     },
 
     TestPackageRefs: {
-      type: 'object',
+      type: 'array',
       $comment: 'keyed by TestPackageID, must be unique',
-      // For some reason the standared requires TestPackageID to be an int,
-      // we'll call it an int-formatted string
-      patternProperties: {
-        '[0-9]+': {
-          type: 'object',
-          properties: {
-            TestPackageID: {
-              type: 'string',
-              pattern: '^[0-9]+$',
-            },
-            Name: { type: 'string' },
-            LabBillingCode: { type: 'string' },
+      items: {
+        type: 'object',
+        properties: {
+          TestPackageID: {
+            type: 'string',
+            pattern: '^[0-9]+$',
           },
-          required: ['TestPackageID'],
+          Name: { type: 'string' },
+          LabBillingCode: { type: 'string' },
         },
       },
     },
 
     Warnings: {
-      type: 'object',
-      $comment: 'keyed by warning_number',
-      patternProperties: {
-        '[0-9]+': {
-          type: 'object',
-          properties: {
-            warning_number: { type: 'string', pattern: '^[0-9]+$' },
-            message: { type: 'string' },
-          },
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          warning_number: { type: 'string', pattern: '^[0-9]+$' },
+          message: { type: 'string' },
         },
       },
     },
@@ -255,30 +245,26 @@ const schema: Schema = {
     NutrientRecommendations: {
       type: 'array',
       items: {
-        type: 'object', // A "NutrientRecommendation" is an object keyed by the underlying RecID for each recommendation
-        patternProperties: {
-          '[0-9]+': {
-            // This represents one Recommendation, keyed by the RecID
-            type: 'object',
-            properties: {
-              RecID: {
-                type: 'string',
-                pattern: '^[0-9]+$',
-              },
-              Element: {
-                description: 'Name of the recommendation element',
-                type: 'string',
-              },
-              Value: {
-                description: 'Value of the recommendation',
-                type: 'number',
-              },
-              ValueUnit: {
-                description: 'Unit of the recommendation',
-                type: 'string',
-              },
+        type: 'array',
+        items: {
+          type: 'object',
+          properties: {
+            RecID: {
+              type: 'string',
+              pattern: '^[0-9]+$',
             },
-            required: ['RecID'],
+            Element: {
+              description: 'Name of the recommendation element',
+              type: 'string',
+            },
+            Value: {
+              description: 'Value of the recommendation',
+              type: 'number',
+            },
+            ValueUnit: {
+              description: 'Unit of the recommendation',
+              type: 'string',
+            },
           },
         },
       },
@@ -546,68 +532,62 @@ const schema: Schema = {
       $comment: 'object keyed by DepthID',
       description:
         'Place to define a reference list for the depths used in the sample event',
-      type: 'object',
-      patternProperties: {
-        '[0-9]+': {
-          description: 'A single depth',
-          type: 'object',
-          properties: {
-            Name: {
-              description:
-                'Name given to the depth to be used for display by FMIS systems. ex Depth 1, 6"',
-              type: 'string',
-            },
-            StartingDepth: {
-              description:
-                'Depth at the start of the column depth in the DepthUnit',
-              type: 'integer',
-              minimum: 0,
-            },
-            EndingDepth: {
-              description:
-                'Depth at the end of the column depth in the DepthUnit',
-              type: 'integer',
-              minimum: 0,
-            },
-            ColumnDepth: {
-              description: 'Total column depth (End - Start) in the DepthUnit',
-              type: 'integer',
-              minimum: 0,
-            },
-            DepthUnit: {
-              description: 'Unit the depth is reported in.',
-              type: 'string',
-            },
-            DepthID: {
-              description: 'Unique Sequential ID',
-              type: 'integer',
-              minimum: 1,
-            },
+      type: 'array',
+      items: {
+        description: 'A single depth',
+        type: 'object',
+        properties: {
+          Name: {
+            description:
+              'Name given to the depth to be used for display by FMIS systems. ex Depth 1, 6"',
+            type: 'string',
           },
-          required: ['DepthID'],
+          StartingDepth: {
+            description:
+              'Depth at the start of the column depth in the DepthUnit',
+            type: 'integer',
+            minimum: 0,
+          },
+          EndingDepth: {
+            description:
+              'Depth at the end of the column depth in the DepthUnit',
+            type: 'integer',
+            minimum: 0,
+          },
+          ColumnDepth: {
+            description: 'Total column depth (End - Start) in the DepthUnit',
+            type: 'integer',
+            minimum: 0,
+          },
+          DepthUnit: {
+            description: 'Unit the depth is reported in.',
+            type: 'string',
+          },
+          DepthID: {
+            description: 'Unique Sequential ID',
+            type: 'integer',
+            minimum: 1,
+          },
         },
+        required: [ 'DepthID' ],
       },
     },
 
     RecommendationRefs: {
       $comment: 'keyed by RecID',
       description: 'Reference documentation to a lab recommendation',
-      type: 'object',
-      patternProperties: {
-        '[0-9]+': {
-          $ref: '#/$defs/Recommendation',
-        },
+      type: 'array',
+      items: {
+        $ref: '#/$defs/Recommendation',
       },
     },
 
     RecommendationRequests: {
       $comment: 'keyed by RecID',
       description: 'Reference documentation to a lab recommendation',
-      type: 'object',
-      patternProperties: {
-        '[0-9]+': {
-          $ref: '#/$defs/Recommendation',
-        },
+      type: 'array',
+      items: {
+        $ref: '#/$defs/Recommendation',
       },
     },
 
@@ -647,18 +627,16 @@ const schema: Schema = {
         Tilled: { type: 'boolean' },
         PrevCrop: { type: 'string' },
         Variables: {
-          $comment: 'keyed by Name',
           description:
             'Used to store additional variables to be passed through',
-          type: 'object',
-          additionalProperties: {
+          type: 'array',
+          items: {
             type: 'object',
             properties: {
               Name: { type: 'string' },
               Value: { type: 'string' },
               Unit: { type: 'string' },
             },
-            required: ['Name'],
           },
         },
       },
@@ -846,7 +824,6 @@ const schema: Schema = {
           minimum: 1,
         },
       },
-      required: ['RecID'], // Things are keyed by this above, so it is required
     },
   },
 };
