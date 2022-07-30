@@ -1,6 +1,6 @@
 {
   "name": "@oada/formats",
-  "version": "3.0.6",
+  "version": "3.1.1",
   "description": "Reworked OADA formats",
   "keywords": [
     "oada",
@@ -76,7 +76,7 @@
     "ajv-formats-draft2019": "^1.6.1",
     "axios": "^0.27.2",
     "glob": "^8.0.3",
-    "glob-promise": "^4.2.2",
+    "glob-promise": "^5.0.0",
     "tslib": "^2.4.0"
   },
   "devDependencies": {
@@ -84,10 +84,10 @@
     "@types/debug": "^4.1.7",
     "@types/glob": "^7.2.0",
     "@types/mkdirp": "^1.0.2",
-    "@types/node": "^14.18.21",
+    "@types/node": "^14.18.22",
     "@types/yargs": "^17.0.10",
     "ava": "4.0.0-rc.1",
-    "c8": "^7.11.3",
+    "c8": "^7.12.0",
     "debug": "^4.3.4",
     "jsonschema8": "^1.1.1",
     "mkdirp": "^1.0.4",
