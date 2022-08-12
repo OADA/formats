@@ -69,8 +69,9 @@ const schema: Schema = {
     },
     _type: {
       description:
-        '_type identifies the content-type of a resource in the OADA API and             is required for all OADA-defined formats.  It usually looks like            application/vnd.oada.something.1+json.',
+        '_type identifies the content-type of a resource in the OADA API.',
       type: 'string',
+      examples: ['application/vnd.oada.something.1+json'],
     },
     _rev: {
       description: '_rev is the revision for a resource in the OADA API.',

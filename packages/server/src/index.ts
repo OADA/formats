@@ -19,8 +19,8 @@ export interface Options {}
  */
 export function handleResponse(
   contentType?: string,
-  links?: string
-): Record<string, string> {
+  links?: string | readonly string[]
+): Record<string, string | string[]> {
   if (!contentType) {
     // Nothing to do
     return {};
@@ -32,6 +32,8 @@ export function handleResponse(
     // Nothing to do
     return {};
   }
+
+  const aLinks: string[] = Array.isArray(links) ? links : links ? [links] : [];
 
   /**
    * Looks like sending the same info twice,
@@ -45,10 +47,7 @@ export function handleResponse(
      *
      * @todo Unclear if multiple schema entries means multiple Links or one?
      */
-    'Link': [
-      ...(links ? [links] : []),
-      schema.map((s) => `<${s}#>; rel="describedby"`),
-    ].join(', '),
+    'Link': [...aLinks, ...schema.map((s) => `<${s}#>; rel="describedby"`)],
     /**
      *  @see https://json-schema.org/draft/2019-09/json-schema-core.html#parameter
      */

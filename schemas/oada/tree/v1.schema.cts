@@ -9,44 +9,54 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const tsType = `
-{
-/**
- * _type identifies the content-type of a resource in the OADA API and is required for all OADA-defined formats.
- * It usually looks like application/vnd.oada.something.1+json.
- */
-_type?: string
-/**
- * _rev is the revision for a resource in the OADA API
- */
-_rev?: number
-} & { [k: string]: Tree }`;
+// HACK to estimate regex `^[^_]` in TypeScript
+const chars: string[] = [];
+for (let c = 'a'; c <= 'z'; c = String.fromCharCode(c.charCodeAt(0) + 1)) {
+  chars.push(c);
+}
 
 const schema: Schema = {
   $id: 'https://formats.openag.io/oada/tree/v1.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
+  title: 'Tree',
   description: 'An object representation of an OADA "tree".',
   definitions: {
-    tree: {
-      // FIXME: Override TypeScript type for Tree
-      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-      ...({ tsType } as Record<string, unknown>),
-      type: 'object',
-      properties: {
-        _type: {
-          $ref: '../../oada.schema.json#/definitions/_type',
-        },
-        _rev: {
-          $ref: '../../oada.schema.json#/definitions/_rev',
-        },
-      },
-      additionalProperties: {
-        $ref: '#/definitions/tree',
+    letter: {
+      description: 'A letter in the alphabet',
+      enum: chars,
+    },
+    treeKey: {
+      title: 'Tree key',
+      type: 'string',
+      pattern: '^[^_]',
+      ...{
+        tsType: "`${Letter | '*' | Uppercase<Letter>}${string}`",
       },
     },
   },
   type: 'object',
-  additionalProperties: { $ref: '#/definitions/tree' },
+  properties: {
+    _type: {
+      $ref: '../../oada.schema.json#/definitions/_type',
+    },
+    _rev: {
+      $ref: '../../oada.schema.json#/definitions/_rev',
+    },
+  },
+  allOf: [
+    {
+      description: 'sub trees',
+      type: 'object',
+      ...{
+        tsType: `{ [key: TreeKey]: Tree; }`,
+      },
+      patternProperties: {
+        '^[^_]': {
+          $ref: '#',
+        },
+      },
+    },
+  ],
 };
 
 export = schema;

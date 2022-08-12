@@ -20,8 +20,8 @@ export const plugin: FastifyPluginAsync<Options> = async (
 ) => {
   fastify.addHook('onSend', async (_request, reply) => {
     const headers = handleResponse(
-      reply.getHeader('Content-Type'),
-      reply.getHeader('Link')
+      reply.getHeader('Content-Type') as string,
+      reply.getHeader('Link') as string | string[]
     );
     reply.log.trace('Setting schema headers: %O', headers);
     void reply.headers(headers);
