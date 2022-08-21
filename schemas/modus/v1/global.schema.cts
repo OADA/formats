@@ -463,8 +463,8 @@ const schema: Schema = {
         },
         ReportID: {
           description:
-            'ID number to relate which lab report contains the sample',
-          type: 'integer',
+            'ID number to relate which lab report contains the sample.  Modus had this as an integer, but we made it a string.',
+          type: 'string',
         },
         OverwriteResult: {
           description:
