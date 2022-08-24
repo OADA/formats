@@ -1,6 +1,6 @@
 {
   "name": "@oada/types",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "TypeScript type definitions for OADA formats",
   "keywords": [
     "oada",
@@ -21,7 +21,6 @@
   "exports": {
     ".": "./dist/src/index.js",
     "./*.js": "./dist/types/*.js",
-    "./**.js": "./dist/types/**.js",
     "./modus/v1/global.js": "./dist/types/modus/v1/global.js",
     "./modus/v1/modus-result.js": "./dist/types/modus/v1/modus-result.js",
     "./modus/v1/modus-submit.js": "./dist/types/modus/v1/modus-submit.js",
