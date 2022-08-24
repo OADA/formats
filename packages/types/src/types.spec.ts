@@ -13,15 +13,15 @@ import { schemas } from '@oada/formats';
 
 import type { TypeAssert, TypeCheck } from './index.js';
 
-type TypeModule<T = unknown> = {
+interface TypeModule<T = unknown> {
   is: TypeCheck<T>;
   assert: TypeAssert<T>;
-};
+}
 
 for (const { key, schema } of schemas()) {
   const type = key
     .replace(/^https:\/\/formats\.openag\.io/, '')
-    .replace(/^\//, './')
+    .replace(/^\//, '../types/')
     .replace(/\.schema\.json$/, '.js');
 
   const { examples } = schema;

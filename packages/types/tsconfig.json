@@ -4,11 +4,11 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "removeComments": false,
-    "rootDir": "src",
-    "outDir": "."
+    "sourceMap": false,
+    "rootDirs": ["src", "types"],
+    "outDir": "dist"
   },
-  "include": ["src"],
-  "exclude": ["**/*.d.ts"],
+  "include": ["src", "types"],
   "references": [
     {
       "path": "../formats"

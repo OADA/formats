@@ -13,6 +13,7 @@
 /// <reference types="./types"/>
 
 import { basename, dirname, join, resolve } from 'node:path';
+import { createRequire } from 'node:module';
 import { promises as fs } from 'node:fs';
 import { setTimeout } from 'node:timers';
 import util from 'node:util';
@@ -32,17 +33,19 @@ import { loadSchema } from '@oada/formats/dist/ajv.js';
 
 import { schemas } from '@oada/formats';
 
+const require = createRequire(import.meta.url);
+
 const debug = log('@oada/types:compile:debug');
 const error = log('@oada/types:compile:error');
 
-// Hacky fix for ref-parser
+// HACK: fix for ref-parser
 $RefParser.dereference = $RefParser.dereference.bind($RefParser);
 $RefParser.resolve = $RefParser.resolve.bind($RefParser);
 
 /**
  * Where to put compiled types
  */
-const typesDirectory = resolve('./src');
+const typesDirectory = resolve('./types');
 
 const compileString = '`$ yarn build`';
 
@@ -60,6 +63,7 @@ const metaSchema = await $RefParser.dereference(
 ajv.addMetaSchema(metaSchema);
 
 let errored: Error | undefined;
+const exports: Record<string, string> = {};
 // Compile schemas to TS types
 for await (const { key, path, schema } of schemas()) {
   debug('Loading %s', key);
@@ -73,12 +77,17 @@ for await (const { key, path, schema } of schemas()) {
   const name = basename(path, '.json');
   const typeName = toSafeString(title ?? name);
 
+  // HACK: Add to exports?
+  const exp = file.replace(/\.schema\.json$/, '.js');
+  // eslint-disable-next-line import/no-commonjs, security/detect-object-injection
+  exports[exp] = `./${join('dist', 'types', exp)}`;
+
   try {
     // Pack up validation function
     const validate = ajv.getSchema($id!) ?? (await ajv.compileAsync(schema));
     const moduleCode = standaloneCode(ajv, validate);
     const packedfile = resolve(
-      './',
+      './dist/types/',
       file.replace(/\.schema\.json$/, '-validate.cjs')
     );
 
@@ -169,6 +178,24 @@ export default ${typeName}`;
     }
   }
 }
+
+// HACK: Add exports to package.json
+// eslint-disable-next-line import/no-commonjs
+const pkg = require('../../package.json') as Record<string, unknown>;
+await fs.writeFile(
+  './package.json',
+  JSON.stringify(
+    {
+      ...pkg,
+      exports: {
+        ...(pkg.exports as Record<string, string>),
+        ...exports,
+      },
+    },
+    null,
+    2
+  )
+);
 
 if (errored) {
   throw errored;
