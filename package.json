@@ -16,14 +16,14 @@
   },
   "devDependencies": {
     "@tsconfig/node14": "^1.0.3",
-    "@typescript-eslint/eslint-plugin": "^5.33.0",
-    "@typescript-eslint/parser": "^5.33.0",
-    "@yarnpkg/sdks": "^3.0.0-rc.14",
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
+    "@typescript-eslint/parser": "^5.38.0",
+    "@yarnpkg/sdks": "^3.0.0-rc.20",
     "coveralls": "^3.1.1",
-    "eslint": "^8.21.0",
+    "eslint": "^8.23.1",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-config-xo": "^0.41.0",
-    "eslint-config-xo-typescript": "^0.52.0",
+    "eslint-config-xo": "^0.42.0",
+    "eslint-config-xo-typescript": "^0.53.0",
     "eslint-formatter-pretty": "^4.1.0",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-plugin-array-func": "^3.1.7",
@@ -40,16 +40,16 @@
     "eslint-plugin-notice": "^0.9.10",
     "eslint-plugin-optimize-regex": "^1.2.1",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-regexp": "^1.8.0",
+    "eslint-plugin-promise": "^6.0.1",
+    "eslint-plugin-regexp": "^1.9.0",
     "eslint-plugin-security": "^1.5.0",
     "eslint-plugin-sonarjs": "^0.15.0",
     "eslint-plugin-unicorn": "^43.0.2",
-    "lerna": "^5.4.1",
+    "lerna": "^5.5.1",
     "prettier": "^2.7.1",
-    "typescript": "^4.7.4"
+    "typescript": "^4.8.3"
   },
-  "packageManager": "yarn@3.2.2",
+  "packageManager": "yarn@3.2.3",
   "volta": {
     "node": "16.15.1"
   }

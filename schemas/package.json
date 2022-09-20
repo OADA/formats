@@ -33,15 +33,15 @@
     "@apidevtools/json-schema-ref-parser": "^9.0.9",
     "@ava/typescript": "^3.0.1",
     "@tsconfig/node14": "^1.0.3",
-    "@types/glob": "^7.2.0",
+    "@types/glob": "^8.0.0",
     "@types/json-schema": "^7.0.11",
-    "@types/node": "^14.18.26",
+    "@types/node": "^14.18.29",
     "ajv": "^8.11.0",
-    "ava": "4.3.1",
+    "ava": "4.3.3",
     "glob": "^8.0.3",
     "glob-promise": "^5.0.0",
     "jsonschema8": "^1.1.1",
     "tslib": "^2.4.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.8.3"
   }
 }

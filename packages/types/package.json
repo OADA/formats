@@ -148,8 +148,8 @@
     "@types/json-schema-merge-allof": "^0.6.1",
     "@types/lodash.omit": "^4.5.7",
     "@types/mkdirp": "^1.0.2",
-    "@types/node": "^14.18.26",
-    "ava": "4.3.1",
+    "@types/node": "^14.18.29",
+    "ava": "4.3.3",
     "c8": "^7.12.0",
     "clone-deep": "^4.0.1",
     "debug": "^4.3.4",
@@ -158,6 +158,6 @@
     "jsonschema8": "^1.1.1",
     "lodash.omit": "^4.5.0",
     "mkdirp": "^1.0.4",
-    "typescript": "^4.7.4"
+    "typescript": "^4.8.3"
   }
 }
