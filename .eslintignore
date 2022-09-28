@@ -1,6 +1,7 @@
 **/.history
 **/dist
 **/coverage
+**/.coverage
 **/.test
 **/tests
 .yarn

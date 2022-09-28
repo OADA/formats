@@ -14,6 +14,10 @@ import mediaType2schema from '@oada/media-types';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Options {}
 
+function isArray(value: unknown): value is unknown[] | readonly unknown[] {
+  return Array.isArray(value);
+}
+
 /**
  * Determines schema for a response and what headers to add etc.
  */
@@ -33,7 +37,7 @@ export function handleResponse(
     return {};
   }
 
-  const aLinks: string[] = Array.isArray(links) ? links : links ? [links] : [];
+  const aLinks = isArray(links) ? links : links ? [links] : [];
 
   /**
    * Looks like sending the same info twice,

@@ -1,14 +1,14 @@
 {
   "name": "@oada/schemas",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "author": "Alex Layton <alex@layton.in>",
   "license": "MIT",
   "private": true,
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "build": "tsc -b",
-    "clean": "tsc -b --clean",
+    "build": "yarn g:tsc",
+    "clean": "yarn g:tsc --clean",
     "test": "ava",
     "test:debug": "ava -T 60m -svc 1 --no-worker-threads"
   },
@@ -32,16 +32,14 @@
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.9",
     "@ava/typescript": "^3.0.1",
-    "@tsconfig/node14": "^1.0.3",
     "@types/glob": "^8.0.0",
     "@types/json-schema": "^7.0.11",
-    "@types/node": "^14.18.29",
+    "@types/node": "^16.11.62",
     "ajv": "^8.11.0",
     "ava": "4.3.3",
     "glob": "^8.0.3",
     "glob-promise": "^5.0.0",
     "jsonschema8": "^1.1.1",
-    "tslib": "^2.4.0",
-    "typescript": "^4.8.3"
+    "tslib": "^2.4.0"
   }
 }

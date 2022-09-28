@@ -1,6 +1,6 @@
 {
   "name": "@oada/formats",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "Reworked OADA formats",
   "keywords": [
     "oada",
@@ -31,8 +31,8 @@
   ],
   "scripts": {
     "buildschemas": "node --enable-source-maps ./dist/schemas/compile.js",
-    "build": "yarn tsc -b && yarn run buildschemas",
-    "clean": "yarn tsc -b --clean; rm -rf dist",
+    "build": "yarn g:tsc && yarn run buildschemas",
+    "clean": "yarn g:tsc --clean; rm -rf dist",
     "prepare": "npm run build",
     "test": "c8 ava",
     "test:debug": "ava -T 60m -svc 1 --no-worker-threads"
@@ -84,14 +84,13 @@
     "@types/debug": "^4.1.7",
     "@types/glob": "^8.0.0",
     "@types/mkdirp": "^1.0.2",
-    "@types/node": "^14.18.29",
-    "@types/yargs": "^17.0.12",
+    "@types/node": "^16.11.62",
+    "@types/yargs": "^17.0.13",
     "ava": "4.3.3",
     "c8": "^7.12.0",
     "debug": "^4.3.4",
     "jsonschema8": "^1.1.1",
     "mkdirp": "^1.0.4",
-    "typescript": "^4.8.3",
     "yargs": "^17.5.1"
   }
 }

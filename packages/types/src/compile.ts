@@ -9,24 +9,20 @@
 
 /* eslint-disable security/detect-non-literal-fs-filename */
 
-// eslint-disable-next-line @typescript-eslint/triple-slash-reference
-/// <reference types="./types"/>
-
 import { basename, dirname, join, resolve } from 'node:path';
 import { createRequire } from 'node:module';
 import { promises as fs } from 'node:fs';
-import { setTimeout } from 'node:timers';
-import util from 'node:util';
+import { setTimeout } from 'node:timers/promises';
 
 import $RefParser from '@apidevtools/json-schema-ref-parser';
-import Ajv from 'ajv';
-import addFormats from 'ajv-formats';
+import { default as Ajv } from 'ajv';
+import { default as addFormats } from 'ajv-formats';
 import addFormats2019 from 'ajv-formats-draft2019';
 import clone from 'clone-deep';
 import { compile } from 'json-schema-to-typescript';
 import log from 'debug';
 import mkdirp from 'mkdirp';
-import standaloneCode from 'ajv/dist/standalone/index.js';
+import { default as standaloneCode } from 'ajv/dist/standalone/index.js';
 import { toSafeString } from 'json-schema-to-typescript/dist/src/utils.js';
 
 import { loadSchema } from '@oada/formats/dist/ajv.js';
@@ -53,8 +49,6 @@ const compileString = '`$ yarn build`';
 const ajv = addFormats2019(
   addFormats(new Ajv({ strict: false, loadSchema, code: { source: true } }))
 );
-
-const delay = util.promisify((done) => setTimeout(done, 50));
 
 // Compile the schema files to TypeScript types
 const metaSchema = await $RefParser.dereference(
@@ -107,6 +101,8 @@ for await (const { key, path, schema } of schemas()) {
  * @packageDocumentation
  */
 
+import { AssertError } from '@oada/types';
+
 // Import packed validation function
 import validate from './${basename(packedfile)}'
 
@@ -128,10 +124,7 @@ export function is (val: unknown): val is ${typeName} {
  */
 export function assert (val: unknown): asserts val is ${typeName} {
   if (!validate(val) as boolean) {
-    throw {
-      errors: validate.errors,
-      input: val
-    }
+    throw new AssertError(val, validate.errors!);
   }
 }
 
@@ -166,7 +159,7 @@ export default ${typeName}`;
     );
     await Promise.all([mkdirp(dirname(outfile)), mkdirp(dirname(packedfile))]);
     // ???: Figure out wtf is up with mkdirp that I need this...
-    await delay();
+    await setTimeout(50);
     debug('Outputting %s', packedfile);
     await fs.writeFile(packedfile, moduleCode);
     debug('Outputting %s', outfile);
@@ -181,14 +174,14 @@ export default ${typeName}`;
 
 // HACK: Add exports to package.json
 // eslint-disable-next-line import/no-commonjs
-const pkg = require('../../package.json') as Record<string, unknown>;
+const package_ = require('../../package.json') as Record<string, unknown>;
 await fs.writeFile(
   './package.json',
   JSON.stringify(
     {
-      ...pkg,
+      ...package_,
       exports: {
-        ...(pkg.exports as Record<string, string>),
+        ...(package_.exports as Record<string, string>),
         ...exports,
       },
     },

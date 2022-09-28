@@ -13,18 +13,16 @@ import { dirname, join } from 'node:path';
 import { cwd } from 'node:process';
 import fs from 'node:fs/promises';
 
-import mkdirp from 'mkdirp';
-
 import type {
   JSONSchema8ObjectSchema,
   JSONSchema8StringSchema,
   JSONSchema8 as RealSchema,
   JSONSchema8 as Schema,
 } from 'jsonschema8';
+import type { default as Ajv } from 'ajv';
+import mkdirp from 'mkdirp';
 
 import { contentTypeToKey } from './ajv.js';
-
-import type Ajv from 'ajv';
 
 import traverse from './traverse.js';
 
@@ -46,11 +44,11 @@ export namespace Old {
   }
 }
 
-type MigrateOptions = {
+interface MigrateOptions {
   format?: 'json' | 'ts';
   outdir?: string;
   root?: string;
-};
+}
 const defaultRoot = 'https://formats.openag.io';
 /**
  * Function to dump all the schemas out of an old oada-formats

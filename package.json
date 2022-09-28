@@ -7,6 +7,7 @@
   ],
   "scripts": {
     "g:eslint": "cd $INIT_CWD && eslint",
+    "g:tsc": "cd $INIT_CWD && tsc -b",
     "prepare": "yarn build",
     "build": "bundle exec jekyll build",
     "clean": "yarn build -c clean",
@@ -15,12 +16,12 @@
     "test:dev": "lerna run clean && lerna run build && lerna run test"
   },
   "devDependencies": {
-    "@tsconfig/node14": "^1.0.3",
-    "@typescript-eslint/eslint-plugin": "^5.38.0",
-    "@typescript-eslint/parser": "^5.38.0",
-    "@yarnpkg/sdks": "^3.0.0-rc.20",
+    "@tsconfig/node16": "^1.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
+    "@yarnpkg/sdks": "^3.0.0-rc.22",
     "coveralls": "^3.1.1",
-    "eslint": "^8.23.1",
+    "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-xo": "^0.42.0",
     "eslint-config-xo-typescript": "^0.53.0",
@@ -45,9 +46,9 @@
     "eslint-plugin-security": "^1.5.0",
     "eslint-plugin-sonarjs": "^0.15.0",
     "eslint-plugin-unicorn": "^43.0.2",
-    "lerna": "^5.5.1",
+    "lerna": "^5.5.4",
     "prettier": "^2.7.1",
-    "typescript": "^4.8.3"
+    "typescript": "4.8.2"
   },
   "packageManager": "yarn@3.2.3",
   "volta": {

@@ -569,7 +569,7 @@ const schema: Schema = {
             minimum: 1,
           },
         },
-        required: [ 'DepthID' ],
+        required: ['DepthID'],
       },
     },
 

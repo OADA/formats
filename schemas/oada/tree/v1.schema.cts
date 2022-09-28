@@ -11,7 +11,7 @@ import type { JSONSchema8 as Schema } from 'jsonschema8';
 
 // HACK to estimate regex `^[^_]` in TypeScript
 const chars: string[] = [];
-for (let c = 'a'; c <= 'z'; c = String.fromCharCode(c.charCodeAt(0) + 1)) {
+for (let c = 'a'; c <= 'z'; c = String.fromCodePoint(c.codePointAt(0)! + 1)) {
   chars.push(c);
 }
 
@@ -29,7 +29,9 @@ const schema: Schema = {
       title: 'Tree key',
       type: 'string',
       pattern: '^[^_]',
+      // eslint-disable-next-line unicorn/no-useless-spread
       ...{
+        // eslint-disable-next-line no-template-curly-in-string
         tsType: "`${Letter | '*' | Uppercase<Letter>}${string}`",
       },
     },
@@ -47,6 +49,7 @@ const schema: Schema = {
     {
       description: 'sub trees',
       type: 'object',
+      // eslint-disable-next-line unicorn/no-useless-spread
       ...{
         tsType: `{ [key: TreeKey]: Tree; }`,
       },

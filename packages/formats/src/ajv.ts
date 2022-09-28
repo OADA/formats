@@ -10,10 +10,10 @@
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
 import $ref from '@apidevtools/json-schema-ref-parser';
-import Ajv from 'ajv';
-import addFormats from 'ajv-formats';
+import { default as Ajv } from 'ajv';
+import { default as addFormats } from 'ajv-formats';
 import addFormats2019 from 'ajv-formats-draft2019';
-import axios from 'axios';
+import { default as axios } from 'axios';
 
 import { getSchema as contentTypeToKey } from '@oada/media-types';
 

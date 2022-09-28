@@ -9,7 +9,8 @@
 
 import type { RequestHandler } from 'express';
 
-import { Options, handleResponse } from './index.js';
+import type { Options } from './index.js';
+import { handleResponse } from './index.js';
 
 /**
  * Create an express middleware version

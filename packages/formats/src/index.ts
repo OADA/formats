@@ -12,7 +12,7 @@
 export type { JSONSchema8 as Schema } from 'jsonschema8';
 
 export {
-  OADAFormats,
+  type OADAFormats,
   ajv as formats,
   loadAllFormats as default,
 } from './ajv.js';

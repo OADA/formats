@@ -1,6 +1,6 @@
 {
   "name": "@oada/types",
-  "version": "3.2.1",
+  "version": "3.3.0",
   "description": "TypeScript type definitions for OADA formats",
   "keywords": [
     "oada",
@@ -88,8 +88,8 @@
     "lib": "dist"
   },
   "scripts": {
-    "clean": "yarn tsc -b --clean",
-    "build": "yarn tsc -b && yarn node --enable-source-maps ./dist/src/compile.js && yarn tsc -b",
+    "clean": "yarn g:tsc --clean",
+    "build": "yarn g:tsc && yarn node --enable-source-maps ./dist/src/compile.js && yarn g:tsc",
     "prestart": "npm run build",
     "prepare": "npm run build",
     "pretest": "npm run build",
@@ -148,7 +148,7 @@
     "@types/json-schema-merge-allof": "^0.6.1",
     "@types/lodash.omit": "^4.5.7",
     "@types/mkdirp": "^1.0.2",
-    "@types/node": "^14.18.29",
+    "@types/node": "^16.11.62",
     "ava": "4.3.3",
     "c8": "^7.12.0",
     "clone-deep": "^4.0.1",
@@ -157,7 +157,6 @@
     "json-schema-to-typescript": "^11.0.2",
     "jsonschema8": "^1.1.1",
     "lodash.omit": "^4.5.0",
-    "mkdirp": "^1.0.4",
-    "typescript": "^4.8.3"
+    "mkdirp": "^1.0.4"
   }
 }
