@@ -15,7 +15,7 @@ jobs:
       - run: yarn
 
       # Run Spectral
-      - uses: stoplightio/spectral-action@v0.8.8
+      - uses: stoplightio/spectral-action@v0.8.9
         with:
           spectral_ruleset: .spectral.json
           file_glob: 'packages/formats/lib/**/*.schema.json'
