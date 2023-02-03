@@ -14,14 +14,14 @@ import { createRequire } from 'node:module';
 import { promises as fs } from 'node:fs';
 import { setTimeout } from 'node:timers/promises';
 
-import $RefParser from '@apidevtools/json-schema-ref-parser';
+import { $RefParser } from '@apidevtools/json-schema-ref-parser';
 import { default as Ajv } from 'ajv';
 import { default as addFormats } from 'ajv-formats';
 import addFormats2019 from 'ajv-formats-draft2019';
 import clone from 'clone-deep';
 import { compile } from 'json-schema-to-typescript';
 import log from 'debug';
-import mkdirp from 'mkdirp';
+import { mkdirp } from 'mkdirp';
 import { default as standaloneCode } from 'ajv/dist/standalone/index.js';
 import { toSafeString } from 'json-schema-to-typescript/dist/src/utils.js';
 

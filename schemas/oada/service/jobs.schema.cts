@@ -25,6 +25,13 @@ const schema: Schema = {
   },
   examples: [
     {
+      _id: 'resources/123',
+      _rev: 3,
+      _meta: {
+        _id: 'resources/123/_meta',
+        _rev: 3,
+      },
+      _type: 'application/vnd.oada.service.jobs.1+json',
       asdxjkacsdj: {
         _id: 'resources/ajajkjfsdaf',
         _rev: 1,

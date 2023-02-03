@@ -69,11 +69,11 @@
   },
   "dependencies": {
     "@types/content-type": "^1.1.5",
-    "content-type": "^1.0.4"
+    "content-type": "^1.0.5"
   },
   "devDependencies": {
     "@ava/typescript": "^3.0.1",
-    "ava": "4.3.3",
+    "ava": "5.1.1",
     "c8": "^7.12.0"
   }
 }

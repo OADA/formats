@@ -11,12 +11,12 @@ import test from 'ava';
 
 import { dirname, isAbsolute, join, relative } from 'node:path';
 
-import $RefParser from '@apidevtools/json-schema-ref-parser';
-import Ajv from 'ajv';
+import { $RefParser } from '@apidevtools/json-schema-ref-parser';
+import { default as Ajv } from 'ajv';
 import type { JSONSchema6 } from 'json-schema';
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-import schemas, { requireSchema } from './';
+import schemas, { requireSchema } from './index.js';
 
 /**
  * @todo where should this live?
@@ -69,7 +69,7 @@ test.before('Initialize $ref checker', () => {
           order: 0,
           canRead: true,
           // TODO: Support external $ref
-          async read({ url }) {
+          async read({ url }: { url: string }) {
             const r = /^https:\/\/formats\.openag\.io/;
             const directory = './';
             const path = url.startsWith('https://formats.openag.io')
@@ -97,12 +97,12 @@ for (const { schema, key } of schemas()) {
     }
   });
 
-  test(`${key} should be valid JSON Schema`, async (t) => {
+  test(`${key} should be valid JSON Schema`, (t) => {
     t.assert(ajv.validateSchema(schema));
   });
 
   // $id needs to be consistent with file structure or most tools get upset
-  test(`${key} should have consistent $id`, async (t) => {
+  test(`${key} should have consistent $id`, (t) => {
     const { $id } = schema;
     t.is($id, `https://${join('formats.openag.io/', key)}`);
   });
@@ -114,19 +114,21 @@ for (const { schema, key } of schemas()) {
     await t.notThrowsAsync(checkReferences(key, schema));
   });
 
-  test(`${key} should have valid default`, async (t) => {
+  test(`${key} should have valid default`, (t) => {
     // eslint-disable-next-line unicorn/prevent-abbreviations
     const { default: def } = schema;
     t.plan(def ? 1 : 0);
     if (def) {
+      // eslint-disable-next-line ava/assertion-arguments
       t.assert(ajv.validate(schema, def), ajv.errorsText());
     }
   });
 
-  test(`${key} should validate examples`, async (t) => {
+  test(`${key} should validate examples`, (t) => {
     const { examples = [] } = schema;
     t.plan(examples?.length ?? 0);
     for (const example of examples) {
+      // eslint-disable-next-line ava/assertion-arguments
       t.assert(ajv.validate(schema, example), ajv.errorsText());
     }
   });

@@ -69,28 +69,28 @@
     ]
   },
   "dependencies": {
-    "@apidevtools/json-schema-ref-parser": "^9.0.9",
+    "@apidevtools/json-schema-ref-parser": "^10.1.0",
     "@oada/media-types": "^3.0.0",
-    "ajv": "^8.11.0",
+    "ajv": "^8.12.0",
     "ajv-formats": "^2.1.1",
     "ajv-formats-draft2019": "^1.6.1",
-    "axios": "^0.27.2",
-    "glob": "^8.0.3",
-    "glob-promise": "^5.0.0",
-    "tslib": "^2.4.0"
+    "axios": "^1.3.2",
+    "glob": "^8.1.0",
+    "glob-promise": "^5.0.1",
+    "tslib": "^2.5.0"
   },
   "devDependencies": {
     "@ava/typescript": "^3.0.1",
     "@types/debug": "^4.1.7",
-    "@types/glob": "^8.0.0",
+    "@types/glob": "^8.0.1",
     "@types/mkdirp": "^1.0.2",
-    "@types/node": "^16.11.62",
-    "@types/yargs": "^17.0.13",
-    "ava": "4.3.3",
+    "@types/node": "^16.18.11",
+    "@types/yargs": "^17.0.22",
+    "ava": "5.1.1",
     "c8": "^7.12.0",
     "debug": "^4.3.4",
     "jsonschema8": "^1.1.1",
-    "mkdirp": "^1.0.4",
-    "yargs": "^17.5.1"
+    "mkdirp": "^2.1.3",
+    "yargs": "^17.6.2"
   }
 }

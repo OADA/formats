@@ -1,5 +1,5 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["index.ts", "**/*.spec.{c,m,}ts"],
+  "include": ["index.ts", "index.spec.ts"],
   "references": [{ "path": "./tsconfig.schemas.json" }]
 }

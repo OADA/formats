@@ -13,7 +13,7 @@ import { dirname, join, resolve } from 'node:path';
 import fs from 'node:fs/promises';
 
 import log from 'debug';
-import mkdirp from 'mkdirp';
+import { mkdirp } from 'mkdirp';
 import yargs from 'yargs';
 
 import schemas from './index.js';

@@ -25,6 +25,7 @@ export function middleware(_options: Options): RequestHandler {
         response.get('Link')
       );
       // @ts-expect-error stuff
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       response.log?.trace('Setting schema headers: %O', headers);
       response.set(headers);
 

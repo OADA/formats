@@ -20,7 +20,7 @@ import type {
   JSONSchema8 as Schema,
 } from 'jsonschema8';
 import type { default as Ajv } from 'ajv';
-import mkdirp from 'mkdirp';
+import { mkdirp } from 'mkdirp';
 
 import { contentTypeToKey } from './ajv.js';
 
@@ -191,11 +191,13 @@ export async function migrate(
     let path = join(outdir, key);
     const json = JSON.stringify({ ...schema, examples }, null, 2);
     switch (format) {
-      case 'json':
+      case 'json': {
         // Create plain JSON schema
         output = json;
         break;
-      case 'ts':
+      }
+
+      case 'ts': {
         // Create "TypeScript" schema
         output = `
           import { JSONSchema8 as Schema } from 'jsonschema8'
@@ -205,8 +207,11 @@ export async function migrate(
         `;
         path = path.replace(/\.json$/, '.ts');
         break;
-      default:
+      }
+
+      default: {
         throw new Error(`Unknown format ${format}`);
+      }
     }
 
     // Write file out

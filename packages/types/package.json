@@ -134,13 +134,13 @@
     "tsconfig.json"
   ],
   "dependencies": {
-    "ajv": "8.11.0",
+    "ajv": "8.12.0",
     "ajv-formats": "^2.1.1",
     "ajv-formats-draft2019": "^1.6.1",
-    "tslib": "^2.4.0"
+    "tslib": "^2.5.0"
   },
   "devDependencies": {
-    "@apidevtools/json-schema-ref-parser": "^9.0.9",
+    "@apidevtools/json-schema-ref-parser": "^10.1.0",
     "@ava/typescript": "^3.0.1",
     "@oada/formats": "^3.0.0",
     "@types/clone-deep": "^4.0.1",
@@ -148,15 +148,15 @@
     "@types/json-schema-merge-allof": "^0.6.1",
     "@types/lodash.omit": "^4.5.7",
     "@types/mkdirp": "^1.0.2",
-    "@types/node": "^16.11.62",
-    "ava": "4.3.3",
+    "@types/node": "^16.18.11",
+    "ava": "5.1.1",
     "c8": "^7.12.0",
     "clone-deep": "^4.0.1",
     "debug": "^4.3.4",
     "json-schema-merge-allof": "^0.8.1",
-    "json-schema-to-typescript": "^11.0.2",
+    "json-schema-to-typescript": "^11.0.3",
     "jsonschema8": "^1.1.1",
     "lodash.omit": "^4.5.0",
-    "mkdirp": "^1.0.4"
+    "mkdirp": "^2.1.3"
   }
 }

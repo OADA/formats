@@ -4,6 +4,8 @@
 **/.coverage
 **/.test
 **/tests
+**/bundle.*
+
 .yarn
 .pnp.*
 **/node_modules
