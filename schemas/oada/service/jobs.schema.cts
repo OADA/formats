@@ -14,6 +14,20 @@ const schema: Schema = {
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'The format for @oada/jobs jobs list',
   type: 'object',
+  properties: {
+    _id: {
+      $ref: '../../oada.schema.json#/definitions/_id',
+    },
+    _rev: {
+      $ref: '../../oada.schema.json#/definitions/_rev',
+    },
+    _meta: {
+      $ref: '../../oada.schema.json#/definitions/link/definitions/versioned',
+    },
+    _type: {
+      $ref: '../../oada.schema.json#/definitions/_type',
+    },
+  },
   additionalProperties: {
     type: 'object',
     properties: {

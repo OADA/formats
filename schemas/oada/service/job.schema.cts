@@ -24,7 +24,7 @@ const schema: Schema = {
       type: 'string',
     },
     config: {
-      description: 'Job spceific configuration object',
+      description: 'Job specific configuration object',
       type: 'object',
     },
     result: {

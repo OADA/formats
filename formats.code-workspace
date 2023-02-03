@@ -97,6 +97,7 @@
     "cSpell.words": [
       "allof",
       "ault",
+      "cois",
       "epsg",
       "Fastify",
       "FMIS",
@@ -104,6 +105,7 @@
       "lcov",
       "ojkelly",
       "sonarjs",
+      "trellisfw",
       "unversioned"
     ],
     "eslint.packageManager": "yarn",
