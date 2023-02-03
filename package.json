@@ -11,7 +11,6 @@
     "prepare": "yarn build",
     "build": "bundle exec jekyll build",
     "clean": "yarn build -c clean",
-    "lint": "spectral lint packages/formats/src/schemas/\\*\\*/*.schema.json",
     "test": "lerna run test",
     "test:dev": "lerna run clean && lerna run build && lerna run test"
   },
