@@ -15,6 +15,18 @@ const schema: Schema = {
   description: 'The format for an @oada/jobs job queue job.',
   type: 'object',
   properties: {
+    _id: {
+      $ref: '../../oada.schema.json#/definitions/_id',
+    },
+    _rev: {
+      $ref: '../../oada.schema.json#/definitions/_rev',
+    },
+    _meta: {
+      $ref: '../../oada.schema.json#/definitions/link/definitions/versioned',
+    },
+    _type: {
+      $ref: '../../oada.schema.json#/definitions/_type',
+    },
     service: {
       description: 'Service name which job is for',
       type: 'string',
