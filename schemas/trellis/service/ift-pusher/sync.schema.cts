@@ -43,6 +43,13 @@ const schema: Schema = {
 
   examples: [
     {
+      _id: 'resources/123',
+      _type: 'application/vnd.trellis.service.job.1+json',
+      _meta: {
+        _id: 'resources/123/_meta',
+        _rev: 3,
+      },
+      _rev: 3,
       service: 'ift-pusher',
       type: 'sync',
       config: {

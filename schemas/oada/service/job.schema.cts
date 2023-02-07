@@ -15,18 +15,6 @@ const schema: Schema = {
   description: 'The format for an @oada/jobs job queue job.',
   type: 'object',
   properties: {
-    _id: {
-      $ref: '../../oada.schema.json#/definitions/_id',
-    },
-    _rev: {
-      $ref: '../../oada.schema.json#/definitions/_rev',
-    },
-    _meta: {
-      $ref: '../../oada.schema.json#/definitions/link/definitions/versioned',
-    },
-    _type: {
-      $ref: '../../oada.schema.json#/definitions/_type',
-    },
     service: {
       description: 'Service name which job is for',
       type: 'string',
@@ -59,6 +47,13 @@ const schema: Schema = {
   required: ['service', 'type'],
   examples: [
     {
+      _id: 'resources/123',
+      _type: 'application/vnd.oada.service.job.1+json',
+      _meta: {
+        _id: 'resources/123/_meta',
+        _rev: 3,
+      },
+      _rev: 3,
       service: 'shares',
       type: 'trading-partner',
       config: {
@@ -85,6 +80,13 @@ const schema: Schema = {
       },
     },
     {
+      _id: 'resources/123',
+      _type: 'application/vnd.oada.service.job.1+json',
+      _meta: {
+        _id: 'resources/123/_meta',
+        _rev: 3,
+      },
+      _rev: 3,
       service: 'shares',
       type: 'trading-partner',
       config: {

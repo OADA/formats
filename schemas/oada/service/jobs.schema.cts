@@ -13,30 +13,12 @@ const schema: Schema = {
   $id: 'https://formats.openag.io/oada/service/jobs.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'The format for @oada/jobs jobs list',
-  type: 'object',
-  properties: {
-    _id: {
-      $ref: '../../oada.schema.json#/definitions/_id',
+  title: 'OADA jobs list',
+  allOf: [
+    {
+      $ref: '../list/v1.schema.json',
     },
-    _rev: {
-      $ref: '../../oada.schema.json#/definitions/_rev',
-    },
-    _meta: {
-      $ref: '../../oada.schema.json#/definitions/link/definitions/versioned',
-    },
-    _type: {
-      $ref: '../../oada.schema.json#/definitions/_type',
-    },
-  },
-  additionalProperties: {
-    type: 'object',
-    properties: {
-      _id: {
-        $ref: '../../oada.schema.json#/definitions/_id',
-      },
-    },
-    required: ['_id'],
-  },
+  ],
   examples: [
     {
       _id: 'resources/123',

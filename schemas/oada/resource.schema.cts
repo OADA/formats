@@ -14,6 +14,7 @@ const schema: Schema = {
   $schema: 'http://json-schema.org/draft-07/schema#',
   type: 'object',
   required: ['_id', '_rev', '_meta', '_type'],
+  title: 'OADA Resource',
   properties: {
     _id: {
       $ref: '../oada.schema.json#/definitions/_id',

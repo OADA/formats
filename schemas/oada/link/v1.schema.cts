@@ -13,6 +13,7 @@ const schema: Schema = {
   $id: 'https://formats.openag.io/oada/link/v1.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'OADA Link object',
+  title: 'Link',
   definitions: {
     link: {
       anyOf: [
@@ -68,6 +69,14 @@ const schema: Schema = {
       },
     },
   },
+  anyOf: [
+    {
+      $ref: '#/definitions/nonversioned',
+    },
+    {
+      $ref: '#/definitions/versioned',
+    },
+  ],
   examples: [
     {
       _id: 'akjf92jxcJds',
