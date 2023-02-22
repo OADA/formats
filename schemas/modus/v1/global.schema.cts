@@ -82,8 +82,8 @@ const schema: Schema = {
             type: 'object',
             properties: {
               ReportID: {
-                description: 'Unique ID for this report',
-                type: 'string',
+                description: 'Incrementing reference number to associate this report data to individual samples',
+                type: 'number',
               },
               LabReportID: {
                 description: 'ID the lab has assigned to the report',
@@ -463,8 +463,8 @@ const schema: Schema = {
         },
         ReportID: {
           description:
-            'ID number to relate which lab report contains the sample.  Modus had this as an integer, but we made it a string.',
-          type: 'string',
+            'ID number indicating to which lab report this sample belongs.',
+          type: 'number',
         },
         OverwriteResult: {
           description:
