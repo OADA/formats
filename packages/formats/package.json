@@ -1,6 +1,6 @@
 {
   "name": "@oada/formats",
-  "version": "3.4.0",
+  "version": "3.4.2",
   "description": "Reworked OADA formats",
   "keywords": [
     "oada",
@@ -36,6 +36,9 @@
     "prepare": "npm run build",
     "test": "c8 ava",
     "test:debug": "ava -T 60m -svc 1 --no-worker-threads"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "ava": {
     "failFast": false,

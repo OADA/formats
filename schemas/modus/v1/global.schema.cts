@@ -83,7 +83,7 @@ const schema: Schema = {
             properties: {
               ReportID: {
                 description: 'Incrementing reference number to associate this report data to individual samples',
-                type: 'number',
+                type: ['number', 'string'],
               },
               LabReportID: {
                 description: 'ID the lab has assigned to the report',
@@ -463,8 +463,8 @@ const schema: Schema = {
         },
         ReportID: {
           description:
-            'ID number indicating to which lab report this sample belongs.',
-          type: 'number',
+            'ID number indicating lab report to which this sample belongs.',
+          type: ['number', 'string'],
         },
         OverwriteResult: {
           description:

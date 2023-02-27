@@ -1,6 +1,6 @@
 {
   "name": "@oada/types",
-  "version": "3.4.0",
+  "version": "3.4.2",
   "description": "TypeScript type definitions for OADA formats",
   "keywords": [
     "oada",
@@ -96,6 +96,9 @@
     "pretest": "npm run build",
     "test": "c8 ava",
     "test:debug": "ava -T 60m -svc 1 --no-worker-threads"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "ava": {
     "failFast": false,
