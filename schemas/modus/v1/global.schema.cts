@@ -67,13 +67,23 @@ const schema: Schema = {
         TestPackageRefs: { $ref: '#/$defs/TestPackageRefs' },
         ReceivedDate: {
           description: 'The date/time the sample where received at the lab',
-          type: 'string',
-          format: 'date-time',
+          anyOf: [{
+            type: 'string',
+            format: 'date-time',
+          }, {
+            type: 'string',
+            format: 'date',
+          }],
         },
         ProcessedDate: {
           description: 'The date/time the sample was processed by the lab',
-          type: 'string',
-          format: 'date-time',
+          anyOf: [{
+            type: 'string',
+            format: 'date-time',
+          }, {
+            type: 'string',
+            format: 'date',
+          }],
         },
         Reports: {
           description: 'List of lab reports',
