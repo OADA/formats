@@ -59,16 +59,44 @@ const schema: Schema = {
       },
       samples: [
         {
-          id: '123453ndkf',
-          crop: 'corn',
-          depth: { ... },
+          id: '1', // this is the ID assigned by the person who took the samples
+          labid: '28_051',
+          /*
+          depth: {
+            id: '02ijflkj2ef',
+            name: 'Hmmm...', // here only for backwards compatibility
+            top: 0,
+            bottom: 8,
+            units: 'in'
+          }
+          */
+
+
+          /*
           geolocation: {
+            id: 'kd02jkfldf',
             lat: 12.342342, 
             lon: -93.4889343,
             geojson: { type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: [ 12.342342, -93.4889343 ] } },
-          },
+          }*/
+
           results: [
-            { element: 'N', value: '...', },...
+            // The "analyte" should be the part of the Modus 2.0 test ID that is between 
+            // the third and fourth underscores: L_MODV2_SOIL_B_016 -> analyte: 'B'
+            { analyte: 'PH', value: 7, units: 'none', modusTestID: 'S-PH-1:1.02.07', },
+            { analyte: 'OM', value: 2.4, units: '%', modusTestID: 'S-SOM-LOI.15', },
+            { analyte: 'P', value: 34, units: 'ppm', modusTestID: 'S-P-B1-1:10.01.03', },
+            { analyte: 'K', value: 161, units: 'ppm', modusTestID: 'S-K-NH4AC.05', },
+            { analyte: 'CA', value: 1150, units: 'ppm', modusTestID: 'S-CA-NH4AC.05', },
+            { analyte: 'Mg', value: 240, units: 'ppm', modusTestID: 'S-MG-NH4AC.05', },
+            { analyte: 'CEC', value: 8.2, units: 'meq/100g', modusTestID: 'S-CEC.19', },
+            { analyte: 'CABS', value: 70.4, units: '%', modusTestID: 'S-BS-CA.19', },
+            { analyte: 'MGBS', value: 24.5, units: '%', modusTestID: 'S-BS-MG.19', },
+            { analyte: 'KBS', value: 5.1, units: '%', modusTestID: 'S-BS-K.19', },
+            { analyte: 'SO4S', value: 7, units: 'ppm', modusTestID: 'S-S-NH4AC.05', },
+            { analyte: 'ZN', value: 3.3, units: 'ppm', modusTestID: 'S-ZN-HCL.05', },
+            { analyte: 'MN', value: 46, units: 'ppm', modusTestID: 'S-MN-HCL.05', },
+            { analyte: 'B', value: 0.7, units: 'ppm', modusTestID: 'S-B-M3.04', },
           ],
         },
       ],
