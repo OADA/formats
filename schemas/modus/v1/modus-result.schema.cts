@@ -90,7 +90,7 @@ const schema: Schema = {
                               DepthID: {
                                 description:
                                   'Depth ID from the Depth Reference',
-                                type: 'string',
+                                type: ['number', 'string'],
                               },
                             },
                           },
@@ -115,7 +115,7 @@ const schema: Schema = {
                   RecommendationRefs: {
                     $ref: './global.schema.json#/$defs/RecommendationRefs',
                   },
-                  PlantSample: {
+                  PlantSamples: {
                     type: 'object',
                     properties: {
                       SampleMetaData: {

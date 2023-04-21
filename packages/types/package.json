@@ -1,6 +1,6 @@
 {
   "name": "@oada/types",
-  "version": "3.4.3",
+  "version": "3.4.6",
   "description": "TypeScript type definitions for OADA formats",
   "keywords": [
     "oada",
@@ -83,7 +83,10 @@
     "./trellis/service/master-data-sync/tradingpartners.js": "./dist/types/trellis/service/master-data-sync/tradingpartners.js",
     "./oada.js": "./dist/types/oada.js",
     "./trellis.js": "./dist/types/trellis.js",
-    "./oada/list/v1.js": "./dist/types/oada/list/v1.js"
+    "./oada/list/v1.js": "./dist/types/oada/list/v1.js",
+    "./oada/list-nonresource/v1.js": "./dist/types/oada/list-nonresource/v1.js",
+    "./oada/service/jobs-change.js": "./dist/types/oada/service/jobs-change.js",
+    "./trellis/trading-partners/trading-partner.js": "./dist/types/trellis/trading-partners/trading-partner.js"
   },
   "directories": {
     "lib": "dist"
