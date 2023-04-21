@@ -23,13 +23,15 @@ const schema: Schema = {
   examples: [
     {
       _type: 'application/vnd.modus.v1.modus-result+json',
+
       id: 'ece3a2a8-4340-48b1-ae1f-d48d1f1e1692',
-      dateCollected: '2021-09-24',
+      date: '2021-09-24',
+
       type: 'soil',
+
       lab: {
         id: { source: 'local', value: '1' },
         name: 'A & L Great Lakes Laboratories',
-        resultid: 'F21267-0039',
         contact: {
           name: 'A & L Great Lakes Laboratories',
           phone: '260.483.4759',
@@ -44,23 +46,34 @@ const schema: Schema = {
           state: 'IN',
         },
         report: {
-          LabReportID: 'F21271-0035',
+          id: 'F21271-0035',
+          date: '2021-09-25',
         },
 
       },
+
       FMIS: {
-        id: 'ece3a2a8-4340-48b1-ae1f-d48d1f1e1692',
+        report: {
+          id: 'ece3a2a8-4340-48b1-ae1f-d48d1f1e1692',
+        },
         profile: {
-          Grower: 'CARL AULT',
-          Farm: 'ENYART EAST 50',
-          Field: '50.1 AC',
-          'Sub-Field': '',
+          grower: { id: 'dfj20foekdlf', name: 'CARL AULT' },
+          farm: { id: 'kdjf02ijfoeklew', name: 'ENYART' },
+          field: { id: 'idkjf20fijoed', name: 'EAST50' },
+          subfield: '',
         },
       },
+
       samples: [
         {
           id: '1', // this is the ID assigned by the person who took the samples
           labid: '28_051',
+          fmisid: '0i2jflkljf',
+
+          /*
+          collectionDate: '2021-09-23', 
+          */
+
           /*
           depth: {
             id: '02ijflkj2ef',
