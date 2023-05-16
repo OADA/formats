@@ -9,7 +9,7 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/oada/websockets/response.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description:
@@ -54,6 +54,6 @@ const schema: Schema = {
       description: 'The optional data payload of the request',
     },
   },
-};
+} as const satisfies Schema;
 
 export = schema;

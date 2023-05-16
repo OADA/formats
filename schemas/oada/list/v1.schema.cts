@@ -17,7 +17,7 @@ for (let c = 'a'; c <= 'z'; c = String.fromCodePoint(c.codePointAt(0)! + 1)) {
 
 const letter = `"${chars.join('"|"')}"`;
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/oada/list/v1.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'OADA "list"',
@@ -77,6 +77,6 @@ const schema: Schema = {
       },
     },
   ],
-};
+} as const satisfies Schema;
 
 export = schema;

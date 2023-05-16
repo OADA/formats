@@ -1,6 +1,6 @@
 {
   "name": "@oada/schemas",
-  "version": "3.4.3",
+  "version": "3.5.0",
   "author": "Alex Layton <alex@layton.in>",
   "license": "MIT",
   "private": true,
@@ -31,15 +31,15 @@
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^10.1.0",
-    "@ava/typescript": "^3.0.1",
-    "@types/glob": "^8.0.1",
+    "@ava/typescript": "^4.0.0",
+    "@types/glob": "^8.1.0",
     "@types/json-schema": "^7.0.11",
-    "@types/node": "^16.18.11",
+    "@types/node": "^16.18.31",
     "ajv": "^8.12.0",
-    "ava": "5.1.1",
-    "glob": "^8.1.0",
-    "glob-promise": "^5.0.1",
-    "jsonschema8": "^1.1.1",
+    "ava": "5.2.0",
+    "glob": "^10.2.4",
+    "glob-promise": "^6.0.2",
+    "jsonschema8": "^2.0.0",
     "tslib": "^2.5.0"
   }
 }

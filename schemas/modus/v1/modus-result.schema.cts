@@ -9,7 +9,7 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/modus/v1/modus-result.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'Modus document for submission of lab results to FMIS',
@@ -345,6 +345,6 @@ const schema: Schema = {
       },
     },
   ],
-};
+} as const satisfies Schema;
 
 export = schema;

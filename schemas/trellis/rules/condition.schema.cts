@@ -9,7 +9,7 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/trellis/rules/condition.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'A description of a condtion which can be used in OADA rules',
@@ -80,6 +80,6 @@ const schema: Schema = {
     },
   },
   required: ['name', 'type', 'description'],
-};
+} as const satisfies Schema;
 
 export = schema;

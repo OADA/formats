@@ -19,12 +19,14 @@ import type {
   JSONSchema8 as RealSchema,
   JSONSchema8 as Schema,
 } from 'jsonschema8';
-import type { default as Ajv } from 'ajv';
+import type _Ajv from 'ajv';
 import { mkdirp } from 'mkdirp';
 
 import { contentTypeToKey } from './ajv.js';
 
 import traverse from './traverse.js';
+
+type Ajv = _Ajv.default;
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Old {
@@ -124,12 +126,14 @@ export async function migrate(
       cb(s: Schema) {
         // Fix any refs
         if (s.$ref) {
+          // @ts-expect-error modify readonly
           s.$ref = fixReference(s.$ref);
         }
 
         // Clean up types?
         if (!('type' in s)) {
           if ('properties' in s) {
+            // @ts-expect-error modify readonly
             (s as JSONSchema8ObjectSchema).type = 'object';
           }
         } else if ('enum' in s || 'const' in s) {
@@ -155,6 +159,7 @@ export async function migrate(
         // FIXME: Should probably just delete these keys...
         // * is not a regex... (.* is)
         if ((s as JSONSchema8StringSchema).pattern === '*') {
+          // @ts-expect-error modify readonly
           (s as JSONSchema8StringSchema).pattern = '.*';
         }
 
@@ -201,6 +206,7 @@ export async function migrate(
         // Create "TypeScript" schema
         output = `
           import { JSONSchema8 as Schema } from 'jsonschema8'
+import type Ajv from 'ajv';
 
           const schema: Schema = ${json}
           export default schema

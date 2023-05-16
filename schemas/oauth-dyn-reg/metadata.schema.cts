@@ -9,7 +9,7 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/oauth-dyn-reg/metadata.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   title: 'application/vnd.oada.oauth-dny-reg.register-response.1+json',
@@ -218,5 +218,5 @@ const schema: Schema = {
       registration_provider: 'registration.example.com',
     },
   ],
-};
+} as const satisfies Schema;
 export = schema;
