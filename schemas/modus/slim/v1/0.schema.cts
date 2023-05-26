@@ -10,22 +10,23 @@
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
 const schema: Schema = {
-  $id: 'https://formats.openag.io/modus/v2/modus-result.schema.json',
+  $id: 'https://formats.openag.io/modus/slim/v1/0.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
-  description: 'Modus document for submission of lab results to FMIS',
+  description: '',
   $comment: 'A Flatter version of modus v1',
   type: 'object',
   properties: {
-    version: { type: 'string', default: '1.0-slim' },
+    _type: { type: 'string', value: 'application/vnd.modus.slim.v1.0+json' },
   },
 
   // More examples can be found at https://github.com/oats-center/modus/examples
   examples: [
     {
-      _type: 'application/vnd.modus.v1.modus-result+json',
+      _type: 'application/vnd.modus.slim.v1.0+json',
 
       id: 'ece3a2a8-4340-48b1-ae1f-d48d1f1e1692',
       date: '2021-09-24',
+      name: "Samples taken last sunday",
 
       type: 'soil',
 
@@ -52,23 +53,21 @@ const schema: Schema = {
 
       },
 
-      FMIS: {
+      source: {
         report: {
-          id: 'ece3a2a8-4340-48b1-ae1f-d48d1f1e1692',
+          id: "02iojfkeldjsldfssdf",
         },
-        profile: {
-          grower: { id: 'dfj20foekdlf', name: 'CARL AULT' },
-          farm: { id: 'kdjf02ijfoeklew', name: 'ENYART' },
-          field: { id: 'idkjf20fijoed', name: 'EAST50' },
-          subfield: '',
-        },
+        grower: { id: 'dfj20foekdlf', name: 'CARL AULT' },
+        farm: { id: 'kdjf02ijfoeklew', name: 'ENYART' },
+        field: { id: 'idkjf20fijoed', name: 'EAST50' },
+        subfield: '',
       },
 
       samples: [
         {
-          id: '1', // this is the ID assigned by the person who took the samples
-          labid: '28_051',
-          fmisid: '0i2jflkljf',
+          sampleid: '1', // this is the ID assigned by the person who took the samples
+          lab: { sampleid: '28_051' },
+          source: { sampleid: '1' },
 
           /*
           collectionDate: '2021-09-23', 
