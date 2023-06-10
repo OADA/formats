@@ -69,6 +69,20 @@ const schema: Schema = {
       },
     },
 
+    client: {
+      type: 'object',
+      description: 'A description of the client of either the lab or the source.',
+      properties: {
+        accountNumber: { type: 'string' },
+        name: { type: 'string', },
+        address: { type: 'string' },
+        contact: { 
+          $ref: '#/$defs/person',
+          description: `Who to contact at the client about this report.`
+        },
+      },
+    },
+
     report: {
       type: 'object',
       description: `
@@ -198,17 +212,8 @@ const schema: Schema = {
           },
         },
         client: {
-          type: 'object',
-          description: 'A description of the source or client as seen by the lab',
-          properties: {
-            accountNumber: { type: 'string' },
-            name: { type: 'string', },
-            address: { type: 'string' },
-            contact: { 
-              $ref: '#/$defs/person',
-              description: `Who to contact at the client about this report.`
-            },
-          },
+          $ref: '#/$defs/client',
+          description: `Info on the lab's client, as seen by the lab.`,
         },
         dateReceived: {
           type: 'string',
@@ -229,7 +234,7 @@ const schema: Schema = {
           `,
         },
         files: {
-          $ref: '#defs/files',
+          $ref: '#/$defs/files',
           description: `
             Information representing other files associated with this Modus document at the lab.  
             Refer to the $defs for more information.
@@ -295,6 +300,11 @@ const schema: Schema = {
           description: `Who to contact at the source for this document.`,
         },
 
+        client: {
+          $ref: '#/$defs/person',
+          description: `If the source is submitting on behalf of their own client, put that info here.`,
+        },
+
         report: {
           $ref: '#/$defs/report',
           description: `
@@ -303,7 +313,7 @@ const schema: Schema = {
           `,
         },
         files: {
-          $ref: '#defs/files',
+          $ref: '#/$defs/files',
           description: `
             Information representing other files associated with this Modus document at the source.  
             Refer to the $defs for more information.
@@ -379,7 +389,14 @@ const schema: Schema = {
 
   type: 'object',
   properties: {
-    _type: { const: 'application/vnd.modus.slim.v1.0+json' },
+    _type: { 
+      const: 'application/vnd.modus.slim.v1.0+json',
+      description: `Content type for API responses.  Must also be present on the document.`,
+    },
+
+    //--------------------------------------------------------
+    // Properties of this document as a whole:
+    //--------------------------------------------------------
 
     id: { 
       $ref: '#/$defs/id',
@@ -391,7 +408,6 @@ const schema: Schema = {
         source.  Any two documents with the same top-level id should be considered the same.
       `,
     },
-
 
     date: { 
       type: 'string',
@@ -434,6 +450,12 @@ const schema: Schema = {
       `,
     },
 
+
+    //---------------------------------------------------------
+    // Everything below this can be overridden at sample level
+    //---------------------------------------------------------
+
+
     depth: {
       $ref: '#/$defs/depth',
       description: `
@@ -441,6 +463,22 @@ const schema: Schema = {
         here globally and then override any sample-specific depths within the individual samples.
       `,
     },
+
+    geolocation: {
+      $ref: '#/$defs/geolocation',
+      description: `
+        Any geolocation information that relates to all samples globally should go here.  For example,
+        a boundary containing all the points that were sampled.  If you have point-specific location
+        information, it should go in the sample-specific geolocation key under each sample.
+      `,
+    },
+
+    crop: {
+    },
+
+    //---------------------------------------------------------------
+    // Any lab or source internals can be overridden at sample level
+    //---------------------------------------------------------------
 
     lab: { 
       $ref: '#/$defs/lab',
@@ -458,14 +496,6 @@ const schema: Schema = {
       `,
     },
 
-    geolocation: {
-      $ref: '#/$defs/geolocation',
-      description: `
-        Any geolocation information that relates to all samples globally should go here.  For example,
-        a boundary containing all the points that were sampled.  If you have point-specific location
-        information, it should go in the sample-specific geolocation key under each sample.
-      `,
-    },
 
     samples: {
       description: `
@@ -643,25 +673,47 @@ const schema: Schema = {
           results: {
             // The "analyte" should be the part of the Modus 2.0 test ID that is between 
             // the third and fourth underscores: L_MODV2_SOIL_B_016 -> analyte: 'B'
-            'kfj290jid': { analyte: 'PH', value: 7, units: 'none', modusTestID: 'S-PH-1:1.02.07', },
-            '2fj290jid': { analyte: 'OM', value: 2.4, units: '%', modusTestID: 'S-SOM-LOI.15', },
-            '3fj290jid': { analyte: 'P', value: 34, units: 'ppm', modusTestID: 'S-P-B1-1:10.01.03', },
-            '4fj290jid': { analyte: 'K', value: 161, units: 'ppm', modusTestID: 'S-K-NH4AC.05', },
-            '5fj290jid': { analyte: 'CA', value: 1150, units: 'ppm', modusTestID: 'S-CA-NH4AC.05', },
-            '6fj290jid': { analyte: 'Mg', value: 240, units: 'ppm', modusTestID: 'S-MG-NH4AC.05', },
-            '7fj290jid': { analyte: 'CEC', value: 8.2, units: 'meq/100g', modusTestID: 'S-CEC.19', },
-            '8fj290jid': { analyte: 'CABS', value: 70.4, units: '%', modusTestID: 'S-BS-CA.19', },
-            '9fj290jid': { analyte: 'MGBS', value: 24.5, units: '%', modusTestID: 'S-BS-MG.19', },
-            '0fj290jid': { analyte: 'KBS', value: 5.1, units: '%', modusTestID: 'S-BS-K.19', },
-            '11j290jid': { analyte: 'SO4S', value: 7, units: 'ppm', modusTestID: 'S-S-NH4AC.05', },
-            '12j290jid': { analyte: 'ZN', value: 3.3, units: 'ppm', modusTestID: 'S-ZN-HCL.05', },
-            '13j290jid': { analyte: 'MN', value: 46, units: 'ppm', modusTestID: 'S-MN-HCL.05', },
-            '14j290jid': { analyte: 'B', value: 0.7, units: 'ppm', modusTestID: 'S-B-M3.04', },
+            'kfj290ji': { analyte: 'PH', value: 7, units: 'none', modusTestID: 'S-PH-1:1.02.07', },
+            '2fj290ji': { analyte: 'OM', value: 2.4, units: '%', modusTestID: 'S-SOM-LOI.15', },
+            '3fj290ji': { analyte: 'P', value: 34, units: 'ppm', modusTestID: 'S-P-B1-1:10.01.03', },
+            '4fj290ji': { analyte: 'K', value: 161, units: 'ppm', modusTestID: 'S-K-NH4AC.05', },
+            '5fj290ji': { analyte: 'CA', value: 1150, units: 'ppm', modusTestID: 'S-CA-NH4AC.05', },
+            '6fj290ji': { analyte: 'Mg', value: 240, units: 'ppm', modusTestID: 'S-MG-NH4AC.05', },
+            '7fj290ji': { analyte: 'CEC', value: 8.2, units: 'meq/100g', modusTestID: 'S-CEC.19', },
+            '8fj290ji': { analyte: 'CABS', value: 70.4, units: '%', modusTestID: 'S-BS-CA.19', },
+            '9fj290ji': { analyte: 'MGBS', value: 24.5, units: '%', modusTestID: 'S-BS-MG.19', },
+            '0fj290ji': { analyte: 'KBS', value: 5.1, units: '%', modusTestID: 'S-BS-K.19', },
+            '11j290ji': { analyte: 'SO4S', value: 7, units: 'ppm', modusTestID: 'S-S-NH4AC.05', },
+            '12j290ji': { analyte: 'ZN', value: 3.3, units: 'ppm', modusTestID: 'S-ZN-HCL.05', },
+            '13j290ji': { analyte: 'MN', value: 46, units: 'ppm', modusTestID: 'S-MN-HCL.05', },
+            '14j290ji': { analyte: 'B', value: 0.7, units: 'ppm', modusTestID: 'S-B-M3.04', },
           },
         },
       },
     }, // end of first example
   ], // end of examples
 };
+
+
+//----------------------------------------------------------------
+// Todo's/Open Questions:
+//----------------------------------------------------------------
+//
+// - TestPackages: was an array of strings under the SampleMetaData
+// - Crop: need an actual list of crop types, growth stages, sub-growth stages.  
+//     The old Crop had ClientID in the growth stages?
+// - Recommendations: haven't started this yet.  Includes an expiration date.
+// - Plants had an official "Comments" place for comments, is this necessary?
+// - Nematode Pest: need a list of actual pests
+// - Nematode had a "ValueType" of "measuered", "percent", "calculated", and "index"?
+// - "ValueDesc" for VL,L,...,H,VH.  How to represent here?
+// - Nematode had "LifeStageValue" of "Egg, Juvenile, ... etc."
+// - ResidueResults had something named "CASRN"
+// - TextureRrsult has soil classification, percent clay/sand/silt and density
+// - SensorResult?
+// - "SubSamples"?  Original said "SubSamples is where the location of cores within a sample can be recorded"
+//      Is this just a set of geolocations (and ID's) per "sample"?
+// - "Warnings"
+// - FMISAllowedLabEquations
 
 export = schema;

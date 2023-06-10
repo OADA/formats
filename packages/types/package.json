@@ -83,7 +83,8 @@
     "./trellis/service/master-data-sync/tradingpartners.js": "./dist/types/trellis/service/master-data-sync/tradingpartners.js",
     "./oada.js": "./dist/types/oada.js",
     "./trellis.js": "./dist/types/trellis.js",
-    "./oada/list/v1.js": "./dist/types/oada/list/v1.js"
+    "./oada/list/v1.js": "./dist/types/oada/list/v1.js",
+    "./modus/slim/v1/0.js": "./dist/types/modus/slim/v1/0.js"
   },
   "directories": {
     "lib": "dist"
