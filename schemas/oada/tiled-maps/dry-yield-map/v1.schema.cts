@@ -9,7 +9,7 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/oada/tiled-maps/dry-yield-map/v1.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description:
@@ -481,5 +481,5 @@ const schema: Schema = {
       },
     },
   ],
-};
+} as const satisfies Schema;
 export = schema;

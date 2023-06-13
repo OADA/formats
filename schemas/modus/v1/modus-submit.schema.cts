@@ -9,7 +9,7 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/modus/v1/modus-submit.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'Modus document for submitting sample events to FMIS',
@@ -86,14 +86,17 @@ const schema: Schema = {
                   RecommendationRefs: {
                     $ref: './global.schema.json#/$defs/RecommendationRefs',
                   },
-                  PlantSample: {
-                    type: 'object',
-                    properties: {
-                      SampleMetaData: {
-                        $ref: './global.schema.json#/$defs/SampleMetaData',
-                      },
-                      Comments: {
-                        $ref: './global.schema.json#/$defs/Comments',
+                  PlantSamples: {
+                    type: 'array',
+                    items: {
+                      type: 'object',
+                      properties: {
+                        SampleMetaData: {
+                          $ref: './global.schema.json#/$defs/SampleMetaData',
+                        },
+                        Comments: {
+                          $ref: './global.schema.json#/$defs/Comments',
+                        },
                       },
                     },
                   },
@@ -192,6 +195,6 @@ const schema: Schema = {
     },
     Version: { type: 'string', default: '1.0' },
   },
-};
+} as const satisfies Schema;
 
 export = schema;

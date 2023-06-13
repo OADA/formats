@@ -12,11 +12,14 @@ import test from 'ava';
 import { dirname, isAbsolute, join, relative } from 'node:path';
 
 import { $RefParser } from '@apidevtools/json-schema-ref-parser';
-import { default as Ajv } from 'ajv';
 import type { JSONSchema6 } from 'json-schema';
 import type { JSONSchema8 as Schema } from 'jsonschema8';
+import _Ajv from 'ajv';
 
 import schemas, { requireSchema } from './index.js';
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const Ajv = _Ajv as unknown as typeof _Ajv.default;
 
 /**
  * @todo where should this live?

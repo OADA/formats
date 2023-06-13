@@ -9,7 +9,7 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/oada/resource.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   type: 'object',
@@ -29,6 +29,6 @@ const schema: Schema = {
       $ref: '../oada.schema.json#/definitions/_type',
     },
   },
-};
+} as const satisfies Schema;
 
 export = schema;

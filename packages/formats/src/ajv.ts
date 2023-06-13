@@ -10,14 +10,19 @@
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
 import $ref from '@apidevtools/json-schema-ref-parser';
-import { default as Ajv } from 'ajv';
-import { default as addFormats } from 'ajv-formats';
+import _Ajv from 'ajv';
+import _addFormats from 'ajv-formats';
 import addFormats2019 from 'ajv-formats-draft2019';
 import { default as axios } from 'axios';
 
 import { getSchema as contentTypeToKey } from '@oada/media-types';
 
 import schemas, { requireSchema } from './schemas/index.js';
+
+type Ajv = _Ajv.default;
+// eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/no-redeclare
+const Ajv = _Ajv as unknown as typeof _Ajv.default;
+const addFormats = _addFormats as unknown as typeof _addFormats.default;
 
 export const ajv: OADAFormats = addFormats2019(
   addFormats(

@@ -7,8 +7,6 @@
  * https://opensource.org/licenses/MIT.
  */
 
-/* eslint-disable @typescript-eslint/no-duplicate-imports */
-
 // Declare packed validation functions modules
 declare module '*-validate.cjs' {
   import type { ValidateFunction } from 'ajv';
@@ -28,13 +26,13 @@ declare module 'json-schema-traverse' {
     parentSchema: Schema,
     keyIndex: number
   ) => void;
-  type Options<Schema> = {
+  interface Options<Schema> {
     cb: Callback<Schema> | { pre: Callback<Schema>; post: Callback<Schema> };
     /**
      * @default false
      */
     allKeys?: boolean;
-  };
+  }
 
   type Keywords = Record<string, boolean>;
 

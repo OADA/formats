@@ -15,19 +15,26 @@ import { promises as fs } from 'node:fs';
 import { setTimeout } from 'node:timers/promises';
 
 import { $RefParser } from '@apidevtools/json-schema-ref-parser';
-import { default as Ajv } from 'ajv';
-import { default as addFormats } from 'ajv-formats';
+import _Ajv from 'ajv';
+import _addFormats from 'ajv-formats';
+import _standaloneCode from 'ajv/dist/standalone/index.js';
 import addFormats2019 from 'ajv-formats-draft2019';
 import clone from 'clone-deep';
 import { compile } from 'json-schema-to-typescript';
 import log from 'debug';
 import { mkdirp } from 'mkdirp';
-import { default as standaloneCode } from 'ajv/dist/standalone/index.js';
 import { toSafeString } from 'json-schema-to-typescript/dist/src/utils.js';
 
 import { loadSchema } from '@oada/formats/dist/ajv.js';
 
 import { schemas } from '@oada/formats';
+
+type Ajv = _Ajv.default;
+// eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/no-redeclare
+const Ajv = _Ajv as unknown as typeof _Ajv.default;
+const addFormats = _addFormats as unknown as typeof _addFormats.default;
+const standaloneCode =
+  _standaloneCode as unknown as typeof _standaloneCode.default;
 
 const require = createRequire(import.meta.url);
 
@@ -111,6 +118,12 @@ import validate from './${basename(packedfile)}'
  * @see {@link ${$id}}
  */
 export const $id = '${$id}'
+
+/**
+ * JSON Schema used to generate this type
+ * @see {@link ${$id}}
+ */
+export const schema = ${JSON.stringify(schema)} as const;
 
 /**
  * Returns true if \`val\` is a @type \`${typeName}\`, false otherwise

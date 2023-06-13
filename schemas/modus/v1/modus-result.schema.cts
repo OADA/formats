@@ -9,7 +9,7 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/modus/v1/modus-result.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'Modus document for submission of lab results to FMIS',
@@ -116,19 +116,22 @@ const schema: Schema = {
                     $ref: './global.schema.json#/$defs/RecommendationRefs',
                   },
                   PlantSamples: {
-                    type: 'object',
-                    properties: {
-                      SampleMetaData: {
-                        $ref: './global.schema.json#/$defs/SampleMetaData',
-                      },
-                      NutrientResults: {
-                        $ref: './global.schema.json#/$defs/NutrientResults',
-                      },
-                      NutrientRecommendations: {
-                        $ref: './global.schema.json#/$defs/NutrientRecommendations',
-                      },
-                      Comments: {
-                        $ref: './global.schema.json#/$defs/Comments',
+                    type: 'array',
+                    items: {
+                      type: 'object',
+                      properties: {
+                        SampleMetaData: {
+                          $ref: './global.schema.json#/$defs/SampleMetaData',
+                        },
+                        NutrientResults: {
+                          $ref: './global.schema.json#/$defs/NutrientResults',
+                        },
+                        NutrientRecommendations: {
+                          $ref: './global.schema.json#/$defs/NutrientRecommendations',
+                        },
+                        Comments: {
+                          $ref: './global.schema.json#/$defs/Comments',
+                        },
                       },
                     },
                   },
@@ -345,6 +348,6 @@ const schema: Schema = {
       },
     },
   ],
-};
+} as const satisfies Schema;
 
 export = schema;

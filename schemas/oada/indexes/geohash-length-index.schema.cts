@@ -9,7 +9,7 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/oada/indexes/geohash-length-index.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description:
@@ -64,6 +64,6 @@ const schema: Schema = {
       },
   */
   type: 'object',
-};
+} as const satisfies Schema;
 
 export = schema;

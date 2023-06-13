@@ -9,7 +9,7 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/trellis/service/fl-pusher/sync.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'Extension of @oada/job format for fl-pusher',
@@ -81,6 +81,6 @@ const schema: Schema = {
       },
     },
   ],
-};
+} as const satisfies Schema;
 
 export = schema;

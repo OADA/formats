@@ -9,7 +9,7 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/trellis/service/master-data-sync/tradingpartners.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'Trading Partners config format for master-data-sync',
@@ -101,6 +101,6 @@ const schema: Schema = {
       phone: '111-222-3333',
     },
   ],
-};
+} as const satisfies Schema;
 
 export = schema;

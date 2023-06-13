@@ -9,7 +9,7 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/oada/bookmarks.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'bookmarks is the top-level document returned by the OADA API',
@@ -44,6 +44,6 @@ const schema: Schema = {
       ],
     },
   ],
-};
+} as const satisfies Schema;
 
 export = schema;

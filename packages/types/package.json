@@ -1,6 +1,6 @@
 {
   "name": "@oada/types",
-  "version": "3.4.6",
+  "version": "3.5.2",
   "description": "TypeScript type definitions for OADA formats",
   "keywords": [
     "oada",
@@ -92,7 +92,7 @@
     "lib": "dist"
   },
   "scripts": {
-    "clean": "yarn g:tsc --clean",
+    "clean": "yarn g:tsc --clean && rm -rf types dist",
     "build": "yarn g:tsc && yarn node --enable-source-maps ./dist/src/compile.js && yarn g:tsc",
     "prestart": "npm run build",
     "prepare": "npm run build",
@@ -148,22 +148,22 @@
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^10.1.0",
-    "@ava/typescript": "^3.0.1",
+    "@ava/typescript": "^4.0.0",
     "@oada/formats": "^3.0.0",
     "@types/clone-deep": "^4.0.1",
     "@types/debug": "^4.1.7",
     "@types/json-schema-merge-allof": "^0.6.1",
     "@types/lodash.omit": "^4.5.7",
-    "@types/mkdirp": "^1.0.2",
-    "@types/node": "^16.18.11",
-    "ava": "5.1.1",
-    "c8": "^7.12.0",
+    "@types/mkdirp": "^2.0.0",
+    "@types/node": "^16.18.31",
+    "ava": "5.2.0",
+    "c8": "^7.13.0",
     "clone-deep": "^4.0.1",
     "debug": "^4.3.4",
     "json-schema-merge-allof": "^0.8.1",
-    "json-schema-to-typescript": "^11.0.3",
-    "jsonschema8": "^1.1.1",
+    "json-schema-to-typescript": "^11.0.5",
+    "jsonschema8": "^2.0.0",
     "lodash.omit": "^4.5.0",
-    "mkdirp": "^2.1.3"
+    "mkdirp": "^3.0.1"
   }
 }

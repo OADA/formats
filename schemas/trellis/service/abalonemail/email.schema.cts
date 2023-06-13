@@ -9,7 +9,7 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/trellis/service/abalonemail/email.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'Extension @oada/jobs job queue format for Abalonemail',
@@ -84,6 +84,6 @@ const schema: Schema = {
       },
     },
   ],
-};
+} as const satisfies Schema;
 
 export = schema;
