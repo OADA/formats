@@ -9,7 +9,7 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/modus/v1/global.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#/',
   description: 'Definitions for the Modus v1 standard for lab sample results.',
@@ -67,23 +67,29 @@ const schema: Schema = {
         TestPackageRefs: { $ref: '#/$defs/TestPackageRefs' },
         ReceivedDate: {
           description: 'The date/time the sample where received at the lab',
-          anyOf: [{
-            type: 'string',
-            format: 'date-time',
-          }, {
-            type: 'string',
-            format: 'date',
-          }],
+          anyOf: [
+            {
+              type: 'string',
+              format: 'date-time',
+            },
+            {
+              type: 'string',
+              format: 'date',
+            },
+          ],
         },
         ProcessedDate: {
           description: 'The date/time the sample was processed by the lab',
-          anyOf: [{
-            type: 'string',
-            format: 'date-time',
-          }, {
-            type: 'string',
-            format: 'date',
-          }],
+          anyOf: [
+            {
+              type: 'string',
+              format: 'date-time',
+            },
+            {
+              type: 'string',
+              format: 'date',
+            },
+          ],
         },
         Reports: {
           description: 'List of lab reports',
@@ -92,7 +98,8 @@ const schema: Schema = {
             type: 'object',
             properties: {
               ReportID: {
-                description: 'Incrementing reference number to associate this report data to individual samples',
+                description:
+                  'Incrementing reference number to associate this report data to individual samples',
                 type: ['number', 'string'],
               },
               LabReportID: {
@@ -836,6 +843,6 @@ const schema: Schema = {
       },
     },
   },
-};
+} as const satisfies Schema;
 
 export = schema;

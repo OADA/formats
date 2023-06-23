@@ -10,7 +10,6 @@
     "importHelpers": true,
     "alwaysStrict": true,
     "strict": true,
-    "importsNotUsedAsValues": "error",
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -18,6 +17,7 @@
     "noImplicitAny": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
+    "noErrorTruncation": true,
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true
   }

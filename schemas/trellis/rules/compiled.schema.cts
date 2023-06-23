@@ -9,7 +9,7 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/trellis/rules/compiled.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'Represents a "compiled" bit of work to implement rules',
@@ -57,6 +57,6 @@ const schema: Schema = {
     },
   },
   required: ['rule', 'action', 'service', 'type', 'on', 'path', 'schema'],
-};
+} as const satisfies Schema;
 
 export = schema;

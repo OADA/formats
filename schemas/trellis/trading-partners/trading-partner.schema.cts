@@ -9,24 +9,21 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema = {
-  $id: 'https://formats.openag.io/trellis/service/master-data-sync/tradingpartners.schema.json',
+const schema: Schema = {
+  $id: 'https://formats.openag.io/trellis/trading-partner.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
-  description: 'Trading Partners config format for master-data-sync',
+  description: 'Trading Partners config format within Trellis',
   type: 'object',
   properties: {
-    id: {
-      type: 'string',
-    },
+    // External ID in a master data system
     sapid: {
       type: 'string',
     },
+    // Internal ID in Trellis; Should be a resource id e.g. 'resources/123'
     masterid: {
       type: 'string',
     },
-    internalid: {
-      type: 'string',
-    },
+    //Some other master data system attributes
     companycode: {
       type: 'string',
     },
@@ -36,6 +33,7 @@ const schema = {
     partnerid: {
       type: 'string',
     },
+    //Details of the trading-partner
     name: {
       type: 'string',
     },
@@ -48,12 +46,15 @@ const schema = {
     state: {
       type: 'string',
     },
+    // The though here was to specify 'customer'/'supplier' for type
     type: {
       type: 'string',
     },
+    // Source that first created this master data entry in trellis
     source: {
       type: 'string',
     },
+    // Some contact info
     coi_emails: {
       type: 'string',
     },
@@ -70,22 +71,12 @@ const schema = {
   required: [
     'sapid',
     'masterid',
-    'internalid',
     'name',
-    'address',
-    'city',
-    'state',
-    'type',
-    'source',
-    'email',
-    'phone',
   ],
   examples: [
     {
-      id: '1234567890',
       sapid: '1234567890',
       masterid: '1234567890',
-      internalid: '1234567890',
       companycode: '1234567890',
       vendorid: '1234567890',
       partnerid: '1234567890',
@@ -101,6 +92,6 @@ const schema = {
       phone: '111-222-3333',
     },
   ],
-} as const satisfies Schema;
+};
 
 export = schema;

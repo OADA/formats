@@ -9,7 +9,7 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-const schema: Schema = {
+const schema = {
   $id: 'https://formats.openag.io/oada/isoblue/location/v1.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   description: 'Location data of the machine. Contains time and location',
@@ -356,5 +356,5 @@ const schema: Schema = {
   required: ['_type'],
   type: 'object',
   examples: [],
-};
+} as const satisfies Schema;
 export = schema;
