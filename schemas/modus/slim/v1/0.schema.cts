@@ -38,6 +38,11 @@ const schema: Schema = {
       description: 'A sufficiently unique string to identify things, in any form.' 
     },
 
+    aliasid: {
+      type: 'string',
+      description: 'A reference to an id that can be found physically on a sample such as a bar code or QR code',
+    },
+
     sourcedId: {
       type: 'object',
       properties: {
@@ -250,6 +255,12 @@ const schema: Schema = {
             and should therefore only appear in the sample's version of the lab key.
           `,
         },
+        aliasid: {
+          $ref: '#/$defs/aliasid',
+          description: `
+            An id for a sample that can be found physically on it such as a bar code or QR code, as seen by the lab.
+          `,
+        },
         fileids: {
           type: 'array',
           description: `
@@ -360,6 +371,14 @@ const schema: Schema = {
             each sample.
           `,
         },
+
+        aliasid: {
+          $ref: '#/$defs/aliasid',
+          description: `
+            An id for a sample that can be found physically on it such as a bar code or QR code, as seen by the source.
+          `,
+        },
+
         fileids: {
           type: 'array',
           description: `
@@ -547,7 +566,7 @@ const schema: Schema = {
           },
 
           results: {
-            type: 'array',
+            type: 'object',
             description: `
               A list of all the lab results associated with this sample, keyed by a sufficiently-unique string.
               Note that since some analytes could be present multiple times, this should just be a random string.
@@ -559,7 +578,7 @@ const schema: Schema = {
                   type: 'string',
                   description: `
                     This should be the part of the Modus 2.0 test ID that is between the third and 
-                    fourth underscores: L_MODV2_SOIL_B_016 -> analyte: '.  Refer to the Modus 2.0 spreadsheet
+                    fourth underscores: L_MODV2_SOIL_B_016 -> analyte: B.  Refer to the Modus 2.0 spreadsheet
                     for the complete list of known analytes.
                   `,
                 },
@@ -643,7 +662,7 @@ const schema: Schema = {
         grower: { id: 'dfj20foekdlf', name: 'CARL AULT' },
         farm: { id: 'kdjf02ijfoeklew', name: 'ENYART' },
         field: { id: 'idkjf20fijoed', name: 'EAST50' },
-        subfield: '',
+        // Can also have subfield
       },
 
       samples: {
@@ -705,11 +724,11 @@ const schema: Schema = {
 // - Recommendations: haven't started this yet.  Includes an expiration date.
 // - Plants had an official "Comments" place for comments, is this necessary?
 // - Nematode Pest: need a list of actual pests
-// - Nematode had a "ValueType" of "measuered", "percent", "calculated", and "index"?
+// - Nematode had a "ValueType" of "measured", "percent", "calculated", and "index"?
 // - "ValueDesc" for VL,L,...,H,VH.  How to represent here?
 // - Nematode had "LifeStageValue" of "Egg, Juvenile, ... etc."
 // - ResidueResults had something named "CASRN"
-// - TextureRrsult has soil classification, percent clay/sand/silt and density
+// - TextureResult has soil classification, percent clay/sand/silt and density
 // - SensorResult?
 // - "SubSamples"?  Original said "SubSamples is where the location of cores within a sample can be recorded"
 //      Is this just a set of geolocations (and ID's) per "sample"?
