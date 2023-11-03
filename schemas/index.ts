@@ -12,25 +12,26 @@ import path from 'node:path';
 import url from 'node:url';
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
-import globP from 'glob-promise';
+import { glob } from 'glob';
 
 const dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
-const schemas = await globP('/**/*.schema.{c,m,}js', {
+const schemas = await glob('*.schema.{c,m,}js', {
   cwd: dirname,
-  root: dirname,
-  nomount: true,
+  posix: true,
+  dotRelative: true,
+  matchBase: true,
 });
 
 /**
  * Every .schema.ts file we have
  */
-export const glob = schemas.map((key) =>
-  key.replace(/\/+/, '/').replace(/\.[cm]?[jt]s$/, '.json')
+export const keys = schemas.map((key) =>
+  key.replace(/\/+/, '/').replace(/\.[cm]?[jt]s$/, '.json'),
 );
 
 export const requireSchema: (path: string) => Schema = createRequire(
-  path.join(dirname, 'schemas')
+  path.join(dirname, 'schemas'),
 );
 export class SchemaInfo {
   key;
@@ -49,7 +50,7 @@ export class SchemaInfo {
  * Load all the schemas
  */
 function* loadAllFormats(): Generator<SchemaInfo, void, void> {
-  for (const key of glob) {
+  for (const key of keys) {
     yield new SchemaInfo(key);
   }
 }

@@ -15,7 +15,7 @@ declare module 'json-schema-traverse' {
     parentJsonPtr: string,
     parentKeyword: string,
     parentSchema: Schema,
-    keyIndex: number
+    keyIndex: number,
   ) => void;
   interface Options<Schema> {
     cb: Callback<Schema> | { pre: Callback<Schema>; post: Callback<Schema> };

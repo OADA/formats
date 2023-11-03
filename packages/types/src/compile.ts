@@ -54,12 +54,12 @@ const compileString = '`$ yarn build`';
 
 // Create ajv for packing validation functions
 const ajv = addFormats2019(
-  addFormats(new Ajv({ strict: false, loadSchema, code: { source: true } }))
+  addFormats(new Ajv({ strict: false, loadSchema, code: { source: true } })),
 );
 
 // Compile the schema files to TypeScript types
 const metaSchema = await $RefParser.dereference(
-  'https://json-schema.org/draft/2019-09/schema'
+  'https://json-schema.org/draft/2019-09/schema',
 );
 ajv.addMetaSchema(metaSchema);
 
@@ -89,7 +89,7 @@ for await (const { key, path, schema } of schemas()) {
     const moduleCode = standaloneCode(ajv, validate);
     const packedfile = resolve(
       './dist/types/',
-      file.replace(/\.schema\.json$/, '-validate.cjs')
+      file.replace(/\.schema\.json$/, '-validate.cjs'),
     );
 
     /**
@@ -168,7 +168,7 @@ export default ${typeName}`;
         },
         // Resolve relative to current file?
         cwd: dirname(path),
-      }
+      },
     );
     await Promise.all([mkdirp(dirname(outfile)), mkdirp(dirname(packedfile))]);
     // ???: Figure out wtf is up with mkdirp that I need this...
@@ -199,8 +199,8 @@ await fs.writeFile(
       },
     },
     null,
-    2
-  )
+    2,
+  ),
 );
 
 if (errored) {

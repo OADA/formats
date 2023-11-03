@@ -9,16 +9,17 @@ extends:
   - plugin:array-func/recommended
   - plugin:optimize-regex/recommended
   - plugin:import/recommended
+  - plugin:import/typescript
   - plugin:unicorn/recommended
   - plugin:security/recommended
   - plugin:sonarjs/recommended
   - plugin:ava/recommended
   - xo
-  - prettier
 
 plugins:
   - '@typescript-eslint'
   - node
+  - escompat
   - github
   - promise
   - regexp
@@ -32,6 +33,12 @@ plugins:
   - sonarjs
   - ava
   - notice
+
+settings:
+  import/resolver:
+    node: true
+    typescript: true
+  import/external-module-folders: [.yarn, node_modules]
 
 parser: '@typescript-eslint/parser'
 
@@ -109,7 +116,8 @@ rules:
          */
       onNonMatchingHeader: append
       nonMatchingTolerance: 0.7
-  sonarjs/no-duplicate-string: [warn, 5]
+
+  sonarjs/no-duplicate-string: [warn, { threshold: 5 }]
   sonarjs/cognitive-complexity: warn
   eslint-comments/no-unused-disable: off
   import/extensions: off

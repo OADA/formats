@@ -52,8 +52,8 @@ const schema = {
             [
               `geohash-${index + 1}` as const,
               { $ref: '../link/v1.schema.json#/definitions/link' },
-            ] as const
-        )
+            ] as const,
+        ),
     ),
   },
   /*

@@ -20,16 +20,17 @@ const schema = {
       type: 'array',
       items: {
         description: 'item is sold/shipped by one trading partner to the other',
+        type: 'object',
+        required: [
+          'gtin',
+          'batch_or_lot_serial',
+          'product_date',
+          'sell_by',
+          'quantity',
+          'unit_of_measure',
+        ],
+        additionalProperties: false,
       },
-      required: [
-        'gtin',
-        'batch_or_lot_serial',
-        'product_date',
-        'sell_by',
-        'quantity',
-        'unit_of_measure',
-      ],
-      additionalProperties: false,
     },
     originator: {
       description: 'gln of the data originator and the data owner',

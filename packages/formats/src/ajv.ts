@@ -29,8 +29,8 @@ export const ajv: OADAFormats = addFormats2019(
     new Ajv({
       strict: false,
       loadSchema,
-    })
-  )
+    }),
+  ),
 ) as OADAFormats;
 
 export interface OADAFormats extends Ajv {
@@ -40,7 +40,7 @@ export interface OADAFormats extends Ajv {
 // Load all the schemas into ajv
 export async function loadAllFormats() {
   const meta = await $ref.dereference(
-    'https://json-schema.org/draft/2019-09/schema'
+    'https://json-schema.org/draft/2019-09/schema',
   );
   // TODO: Why does compileAsync not work for meta schema?
   ajv.addMetaSchema(meta);

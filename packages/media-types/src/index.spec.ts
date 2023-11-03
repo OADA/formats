@@ -27,7 +27,7 @@ test('should not resolve non-OADA formats media-type string', (t) => {
 
 test('should honor input schema parameter in media-type string', (t) => {
   const schema = mediaType2schema(
-    'application/vnd.test.not.oada+json; schema="test foo bar"'
+    'application/vnd.test.not.oada+json; schema="test foo bar"',
   );
 
   t.deepEqual(schema, ['test', 'foo', 'bar']);

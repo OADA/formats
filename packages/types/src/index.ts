@@ -19,7 +19,10 @@ export type TypeCheck<T> = (value: unknown) => value is T;
 export type TypeAssert<T> = (value: unknown) => asserts value is T;
 
 export class AssertError<T = unknown> extends TypeError {
-  constructor(readonly input: T, readonly errors: readonly ErrorObject[]) {
+  constructor(
+    readonly input: T,
+    readonly errors: readonly ErrorObject[],
+  ) {
     // Just use first error for message for now
     const [first] = errors;
     const message = first

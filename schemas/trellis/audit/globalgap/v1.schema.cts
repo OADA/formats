@@ -4497,7 +4497,6 @@ const schema = {
             globalgap_level: {
               description:
                 "globalgap_level is not actually a key that is used, but rather describes a class of objects which represent a level's summary score",
-              type: 'string',
               enum: ['major_must', 'minor_must', 'recommended'],
             },
             auditor_comments: {

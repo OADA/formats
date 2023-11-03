@@ -61,12 +61,12 @@ export async function migrate(
     format = 'json',
     outdir = `${cwd()}/schemas`,
     root = defaultRoot,
-  }: MigrateOptions = {}
+  }: MigrateOptions = {},
 ) {
   const r = /^oada-formats:\/\/(.+)$/;
   function fixID(
     id: string | undefined,
-    type?: string
+    type?: string,
   ): { $id: Schema['$id']; key: string } {
     if (id) {
       // Parse id into content type

@@ -68,11 +68,7 @@ const schema: Schema = {
       type: 'string',
     },
   },
-  required: [
-    'sapid',
-    'masterid',
-    'name',
-  ],
+  required: ['sapid', 'masterid', 'name'],
   examples: [
     {
       sapid: '1234567890',

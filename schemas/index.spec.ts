@@ -54,7 +54,7 @@ const ajv = new Ajv({
 });
 test.before('Initialize JSON Schema validator', async () => {
   const meta = await $RefParser.dereference(
-    'https://json-schema.org/draft/2019-09/schema'
+    'https://json-schema.org/draft/2019-09/schema',
   );
 
   // ???: Why does compileAsync not work for meta schema?

@@ -234,12 +234,10 @@ const schema = {
           },
           ValueType: {
             description: 'Type definition of the value',
-            type: 'string',
             enum: ['Measured', 'Percent', 'Calculated', 'Index'],
           },
           ValueDesc: {
             description: 'Value description assigned by the lab.',
-            type: 'string',
             enum: [
               'Very Low',
               'Low',
@@ -311,11 +309,9 @@ const schema = {
           },
           ValueType: {
             description: 'Measured, Percent, Calculated, Index',
-            type: 'string',
             enum: ['Measured', 'Percent', 'Calculated', 'Index'],
           },
           ValueDesc: {
-            type: 'string',
             enum: [
               'Very Low',
               'Low',
@@ -338,7 +334,6 @@ const schema = {
               properties: {
                 LifeStage: {
                   description: 'Life stage',
-                  type: 'string',
                   enum: ['Egg', 'Juvenile', 'Adult', 'Dead', ''],
                 },
                 Value: {
@@ -353,11 +348,9 @@ const schema = {
                 },
                 ValueType: {
                   description: 'Measured, Percent, Calculated, Index',
-                  type: 'string',
                   enum: ['Measured', 'Percent', 'Calculated', 'Index'],
                 },
                 ValueDesc: {
-                  type: 'string',
                   enum: [
                     'Very Low',
                     'Low',

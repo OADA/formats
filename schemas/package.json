@@ -31,15 +31,14 @@
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^10.1.0",
-    "@ava/typescript": "^4.0.0",
+    "@ava/typescript": "^4.1.0",
     "@types/glob": "^8.1.0",
-    "@types/json-schema": "^7.0.11",
-    "@types/node": "^16.18.31",
+    "@types/json-schema": "^7.0.14",
+    "@types/node": "^16.18.60",
     "ajv": "^8.12.0",
-    "ava": "5.2.0",
-    "glob": "^10.2.4",
-    "glob-promise": "^6.0.2",
+    "ava": "5.3.1",
+    "glob": "^10.3.10",
     "jsonschema8": "^2.0.0",
-    "tslib": "^2.5.0"
+    "tslib": "^2.6.2"
   }
 }

@@ -22,7 +22,7 @@ export function middleware(_options: Options): RequestHandler {
     try {
       const headers = handleResponse(
         response.get('Content-Type'),
-        response.get('Link')
+        response.get('Link'),
       );
       // @ts-expect-error stuff
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call

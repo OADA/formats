@@ -15,7 +15,7 @@ const testSchema = { enum: ['foo1'] };
 test.before('Load test schema', () => {
   formats.addSchema(
     testSchema,
-    'https://formats.openag.io/test/foo/bar/v1.schema.json'
+    'https://formats.openag.io/test/foo/bar/v1.schema.json',
   );
 });
 

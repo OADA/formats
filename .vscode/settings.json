@@ -1,5 +1,5 @@
 {
-  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs",
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "explorerExclude.backup": null,

@@ -83,7 +83,7 @@ const schema = {
                 },
                 altitude: {
                   description: 'altitude is a string in the format of a number',
-                  type: 'number',
+                  type: 'string',
                   pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 lat: {
@@ -98,7 +98,7 @@ const schema = {
                 },
                 alt: {
                   description: 'alt is shorthand for altitude',
-                  type: 'number',
+                  type: 'string',
                   pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 geohash: {
@@ -185,7 +185,7 @@ const schema = {
                 },
                 altitude: {
                   description: 'altitude is a string in the format of a number',
-                  type: 'number',
+                  type: 'string',
                   pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 lat: {
@@ -200,7 +200,7 @@ const schema = {
                 },
                 alt: {
                   description: 'alt is shorthand for altitude',
-                  type: 'number',
+                  type: 'string',
                   pattern: '^-?([0-9]*[.])[0-9]+',
                 },
                 geohash: {

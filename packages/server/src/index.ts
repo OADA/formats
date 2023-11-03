@@ -23,7 +23,7 @@ function isArray(value: unknown): value is unknown[] | readonly unknown[] {
  */
 export function handleResponse(
   contentType?: string,
-  links?: string | readonly string[]
+  links?: string | readonly string[],
 ): Record<string, string | string[]> {
   if (!contentType) {
     // Nothing to do
