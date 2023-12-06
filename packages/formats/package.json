@@ -78,7 +78,7 @@
     "ajv-formats": "^2.1.1",
     "ajv-formats-draft2019": "^1.6.1",
     "axios": "^1.4.0",
-    "glob": "^8.1.0",
+    "glob": "^9.0.0",
     "glob-promise": "^6.0.2",
     "tslib": "^2.5.0"
   },
