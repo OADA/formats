@@ -1,6 +1,6 @@
 {
   "name": "@oada/formats",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Reworked OADA formats",
   "keywords": [
     "oada",
@@ -20,7 +20,19 @@
   },
   "license": "MIT",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "module": "./src/index.ts",
+      "default": "./dist/index.js"
+    },
+    "./ajv": {
+      "types": "./dist/ajv.d.ts",
+      "module": "./src/ajv.ts",
+      "default": "./dist/ajv.js"
+    }
+  },
   "directories": {
     "lib": "dist"
   },
