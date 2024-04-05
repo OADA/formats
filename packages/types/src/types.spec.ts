@@ -18,7 +18,7 @@ interface TypeModule<T = unknown> {
   assert: TypeAssert<T>;
 }
 
-for (const { key, schema } of schemas()) {
+for await (const { key, schema } of schemas()) {
   const type = key
     .replace(/^https:\/\/formats\.openag\.io/, '')
     .replace(/^\//, '../types/')

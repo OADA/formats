@@ -7,13 +7,25 @@
  * https://opensource.org/licenses/MIT.
  */
 
+import { $ref, typescript } from '@oada/schemas/utils';
+
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-// HACK to estimate regex `^[^_]` in TypeScript
-const chars: string[] = [];
-for (let c = 'a'; c <= 'z'; c = String.fromCodePoint(c.codePointAt(0)! + 1)) {
-  chars.push(c);
-}
+import oadaSchema from '../../oada.schema.cjs';
+
+/**
+ * Wrapper around a `$ref` to the OADA non-reserved key definition
+ */
+const nonReserved$ref = $ref(
+  oadaSchema,
+  '/definitions/key/definitions/nonReserved',
+);
+
+const treeKey = {
+  title: 'Tree key',
+  pattern: '^[^_]',
+  oneOf: [{ const: '*' }, { ...nonReserved$ref }],
+} as const satisfies Schema;
 
 const schema = {
   $id: 'https://formats.openag.io/oada/tree/v1.schema.json',
@@ -21,20 +33,7 @@ const schema = {
   title: 'Tree',
   description: 'An object representation of an OADA "tree".',
   definitions: {
-    letter: {
-      description: 'A letter in the alphabet',
-      enum: chars,
-    },
-    treeKey: {
-      title: 'Tree key',
-      type: 'string',
-      pattern: '^[^_]',
-      // eslint-disable-next-line unicorn/no-useless-spread
-      ...{
-        // eslint-disable-next-line no-template-curly-in-string
-        tsType: "`${Letter | '*' | Uppercase<Letter>}${string}`",
-      },
-    },
+    treeKey,
   },
   type: 'object',
   properties: {
@@ -49,12 +48,9 @@ const schema = {
     {
       description: 'sub trees',
       type: 'object',
-      // eslint-disable-next-line unicorn/no-useless-spread
-      ...{
-        tsType: `{ [key: TreeKey]: Tree; }`,
-      },
+      ...typescript`{ [key in '*' | ${nonReserved$ref}]: Tree; }`,
       patternProperties: {
-        '^[^_]': {
+        [$ref(treeKey).pattern]: {
           $ref: '#',
         },
       },

@@ -21,8 +21,8 @@
 title: OADA Formats
 email: formats@openag.io
 description: >- # this means to ignore newlines until "baseurl:"
-  This serves as an inventory of known OADA API and ag data formats.
-  These formats are represented as JSON Schema.
+  This serves as an inventory of known OADA API and ag data formats. These
+  formats are represented as JSON Schema.
 baseurl: '' # the subpath of your site, e.g. /blog
 url: 'https://formats.openag.io' # the base hostname & protocol for your site, e.g. http://example.com
 github_username: OADA

@@ -1,18 +1,4 @@
 {
-  "files.exclude": {
-    "**/*.d.ts": true,
-    "**/*.d.cts": true,
-    "**/*.map": true,
-    "**/*.cjs": true,
-    "**/*.js": true
-  },
-  "search.exclude": {
-    "**/*.d.ts": true,
-    "**/*.d.cts": true,
-    "**/*.map": true,
-    "**/*.cjs": true,
-    "**/*.js": true
-  },
   "eslint.nodePath": "../.yarn/sdks",
   "prettier.prettierPath": "../.yarn/sdks/prettier/index.js",
   "typescript.tsdk": "../.yarn/sdks/typescript/lib"

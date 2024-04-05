@@ -1,7 +1,2 @@
 # Ignore TS output
-*.d.ts
-*.d.cts
-*.js
-*.cjs
-*.map
 *.tsbuildinfo

@@ -7,16 +7,18 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import { createRequire } from 'node:module';
 import path from 'node:path';
 import url from 'node:url';
 
-import type { JSONSchema8 as Schema } from 'jsonschema8';
 import { glob } from 'glob';
+
+import { importSchema } from './utils.cjs';
 
 const dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
-const schemas = await glob('*.schema.{c,m,}js', {
+export const schemasDirectory = dirname;
+
+export const schemas = await glob('*.schema.{c,m,}js', {
   cwd: dirname,
   posix: true,
   dotRelative: true,
@@ -24,34 +26,17 @@ const schemas = await glob('*.schema.{c,m,}js', {
 });
 
 /**
- * Every .schema.ts file we have
- */
-export const keys = schemas.map((key) =>
-  key.replace(/\/+/, '/').replace(/\.[cm]?[jt]s$/, '.json'),
-);
-
-export const requireSchema: (path: string) => Schema = createRequire(
-  path.join(dirname, 'schemas'),
-);
-export class SchemaInfo {
-  key;
-  path;
-  readonly schema;
-
-  constructor(key: string) {
-    this.path = path.join(dirname, key);
-    this.key = key;
-    const inFile = this.key.replace(/^\//, './').replace(/\.json$/, '.cjs');
-    this.schema = requireSchema(inFile);
-  }
-}
-
-/**
  * Load all the schemas
  */
-function* loadAllFormats(): Generator<SchemaInfo, void, void> {
-  for (const key of keys) {
-    yield new SchemaInfo(key);
+async function* loadAllFormats() {
+  for await (const s of schemas) {
+    const schema = await importSchema(s);
+    const key = s.replace(/\.[cm]?[jt]s$/, '.json');
+    yield {
+      key,
+      path: path.join(dirname, key),
+      schema,
+    };
   }
 }
 

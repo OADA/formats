@@ -1,7 +1,7 @@
 # @OADA/media-types
 
-This package is a library for resolving media types
-to their corresponding OADA schema(s).
+This package is a library for resolving media types to their corresponding OADA
+schema(s).
 
 ## Installation
 
@@ -11,9 +11,9 @@ yarn add @oada/media-types
 
 ## Usage
 
-The library takes a `string`, `Request`, or `Response`
-and returns an array of schema `$id`s.
-If it cannot determine a corresponding schema, the array will be empty.
+The library takes a `string`, `Request`, or `Response` and returns an array of
+schema `$id`s. If it cannot determine a corresponding schema, the array will be
+empty.
 
 ```ts
 import mediaType2schema from '@oada/media-types';

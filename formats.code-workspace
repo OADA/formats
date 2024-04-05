@@ -112,6 +112,7 @@
     "eslint.useESLintClass": true,
     "licenser.author": "Open Ag Data Alliance",
     "licenser.license": "AL2",
-    "commitlint.config.file": "oada/commitlint.config.cjs"
+    "commitlint.config.file": "oada/commitlint.config.cjs",
+    "deno.enable": false
   }
 }

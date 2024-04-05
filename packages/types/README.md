@@ -1,7 +1,7 @@
 # @OADA/types
 
-This package is TypeScript type definitions for known OADA formats.
-These types are based on [OADA/formats](https://github.com/OADA/formats).
+This package is TypeScript type definitions for known OADA formats. These types
+are based on [OADA/formats](https://github.com/OADA/formats).
 
 ## Installation
 
@@ -11,8 +11,8 @@ yarn add @oada/types
 
 ## Usage
 
-The type definition for a given format can be imported based on its `$id`.
-For example, the OADA Bookmarks v1 format can be imported like so:
+The type definition for a given format can be imported based on its `$id`. For
+example, the OADA Bookmarks v1 format can be imported like so:
 
 ```ts
 /**
@@ -24,9 +24,8 @@ import Bookmarks from '@oada/types/oada/bookmarks/v1';
 
 ### Runtime Validation
 
-Since the formats are backed by schemas,
-it is possible to check data against a format at runtime.
-All the types in this package export methods for doing so
+Since the formats are backed by schemas, it is possible to check data against a
+format at runtime. All the types in this package export methods for doing so
 which are typed properly for TypeScript to understand their type implications.
 
 ```ts

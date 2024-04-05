@@ -1,8 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@tsconfig/node16",
+  "extends": "@tsconfig/node18",
   "compilerOptions": {
     "composite": true,
+    "outDir": "dist",
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "removeComments": true,
@@ -10,6 +11,7 @@
     "importHelpers": true,
     "alwaysStrict": true,
     "strict": true,
+    "verbatimModuleSyntax": false,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

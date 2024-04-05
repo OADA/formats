@@ -1,4 +1,7 @@
 {
-  "extends": "./tsconfig.json",
-  "include": ["**/*.schema.cts"]
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "include": ["types.d.ts", "**/*.schema.mts", "**/*.schema.cts", "utils.cts"]
 }

@@ -1,6 +1,6 @@
 {
   "name": "@oada/types",
-  "version": "3.5.3",
+  "version": "4.0.0",
   "description": "TypeScript type definitions for OADA formats",
   "keywords": [
     "oada",
@@ -89,7 +89,10 @@
     "./oada/service/jobs-change.js": "./dist/types/oada/service/jobs-change.js",
     "./trellis/trading-partners/trading-partner.js": "./dist/types/trellis/trading-partners/trading-partner.js",
     "./jose/jwk.js": "./dist/types/jose/jwk.js",
-    "./jose/jwa.js": "./dist/types/jose/jwa.js"
+    "./jose/jwa.js": "./dist/types/jose/jwa.js",
+    "./jose/jwa/kty.js": "./dist/types/jose/jwa/kty.js",
+    "./jose/jws.js": "./dist/types/jose/jws.js",
+    "./utils.js": "./dist/types/utils.js"
   },
   "directories": {
     "lib": "dist"
@@ -145,28 +148,30 @@
   ],
   "dependencies": {
     "ajv": "8.12.0",
-    "ajv-formats": "^2.1.1",
+    "ajv-formats": "^3.0.1",
     "ajv-formats-draft2019": "^1.6.1",
     "tslib": "^2.6.2"
   },
   "devDependencies": {
-    "@apidevtools/json-schema-ref-parser": "^10.1.0",
+    "@apidevtools/json-schema-ref-parser": "^11.5.4",
     "@ava/typescript": "^4.1.0",
     "@oada/formats": "workspace:^",
-    "@types/clone-deep": "^4.0.3",
-    "@types/debug": "^4.1.10",
-    "@types/json-schema-merge-allof": "^0.6.3",
-    "@types/lodash.omit": "^4.5.8",
+    "@oada/schemas": "workspace:^",
+    "@types/clone-deep": "^4.0.4",
+    "@types/debug": "^4.1.12",
+    "@types/json-schema-merge-allof": "^0.6.5",
+    "@types/lodash.omit": "^4.5.9",
     "@types/mkdirp": "^2.0.0",
-    "@types/node": "^16.18.60",
-    "ava": "5.3.1",
-    "c8": "^8.0.1",
+    "@types/node": "^20.12.4",
+    "ava": "6.1.2",
+    "c8": "^9.1.0",
     "clone-deep": "^4.0.1",
     "debug": "^4.3.4",
     "json-schema-merge-allof": "^0.8.1",
-    "json-schema-to-typescript": "^11.0.5",
+    "json-schema-to-typescript": "^13.1.2",
     "jsonschema8": "^2.0.0",
     "lodash.omit": "^4.5.0",
-    "mkdirp": "^3.0.1"
+    "mkdirp": "^3.0.1",
+    "type-fest": "^4.15.0"
   }
 }

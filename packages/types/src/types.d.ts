@@ -50,12 +50,14 @@ declare module 'json-schema-traverse' {
 }
 
 declare module 'ajv/dist/standalone.js' {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   import type Ajv, { ValidateFunction } from 'ajv';
   function pack(ajv: Ajv, validate: ValidateFunction): string;
   export default pack;
 }
 
 declare module 'ajv-formats-draft2019' {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   import type Ajv from 'ajv';
 
   function apply(ajv: Ajv): Ajv;

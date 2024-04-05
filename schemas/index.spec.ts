@@ -14,9 +14,10 @@ import { dirname, isAbsolute, join, relative } from 'node:path';
 import { $RefParser } from '@apidevtools/json-schema-ref-parser';
 import type { JSONSchema6 } from 'json-schema';
 import type { JSONSchema8 as Schema } from 'jsonschema8';
+
 import _Ajv from 'ajv';
 
-import schemas, { requireSchema } from './index.js';
+import loadAllSchemas from './index.js';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const Ajv = _Ajv as unknown as typeof _Ajv.default;
@@ -24,13 +25,13 @@ const Ajv = _Ajv as unknown as typeof _Ajv.default;
 /**
  * @todo where should this live?
  */
-export function loadSchema(uri: string) {
+export async function loadSchema(uri: string) {
   const r = /^https:\/\/formats\.openag\.io/i;
 
   if (r.test(uri)) {
     // Use local version of openag schemas
     const file = uri.replace(r, '.').replace(/\.json$/, '');
-    return requireSchema(file);
+    return import(file);
   }
 
   throw new Error(`Unknown schema URI: ${uri}`);
@@ -82,7 +83,7 @@ test.before('Initialize $ref checker', () => {
               ? join(directory, path)
               : join(directory, dirname(key), path)
             ).replace(/\.json$/, '.cjs')}`;
-            return requireSchema(file);
+            return import(file);
           },
         },
       },
@@ -91,7 +92,7 @@ test.before('Initialize $ref checker', () => {
 });
 
 // TODO: Can you make these parallel in ava?
-for (const { schema, key } of schemas()) {
+for await (const { schema, key } of loadAllSchemas()) {
   test.before(`Compile schema ${key}`, async () => {
     try {
       await ajv.compileAsync(schema);

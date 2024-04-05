@@ -25,9 +25,9 @@ const schema: Schema = {
     things that the lab needs to record that are specific to the sample.
   `,
 
-  //---------------------------------------------------------------
+  // ---------------------------------------------------------------
   // Re-used definitions:
-  //---------------------------------------------------------------
+  // ---------------------------------------------------------------
 
   $defs: {
     id: {
@@ -287,7 +287,7 @@ const schema: Schema = {
           },
         },
       },
-    }, // end of lab
+    }, // End of lab
 
     source: {
       type: 'object',
@@ -404,12 +404,12 @@ const schema: Schema = {
           },
         },
       },
-    }, // end source
-  }, // end of all defs
+    }, // End source
+  }, // End of all defs
 
-  //---------------------------------------------------------------
+  // ---------------------------------------------------------------
   // Main Schema
-  //---------------------------------------------------------------
+  // ---------------------------------------------------------------
 
   type: 'object',
   properties: {
@@ -418,9 +418,9 @@ const schema: Schema = {
       description: `Content type for API responses.  Must also be present on the document.`,
     },
 
-    //--------------------------------------------------------
+    // --------------------------------------------------------
     // Properties of this document as a whole:
-    //--------------------------------------------------------
+    // --------------------------------------------------------
 
     id: {
       $ref: '#/$defs/id',
@@ -474,9 +474,9 @@ const schema: Schema = {
       `,
     },
 
-    //---------------------------------------------------------
+    // ---------------------------------------------------------
     // Everything below this can be overridden at sample level
-    //---------------------------------------------------------
+    // ---------------------------------------------------------
 
     depth: {
       $ref: '#/$defs/depth',
@@ -497,9 +497,9 @@ const schema: Schema = {
 
     crop: {},
 
-    //---------------------------------------------------------------
+    // ---------------------------------------------------------------
     // Any lab or source internals can be overridden at sample level
-    //---------------------------------------------------------------
+    // ---------------------------------------------------------------
 
     lab: {
       $ref: '#/$defs/lab',
@@ -605,16 +605,16 @@ const schema: Schema = {
                 },
               },
             },
-          }, // end of results
-        }, // end of sample
+          }, // End of results
+        }, // End of sample
       },
-    }, // end of samples
+    }, // End of samples
   },
   required: ['id', 'date', 'type'],
 
-  //-----------------------------------------------------------------
+  // -----------------------------------------------------------------
   // EXAMPLES:
-  //-----------------------------------------------------------------
+  // -----------------------------------------------------------------
 
   // More examples can be found at https://github.com/oats-center/modus/examples
   examples: [
@@ -661,12 +661,12 @@ const schema: Schema = {
 
       samples: {
         '0djfi2iekldsfj02i': {
-          // this key is only required to be "sufficiently random within this document
+          // This key is only required to be "sufficiently random within this document
           lab: { sampleid: '28_051' },
           source: { sampleid: 'ABC-1' },
 
           /*
-          depth: {
+          Depth: {
             id: '02ijflkj2ef',
             name: 'Hmmm...', // here only for backwards compatibility
             top: 0,
@@ -773,13 +773,13 @@ const schema: Schema = {
           },
         },
       },
-    }, // end of first example
-  ], // end of examples
+    }, // End of first example
+  ], // End of examples
 };
 
-//----------------------------------------------------------------
+// ----------------------------------------------------------------
 // Todo's/Open Questions:
-//----------------------------------------------------------------
+// ----------------------------------------------------------------
 //
 // - TestPackages: was an array of strings under the SampleMetaData
 // - Crop: need an actual list of crop types, growth stages, sub-growth stages.

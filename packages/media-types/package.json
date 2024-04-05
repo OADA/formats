@@ -1,6 +1,6 @@
 {
   "name": "@oada/media-types",
-  "version": "3.5.3",
+  "version": "4.0.0",
   "description": "OADA formats media type resolution",
   "keywords": [
     "oada",
@@ -71,12 +71,12 @@
     ]
   },
   "dependencies": {
-    "@types/content-type": "^1.1.7",
+    "@types/content-type": "^1.1.8",
     "content-type": "^1.0.5"
   },
   "devDependencies": {
     "@ava/typescript": "^4.1.0",
-    "ava": "5.3.1",
-    "c8": "^8.0.1"
+    "ava": "6.1.2",
+    "c8": "^9.1.0"
   }
 }

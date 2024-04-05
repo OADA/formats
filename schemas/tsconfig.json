@@ -1,5 +1,14 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["index.ts", "index.spec.ts"],
-  "references": [{ "path": "./tsconfig.schemas.json" }]
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "include": [
+    "index.ts",
+    "index.spec.ts",
+    "types.d.ts",
+    "**/*.schema.mts",
+    "**/*.schema.cts",
+    "utils.cts"
+  ]
 }

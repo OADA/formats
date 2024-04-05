@@ -17,4 +17,4 @@ export {
   loadAllFormats as default,
 } from './ajv.js';
 
-export { default as schemas } from './schemas/index.js';
+export { default as schemas } from '@oada/schemas';

@@ -7,16 +7,17 @@
  * https://opensource.org/licenses/MIT.
  */
 
-/* eslint-disable security/detect-non-literal-fs-filename */
-
 import { basename, dirname, join, resolve } from 'node:path';
 import { createRequire } from 'node:module';
 import { promises as fs } from 'node:fs';
 import { setTimeout } from 'node:timers/promises';
 
 import { $RefParser } from '@apidevtools/json-schema-ref-parser';
+
 import _Ajv from 'ajv';
+
 import _addFormats from 'ajv-formats';
+
 import _standaloneCode from 'ajv/dist/standalone/index.js';
 import addFormats2019 from 'ajv-formats-draft2019';
 import clone from 'clone-deep';
@@ -45,6 +46,31 @@ const error = log('@oada/types:compile:error');
 $RefParser.dereference = $RefParser.dereference.bind($RefParser);
 $RefParser.resolve = $RefParser.resolve.bind($RefParser);
 
+const typescript: typeof String.raw = (
+  raw: TemplateStringsArray,
+  ...v: readonly string[]
+) => String.raw({ raw }, ...v);
+
+function example(
+  [type = '']: TemplateStringsArray,
+  v: unknown | readonly unknown[],
+) {
+  const vs: readonly unknown[] = Array.isArray(v) ? v : [v];
+  const examples = vs.map(
+    (ex) => `@example
+\`\`\`${type}
+${JSON.stringify(ex, undefined, 2)}
+\`\`\`
+`,
+  );
+  return examples.join('\n');
+}
+
+function indent([prefix]: TemplateStringsArray, v: unknown) {
+  const raw = `\n${v}`.replaceAll('\n', `${prefix}`);
+  return String.raw({ raw });
+}
+
 /**
  * Where to put compiled types
  */
@@ -54,7 +80,16 @@ const compileString = '`$ yarn build`';
 
 // Create ajv for packing validation functions
 const ajv = addFormats2019(
-  addFormats(new Ajv({ strict: false, loadSchema, code: { source: true } })),
+  addFormats(
+    new Ajv({
+      strict: false,
+      async loadSchema(id) {
+        debug(`Loading schema ${id}`);
+        return clone(await loadSchema(id));
+      },
+      code: { source: true },
+    }),
+  ),
 );
 
 // Compile the schema files to TypeScript types
@@ -67,10 +102,10 @@ let errored: Error | undefined;
 const exports: Record<string, string> = {};
 // Compile schemas to TS types
 for await (const { key, path, schema } of schemas()) {
-  debug('Loading %s', key);
+  debug({ path, schema }, `Loading ${key}`);
   // Normalize(schema)
 
-  const { $id, title } = schema;
+  const { $id, title, description = '', examples = [] } = clone(schema);
   const file = key
     .replace(/^https:\/\/formats\.openag\.io/, '')
     .replace(/^\//, './');
@@ -80,12 +115,19 @@ for await (const { key, path, schema } of schemas()) {
 
   // HACK: Add to exports?
   const exp = file.replace(/\.schema\.json$/, '.js');
-  // eslint-disable-next-line import/no-commonjs, security/detect-object-injection
+  // eslint-disable-next-line import/no-commonjs
   exports[exp] = `./${join('dist', 'types', exp)}`;
+
+  /**
+   * @todo Automagically add `examples` to `description` for _all schemas
+   */
+  // eslint-disable-next-line sonarjs/no-nested-template-literals
+  const desc = `${description}\n${example`json${examples}`}`;
 
   try {
     // Pack up validation function
-    const validate = ajv.getSchema($id!) ?? (await ajv.compileAsync(schema));
+    const validate =
+      ajv.getSchema($id) ?? (await ajv.compileAsync(clone(schema)));
     const moduleCode = standaloneCode(ajv, validate);
     const packedfile = resolve(
       './dist/types/',
@@ -93,18 +135,22 @@ for await (const { key, path, schema } of schemas()) {
     );
 
     /**
-     * Make the banner comment a bit more useful?
+     * Make the banner comment a bit more useful
      *
      * FIXME: Figure out some TS magic to use instead of this for code generation??
      */
-    const bannerComment = `/* eslint-disable unicorn/no-abusive-eslint-disable, eslint-comments/no-unlimited-disable */
+    const bannerComment = typescript`
+/* eslint-disable unicorn/no-abusive-eslint-disable, eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 /* tslint:disable */
-/**
+/**${indent`
+ * ${desc}`}
+ *
  * File automatically generated using json-schema-to-typescript.
  * ! DO NOT MODIFY IT BY HAND !
  * Instead, modify the source file ${key} of @oada/formats
  * and run ${compileString} to regenerate this file.
+ *
  * @packageDocumentation
  */
 
@@ -141,6 +187,9 @@ export function assert (val: unknown): asserts val is ${typeName} {
   }
 }
 
+/**${indent`
+ * ${desc}`}
+ */
 export default ${typeName}`;
 
     debug('Compiling %s to TypeScript types', key);
@@ -149,11 +198,28 @@ export default ${typeName}`;
       { title: typeName, ...clone(schema) } as Record<string, unknown>,
       $id!,
       {
-        format: false,
+        format: true,
+        style: {
+          singleQuote: true,
+          quoteProps: 'consistent',
+          proseWrap: 'always',
+        },
         bannerComment,
+        enableConstEnums: true,
+        unknownAny: true,
         unreachableDefinitions: true,
-        // NormalizerRules: rules,
         $refOptions: {
+          parse: {
+            json: false,
+            object: {
+              canParse({ data }) {
+                return typeof data === 'object' && !Buffer.isBuffer(data);
+              },
+              async parse({ data }) {
+                return data as unknown as Record<string, unknown>;
+              },
+            },
+          },
           // Use local versions of openag schemas
           resolve: {
             // Load schemas through @oada/formats
@@ -161,9 +227,12 @@ export default ${typeName}`;
               order: 1,
               canRead: true,
               async read({ url }: { url: string }) {
-                return loadSchema(url);
+                debug(`Loading schema ${url}`);
+                return clone(await loadSchema(url));
               },
             },
+            file: false,
+            http: false,
           },
         },
         // Resolve relative to current file?
@@ -178,26 +247,25 @@ export default ${typeName}`;
     debug('Outputting %s', outfile);
     await fs.writeFile(outfile, ts);
   } catch (cError: unknown) {
-    error({ error: cError }, `Error compiling ${$id}`);
-    if (!errored) {
-      errored = cError as Error;
-    }
+    error(cError, `Error compiling ${$id}`);
+    errored ||= cError as Error;
   }
 }
 
 // HACK: Add exports to package.json
 // eslint-disable-next-line import/no-commonjs
-const package_ = require('../../package.json') as Record<string, unknown>;
+const packageJson = require('../../package.json') as Record<string, unknown>;
 await fs.writeFile(
   './package.json',
   JSON.stringify(
     {
-      ...package_,
+      ...packageJson,
       exports: {
-        ...(package_.exports as Record<string, string>),
+        ...(packageJson.exports as Record<string, string>),
         ...exports,
       },
     },
+    // eslint-disable-next-line unicorn/no-null
     null,
     2,
   ),

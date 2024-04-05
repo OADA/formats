@@ -23,7 +23,7 @@ const schema: Schema = {
     masterid: {
       type: 'string',
     },
-    //Some other master data system attributes
+    // Some other master data system attributes
     companycode: {
       type: 'string',
     },
@@ -33,7 +33,7 @@ const schema: Schema = {
     partnerid: {
       type: 'string',
     },
-    //Details of the trading-partner
+    // Details of the trading-partner
     name: {
       type: 'string',
     },

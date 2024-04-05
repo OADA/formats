@@ -1,7 +1,7 @@
 # @OADA/formats-server
 
-This package is a library for handling OADA formats
-in HTTP servers (currently supports `express` and `fastify`).
+This package is a library for handling OADA formats in HTTP servers (currently
+supports `express` and `fastify`).
 
 ## Installation
 
@@ -11,8 +11,8 @@ yarn add @oada/formats-server
 
 ## Usage
 
-It will set relevant HTTP headers for known OADA formats.
-If it encounters an unknown format, it leaves the headers alone.
+It will set relevant HTTP headers for known OADA formats. If it encounters an
+unknown format, it leaves the headers alone.
 
 ### Express
 

@@ -1,7 +1,7 @@
 # @OADA/formats
 
-This package is a library for using OADA/formats with JavaScript/TypeScript.
-It is mainly an [Ajv][] instance pre-packaged with the OADA schemas.
+This package is a library for using OADA/formats with JavaScript/TypeScript. It
+is mainly an [Ajv][] instance pre-packaged with the OADA schemas.
 
 ## Installation
 
@@ -11,9 +11,8 @@ yarn add @oada/formats
 
 ## Usage
 
-This TypeScript/JavaScript library exports an async function
-that resolves to an [Ajv][] instance
-which is loaded with all the schemas from this project.
+This TypeScript/JavaScript library exports an async function that resolves to an
+[Ajv][] instance which is loaded with all the schemas from this project.
 
 ```ts
 import loadAllFormats from '@oada/formats';
@@ -28,9 +27,9 @@ const formats = await loadAllFormats();
 formats.validate('https://formats.openag.io/oada/bookmarks.schema', obj);
 ```
 
-In addition to being loaded with all the OADA formats,
-the returned [Ajv][] instance is also augmented to be able
-to resolve content types to the relevant schema.
+In addition to being loaded with all the OADA formats, the returned [Ajv][]
+instance is also augmented to be able to resolve content types to the relevant
+schema.
 
 ```ts
 // Returns the schema for an OADA Bookmarks document

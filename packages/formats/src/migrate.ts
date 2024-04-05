@@ -7,7 +7,7 @@
  * https://opensource.org/licenses/MIT.
  */
 
-/* eslint-disable no-console, security/detect-non-literal-fs-filename */
+/* eslint-disable no-console */
 
 import { dirname, join } from 'node:path';
 import { cwd } from 'node:process';

@@ -5,12 +5,14 @@
     "moduleResolution": "node16",
     "esModuleInterop": true,
     "removeComments": false,
-    "sourceMap": false,
     "rootDirs": ["src", "types"],
     "outDir": "dist"
   },
   "include": ["src", "types"],
   "references": [
+    {
+      "path": "../../schemas"
+    },
     {
       "path": "../formats"
     }

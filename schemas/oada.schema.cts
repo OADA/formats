@@ -9,6 +9,12 @@
 
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
+import { $ref, typescript } from './utils.cjs';
+
+import util from './utils.schema.cjs';
+
+const alphaNumeric = $ref(util, '/definitions/alphanumeric');
+
 const schema = {
   $id: 'https://formats.openag.io/oada.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
@@ -56,6 +62,22 @@ const schema = {
           $ref: '#/definitions/link/definitions/unversioned',
         },
       ],
+    },
+    key: {
+      definitions: {
+        reserved: {
+          description: 'Key names reserved for OADA use',
+          type: 'string',
+          pattern: '^_',
+          ...typescript`\`_\${string}\``,
+        },
+        nonReserved: {
+          description: 'Key names not reserved for OADA use',
+          type: 'string',
+          pattern: '^[^_]',
+          ...typescript`\`\${${alphaNumeric}}\${string}\``,
+        },
+      },
     },
     _meta: {
       $comment: '_meta is a versioned link',

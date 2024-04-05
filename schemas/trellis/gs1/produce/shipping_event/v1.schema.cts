@@ -58,7 +58,7 @@ const schema = {
     },
     activity_no: {
       description:
-        'defines a unique identifer to implicate the transaction id of the business event - purchase order id etc',
+        'defines a unique identifier to implicate the transaction id of the business event - purchase order id etc',
       type: 'string',
     },
     contents_of_shipment: {

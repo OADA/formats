@@ -7,15 +7,19 @@
  * https://opensource.org/licenses/MIT.
  */
 
+import { $ref, typescript } from '@oada/schemas/utils';
+
 import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-// HACK to estimate regex `^[^_]` in TypeScript
-const chars: string[] = [];
-for (let c = 'a'; c <= 'z'; c = String.fromCodePoint(c.codePointAt(0)! + 1)) {
-  chars.push(c);
-}
+import oadaSchema from '../../oada.schema.cjs';
 
-const letter = `"${chars.join('"|"')}"`;
+/**
+ * Wrapper around a `$ref` to the OADA non-reserved key definition
+ */
+const nonReserved$ref = $ref(
+  oadaSchema,
+  '/definitions/key/definitions/nonReserved',
+);
 
 const schema = {
   $id: 'https://formats.openag.io/oada/list/v1.schema.json',
@@ -23,20 +27,6 @@ const schema = {
   description: 'OADA "list"',
   title: 'List',
   definitions: {
-    letter: {
-      description: 'A letter in the alphabet',
-      enum: chars,
-    },
-    nonOadaKey: {
-      title: 'non OADA key',
-      description: 'keys that are not OADA reserved keys',
-      type: 'string',
-      pattern: '^[^_]',
-      // eslint-disable-next-line unicorn/no-useless-spread
-      ...{
-        tsType: `\`\${${letter} | number | Uppercase<${letter}>}\${string}\``,
-      },
-    },
     item: {
       title: 'List item',
       $ref: '../link/v1.schema.json',
@@ -49,14 +39,11 @@ const schema = {
       $ref: '../resource.schema.json',
     },
     {
-      description: 'listed jobs',
+      description: 'listed items',
       type: 'object',
-      // eslint-disable-next-line unicorn/no-useless-spread
-      ...{
-        tsType: `{ [key: NonOADAKey]: ListItem }`,
-      },
+      ...typescript`{[key: ${nonReserved$ref}]: ListItem}`,
       patternProperties: {
-        '^[^_]': {
+        [nonReserved$ref.pattern]: {
           $ref: '#/definitions/item',
         },
       },
