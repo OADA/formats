@@ -1,5 +1,9 @@
 # OADA Formats
 
+[![License](https://img.shields.io/github/license/OADA/formats)](LICENSE)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6a3ad756-6ef7-4b04-b603-74deef3642c9/deploy-status)](https://app.netlify.com/sites/formats/deploys)
+
 [![Deploys by Netlify](https://www.netlify.com/img/global/badges/netlify-color-accent.svg)](https://www.netlify.com)
 
 This is a mono-repo for all things relating to OADA formats. It uses yarn
@@ -69,5 +73,4 @@ are also node libraries for utilizing the schemas in TypeScript/JavaScript under
 [packages](packages).
 
 [json schema]: https://json-schema.org
-[`examples`]:
-  https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5
+[`examples`]: https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5
