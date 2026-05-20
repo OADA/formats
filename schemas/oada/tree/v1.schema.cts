@@ -48,7 +48,7 @@ const schema = {
     {
       description: "sub trees",
       type: "object",
-      ...typescript`{ [key in '*' | ${nonReserved$ref}]: Tree; }`,
+      ...typescript`{ [key in '*' | ${nonReserved$ref}]?: Tree; }`,
       patternProperties: {
         [$ref(treeKey).pattern]: {
           $ref: "#",
