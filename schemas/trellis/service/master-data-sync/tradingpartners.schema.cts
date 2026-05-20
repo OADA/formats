@@ -7,98 +7,98 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import type { JSONSchema8 as Schema } from 'jsonschema8';
+import type { JSONSchema8 as Schema } from "jsonschema8";
 
 const schema = {
-  $id: 'https://formats.openag.io/trellis/service/master-data-sync/tradingpartners.schema.json',
-  $schema: 'http://json-schema.org/draft-07/schema#',
-  description: 'Trading Partners config format for master-data-sync',
-  type: 'object',
+  $id: "https://formats.openag.io/trellis/service/master-data-sync/tradingpartners.schema.json",
+  $schema: "http://json-schema.org/draft-07/schema#",
+  description: "Trading Partners config format for master-data-sync",
+  type: "object",
   properties: {
     id: {
-      type: 'string',
+      type: "string",
     },
     sapid: {
-      type: 'string',
+      type: "string",
     },
     masterid: {
-      type: 'string',
+      type: "string",
     },
     internalid: {
-      type: 'string',
+      type: "string",
     },
     companycode: {
-      type: 'string',
+      type: "string",
     },
     vendorid: {
-      type: 'string',
+      type: "string",
     },
     partnerid: {
-      type: 'string',
+      type: "string",
     },
     name: {
-      type: 'string',
+      type: "string",
     },
     address: {
-      type: 'string',
+      type: "string",
     },
     city: {
-      type: 'string',
+      type: "string",
     },
     state: {
-      type: 'string',
+      type: "string",
     },
     type: {
-      type: 'string',
+      type: "string",
     },
     source: {
-      type: 'string',
+      type: "string",
     },
     coi_emails: {
-      type: 'string',
+      type: "string",
     },
     fsqa_emails: {
-      type: 'string',
+      type: "string",
     },
     email: {
-      type: 'string',
+      type: "string",
     },
     phone: {
-      type: 'string',
+      type: "string",
     },
   },
   required: [
-    'sapid',
-    'masterid',
-    'internalid',
-    'name',
-    'address',
-    'city',
-    'state',
-    'type',
-    'source',
-    'email',
-    'phone',
+    "sapid",
+    "masterid",
+    "internalid",
+    "name",
+    "address",
+    "city",
+    "state",
+    "type",
+    "source",
+    "email",
+    "phone",
   ],
   examples: [
     {
-      id: '1234567890',
-      sapid: '1234567890',
-      masterid: '1234567890',
-      internalid: '1234567890',
-      companycode: '1234567890',
-      vendorid: '1234567890',
-      partnerid: '1234567890',
-      name: 'Tyson Foods',
-      address: '2550 Yeager Road',
-      city: 'West Lafayette',
-      state: 'Indiana',
-      type: 'customer',
-      source: 'business',
-      coi_emails: 'example@example.com',
-      fsqa_emails: 'example@example.com',
-      email: 'example@example.com',
-      phone: '111-222-3333',
+      id: "1234567890",
+      sapid: "1234567890",
+      masterid: "1234567890",
+      internalid: "1234567890",
+      companycode: "1234567890",
+      vendorid: "1234567890",
+      partnerid: "1234567890",
+      name: "Tyson Foods",
+      address: "2550 Yeager Road",
+      city: "West Lafayette",
+      state: "Indiana",
+      type: "customer",
+      source: "business",
+      coi_emails: "example@example.com",
+      fsqa_emails: "example@example.com",
+      email: "example@example.com",
+      phone: "111-222-3333",
     },
   ],
 } as const satisfies Schema;

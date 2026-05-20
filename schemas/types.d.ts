@@ -7,8 +7,9 @@
  * https://opensource.org/licenses/MIT.
  */
 
-declare module 'deep-freeze-node' {
-  import type { ReadonlyDeep } from 'type-fest';
+declare module "deep-freeze-node" {
+  import type { ReadonlyDeep } from "type-fest";
+
   function freeze<T>(object: T): ReadonlyDeep<T>;
   export = freeze;
 }

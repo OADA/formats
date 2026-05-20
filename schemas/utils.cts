@@ -7,23 +7,22 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import { pipeline } from 'node:stream/promises';
-
-import {
-  type ArrayValues,
-  type Get,
-  type IfNever,
-  type MergeDeep,
-  type Paths,
-  type Replace,
-  type TupleToUnion,
-} from 'type-fest';
-import { type ColumnOption, parse } from 'csv-parse';
-import type { JSONSchema8 as Schema } from 'jsonschema8';
-import freeze from 'deep-freeze-node';
-
-import _get from 'lodash.get';
-import _merge from 'lodash.merge';
+import { pipeline } from "node:stream/promises";
+import { type ColumnOption, parse } from "csv-parse";
+import freeze from "deep-freeze-node";
+import type { JSONSchema8 as Schema } from "jsonschema8";
+import _get from "lodash.get";
+import _merge from "lodash.merge";
+import type {
+  ArrayValues,
+  Get,
+  IfNever,
+  MergeDeep,
+  Paths,
+  ReadonlyDeep,
+  Replace,
+  TupleToUnion,
+} from "type-fest";
 
 /**
  * Generate a link to the given RFC (with optional section)
@@ -32,7 +31,7 @@ export function rfc<
   N extends number,
   S extends string | number | never = never,
 >(rfcNumber: N, section?: S) {
-  const fragment = section ? (`section-${section}` as const) : '';
+  const fragment = section ? (`section-${section}` as const) : "";
   const uri = `https://datatracker.ietf.org/doc/html/rfc${rfcNumber}` as const;
   type R = IfNever<S, typeof uri, `${typeof uri}#section-${S}`>;
   return (fragment ? (`${uri}#${fragment}` as const) : uri) as R;
@@ -51,17 +50,17 @@ export function iana<P extends string, A extends string>(
 
 export async function importSchema(file: string) {
   const schema: Schema | { default: Schema } = await import(file);
-  if ('$id' in schema) {
-    return freeze(schema);
+  if ("$id" in schema) {
+    return freeze(schema) as ReadonlyDeep<Schema>;
   }
 
   return freeze(schema.default as Schema);
 }
 
-const columnDefaults = ['value', 'description'] as const;
+const columnDefaults = ["value", "description"] as const;
 export const columns = {
   jose: {
-    'web-key-parameters': [...columnDefaults, 'kty'],
+    "web-key-parameters": [...columnDefaults, "kty"],
   },
 } as const satisfies Record<string, Record<string, readonly string[]>>;
 
@@ -73,7 +72,7 @@ type Column<P extends string, A extends string> = P extends keyof Columns
   : typeof columnDefaults;
 
 export type Row<P extends string, A extends string> = Record<
-  TupleToUnion<Column<P, A>> | 'reference',
+  TupleToUnion<Column<P, A>> | "reference",
   string
 >;
 
@@ -95,7 +94,7 @@ export async function ianaAssignments<P extends string, A extends string>(
       return [...cols, ...rest.map((n) => n.toLowerCase())];
     },
     cast(value, context) {
-      if (context.column === 'reference') {
+      if (context.column === "reference") {
         try {
           const r = /\[(?<reference>[^,]+)(?:, (?<section>[^,]*))?]/;
           const { groups: { reference, section } = {} } = r.exec(value)!;
@@ -103,7 +102,7 @@ export async function ianaAssignments<P extends string, A extends string>(
           if (/^rfc/i.test(reference!)) {
             return rfc(
               Number.parseInt(reference!.slice(3), 10),
-              section?.replace(/section ?/i, ''),
+              section?.replace(/section ?/i, ""),
             );
           }
 
@@ -139,7 +138,7 @@ export async function ianaAssignments<P extends string, A extends string>(
 /**
  * Key used by JSON Schema to TypeScript library for overriding types
  */
-const tsKey = 'tsType';
+const tsKey = "tsType";
 
 /**
  * Override the resulting TypeScript types of a JSON Schema
@@ -153,11 +152,11 @@ export function typescript(
   >
 ) {
   const tsTypes = values.map((s) =>
-    typeof s === 'string'
+    typeof s === "string"
       ? s
       : tsKey in s
         ? s[tsKey]
-        : s.enum.map((v) => JSON.stringify(v)).join('|'),
+        : s.enum.map((v) => JSON.stringify(v)).join("|"),
   );
   return {
     tsType: String.raw({ raw: strings }, ...tsTypes),
@@ -166,19 +165,19 @@ export function typescript(
 
 export type JSONPointers<T> =
   Paths<T> extends string
-    ? `/${Replace<Paths<T>, '.', '/', { all: true }>}`
+    ? `/${Replace<Paths<T>, ".", "/", { all: true }>}`
     : never;
 
 export type ToPath<T extends `/${string}`> = Replace<
-  Replace<T, '/', ''>,
-  '/',
-  '.',
+  Replace<T, "/", "">,
+  "/",
+  ".",
   { all: true }
 >;
 
 function toPath<P extends `/${string}`>(p: P) {
-  const [, ...path] = p.split('/');
-  return path.join('.') as ToPath<P>;
+  const [, ...path] = p.split("/");
+  return path.join(".") as ToPath<P>;
 }
 
 function get<O, P extends JSONPointers<O> = never>(
@@ -212,13 +211,13 @@ class $Ref<
       Object.defineProperty(this, key, { value });
     }
 
-    type V = Get<IfNever<P, S, Get<S, ToPath<P>>>, 'pattern'>;
+    type V = Get<IfNever<P, S, Get<S, ToPath<P>>>, "pattern">;
     // @ts-expect-error fix types for d later;
     this.#string = d?.pattern as V;
 
-    const url = new URL(schema.$id ?? '', 'none:/');
+    const url = new URL(schema.$id ?? "", "none:/");
     url.hash += p;
-    this.$ref = url.toString().replace(/^none:\//, '');
+    this.$ref = url.toString().replace(/^none:\//, "");
   }
 
   toString() {

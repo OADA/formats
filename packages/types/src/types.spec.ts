@@ -7,11 +7,10 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import test from 'ava';
+import { schemas } from "@oada/formats";
+import test from "ava";
 
-import { schemas } from '@oada/formats';
-
-import type { TypeAssert, TypeCheck } from './index.js';
+import type { TypeAssert, TypeCheck } from "./index.js";
 
 interface TypeModule<T = unknown> {
   is: TypeCheck<T>;
@@ -20,9 +19,9 @@ interface TypeModule<T = unknown> {
 
 for await (const { key, schema } of schemas()) {
   const type = key
-    .replace(/^https:\/\/formats\.openag\.io/, '')
-    .replace(/^\//, '../types/')
-    .replace(/\.schema\.json$/, '.js');
+    .replace(/^https:\/\/formats\.openag\.io/, "")
+    .replace(/^\//, "../types/")
+    .replace(/\.schema\.json$/, ".js");
 
   const { examples } = schema;
   for (const [index, example] of Object.entries(examples ?? [])) {

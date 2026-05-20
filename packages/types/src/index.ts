@@ -7,7 +7,7 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import type { ErrorObject } from 'ajv';
+import type { ErrorObject } from "ajv";
 
 /**
  * Type for the `is` functions of @oada/types types
@@ -27,7 +27,7 @@ export class AssertError<T = unknown> extends TypeError {
     const [first] = errors;
     const message = first
       ? `@oada/types assert failed at path "${first.instancePath}": ${first.message}`
-      : '@oada/types assert failed';
+      : "@oada/types assert failed";
     super(message);
     this.input = input;
     this.errors = errors;

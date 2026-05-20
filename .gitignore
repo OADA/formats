@@ -24,13 +24,12 @@ docker-compose.override.yml
 .actrc
 act/
 
-# yarn 2 stuff
-.yarn/*
-!.yarn/releases
-!.yarn/plugins
-!.yarn/versions
+# yarn 3 stuff
+/.yarn/*
+!/.yarn/patches/
+!/.yarn/plugins/
+!/.yarn/versions/
 .pnp.*
-yarn.lock
 
 # ignore sdk stuff
 .vim

@@ -7,34 +7,34 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import type { JSONSchema8 as Schema } from 'jsonschema8';
+import type { JSONSchema8 as Schema } from "jsonschema8";
 
 const schema = {
-  $id: 'https://formats.openag.io/trellis/service/abalonemail/config/email.schema.json',
-  $schema: 'http://json-schema.org/draft-07/schema#',
-  description: 'Abalonemail email config format for @oada/job job',
-  type: 'object',
+  $id: "https://formats.openag.io/trellis/service/abalonemail/config/email.schema.json",
+  $schema: "http://json-schema.org/draft-07/schema#",
+  description: "Abalonemail email config format for @oada/job job",
+  type: "object",
   definitions: {
     email: {
       $comment: "TODO: Allow emails like: 'John Doe <john@example.org>'",
       description: "Object for email and associated person's name",
       oneOf: [
         {
-          type: 'string',
-          format: 'email',
+          type: "string",
+          format: "email",
         },
         {
-          type: 'object',
+          type: "object",
           properties: {
             email: {
-              type: 'string',
-              format: 'email',
+              type: "string",
+              format: "email",
             },
             name: {
-              type: 'string',
+              type: "string",
             },
           },
-          required: ['email'],
+          required: ["email"],
         },
       ],
     },
@@ -42,120 +42,120 @@ const schema = {
   properties: {
     multiple: {
       description:
-        'If separate emails to each `to` (true) or if one email to all of `to` (false)',
-      type: 'boolean',
+        "If separate emails to each `to` (true) or if one email to all of `to` (false)",
+      type: "boolean",
     },
     from: {
-      $ref: '#/definitions/email',
+      $ref: "#/definitions/email",
     },
     to: {
       oneOf: [
         {
-          $ref: '#/definitions/email',
+          $ref: "#/definitions/email",
         },
         {
-          type: 'array',
+          type: "array",
           items: {
-            $ref: '#/definitions/email',
+            $ref: "#/definitions/email",
           },
         },
       ],
     },
     replyTo: {
-      $ref: '#/definitions/email',
+      $ref: "#/definitions/email",
     },
     subject: {
-      type: 'string',
+      type: "string",
       minLength: 1,
     },
     text: {
-      type: 'string',
+      type: "string",
       minLength: 1,
     },
     html: {
-      type: 'string',
+      type: "string",
       minLength: 1,
     },
     templateData: {
-      type: 'object',
-      description: 'Data to use when filling out email template',
+      type: "object",
+      description: "Data to use when filling out email template",
     },
     attachments: {
-      type: 'array',
+      type: "array",
       items: {
-        type: 'object',
+        type: "object",
         properties: {
           content: {
             oneOf: [
               {
-                description: 'Base 64 encoded attachment content',
-                type: 'string',
+                description: "Base 64 encoded attachment content",
+                type: "string",
                 minLength: 1,
               },
               {
-                description: 'Link to OADA resource to use as content',
-                $ref: '../../../../oada.schema.json#/definitions/link',
+                description: "Link to OADA resource to use as content",
+                $ref: "../../../../oada.schema.json#/definitions/link",
               },
             ],
           },
           filename: {
-            type: 'string',
+            type: "string",
             minLength: 1,
           },
           type: {
-            type: 'string',
+            type: "string",
             minLength: 1,
           },
           disposition: {
-            enum: ['inline', 'attachment'],
-            default: 'attachment',
+            enum: ["inline", "attachment"],
+            default: "attachment",
           },
           content_id: {
-            type: 'string',
+            type: "string",
           },
         },
-        required: ['content', 'filename'],
+        required: ["content", "filename"],
         if: {
-          type: 'object',
+          type: "object",
           properties: {
             disposition: {
-              const: 'inline',
+              const: "inline",
             },
           },
-          required: ['disposition'],
+          required: ["disposition"],
         },
         // eslint-disable-next-line unicorn/no-thenable
         then: {
-          type: 'object',
-          required: ['content_id'],
+          type: "object",
+          required: ["content_id"],
         },
       },
     },
   },
-  required: ['from', 'to'],
+  required: ["from", "to"],
   examples: [
     {
       multiple: false,
-      from: 'john@example.com',
+      from: "john@example.com",
       to: {
-        name: 'Mary Lou',
-        email: 'donuts@example.org',
+        name: "Mary Lou",
+        email: "donuts@example.org",
       },
-      subject: 'Test mail',
-      text: 'Test!',
-      html: '<h1>Test!</h1>',
+      subject: "Test mail",
+      text: "Test!",
+      html: "<h1>Test!</h1>",
       attachments: [
         {
-          content: 'RXhhbXBsZSBkYXRh',
-          filename: 'test.dat',
-          type: 'plain/text',
+          content: "RXhhbXBsZSBkYXRh",
+          filename: "test.dat",
+          type: "plain/text",
         },
         {
           content: {
-            _id: 'resources/abc123',
+            _id: "resources/abc123",
           },
-          filename: 'file.pdf',
-          type: 'application/pdf',
+          filename: "file.pdf",
+          type: "application/pdf",
         },
       ],
     },

@@ -8,15 +8,15 @@
  */
 
 // Declare packed validation functions modules
-declare module '*-validate.cjs' {
-  import type { ValidateFunction } from 'ajv';
+declare module "*-validate.cjs" {
+  import type { ValidateFunction } from "ajv";
 
   const validate: ValidateFunction;
 
   export = validate;
 }
 
-declare module 'json-schema-traverse' {
+declare module "json-schema-traverse" {
   type Callback<Schema> = (
     schema: Schema,
     jsonPtr: string,
@@ -49,16 +49,16 @@ declare module 'json-schema-traverse' {
   export = traverse;
 }
 
-declare module 'ajv/dist/standalone.js' {
+declare module "ajv/dist/standalone.js" {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   import type Ajv, { ValidateFunction } from 'ajv';
   function pack(ajv: Ajv, validate: ValidateFunction): string;
   export default pack;
 }
 
-declare module 'ajv-formats-draft2019' {
+declare module "ajv-formats-draft2019" {
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  import type Ajv from 'ajv';
+  import type Ajv from "ajv";
 
   function apply(ajv: Ajv): Ajv;
 

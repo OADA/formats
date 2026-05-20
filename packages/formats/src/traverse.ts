@@ -7,7 +7,7 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import traverse from 'json-schema-traverse';
+import traverse from "json-schema-traverse";
 
 // Define missing keywords
 Object.assign(traverse.propsKeywords, {
@@ -24,4 +24,4 @@ Object.assign(traverse.skipKeywords, {
   title: true,
 });
 
-export { default } from 'json-schema-traverse';
+export { default } from "json-schema-traverse";

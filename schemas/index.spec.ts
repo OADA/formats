@@ -7,17 +7,14 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import test from 'ava';
+import { dirname, isAbsolute, join, relative } from "node:path";
+import { $RefParser } from "@apidevtools/json-schema-ref-parser";
+import _Ajv from "ajv";
+import test from "ava";
+import type { JSONSchema6 } from "json-schema";
+import type { JSONSchema8 as Schema } from "jsonschema8";
 
-import { dirname, isAbsolute, join, relative } from 'node:path';
-
-import { $RefParser } from '@apidevtools/json-schema-ref-parser';
-import type { JSONSchema6 } from 'json-schema';
-import type { JSONSchema8 as Schema } from 'jsonschema8';
-
-import _Ajv from 'ajv';
-
-import loadAllSchemas from './index.js';
+import loadAllSchemas from "./index.js";
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const Ajv = _Ajv as unknown as typeof _Ajv.default;
@@ -30,7 +27,7 @@ export async function loadSchema(uri: string) {
 
   if (r.test(uri)) {
     // Use local version of openag schemas
-    const file = uri.replace(r, '.').replace(/\.json$/, '');
+    const file = uri.replace(r, ".").replace(/\.json$/, "");
     return import(file);
   }
 
@@ -53,9 +50,9 @@ const ajv = new Ajv({
   // AJV complains about standard formats if this is on
   validateFormats: false,
 });
-test.before('Initialize JSON Schema validator', async () => {
+test.before("Initialize JSON Schema validator", async () => {
   const meta = await $RefParser.dereference(
-    'https://json-schema.org/draft/2019-09/schema',
+    "https://json-schema.org/draft/2019-09/schema",
   );
 
   // ???: Why does compileAsync not work for meta schema?
@@ -64,7 +61,7 @@ test.before('Initialize JSON Schema validator', async () => {
 
 // TODO: Figure out less hacky way to make it find the files correctly
 let checkReferences: (key: string, schema: Schema) => Promise<unknown>;
-test.before('Initialize $ref checker', () => {
+test.before("Initialize $ref checker", () => {
   checkReferences = async (key: string, schema: Schema) => {
     const $refparser = new $RefParser();
     return $refparser.dereference(schema as JSONSchema6, {
@@ -75,14 +72,15 @@ test.before('Initialize $ref checker', () => {
           // TODO: Support external $ref
           async read({ url }: { url: string }) {
             const r = /^https:\/\/formats\.openag\.io/;
-            const directory = './';
-            const path = url.startsWith('https://formats.openag.io')
-              ? url.replace(r, '')
-              : relative('', url);
-            const file = `./${(isAbsolute(path)
-              ? join(directory, path)
-              : join(directory, dirname(key), path)
-            ).replace(/\.json$/, '.cjs')}`;
+            const directory = "./";
+            const path = url.startsWith("https://formats.openag.io")
+              ? url.replace(r, "")
+              : relative("", url);
+            const file = `./${(
+              isAbsolute(path)
+                ? join(directory, path)
+                : join(directory, dirname(key), path)
+            ).replace(/\.json$/, ".cjs")}`;
             return import(file);
           },
         },
@@ -108,7 +106,7 @@ for await (const { schema, key } of loadAllSchemas()) {
   // $id needs to be consistent with file structure or most tools get upset
   test(`${key} should have consistent $id`, (t) => {
     const { $id } = schema;
-    t.is($id, `https://${join('formats.openag.io/', key)}`);
+    t.is($id, `https://${join("formats.openag.io/", key)}`);
   });
 
   test.todo(`${key} should have valid self $ref's`);

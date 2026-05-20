@@ -6,33 +6,33 @@
  * license that can be found in the LICENSE file or at
  * https://opensource.org/licenses/MIT.
  */
-import type { JSONSchema8 as Schema } from 'jsonschema8';
 
-import { ianaAssignments, rfc } from '@oada/schemas/utils';
+import { ianaAssignments, rfc } from "@oada/schemas/utils";
+import type { JSONSchema8 as Schema } from "jsonschema8";
 
-const ktys = await ianaAssignments('jose', 'web-key-types');
+const ktys = await ianaAssignments("jose", "web-key-types");
 const algs = await ianaAssignments(
-  'jose',
-  'web-signature-encryption-algorithms',
+  "jose",
+  "web-signature-encryption-algorithms",
 );
 const zips = await ianaAssignments(
-  'jose',
-  'web-encryption-compression-algorithms',
+  "jose",
+  "web-encryption-compression-algorithms",
 );
-const crvs = await ianaAssignments('jose', 'web-key-elliptic-curve');
+const crvs = await ianaAssignments("jose", "web-key-elliptic-curve");
 
 export default {
-  $id: 'https://formats.openag.io/jose/jwa.schema.json',
-  $schema: 'http://json-schema.org/draft-07/schema#',
-  title: 'JWA',
+  $id: "https://formats.openag.io/jose/jwa.schema.json",
+  $schema: "http://json-schema.org/draft-07/schema#",
+  title: "JWA",
   description: `@see {@link ${rfc(7518)} JSON Web Algorithms (JWA)}`,
   definitions: {
     alg: {
-      title: 'alg (Algorithm) parameter',
-      description: 'JSON Web Signature and Encryption Algorithms',
+      title: "alg (Algorithm) parameter",
+      description: "JSON Web Signature and Encryption Algorithms",
       definitions: {
         registered: {
-          title: 'Registered alg',
+          title: "Registered alg",
           description: `IANA registered values for JSON Web Signature and Encryption Algorithms\n@see {@link ${algs.uri}}`,
           $comment: `Enum retrieved dynamically from ${
             algs.uri
@@ -45,17 +45,17 @@ export default {
         },
       },
       oneOf: [
-        { $ref: '#/definitions/alg/definitions/registered' },
-        { $ref: '../utils.schema.json#/definitions/anyOtherString' },
+        { $ref: "#/definitions/alg/definitions/registered" },
+        { $ref: "../utils.schema.json#/definitions/anyOtherString" },
       ],
     },
     kty: {
-      title: 'kty (Key Type) parameter',
+      title: "kty (Key Type) parameter",
       description:
-        'Identifies the cryptographic algorithm family used with the key',
+        "Identifies the cryptographic algorithm family used with the key",
       definitions: {
         registered: {
-          title: 'Registered kty',
+          title: "Registered kty",
           description: `IANA registered values for JSON Web Key Types\n@see {@link ${ktys.uri}}`,
           $comment: `Enum retrieved dynamically from ${
             ktys.uri
@@ -68,16 +68,16 @@ export default {
         },
       },
       oneOf: [
-        { $ref: '#/definitions/kty/definitions/registered' },
-        { $ref: '../utils.schema.json#/definitions/anyOtherString' },
+        { $ref: "#/definitions/kty/definitions/registered" },
+        { $ref: "../utils.schema.json#/definitions/anyOtherString" },
       ],
     },
     zip: {
-      title: 'zip (Compression Algorithm) parameter',
-      description: 'JSON Web Encryption Compression Algorithms',
+      title: "zip (Compression Algorithm) parameter",
+      description: "JSON Web Encryption Compression Algorithms",
       definitions: {
         registered: {
-          title: 'Registered zip',
+          title: "Registered zip",
           description: `IANA registered values for JSON Web Encryption Compression Algorithms\n@see {@link ${zips.uri}}`,
           $comment: `Enum retrieved dynamically from ${
             zips.uri
@@ -90,16 +90,16 @@ export default {
         },
       },
       oneOf: [
-        { $ref: '#/definitions/zip/definitions/registered' },
-        { $ref: '../utils.schema.json#/definitions/anyOtherString' },
+        { $ref: "#/definitions/zip/definitions/registered" },
+        { $ref: "../utils.schema.json#/definitions/anyOtherString" },
       ],
     },
     crv: {
-      title: 'crv (Curve) parameter',
-      description: 'JSON Web Key Elliptic Curve',
+      title: "crv (Curve) parameter",
+      description: "JSON Web Key Elliptic Curve",
       definitions: {
         registered: {
-          title: 'Registered crv',
+          title: "Registered crv",
           description: `IANA registered values for JSON Web Key Elliptic Curve\n@see {@link ${crvs.uri}}`,
           $comment: `Enum retrieved dynamically from ${
             crvs.uri
@@ -112,8 +112,8 @@ export default {
         },
       },
       oneOf: [
-        { $ref: '#/definitions/crv/definitions/registered' },
-        { $ref: '../utils.schema.json#/definitions/anyOtherString' },
+        { $ref: "#/definitions/crv/definitions/registered" },
+        { $ref: "../utils.schema.json#/definitions/anyOtherString" },
       ],
     },
   },

@@ -7,80 +7,80 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import type { JSONSchema8 as Schema } from 'jsonschema8';
+import type { JSONSchema8 as Schema } from "jsonschema8";
 
 const schema = {
-  $id: 'https://formats.openag.io/oada/link/v1.schema.json',
-  $schema: 'http://json-schema.org/draft-07/schema#',
-  description: 'OADA Link object',
-  title: 'Link',
+  $id: "https://formats.openag.io/oada/link/v1.schema.json",
+  $schema: "http://json-schema.org/draft-07/schema#",
+  description: "OADA Link object",
+  title: "Link",
   definitions: {
     link: {
       anyOf: [
         {
-          $ref: '#/definitions/nonversioned',
+          $ref: "#/definitions/nonversioned",
         },
         {
-          $ref: '#/definitions/versioned',
+          $ref: "#/definitions/versioned",
         },
       ],
     },
     nonversioned: {
-      type: 'object',
-      required: ['_id'],
+      type: "object",
+      required: ["_id"],
       additionalProperties: true,
       properties: {
         _id: {
-          type: 'string',
+          type: "string",
         },
       },
     },
     versioned: {
-      type: 'object',
-      required: ['_rev', '_id'],
+      type: "object",
+      required: ["_rev", "_id"],
       additionalProperties: true,
       properties: {
         _id: {
-          type: 'string',
+          type: "string",
         },
         _rev: {
-          $ref: '../../oada.schema.json#/definitions/_rev',
+          $ref: "../../oada.schema.json#/definitions/_rev",
         },
       },
     },
     list: {
       definitions: {
         versioned: {
-          type: 'object',
+          type: "object",
           additionalProperties: {
-            $ref: '#/definitions/versioned',
+            $ref: "#/definitions/versioned",
           },
         },
         nonversioned: {
-          type: 'object',
+          type: "object",
           additionalProperties: {
-            $ref: '#/definitions/nonversioned',
+            $ref: "#/definitions/nonversioned",
           },
         },
       },
-      type: 'object',
+      type: "object",
       additionalProperties: {
-        $ref: '#/definitions/link',
+        $ref: "#/definitions/link",
       },
     },
   },
   anyOf: [
     {
-      $ref: '#/definitions/nonversioned',
+      $ref: "#/definitions/nonversioned",
     },
     {
-      $ref: '#/definitions/versioned',
+      $ref: "#/definitions/versioned",
     },
   ],
   examples: [
     {
-      _id: 'akjf92jxcJds',
-      _rev: '1-jxusuf3sc',
+      _id: "akjf92jxcJds",
+      _rev: "1-jxusuf3sc",
     },
   ],
 } as const satisfies Schema;

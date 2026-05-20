@@ -7,22 +7,22 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import type { JSONSchema8 as Schema } from 'jsonschema8';
+import type { JSONSchema8 as Schema } from "jsonschema8";
 
 const schema = {
-  $id: 'https://formats.openag.io/oada/service/queues.schema.json',
-  $schema: 'http://json-schema.org/draft-07/schema#',
-  description: 'The format for @oada/jobs queues list',
-  type: 'object',
+  $id: "https://formats.openag.io/oada/service/queues.schema.json",
+  $schema: "http://json-schema.org/draft-07/schema#",
+  description: "The format for @oada/jobs queues list",
+  type: "object",
   additionalProperties: {
-    $ref: './queue.schema.json',
+    $ref: "./queue.schema.json",
   },
   examples: [
     {
       asdxjkacsdj: {
-        domain: 'https://dev.trellis.one',
-        token: 'abc1234321cba',
-        path: '/bookmarks/services/MyCoolService',
+        domain: "https://dev.trellis.one",
+        token: "abc1234321cba",
+        path: "/bookmarks/services/MyCoolService",
       },
     },
   ],

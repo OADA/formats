@@ -7,12 +7,12 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import test from 'ava';
+import test from "ava";
 
 // TODO: Look into creating fake requests for tests
 
-test.todo('should set schema parameter of Content-Type');
+test.todo("should set schema parameter of Content-Type");
 
-test.todo('should add Link header');
+test.todo("should add Link header");
 
-test.todo('should not change headers for unknown type');
+test.todo("should not change headers for unknown type");

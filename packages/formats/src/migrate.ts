@@ -9,22 +9,21 @@
 
 /* eslint-disable no-console */
 
-import { dirname, join } from 'node:path';
-import { cwd } from 'node:process';
-import fs from 'node:fs/promises';
-
+import fs from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { cwd } from "node:process";
+import type _Ajv from "ajv";
 import type {
   JSONSchema8ObjectSchema,
   JSONSchema8StringSchema,
   JSONSchema8 as RealSchema,
   JSONSchema8 as Schema,
-} from 'jsonschema8';
-import type _Ajv from 'ajv';
-import { mkdirp } from 'mkdirp';
+} from "jsonschema8";
+import { mkdirp } from "mkdirp";
 
-import { contentTypeToKey } from './ajv.js';
+import { contentTypeToKey } from "./ajv.js";
 
-import traverse from './traverse.js';
+import traverse from "./traverse.js";
 
 type Ajv = _Ajv.default;
 
@@ -34,7 +33,7 @@ export namespace Old {
   // eslint-disable-next-line @typescript-eslint/no-shadow
   export type Schema = RealSchema & { id: string };
   export interface Model {
-    validate: Ajv['validate'];
+    validate: Ajv["validate"];
     schema: () => Promise<Schema>;
     examples: () => Promise<Record<string, unknown>>;
   }
@@ -47,18 +46,18 @@ export namespace Old {
 }
 
 interface MigrateOptions {
-  format?: 'json' | 'ts';
+  format?: "json" | "ts";
   outdir?: string;
   root?: string;
 }
-const defaultRoot = 'https://formats.openag.io';
+const defaultRoot = "https://formats.openag.io";
 /**
  * Function to dump all the schemas out of an old oada-formats
  */
 export async function migrate(
   formats: Old.Formats,
   {
-    format = 'json',
+    format = "json",
     outdir = `${cwd()}/schemas`,
     root = defaultRoot,
   }: MigrateOptions = {},
@@ -67,7 +66,7 @@ export async function migrate(
   function fixID(
     id: string | undefined,
     type?: string,
-  ): { $id: Schema['$id']; key: string } {
+  ): { $id: Schema["$id"]; key: string } {
     if (id) {
       // Parse id into content type
       const matches = r.exec(id);
@@ -77,12 +76,12 @@ export async function migrate(
     }
 
     if (!type) {
-      throw new Error('Schema has neither id nor type');
+      throw new Error("Schema has neither id nor type");
     }
 
     const key = contentTypeToKey(type);
     if (!key) {
-      throw new Error('Failed to find schema key for type');
+      throw new Error("Failed to find schema key for type");
     }
 
     const $id = root + key;
@@ -91,8 +90,8 @@ export async function migrate(
   }
 
   function fixReference($reference: string): string {
-    const [id, path] = $reference.split('#');
-    const { $id } = id ? fixID(id) : { $id: '' };
+    const [id, path] = $reference.split("#");
+    const { $id } = id ? fixID(id) : { $id: "" };
     return `${$id}#${path}`;
   }
 
@@ -131,12 +130,12 @@ export async function migrate(
         }
 
         // Clean up types?
-        if (!('type' in s)) {
-          if ('properties' in s) {
+        if (!("type" in s)) {
+          if ("properties" in s) {
             // @ts-expect-error modify readonly
-            (s as JSONSchema8ObjectSchema).type = 'object';
+            (s as JSONSchema8ObjectSchema).type = "object";
           }
-        } else if ('enum' in s || 'const' in s) {
+        } else if ("enum" in s || "const" in s) {
           // Typing an enum is redundant
           // @ts-expect-error delete
           delete s.type;
@@ -158,19 +157,19 @@ export async function migrate(
 
         // FIXME: Should probably just delete these keys...
         // * is not a regex... (.* is)
-        if ((s as JSONSchema8StringSchema).pattern === '*') {
+        if ((s as JSONSchema8StringSchema).pattern === "*") {
           // @ts-expect-error modify readonly
-          (s as JSONSchema8StringSchema).pattern = '.*';
+          (s as JSONSchema8StringSchema).pattern = ".*";
         }
 
         const property = (s as JSONSchema8ObjectSchema).patternProperties?.[
-          '*'
+          "*"
         ];
         if (property) {
           // @ts-expect-error delete
-          delete s.patternProperties['*'];
+          delete s.patternProperties["*"];
           // @ts-expect-error whatever
-          s.patternProperties['.*'] = property;
+          s.patternProperties[".*"] = property;
         }
 
         // Change "known" to examples
@@ -196,13 +195,13 @@ export async function migrate(
     let path = join(outdir, key);
     const json = JSON.stringify({ ...schema, examples }, null, 2);
     switch (format) {
-      case 'json': {
+      case "json": {
         // Create plain JSON schema
         output = json;
         break;
       }
 
-      case 'ts': {
+      case "ts": {
         // Create "TypeScript" schema
         output = `
           import { JSONSchema8 as Schema } from 'jsonschema8'
@@ -211,7 +210,7 @@ import type Ajv from 'ajv';
           const schema: Schema = ${json}
           export default schema
         `;
-        path = path.replace(/\.json$/, '.ts');
+        path = path.replace(/\.json$/, ".ts");
         break;
       }
 

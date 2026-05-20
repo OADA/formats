@@ -7,39 +7,39 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import type { JSONSchema8 as Schema } from 'jsonschema8';
+import type { JSONSchema8 as Schema } from "jsonschema8";
 
 const schema = {
-  $id: 'https://formats.openag.io/oada/indexes/geohash-length-index.schema.json',
-  $schema: 'http://json-schema.org/draft-07/schema#',
+  $id: "https://formats.openag.io/oada/indexes/geohash-length-index.schema.json",
+  $schema: "http://json-schema.org/draft-07/schema#",
   description:
     'geohash-length-index is an indexing scheme that groups data by geohash string lengths. As with all indexes, it is not a document type itself and therefore cannot be linked to.  It can also have a "datum" key which tells the earth model used for GPS.',
   properties: {
     datum: {
       description:
-        'datum describes the model of the earth used for GPS coordinates. It can be from a set of known strings, or an EPSG model from http://spatialreference.org',
+        "datum describes the model of the earth used for GPS coordinates. It can be from a set of known strings, or an EPSG model from http://spatialreference.org",
       anyOf: [
         {
-          type: 'string',
-          examples: ['WGS84'],
+          type: "string",
+          examples: ["WGS84"],
         },
         {
-          required: ['type', 'properties'],
+          required: ["type", "properties"],
           properties: {
             type: {
-              enum: ['EPSG'],
+              enum: ["EPSG"],
             },
             properties: {
-              required: ['code'],
+              required: ["code"],
               properties: {
                 code: {
-                  type: 'number',
+                  type: "number",
                 },
               },
-              type: 'object',
+              type: "object",
             },
           },
-          type: 'object',
+          type: "object",
         },
       ],
     },
@@ -51,7 +51,7 @@ const schema = {
           (_, index) =>
             [
               `geohash-${index + 1}` as const,
-              { $ref: '../link/v1.schema.json#/definitions/link' },
+              { $ref: "../link/v1.schema.json#/definitions/link" },
             ] as const,
         ),
     ),
@@ -63,7 +63,7 @@ const schema = {
         },
       },
   */
-  type: 'object',
+  type: "object",
 } as const satisfies Schema;
 
 export = schema;

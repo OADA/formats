@@ -7,7 +7,7 @@
  * https://opensource.org/licenses/MIT.
  */
 
-declare module 'json-schema-traverse' {
+declare module "json-schema-traverse" {
   type Callback<Schema> = (
     schema: Schema,
     jsonPtr: string,
@@ -40,8 +40,8 @@ declare module 'json-schema-traverse' {
   export = traverse;
 }
 
-declare module 'ajv-formats-draft2019' {
-  import type Ajv from 'ajv';
+declare module "ajv-formats-draft2019" {
+  import type Ajv from "ajv";
 
   function apply(ajv: Ajv): Ajv;
 

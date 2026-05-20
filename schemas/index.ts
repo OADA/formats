@@ -7,18 +7,18 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import path from 'node:path';
-import url from 'node:url';
+import path from "node:path";
+import url from "node:url";
 
-import { glob } from 'glob';
+import { glob } from "glob";
 
-import { importSchema } from './utils.cjs';
+import { importSchema } from "./utils.cjs";
 
 const dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 export const schemasDirectory = dirname;
 
-export const schemas = await glob('*.schema.{c,m,}js', {
+export const schemas = await glob("*.schema.{c,m,}js", {
   cwd: dirname,
   posix: true,
   dotRelative: true,
@@ -31,7 +31,7 @@ export const schemas = await glob('*.schema.{c,m,}js', {
 async function* loadAllFormats() {
   for await (const s of schemas) {
     const schema = await importSchema(s);
-    const key = s.replace(/\.[cm]?[jt]s$/, '.json');
+    const key = s.replace(/\.[cm]?[jt]s$/, ".json");
     yield {
       key,
       path: path.join(dirname, key),

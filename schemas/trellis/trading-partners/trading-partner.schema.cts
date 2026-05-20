@@ -7,85 +7,85 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import type { JSONSchema8 as Schema } from 'jsonschema8';
+import type { JSONSchema8 as Schema } from "jsonschema8";
 
 const schema: Schema = {
-  $id: 'https://formats.openag.io/trellis/trading-partner.schema.json',
-  $schema: 'http://json-schema.org/draft-07/schema#',
-  description: 'Trading Partners config format within Trellis',
-  type: 'object',
+  $id: "https://formats.openag.io/trellis/trading-partner.schema.json",
+  $schema: "http://json-schema.org/draft-07/schema#",
+  description: "Trading Partners config format within Trellis",
+  type: "object",
   properties: {
     // External ID in a master data system
     sapid: {
-      type: 'string',
+      type: "string",
     },
     // Internal ID in Trellis; Should be a resource id e.g. 'resources/123'
     masterid: {
-      type: 'string',
+      type: "string",
     },
     // Some other master data system attributes
     companycode: {
-      type: 'string',
+      type: "string",
     },
     vendorid: {
-      type: 'string',
+      type: "string",
     },
     partnerid: {
-      type: 'string',
+      type: "string",
     },
     // Details of the trading-partner
     name: {
-      type: 'string',
+      type: "string",
     },
     address: {
-      type: 'string',
+      type: "string",
     },
     city: {
-      type: 'string',
+      type: "string",
     },
     state: {
-      type: 'string',
+      type: "string",
     },
     // The though here was to specify 'customer'/'supplier' for type
     type: {
-      type: 'string',
+      type: "string",
     },
     // Source that first created this master data entry in trellis
     source: {
-      type: 'string',
+      type: "string",
     },
     // Some contact info
     coi_emails: {
-      type: 'string',
+      type: "string",
     },
     fsqa_emails: {
-      type: 'string',
+      type: "string",
     },
     email: {
-      type: 'string',
+      type: "string",
     },
     phone: {
-      type: 'string',
+      type: "string",
     },
   },
-  required: ['sapid', 'masterid', 'name'],
+  required: ["sapid", "masterid", "name"],
   examples: [
     {
-      sapid: '1234567890',
-      masterid: '1234567890',
-      companycode: '1234567890',
-      vendorid: '1234567890',
-      partnerid: '1234567890',
-      name: 'Tyson Foods',
-      address: '2550 Yeager Road',
-      city: 'West Lafayette',
-      state: 'Indiana',
-      type: 'customer',
-      source: 'business',
-      coi_emails: 'example@example.com',
-      fsqa_emails: 'example@example.com',
-      email: 'example@example.com',
-      phone: '111-222-3333',
+      sapid: "1234567890",
+      masterid: "1234567890",
+      companycode: "1234567890",
+      vendorid: "1234567890",
+      partnerid: "1234567890",
+      name: "Tyson Foods",
+      address: "2550 Yeager Road",
+      city: "West Lafayette",
+      state: "Indiana",
+      type: "customer",
+      source: "business",
+      coi_emails: "example@example.com",
+      fsqa_emails: "example@example.com",
+      email: "example@example.com",
+      phone: "111-222-3333",
     },
   ],
 };

@@ -7,12 +7,12 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import type { JSONSchema8 as Schema } from 'jsonschema8';
+import type { JSONSchema8 as Schema } from "jsonschema8";
 
 const schema: Schema = {
-  $id: 'https://formats.openag.io/modus/slim/v1/0.schema.json',
-  $schema: 'http://json-schema.org/draft-07/schema#',
-  $comment: 'A Flatter version of modus v1',
+  $id: "https://formats.openag.io/modus/slim/v1/0.schema.json",
+  $schema: "http://json-schema.org/draft-07/schema#",
+  $comment: "A Flatter version of modus v1",
   description: `
     This schema is expected to handle both the original "submission" and "result" schemas
     in Modus.  In this schema, a "submission" is simply a "result" with some things not
@@ -31,22 +31,22 @@ const schema: Schema = {
 
   $defs: {
     id: {
-      type: 'string',
+      type: "string",
       description:
-        'A sufficiently unique string to identify things, in any form.',
+        "A sufficiently unique string to identify things, in any form.",
     },
 
     aliasid: {
-      type: 'string',
+      type: "string",
       description:
-        'A reference to an id that can be found physically on a sample such as a bar code or QR code',
+        "A reference to an id that can be found physically on a sample such as a bar code or QR code",
     },
 
     sourcedId: {
-      type: 'object',
+      type: "object",
       properties: {
         source: {
-          enum: ['local'],
+          enum: ["local"],
           description: `
             A string representing the place that assigned this id.  If the id does not come 
             from any official list, use "local".  The value of this id should be considered
@@ -58,41 +58,41 @@ const schema: Schema = {
           `,
         },
         value: {
-          type: 'string',
+          type: "string",
           description:
-            'The actual sufficiently-unique string that is the id from this souce.',
+            "The actual sufficiently-unique string that is the id from this souce.",
         },
       },
     },
 
     person: {
-      type: 'object',
-      description: 'Used for contacts at the lab and the source',
+      type: "object",
+      description: "Used for contacts at the lab and the source",
       properties: {
-        name: { type: 'string' },
-        phone: { type: 'string' },
-        address: { type: 'string' },
-        email: { type: 'string', format: 'email' },
+        name: { type: "string" },
+        phone: { type: "string" },
+        address: { type: "string" },
+        email: { type: "string", format: "email" },
       },
     },
 
     client: {
-      type: 'object',
+      type: "object",
       description:
-        'A description of the client of either the lab or the source.',
+        "A description of the client of either the lab or the source.",
       properties: {
-        accountNumber: { type: 'string' },
-        name: { type: 'string' },
-        address: { type: 'string' },
+        accountNumber: { type: "string" },
+        name: { type: "string" },
+        address: { type: "string" },
         contact: {
-          $ref: '#/$defs/person',
-          description: `Who to contact at the client about this report.`,
+          $ref: "#/$defs/person",
+          description: "Who to contact at the client about this report.",
         },
       },
     },
 
     report: {
-      type: 'object',
+      type: "object",
       description: `
         This represents information about this document as seen by either the lab or th source, 
         depending on which key this report is under (lab or source).
@@ -101,7 +101,7 @@ const schema: Schema = {
         those things under the files key.`,
       properties: {
         id: {
-          $ref: '#/$defs/id',
+          $ref: "#/$defs/id",
           description: `
             The id of this document at the lab or source, depending on which key it is under,
             (lab or source).  If the lab creates this document first,
@@ -112,9 +112,9 @@ const schema: Schema = {
           `,
         },
         date: {
-          type: 'string',
-          format: 'date', // YYYY-MM-DD
-          description: 'Date the results were added to this report by the lab.',
+          type: "string",
+          format: "date", // YYYY-MM-DD
+          description: "Date the results were added to this report by the lab.",
         },
       },
     },
@@ -129,7 +129,7 @@ const schema: Schema = {
         name on each file object.
       `,
       additionalProperties: {
-        type: 'object',
+        type: "object",
         description: `
           If you want to include the actual file, base64 encode it and put it in the base64 key.
           Otheriwse, it can be at a URI.  The file type should be inferred from the extension on 
@@ -137,28 +137,28 @@ const schema: Schema = {
         `,
         properties: {
           id: {
-            type: 'string',
+            type: "string",
             description: `
               An ID for the file.  If you want to refer to the file in the any given samples,
               you need this id in order to refer to it with fileid.
             `,
           },
-          name: { type: 'string', description: 'The filename of the file.' },
-          description: { type: 'string' },
-          uri: { type: 'string', format: 'uri' },
+          name: { type: "string", description: "The filename of the file." },
+          description: { type: "string" },
+          uri: { type: "string", format: "uri" },
           base64: {
-            type: 'string',
-            description: 'The base64-encoded bytes of the file.',
+            type: "string",
+            description: "The base64-encoded bytes of the file.",
           },
         },
       },
     },
 
     depth: {
-      type: 'object',
+      type: "object",
       properties: {
         name: {
-          type: 'string',
+          type: "string",
           description: `
             A human-readable version of this depth.  Entirely optional and here primarily for 
             backwards compatibility.  If an older file or spreadsheet uses a string for the depth
@@ -167,17 +167,17 @@ const schema: Schema = {
           `,
         },
         top: {
-          type: 'number',
+          type: "number",
           description:
-            'The top of the depth range being sampled.  Should be less than the bottom.',
+            "The top of the depth range being sampled.  Should be less than the bottom.",
         },
         bottom: {
-          type: 'number',
+          type: "number",
           description:
-            'The bottom of the depth range being sampled.  Should be greater than top.',
+            "The bottom of the depth range being sampled.  Should be greater than top.",
         },
         units: {
-          type: 'string',
+          type: "string",
           description:
             'Any valid UCUM string representing a length, such as "in" or "cm".',
         },
@@ -185,7 +185,7 @@ const schema: Schema = {
     },
 
     geolocation: {
-      type: 'object',
+      type: "object",
       description: `
         Represents where a sample was taken.  This can be global for all samples (i.e. a field boundary),
         or, more ideally, a lat/lon for each point.  If you just have a lat/lon point in the WGS84 datum, 
@@ -193,17 +193,17 @@ const schema: Schema = {
         geojson are present for a geolocation, lat/lon takes precedence.
       `,
       properties: {
-        lat: { type: 'number', description: 'Latitude in the WGS84 datum' },
-        lon: { type: 'number', description: 'Longitude in the WGS84 datum' },
+        lat: { type: "number", description: "Latitude in the WGS84 datum" },
+        lon: { type: "number", description: "Longitude in the WGS84 datum" },
         geojson: {
-          type: 'object',
-          description: 'GeoJSON representation of this location.',
+          type: "object",
+          description: "GeoJSON representation of this location.",
         },
       },
     },
 
     lab: {
-      type: 'object',
+      type: "object",
       description: `
         This represents information about and for the lab that is producing the results.
         It exists at the top-level of the document for any items that apply to all samples
@@ -215,44 +215,44 @@ const schema: Schema = {
         sample-level object (i.e. they replace the top-level key in the merge).
       `,
       properties: {
-        id: { $ref: '#/$defs/sourcedId' },
-        name: { type: 'string' },
+        id: { $ref: "#/$defs/sourcedId" },
+        name: { type: "string" },
         contact: {
-          type: 'object',
-          description: 'Information about how to contact the lab',
+          type: "object",
+          description: "Information about how to contact the lab",
           properties: {
-            name: { type: 'string' },
-            phone: { type: 'string' },
-            address: { type: 'string' },
-            email: { type: 'string', format: 'email' },
+            name: { type: "string" },
+            phone: { type: "string" },
+            address: { type: "string" },
+            email: { type: "string", format: "email" },
           },
         },
         client: {
-          $ref: '#/$defs/client',
+          $ref: "#/$defs/client",
           description: `Info on the lab's client, as seen by the lab.`,
         },
         dateReceived: {
-          type: 'string',
-          format: 'date-time', // YYYY-MM-DDTHH:mm:ss+HH:mm (ISO8601)
+          type: "string",
+          format: "date-time", // YYYY-MM-DDTHH:mm:ss+HH:mm (ISO8601)
           description:
-            'Day and time the lab received the samples.  Could be overriden per-sample if needed.',
+            "Day and time the lab received the samples.  Could be overriden per-sample if needed.",
         },
         dateProcessed: {
-          type: 'string',
-          format: 'date-time',
+          type: "string",
+          format: "date-time",
           description:
-            'Day and time the lab processed the samples.  Could be overriden per-sample if needed.',
+            "Day and time the lab processed the samples.  Could be overriden per-sample if needed.",
         },
 
         report: {
-          $ref: '#/$defs/report',
+          $ref: "#/$defs/report",
           description: `
             Information about this Modus document (id, date, etc.) as seen from the lab's
             perspective.  Refer to the $def for more informaiton.
           `,
         },
         files: {
-          $ref: '#/$defs/files',
+          $ref: "#/$defs/files",
           description: `
             Information representing other files associated with this Modus document at the lab.  
             Refer to the $defs for more information.
@@ -261,36 +261,36 @@ const schema: Schema = {
 
         // Sample-specific things:
         sampleid: {
-          type: 'string',
+          type: "string",
           description: `
             ID of the sample assigned by the lab.  This is not likely to be meaningful at the top-level,
             and should therefore only appear in the sample's version of the lab key.
           `,
         },
         aliasid: {
-          $ref: '#/$defs/aliasid',
+          $ref: "#/$defs/aliasid",
           description: `
             An id for a sample that can be found physically on it such as a bar code or QR code, as seen by the lab.
           `,
         },
         fileids: {
-          type: 'array',
+          type: "array",
           description: `
             An array of fileid's in the list of files which are associated with this sample.  Like sampleid,
             this is not likely meaningful at the top level and should only really appear in the sample-specific
             lab keys.
           `,
           items: {
-            type: 'string',
+            type: "string",
             description:
-              'Refers to a file in the list of files which is associated with this sample.',
+              "Refers to a file in the list of files which is associated with this sample.",
           },
         },
       },
     }, // End of lab
 
     source: {
-      type: 'object',
+      type: "object",
       description: `
         This object represents information about the "source" of the samples.  It is generally
         about whomever sent the samples to the lab, and may original at the source, or be added
@@ -300,7 +300,7 @@ const schema: Schema = {
       `,
       properties: {
         id: {
-          $ref: '#/$defs/sourcedId',
+          $ref: "#/$defs/sourcedId",
           description: `
             An identifier for the source.  If self-assigned, use the "local" source.  Please
             refer to the id for the lab above: this follows the same rules and conventions.
@@ -308,8 +308,8 @@ const schema: Schema = {
         },
 
         date: {
-          type: 'string',
-          format: 'date', // YYYY-MM-DD
+          type: "string",
+          format: "date", // YYYY-MM-DD
           description: `
             Date samples were collected at the source.  If known, this should be the date used
             as the top-level date for the document.  This can be overridden per-sample under the
@@ -319,24 +319,25 @@ const schema: Schema = {
         },
 
         contact: {
-          $ref: '#/$defs/person',
-          description: `Who to contact at the source for this document.`,
+          $ref: "#/$defs/person",
+          description: "Who to contact at the source for this document.",
         },
 
         client: {
-          $ref: '#/$defs/person',
-          description: `If the source is submitting on behalf of their own client, put that info here.`,
+          $ref: "#/$defs/person",
+          description:
+            "If the source is submitting on behalf of their own client, put that info here.",
         },
 
         report: {
-          $ref: '#/$defs/report',
+          $ref: "#/$defs/report",
           description: `
             Information about this Modus document (id, date, etc.) as seen from the source's
             perspective.  Refer to the $def for more informaiton.
           `,
         },
         files: {
-          $ref: '#/$defs/files',
+          $ref: "#/$defs/files",
           description: `
             Information representing other files associated with this Modus document at the source.  
             Refer to the $defs for more information.
@@ -345,37 +346,37 @@ const schema: Schema = {
 
         // Metadata-style things, like those from an FMIS:
         grower: {
-          type: 'object',
+          type: "object",
           properties: {
-            id: { $ref: '#/$defs/id' },
-            name: { type: 'string' },
+            id: { $ref: "#/$defs/id" },
+            name: { type: "string" },
           },
         },
         farm: {
-          type: 'object',
+          type: "object",
           properties: {
-            id: { $ref: '#/$defs/id' },
-            name: { type: 'string' },
+            id: { $ref: "#/$defs/id" },
+            name: { type: "string" },
           },
         },
         field: {
-          type: 'object',
+          type: "object",
           properties: {
-            id: { $ref: '#/$defs/id' },
-            name: { type: 'string' },
+            id: { $ref: "#/$defs/id" },
+            name: { type: "string" },
           },
         },
         subfield: {
-          type: 'object',
+          type: "object",
           properties: {
-            id: { $ref: '#/$defs/id' },
-            name: { type: 'string' },
+            id: { $ref: "#/$defs/id" },
+            name: { type: "string" },
           },
         },
 
         // Sample-specific things
         sampleid: {
-          type: 'string',
+          type: "string",
           description: `
             ID of the sample assigned by the source.  This is not likely to be meaningful 
             at the top-level and therefore should only be used within the source key in
@@ -384,23 +385,23 @@ const schema: Schema = {
         },
 
         aliasid: {
-          $ref: '#/$defs/aliasid',
+          $ref: "#/$defs/aliasid",
           description: `
             An id for a sample that can be found physically on it such as a bar code or QR code, as seen by the source.
           `,
         },
 
         fileids: {
-          type: 'array',
+          type: "array",
           description: `
             An array of fileid's in the list of files which are associated with this sample.  Like sampleid,
             this is not likely meaningful at the top level and should only really appear in the sample-specific
             lab keys.
           `,
           items: {
-            type: 'string',
+            type: "string",
             description:
-              'Refers to a file in the list of files which is associated with this sample.',
+              "Refers to a file in the list of files which is associated with this sample.",
           },
         },
       },
@@ -411,11 +412,12 @@ const schema: Schema = {
   // Main Schema
   // ---------------------------------------------------------------
 
-  type: 'object',
+  type: "object",
   properties: {
     _type: {
-      const: 'application/vnd.modus.slim.v1.0+json',
-      description: `Content type for API responses.  Must also be present on the document.`,
+      const: "application/vnd.modus.slim.v1.0+json",
+      description:
+        "Content type for API responses.  Must also be present on the document.",
     },
 
     // --------------------------------------------------------
@@ -423,7 +425,7 @@ const schema: Schema = {
     // --------------------------------------------------------
 
     id: {
-      $ref: '#/$defs/id',
+      $ref: "#/$defs/id",
       description: `
         The "id" on the overall document is set by the original creator and should not be modified.
         Both the lab and source have the option to set their own internal ID's in their respective
@@ -434,8 +436,8 @@ const schema: Schema = {
     },
 
     date: {
-      type: 'string',
-      format: 'date', // YYYY-MM-DD
+      type: "string",
+      format: "date", // YYYY-MM-DD
       description: `
         This is intended as the most significant, known date at the time of document creation.
         It will be used as the primary "date" that systems can use to index this document.
@@ -450,7 +452,7 @@ const schema: Schema = {
     },
 
     name: {
-      type: 'string',
+      type: "string",
       description: `
         An optional short string that the source may use as a human-readable means of identifying
         the group of samples in this document.
@@ -458,7 +460,7 @@ const schema: Schema = {
     },
 
     description: {
-      type: 'string',
+      type: "string",
       description: `
         If the name is not long enough, more information can be put here about this group of 
         samples.
@@ -466,7 +468,7 @@ const schema: Schema = {
     },
 
     type: {
-      enum: ['soil', 'plant-tissue', 'nematode', 'water', 'residue'],
+      enum: ["soil", "plant-tissue", "nematode", "water", "residue"],
       description: `
         This represents the type of samples and results to be found in this document.  Mixing-and-matching
         samples and types is not allowed: create multiple documents if you need to do that.  "type" here
@@ -479,7 +481,7 @@ const schema: Schema = {
     // ---------------------------------------------------------
 
     depth: {
-      $ref: '#/$defs/depth',
+      $ref: "#/$defs/depth",
       description: `
         If all or most of the samples in this document were taken at the same depth, you can place the depth 
         here globally and then override any sample-specific depths within the individual samples.
@@ -487,7 +489,7 @@ const schema: Schema = {
     },
 
     geolocation: {
-      $ref: '#/$defs/geolocation',
+      $ref: "#/$defs/geolocation",
       description: `
         Any geolocation information that relates to all samples globally should go here.  For example,
         a boundary containing all the points that were sampled.  If you have point-specific location
@@ -502,7 +504,7 @@ const schema: Schema = {
     // ---------------------------------------------------------------
 
     lab: {
-      $ref: '#/$defs/lab',
+      $ref: "#/$defs/lab",
       description: `
         See description in the $defs.  This represents global information about and for the lab
         which applies docuent-wide (i.e. all samples and all results).
@@ -510,7 +512,7 @@ const schema: Schema = {
     },
 
     source: {
-      $ref: '#/$defs/source',
+      $ref: "#/$defs/source",
       description: `
         See description in the $defs.  This represents global information about and for the source
         which applies document-wide (i.e. all samples and all results).
@@ -522,10 +524,10 @@ const schema: Schema = {
         The list of samples, keyed by their respective id's.
       `,
       additionalProperties: {
-        type: 'object',
+        type: "object",
         properties: {
           id: {
-            $ref: '#/$defs/id',
+            $ref: "#/$defs/id",
             description: `
               An ID for this sample, assigned by whomever first creates this document containing this sample.  It must
               be the same as the key in the samples object (i.e. where this sample resides in the list).  It must
@@ -539,27 +541,27 @@ const schema: Schema = {
           },
 
           lab: {
-            $ref: '#/$defs/lab',
+            $ref: "#/$defs/lab",
             description: `
               Sample-specific overrides for anything in the top-level lab key.
             `,
           },
 
           source: {
-            $ref: '#/$defs/source',
+            $ref: "#/$defs/source",
             description: `
               Sample-specific overrides for anything in the top-level source key.
             `,
           },
 
           depth: {
-            $ref: '#/$defs/depth',
+            $ref: "#/$defs/depth",
             description:
-              'The depth that this sample was taken.  Overrides the top-level depth for this sample.',
+              "The depth that this sample was taken.  Overrides the top-level depth for this sample.",
           },
 
           geolocation: {
-            $ref: '#/$defs/geolocation',
+            $ref: "#/$defs/geolocation",
             description: `
               Geolocation where this sample was taken.  Can be lat/lon (preferred) or geojson.
               Refer to the $ref for more information.
@@ -567,16 +569,16 @@ const schema: Schema = {
           },
 
           results: {
-            type: 'object',
+            type: "object",
             description: `
               A list of all the lab results associated with this sample, keyed by a sufficiently-unique string.
               Note that since some analytes could be present multiple times, this should just be a random string.
             `,
             additionalProperties: {
-              type: 'object',
+              type: "object",
               properties: {
                 analyte: {
-                  type: 'string',
+                  type: "string",
                   description: `
                     This should be the part of the Modus 2.0 test ID that is between the third and 
                     fourth underscores: L_MODV2_SOIL_B_016 -> analyte: B.  Refer to the Modus 2.0 spreadsheet
@@ -588,15 +590,15 @@ const schema: Schema = {
                     The value of this lab result for this analyte.  If it is numeric in nature, the type
                     should be number.  If it cannot be reprented as a number, then it should be a string.
                   `,
-                  oneOf: [{ type: 'number' }, { type: 'string' }],
+                  oneOf: [{ type: "number" }, { type: "string" }],
                 },
                 units: {
-                  type: 'string',
+                  type: "string",
                   description:
-                    'The units for this value.  Any UCUM-compliant string should be valid.',
+                    "The units for this value.  Any UCUM-compliant string should be valid.",
                 },
                 modusTestID: {
-                  type: 'string',
+                  type: "string",
                   description: `
                     The Modus v2.0 (preferred) ID for the test that produced this result, or the Modus v1.0
                     test ID.  If neither is known, do not include this key.  It is recommended to always
@@ -610,7 +612,7 @@ const schema: Schema = {
       },
     }, // End of samples
   },
-  required: ['id', 'date', 'type'],
+  required: ["id", "date", "type"],
 
   // -----------------------------------------------------------------
   // EXAMPLES:
@@ -619,51 +621,51 @@ const schema: Schema = {
   // More examples can be found at https://github.com/oats-center/modus/examples
   examples: [
     {
-      _type: 'application/vnd.modus.slim.v1.0+json',
+      _type: "application/vnd.modus.slim.v1.0+json",
 
-      id: 'ece3a2a8-4340-48b1-ae1f-d48d1f1e1692',
-      date: '2021-09-24',
-      name: 'Samples taken last sunday',
+      id: "ece3a2a8-4340-48b1-ae1f-d48d1f1e1692",
+      date: "2021-09-24",
+      name: "Samples taken last sunday",
 
-      type: 'soil',
+      type: "soil",
 
       lab: {
-        id: { source: 'local', value: '1' },
-        name: 'A & L Great Lakes Laboratories',
+        id: { source: "local", value: "1" },
+        name: "A & L Great Lakes Laboratories",
         contact: {
-          name: 'A & L Great Lakes Laboratories',
-          phone: '260.483.4759',
-          address: '3505 Conestoga Dr.\nFort Wayne, IN 46808',
+          name: "A & L Great Lakes Laboratories",
+          phone: "260.483.4759",
+          address: "3505 Conestoga Dr.\nFort Wayne, IN 46808",
         },
-        dateReceived: '2021-09-24T00:00:00.000',
-        dateProcessed: '2021-09-28T00:00:00.000',
+        dateReceived: "2021-09-24T00:00:00.000",
+        dateProcessed: "2021-09-28T00:00:00.000",
         clientAccount: {
-          accountNumber: '30039',
-          company: 'THE ANDERSONS FARM CTR - GPS',
-          city: 'N MANCHESTER',
-          state: 'IN',
+          accountNumber: "30039",
+          company: "THE ANDERSONS FARM CTR - GPS",
+          city: "N MANCHESTER",
+          state: "IN",
         },
         report: {
-          id: 'F21271-0035',
-          date: '2021-09-25',
+          id: "F21271-0035",
+          date: "2021-09-25",
         },
       },
 
       source: {
         report: {
-          id: '02iojfkeldjsldfssdf',
+          id: "02iojfkeldjsldfssdf",
         },
-        grower: { id: 'dfj20foekdlf', name: 'CARL AULT' },
-        farm: { id: 'kdjf02ijfoeklew', name: 'ENYART' },
-        field: { id: 'idkjf20fijoed', name: 'EAST50' },
+        grower: { id: "dfj20foekdlf", name: "CARL AULT" },
+        farm: { id: "kdjf02ijfoeklew", name: "ENYART" },
+        field: { id: "idkjf20fijoed", name: "EAST50" },
         // Can also have subfield
       },
 
       samples: {
-        '0djfi2iekldsfj02i': {
+        "0djfi2iekldsfj02i": {
           // This key is only required to be "sufficiently random within this document
-          lab: { sampleid: '28_051' },
-          source: { sampleid: 'ABC-1' },
+          lab: { sampleid: "28_051" },
+          source: { sampleid: "ABC-1" },
 
           /*
           Depth: {
@@ -686,89 +688,89 @@ const schema: Schema = {
           results: {
             // The "analyte" should be the part of the Modus 2.0 test ID that is between
             // the third and fourth underscores: L_MODV2_SOIL_B_016 -> analyte: 'B'
-            'kfj290ji': {
-              analyte: 'PH',
+            kfj290ji: {
+              analyte: "PH",
               value: 7,
-              units: 'none',
-              modusTestID: 'S-PH-1:1.02.07',
+              units: "none",
+              modusTestID: "S-PH-1:1.02.07",
             },
-            '2fj290ji': {
-              analyte: 'OM',
+            "2fj290ji": {
+              analyte: "OM",
               value: 2.4,
-              units: '%',
-              modusTestID: 'S-SOM-LOI.15',
+              units: "%",
+              modusTestID: "S-SOM-LOI.15",
             },
-            '3fj290ji': {
-              analyte: 'P',
+            "3fj290ji": {
+              analyte: "P",
               value: 34,
-              units: 'ppm',
-              modusTestID: 'S-P-B1-1:10.01.03',
+              units: "ppm",
+              modusTestID: "S-P-B1-1:10.01.03",
             },
-            '4fj290ji': {
-              analyte: 'K',
+            "4fj290ji": {
+              analyte: "K",
               value: 161,
-              units: 'ppm',
-              modusTestID: 'S-K-NH4AC.05',
+              units: "ppm",
+              modusTestID: "S-K-NH4AC.05",
             },
-            '5fj290ji': {
-              analyte: 'CA',
+            "5fj290ji": {
+              analyte: "CA",
               value: 1150,
-              units: 'ppm',
-              modusTestID: 'S-CA-NH4AC.05',
+              units: "ppm",
+              modusTestID: "S-CA-NH4AC.05",
             },
-            '6fj290ji': {
-              analyte: 'Mg',
+            "6fj290ji": {
+              analyte: "Mg",
               value: 240,
-              units: 'ppm',
-              modusTestID: 'S-MG-NH4AC.05',
+              units: "ppm",
+              modusTestID: "S-MG-NH4AC.05",
             },
-            '7fj290ji': {
-              analyte: 'CEC',
+            "7fj290ji": {
+              analyte: "CEC",
               value: 8.2,
-              units: 'meq/100g',
-              modusTestID: 'S-CEC.19',
+              units: "meq/100g",
+              modusTestID: "S-CEC.19",
             },
-            '8fj290ji': {
-              analyte: 'CABS',
+            "8fj290ji": {
+              analyte: "CABS",
               value: 70.4,
-              units: '%',
-              modusTestID: 'S-BS-CA.19',
+              units: "%",
+              modusTestID: "S-BS-CA.19",
             },
-            '9fj290ji': {
-              analyte: 'MGBS',
+            "9fj290ji": {
+              analyte: "MGBS",
               value: 24.5,
-              units: '%',
-              modusTestID: 'S-BS-MG.19',
+              units: "%",
+              modusTestID: "S-BS-MG.19",
             },
-            '0fj290ji': {
-              analyte: 'KBS',
+            "0fj290ji": {
+              analyte: "KBS",
               value: 5.1,
-              units: '%',
-              modusTestID: 'S-BS-K.19',
+              units: "%",
+              modusTestID: "S-BS-K.19",
             },
-            '11j290ji': {
-              analyte: 'SO4S',
+            "11j290ji": {
+              analyte: "SO4S",
               value: 7,
-              units: 'ppm',
-              modusTestID: 'S-S-NH4AC.05',
+              units: "ppm",
+              modusTestID: "S-S-NH4AC.05",
             },
-            '12j290ji': {
-              analyte: 'ZN',
+            "12j290ji": {
+              analyte: "ZN",
               value: 3.3,
-              units: 'ppm',
-              modusTestID: 'S-ZN-HCL.05',
+              units: "ppm",
+              modusTestID: "S-ZN-HCL.05",
             },
-            '13j290ji': {
-              analyte: 'MN',
+            "13j290ji": {
+              analyte: "MN",
               value: 46,
-              units: 'ppm',
-              modusTestID: 'S-MN-HCL.05',
+              units: "ppm",
+              modusTestID: "S-MN-HCL.05",
             },
-            '14j290ji': {
-              analyte: 'B',
+            "14j290ji": {
+              analyte: "B",
               value: 0.7,
-              units: 'ppm',
-              modusTestID: 'S-B-M3.04',
+              units: "ppm",
+              modusTestID: "S-B-M3.04",
             },
           },
         },

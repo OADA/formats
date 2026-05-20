@@ -7,12 +7,10 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import { format, parse } from 'content-type';
+import mediaType2schema from "@oada/media-types";
+import { format, parse } from "content-type";
 
-import mediaType2schema from '@oada/media-types';
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Options {}
+export type Options = never;
 
 function isArray(value: unknown): value is unknown[] | readonly unknown[] {
   return Array.isArray(value);
@@ -51,13 +49,13 @@ export function handleResponse(
      *
      * @todo Unclear if multiple schema entries means multiple Links or one?
      */
-    'Link': [...aLinks, ...schema.map((s) => `<${s}#>; rel="describedby"`)],
+    Link: [...aLinks, ...schema.map((s) => `<${s}#>; rel="describedby"`)],
     /**
      *  @see https://json-schema.org/draft/2019-09/json-schema-core.html#parameter
      */
-    'Content-Type': format({
+    "Content-Type": format({
       type,
-      parameters: { ...parameters, schema: schema.join(' ') },
+      parameters: { ...parameters, schema: schema.join(" ") },
     }),
   };
 }
@@ -65,9 +63,9 @@ export function handleResponse(
 /**
  * Express middleware version
  */
-export { middleware } from './middleware.js';
+export { middleware } from "./middleware.js";
 
 /**
  * Fastify plugin version
  */
-export { plugin } from './plugin.js';
+export { plugin } from "./plugin.js";

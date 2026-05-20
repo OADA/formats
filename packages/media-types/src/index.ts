@@ -7,9 +7,9 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import { parse } from 'content-type';
+import { parse } from "content-type";
 
-const root = 'https://formats.openag.io';
+const root = "https://formats.openag.io";
 const regex = /^application\/vnd\.([^.]+)\.(.*)\+json$/;
 
 /**
@@ -26,7 +26,7 @@ export function getSchema(mediaType: string): string | undefined {
   }
 
   const [, domain, type] = matches;
-  const types = type?.split('.') ?? [];
+  const types = type?.split(".") ?? [];
   // Handle versioned types
   const version = types.pop() ?? Number.NaN;
   if (!Number(version)) {
@@ -34,7 +34,7 @@ export function getSchema(mediaType: string): string | undefined {
   }
 
   // TODO: Enforce that version is a number??
-  return `${domain}/${types.join('/')}/v${version}.schema.json`;
+  return `${domain}/${types.join("/")}/v${version}.schema.json`;
 }
 
 /**
@@ -58,5 +58,5 @@ export default function mediaType2schema(
     parameters: { schema = resolveSchema(type) },
   } = parse(...parameters);
 
-  return schema ? schema.split(' ') : [];
+  return schema ? schema.split(" ") : [];
 }

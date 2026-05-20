@@ -7,22 +7,16 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import { resolve } from 'node:path';
-
-import type { JSONSchema8 as Schema } from 'jsonschema8';
-
-import $ref from '@apidevtools/json-schema-ref-parser';
-
-import _Ajv from 'ajv';
-
-import _addFormats from 'ajv-formats';
-import addFormats2019 from 'ajv-formats-draft2019';
-import { default as axios } from 'axios';
-
-import { getSchema as contentTypeToKey } from '@oada/media-types';
-
-import loadSchemas, { schemasDirectory } from '@oada/schemas';
-import { importSchema } from '@oada/schemas/utils';
+import { resolve } from "node:path";
+import $ref from "@apidevtools/json-schema-ref-parser";
+import { getSchema as contentTypeToKey } from "@oada/media-types";
+import loadSchemas, { schemasDirectory } from "@oada/schemas";
+import { importSchema } from "@oada/schemas/utils";
+import _Ajv from "ajv";
+import _addFormats from "ajv-formats";
+import addFormats2019 from "ajv-formats-draft2019";
+import { default as axios } from "axios";
+import type { JSONSchema8 as Schema } from "jsonschema8";
 
 type Ajv = _Ajv.default;
 // eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/no-redeclare
@@ -45,7 +39,7 @@ export interface OADAFormats extends Ajv {
 // Load all the schemas into ajv
 export async function loadAllFormats() {
   const meta = await $ref.dereference(
-    'https://json-schema.org/draft/2019-09/schema',
+    "https://json-schema.org/draft/2019-09/schema",
   );
   // TODO: Why does compileAsync not work for meta schema?
   ajv.addMetaSchema(meta);
@@ -76,12 +70,12 @@ ajv.getSchema = ((reference) => {
   return key && _getSchema(`https://formats.openag.io/${key}`);
 }) as typeof _getSchema;
 
-export const schemaExtensions = ['cjs', 'mjs', 'js', 'json'] as const;
+export const schemaExtensions = ["cjs", "mjs", "js", "json"] as const;
 
 export async function loadSchema(uri: string) {
   const r = /^https:\/\/formats\.openag\.io/i;
   // Use local version of openag schemas
-  const file = uri.replace(r, './').replace(/\.json$/, '');
+  const file = uri.replace(r, "./").replace(/\.json$/, "");
   const schemaFile = resolve(schemasDirectory, file);
   for await (const extension of schemaExtensions) {
     try {
@@ -94,4 +88,4 @@ export async function loadSchema(uri: string) {
   return schema;
 }
 
-export { getSchema as contentTypeToKey } from '@oada/media-types';
+export { getSchema as contentTypeToKey } from "@oada/media-types";

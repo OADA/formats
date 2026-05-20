@@ -7,51 +7,51 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import type { JSONSchema8 as Schema } from 'jsonschema8';
+import type { JSONSchema8 as Schema } from "jsonschema8";
 
 const schema = {
-  $id: 'https://formats.openag.io/oada/websockets/response.schema.json',
-  $schema: 'http://json-schema.org/draft-07/schema#',
+  $id: "https://formats.openag.io/oada/websockets/response.schema.json",
+  $schema: "http://json-schema.org/draft-07/schema#",
   description:
-    'This is the format of an OADA websocket response (server to client)',
+    "This is the format of an OADA websocket response (server to client)",
   definitions: {
     id: {
-      $ref: 'request.schema.json#/properties/requestId',
+      $ref: "request.schema.json#/properties/requestId",
     },
   },
-  type: 'object',
-  required: ['requestId', 'status'],
+  type: "object",
+  required: ["requestId", "status"],
   properties: {
     requestId: {
       description:
-        'Array of request IDs to which this response pertains. A single string is supported only for legacy purposes.',
+        "Array of request IDs to which this response pertains. A single string is supported only for legacy purposes.",
       anyOf: [
         {
-          type: 'array',
+          type: "array",
           minItems: 1,
           items: {
-            $ref: '#/definitions/id',
+            $ref: "#/definitions/id",
           },
         },
-        { $ref: '#/definitions/id' },
+        { $ref: "#/definitions/id" },
       ],
     },
     status: {
-      type: 'integer',
+      type: "integer",
     },
-    statusText: { type: 'string' },
+    statusText: { type: "string" },
     headers: {
-      type: 'object',
-      additionalProperties: { type: 'string' },
+      type: "object",
+      additionalProperties: { type: "string" },
     },
     resourceId: {
-      $ref: '../../oada.schema.json#/definitions/_id',
+      $ref: "../../oada.schema.json#/definitions/_id",
     },
     resource: {
-      $comment: 'Not sure if this is always actually a resource...',
+      $comment: "Not sure if this is always actually a resource...",
     },
     data: {
-      description: 'The optional data payload of the request',
+      description: "The optional data payload of the request",
     },
   },
 } as const satisfies Schema;

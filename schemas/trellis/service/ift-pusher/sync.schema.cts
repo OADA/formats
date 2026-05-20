@@ -7,60 +7,60 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import type { JSONSchema8 as Schema } from 'jsonschema8';
+import type { JSONSchema8 as Schema } from "jsonschema8";
 
 const schema = {
-  $id: 'https://formats.openag.io/trellis/service/ift-pusher/sync.schema.json',
-  $schema: 'http://json-schema.org/draft-07/schema#',
+  $id: "https://formats.openag.io/trellis/service/ift-pusher/sync.schema.json",
+  $schema: "http://json-schema.org/draft-07/schema#",
   /* TODO: Put your JSON Schema here */
-  description: 'Extension of @oada/job format for ift-pusher',
-  type: 'object',
-  allOf: [{ $ref: '../../../oada/service/job.schema.json' }],
+  description: "Extension of @oada/job format for ift-pusher",
+  type: "object",
+  allOf: [{ $ref: "../../../oada/service/job.schema.json" }],
   properties: {
     service: {
-      description: 'Service Name',
-      const: 'ift-pusher',
+      description: "Service Name",
+      const: "ift-pusher",
     },
     type: {
-      description: 'IFT Synchronization Job',
-      const: 'sync',
+      description: "IFT Synchronization Job",
+      const: "sync",
     },
     config: {
-      description: 'Job specific configuration object',
-      type: 'object',
-      required: ['resourceId'],
+      description: "Job specific configuration object",
+      type: "object",
+      required: ["resourceId"],
       properties: {
         resourceId: {
-          description: 'id for virtualized pdf',
-          type: 'string',
+          description: "id for virtualized pdf",
+          type: "string",
         },
       },
     },
     result: {
-      description: 'Final result of job',
+      description: "Final result of job",
     },
   },
 
   examples: [
     {
-      _id: 'resources/123',
-      _type: 'application/vnd.trellis.service.job.1+json',
+      _id: "resources/123",
+      _type: "application/vnd.trellis.service.job.1+json",
       _meta: {
-        _id: 'resources/123/_meta',
+        _id: "resources/123/_meta",
         _rev: 3,
       },
       _rev: 3,
-      service: 'ift-pusher',
-      type: 'sync',
+      service: "ift-pusher",
+      type: "sync",
       config: {
-        resourceId: 'resources/oivnoseklnvaoeij329814ng',
+        resourceId: "resources/oivnoseklnvaoeij329814ng",
       },
-      status: 'pending',
+      status: "pending",
       updates: {
         aoihngklsdmfjoavin2398havj: {
-          status: 'started',
-          time: '2019-10-20T20:07:21+00:00',
-          information: 'started',
+          status: "started",
+          time: "2019-10-20T20:07:21+00:00",
+          information: "started",
         },
       },
     },

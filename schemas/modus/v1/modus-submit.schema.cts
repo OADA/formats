@@ -7,70 +7,70 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import type { JSONSchema8 as Schema } from 'jsonschema8';
+import type { JSONSchema8 as Schema } from "jsonschema8";
 
 const schema = {
-  $id: 'https://formats.openag.io/modus/v1/modus-submit.schema.json',
-  $schema: 'http://json-schema.org/draft-07/schema#',
-  description: 'Modus document for submitting sample events to FMIS',
+  $id: "https://formats.openag.io/modus/v1/modus-submit.schema.json",
+  $schema: "http://json-schema.org/draft-07/schema#",
+  description: "Modus document for submitting sample events to FMIS",
   $comment:
-    'Sadly, the standard appears to duplicate a lot of things here from modus-result. Sticking to the standard in the hope of fixing in the future.',
-  type: 'object',
+    "Sadly, the standard appears to duplicate a lot of things here from modus-result. Sticking to the standard in the hope of fixing in the future.",
+  type: "object",
   properties: {
     _type: {
-      $comment: 'content type for API responses',
-      const: 'application/vnd.modus.v1.modus-submit+json',
+      $comment: "content type for API responses",
+      const: "application/vnd.modus.v1.modus-submit+json",
     },
     Events: {
-      type: 'array',
+      type: "array",
       items: {
         $comment: 'this is an "Event"',
-        type: 'object',
+        type: "object",
         properties: {
-          EventMetaData: { $ref: './global.schema.json#/$defs/EventMetaData' },
+          EventMetaData: { $ref: "./global.schema.json#/$defs/EventMetaData" },
 
-          LabMetaData: { $ref: './global.schema.json#/$defs/LabMetaData' },
+          LabMetaData: { $ref: "./global.schema.json#/$defs/LabMetaData" },
 
-          FMISMetadata: { $ref: './global.schema.json#/$defs/FMISMetadata' },
+          FMISMetadata: { $ref: "./global.schema.json#/$defs/FMISMetadata" },
 
           SubmissionAttributes: {
-            $ref: './global.schema.json#/$defs/SubmissionAttributes',
+            $ref: "./global.schema.json#/$defs/SubmissionAttributes",
           },
 
           EventSamples: {
-            type: 'object',
+            type: "object",
             properties: {
               Soil: {
-                type: 'object',
+                type: "object",
                 properties: {
-                  DepthRefs: { $ref: './global.schema.json#/$defs/DepthRefs' },
+                  DepthRefs: { $ref: "./global.schema.json#/$defs/DepthRefs" },
                   RecommendationRefs: {
-                    $ref: './global.schema.json#/$defs/RecommendationRefs',
+                    $ref: "./global.schema.json#/$defs/RecommendationRefs",
                   },
                   SoilSamples: {
-                    type: 'array',
+                    type: "array",
                     items: {
                       $comment: 'A "SoilSample"',
-                      type: 'object',
+                      type: "object",
                       properties: {
                         SampleMetaData: {
-                          $ref: './global.schema.json#/$defs/SampleMetaData',
+                          $ref: "./global.schema.json#/$defs/SampleMetaData",
                         },
                         Depths: {
-                          type: 'array',
+                          type: "array",
                           items: {
-                            type: 'object',
+                            type: "object",
                             properties: {
                               DepthID: {
                                 description:
-                                  'Depth ID from the Depth Reference',
-                                type: 'string',
+                                  "Depth ID from the Depth Reference",
+                                type: "string",
                               },
                             },
                           },
                         },
                         Comments: {
-                          $ref: './global.schema.json#/$defs/Comments',
+                          $ref: "./global.schema.json#/$defs/Comments",
                         },
                       },
                     },
@@ -80,22 +80,22 @@ const schema = {
 
               Plant: {
                 description:
-                  'Element to place samples and results from a plant tissue sample event',
-                type: 'object',
+                  "Element to place samples and results from a plant tissue sample event",
+                type: "object",
                 properties: {
                   RecommendationRefs: {
-                    $ref: './global.schema.json#/$defs/RecommendationRefs',
+                    $ref: "./global.schema.json#/$defs/RecommendationRefs",
                   },
                   PlantSamples: {
-                    type: 'array',
+                    type: "array",
                     items: {
-                      type: 'object',
+                      type: "object",
                       properties: {
                         SampleMetaData: {
-                          $ref: './global.schema.json#/$defs/SampleMetaData',
+                          $ref: "./global.schema.json#/$defs/SampleMetaData",
                         },
                         Comments: {
-                          $ref: './global.schema.json#/$defs/Comments',
+                          $ref: "./global.schema.json#/$defs/Comments",
                         },
                       },
                     },
@@ -105,29 +105,29 @@ const schema = {
 
               Nematode: {
                 description:
-                  'Element to place samples and results from a nematode sample event',
-                type: 'object',
+                  "Element to place samples and results from a nematode sample event",
+                type: "object",
                 properties: {
-                  DepthRefs: { $ref: './global.schema.json#/$defs/DepthRefs' },
+                  DepthRefs: { $ref: "./global.schema.json#/$defs/DepthRefs" },
                   NematodeSamples: {
-                    type: 'array',
+                    type: "array",
                     items: {
-                      type: 'object',
+                      type: "object",
                       properties: {
                         SampleMetaData: {
-                          $ref: './global.schema.json#/$defs/SampleMetaData',
+                          $ref: "./global.schema.json#/$defs/SampleMetaData",
                         },
                         Depths: {
-                          type: 'array',
+                          type: "array",
                           items: {
-                            type: 'object',
+                            type: "object",
                             properties: {
-                              DepthID: { type: 'integer', minimum: 1 },
+                              DepthID: { type: "integer", minimum: 1 },
                             },
                           },
                         },
                         Comments: {
-                          $ref: './global.schema.json#/$defs/Comments',
+                          $ref: "./global.schema.json#/$defs/Comments",
                         },
                       },
                     },
@@ -136,22 +136,22 @@ const schema = {
               },
 
               Water: {
-                type: 'object',
+                type: "object",
                 properties: {
                   WaterSamples: {
-                    type: 'array',
+                    type: "array",
                     items: {
-                      type: 'object',
+                      type: "object",
                       properties: {
                         SampleMetaData: {
-                          $ref: './global.schema.json#/$defs/SampleMetaData',
+                          $ref: "./global.schema.json#/$defs/SampleMetaData",
                         },
-                        Source: { type: 'string' },
+                        Source: { type: "string" },
                         NutrientResults: {
-                          $ref: './global.schema.json#/$defs/NutrientResults',
+                          $ref: "./global.schema.json#/$defs/NutrientResults",
                         },
                         Comments: {
-                          $ref: './global.schema.json#/$defs/Comments',
+                          $ref: "./global.schema.json#/$defs/Comments",
                         },
                       },
                     },
@@ -160,21 +160,21 @@ const schema = {
               },
 
               Residue: {
-                type: 'object',
+                type: "object",
                 properties: {
                   ResidueSamples: {
-                    type: 'array',
+                    type: "array",
                     items: {
-                      type: 'object',
+                      type: "object",
                       properties: {
                         SampleMetaData: {
-                          $ref: './global.schema.json#/$defs/SampleMetaData',
+                          $ref: "./global.schema.json#/$defs/SampleMetaData",
                         },
                         ResidueResults: {
-                          $ref: './global.schema.json#/$defs/ResidueResults',
+                          $ref: "./global.schema.json#/$defs/ResidueResults",
                         },
                         Comments: {
-                          $ref: './global.schema.json#/$defs/Comments',
+                          $ref: "./global.schema.json#/$defs/Comments",
                         },
                       },
                     },
@@ -184,16 +184,16 @@ const schema = {
             },
           },
 
-          Comments: { $ref: './global.schema.json#/$defs/Comments' },
+          Comments: { $ref: "./global.schema.json#/$defs/Comments" },
 
           ModusSubmit: {
-            $comment: 'can hold an entire ModusSubmit document?',
-            $ref: '#',
+            $comment: "can hold an entire ModusSubmit document?",
+            $ref: "#",
           },
         },
       },
     },
-    Version: { type: 'string', default: '1.0' },
+    Version: { type: "string", default: "1.0" },
   },
 } as const satisfies Schema;
 

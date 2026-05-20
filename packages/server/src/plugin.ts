@@ -7,10 +7,10 @@
  * https://opensource.org/licenses/MIT.
  */
 
-import type { FastifyPluginAsync } from 'fastify';
+import type { FastifyPluginAsync } from "fastify";
 
-import type { Options } from './index.js';
-import { handleResponse } from './index.js';
+import type { Options } from "./index.js";
+import { handleResponse } from "./index.js";
 
 /**
  * Create a fastify plugin version
@@ -19,12 +19,12 @@ export const plugin: FastifyPluginAsync<Options> = async (
   fastify,
   _options,
 ) => {
-  fastify.addHook('onSend', async (_request, reply) => {
+  fastify.addHook("onSend", async (_request, reply) => {
     const headers = handleResponse(
-      reply.getHeader('Content-Type') as string,
-      reply.getHeader('Link') as string | string[],
+      reply.getHeader("Content-Type") as string,
+      reply.getHeader("Link") as string | string[],
     );
-    reply.log.trace('Setting schema headers: %O', headers);
+    reply.log.trace("Setting schema headers: %O", headers);
     void reply.headers(headers);
   });
 };
